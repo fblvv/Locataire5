@@ -20,6 +20,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
+import controle.GestionAjoutBatiment;
+import controle.GestionPageAjoutLocataire;
 import modele.Batiment;
 import modele.dao.DaoBatiment;
 
@@ -32,8 +34,10 @@ public class FenetreAjoutBatiment extends JInternalFrame {
     private JFormattedTextField champDateConstruction;
     private JTextField champEquipAccesTech;
     private JTextField champEnumPartiesCommunes;
+    private GestionAjoutBatiment gestionClic;
 
     public FenetreAjoutBatiment() {
+    	this.gestionClic = new GestionAjoutBatiment(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 350, 300);
         JPanel contentPane = new JPanel();
@@ -132,7 +136,7 @@ public class FenetreAjoutBatiment extends JInternalFrame {
         panel_2.setLayout(new BorderLayout(0, 0));
 
         JButton btnAnnuler = new JButton("Annuler");
-        // Ajoutez l'actionListener pour annuler si nécessaire
+        btnAnnuler.addActionListener(this.gestionClic);
         panel_2.add(btnAnnuler, BorderLayout.WEST);
 
         JButton btnValider = new JButton("Valider");
