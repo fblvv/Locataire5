@@ -99,7 +99,9 @@ public class Accueil extends JFrame {
         
         JMenuItem mntmAjouterBatiment = new JMenuItem("Ajouter Nouveau Batiment");
         mntmAjouterBatiment.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmAjouterBatiment.addActionListener(this.gestionClic);
         mnAjouterBatiment.add(mntmAjouterBatiment);
+
     }
 
     public void actionPerformed(ActionEvent e) {

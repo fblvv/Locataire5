@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import SQL.CictOracleDataSource;
 import vue.Accueil;
 import vue.Connexion;
+import vue.FenetreAjoutBatiment;
 import vue.FenetreBien;
 import vue.FenetreDetailsPropriete2;
 import vue.FenetreListeLocataire;
@@ -56,13 +57,10 @@ public class GestionAccueil implements ActionListener {
                 afficherFenetre(new FenetreListeLocataire(), layeredPane);
                 break;
             case "Gestion factures":
-            	//GestionFactureWindow2 test = new GestionFactureWindow2();
-            	//layeredPane.add(test);
-            	//test.setVisible(true);
 	            afficherFenetre(new GestionFactureWindow2(), layeredPane);
 	            break;
-            case "Connexion":
-                afficherFenetre(new Connexion(), layeredPane);
+            case "Ajouter Nouveau Batiment":
+                afficherFenetre(new FenetreAjoutBatiment(), layeredPane);
                 break;
         }
     }
