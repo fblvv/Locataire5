@@ -46,52 +46,60 @@ public class Accueil extends JFrame {
 
         Image backgroundImage = new ImageIcon(this.getClass().getResource("/imageBgAcceuil.jpeg")).getImage();
 
-        JLabel lblNewLabel_2 = new JLabel("imageBg");
-        lblNewLabel_2.setIcon(new ImageIcon(backgroundImage));
-        lblNewLabel_2.setBounds(54, 84, 612, 500);
-        contentPane.add(lblNewLabel_2);
+        JLabel lblImageBG = new JLabel("imageBg");
+        lblImageBG.setIcon(new ImageIcon(backgroundImage));
+        lblImageBG.setBounds(54, 84, 612, 500);
+        contentPane.add(lblImageBG);
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.setFont(new Font("Lucida Grande", Font.BOLD, 18));
         menuBar.setBounds(20, 30, 1200, 30);
         contentPane.add(menuBar);
 
-        JMenu mnNewMenu = new JMenu("Locataire");
-        mnNewMenu.setFont(new Font("Lucida Grande", Font.BOLD, 18));
-        menuBar.add(mnNewMenu);
+        JMenu mnLocataire = new JMenu("Locataire");
+        mnLocataire.setFont(new Font("Lucida Grande", Font.BOLD, 18));
+        menuBar.add(mnLocataire);
 
         JMenuItem mntmAjouterLocataire = new JMenuItem("Ajouter locataire");
         mntmAjouterLocataire.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         mntmAjouterLocataire.addActionListener(this.gestionClic);
-        mnNewMenu.add(mntmAjouterLocataire);
+        mnLocataire.add(mntmAjouterLocataire);
 
         JMenuItem mntmConsultation = new JMenuItem("Liste des locataires");
         mntmConsultation.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         mntmConsultation.addActionListener(this.gestionClic);
-        mnNewMenu.add(mntmConsultation);
+        mnLocataire.add(mntmConsultation);
 
-        JMenu mnNewMenu_1 = new JMenu("Logement");
-        mnNewMenu_1.setFont(new Font("Lucida Grande", Font.BOLD, 18));
-        menuBar.add(mnNewMenu_1);
+        JMenu mnLogement = new JMenu("Logement");
+        mnLogement.setFont(new Font("Lucida Grande", Font.BOLD, 18));
+        menuBar.add(mnLogement);
 
         JMenuItem mntmAjouterLogement = new JMenuItem("Ajouter logement");
         mntmAjouterLogement.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         mntmAjouterLogement.addActionListener(this.gestionClic);
-        mnNewMenu_1.add(mntmAjouterLogement);
+        mnLogement.add(mntmAjouterLogement);
 
         JMenuItem mntmConsulterLogement = new JMenuItem("Consulter logement");
         mntmConsulterLogement.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         mntmConsulterLogement.addActionListener(this.gestionClic);
-        mnNewMenu_1.add(mntmConsulterLogement);
+        mnLogement.add(mntmConsulterLogement);
 
-        JMenu mnNewMenu_3 = new JMenu("Gestion facture");
-        mnNewMenu_3.setFont(new Font("Lucida Grande", Font.BOLD, 19));
-        menuBar.add(mnNewMenu_3);
+        JMenu mnGestionFacture = new JMenu("Gestion facture");
+        mnGestionFacture.setFont(new Font("Lucida Grande", Font.BOLD, 19));
+        menuBar.add(mnGestionFacture);
 
         JMenuItem mntmGestionFacture = new JMenuItem("Gestion factures");
         mntmGestionFacture.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         mntmGestionFacture.addActionListener(this.gestionClic);
-        mnNewMenu_3.add(mntmGestionFacture);
+        mnGestionFacture.add(mntmGestionFacture);
+        
+        JMenu mnAjouterBatiment = new JMenu("Ajouter Batiment");
+        mnAjouterBatiment.setFont(new Font("Lucida Grande", Font.BOLD, 19));
+        menuBar.add(mnAjouterBatiment);
+        
+        JMenuItem mntmAjouterBatiment = new JMenuItem("Ajouter Nouveau Batiment");
+        mntmAjouterBatiment.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mnAjouterBatiment.add(mntmAjouterBatiment);
     }
 
     public void actionPerformed(ActionEvent e) {
