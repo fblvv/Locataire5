@@ -1,4 +1,8 @@
 package modele;
+
+import java.util.LinkedList;
+import java.util.List;
+
 // Class for Bien_Immobilier
 public class BienImmobilier {
 	private String idBienImm;
@@ -11,6 +15,7 @@ public class BienImmobilier {
 	private String identifiant;
 	private String etage;
 	private static String id_Batiment;
+	private List<Locataire> locataires=new LinkedList<>();
 
 	public BienImmobilier(String idBienImm, double surface, String mode_Chauffage, String mode_Eau, int nb_Piece,
 			String type_Bien, String nom_Proprio, String identifiant, String etage,String id_Batiment) {
@@ -100,6 +105,14 @@ public class BienImmobilier {
 
 	public String getId_Batiment() {
 		return id_Batiment;
+	}
+	
+	public void ajoutLocataire(Locataire locataire) {
+		this.locataires.add(locataire);
+	}
+	
+	public List<Locataire> voirLocataires(){
+		return this.locataires;
 	}
 
 }
