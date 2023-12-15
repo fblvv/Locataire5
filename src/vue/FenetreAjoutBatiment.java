@@ -35,6 +35,7 @@ public class FenetreAjoutBatiment extends JInternalFrame {
     private JTextField champEquipAccesTech;
     private JTextField champEnumPartiesCommunes;
     private GestionAjoutBatiment gestionClic;
+    private JTextField textNomBatiment;
 
     public FenetreAjoutBatiment() {
     	this.gestionClic = new GestionAjoutBatiment(this);
@@ -56,6 +57,16 @@ public class FenetreAjoutBatiment extends JInternalFrame {
         panel_1.setMinimumSize(new Dimension(5, 5));
         panel.add(panel_1, BorderLayout.CENTER);
         panel_1.setLayout(new GridLayout(0, 1, 0, 0));
+        
+        JPanel panelNomBatiment = new JPanel();
+        panel_1.add(panelNomBatiment);
+        
+        JLabel lblNomBatiment = new JLabel("Nom Batiment");
+        panelNomBatiment.add(lblNomBatiment);
+        
+        textNomBatiment = new JTextField();
+        panelNomBatiment.add(textNomBatiment);
+        textNomBatiment.setColumns(10);
 
         JPanel panelRegimeJuridique = new JPanel();
         panel_1.add(panelRegimeJuridique);
