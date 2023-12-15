@@ -24,13 +24,18 @@ public class GestionAjoutBatiment implements ActionListener {
             JButton button = (JButton) source;
 
             switch (button.getText()) {
-                case "Autre Section":
+                case "Valider":
                     // Code à exécuter pour le bouton "Autre Section"
                     break;
+                    
                 case "Annuler":
                     ajoutBatiment.dispose();
                     break;
             }
         }
     }
+    
+    
+    
+    
 }
