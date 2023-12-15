@@ -13,9 +13,9 @@ public class RequeteSelectAssocierById extends Requete<Associer> {
 
     @Override
     public void parametres(PreparedStatement prSt, String... id) throws SQLException {
-        prSt.setDate(1, java.sql.Date.valueOf(id[0]));  // Assurez-vous que id[0] est une chaîne représentant une date valide
-        prSt.setInt(2, Integer.parseInt(id[1]));  // Assurez-vous que id[1] est une chaîne représentant un entier
-        prSt.setDate(3, java.sql.Date.valueOf(id[2]));  // Assurez-vous que id[2] est une chaîne représentant une date valide
+        prSt.setDate(1, java.sql.Date.valueOf(id[0]));  
+        prSt.setInt(2, Integer.parseInt(id[1])); 
+        prSt.setDate(3, java.sql.Date.valueOf(id[2]));  
     }
 
     @Override
