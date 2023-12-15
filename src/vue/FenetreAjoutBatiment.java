@@ -1,115 +1,72 @@
 package vue;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
-
 import controle.GestionAjoutBatiment;
-import controle.GestionPageAjoutLocataire;
 import modele.Batiment;
-import modele.dao.DaoBatiment;
 
 public class FenetreAjoutBatiment extends JInternalFrame {
 
     private static final long serialVersionUID = 1L;
-    private JTextField champRegimeJuridique;
-    private JTextField champAdresse;
-    private JTextField champCodePostal;
+    private JTextField champRegimeJuridique, champAdresse, champCodePostal, champEquipAccesTech, champEnumPartiesCommunes, textNomBatiment;
     private JFormattedTextField champDateConstruction;
-    private JTextField champEquipAccesTech;
-    private JTextField champEnumPartiesCommunes;
     private GestionAjoutBatiment gestionClic;
-    private JTextField textIdBatiment;
 
     public FenetreAjoutBatiment() {
-    	this.gestionClic = new GestionAjoutBatiment(this);
+        gestionClic = new GestionAjoutBatiment(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 350, 300);
+        setBounds(100, 100, 450, 400);
         JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
 
+        JLabel libAjouterBatiment = new JLabel("Ajouter un nouveau bâtiment");
+        libAjouterBatiment.setFont(new Font("Tahoma", Font.BOLD, 18));
+        libAjouterBatiment.setHorizontalAlignment(SwingConstants.CENTER);
+        contentPane.add(libAjouterBatiment, BorderLayout.NORTH);
+
         JPanel panel = new JPanel();
-        contentPane.add(panel, BorderLayout.WEST);
-        panel.setLayout(new BorderLayout(0, 0));
+        panel.setLayout(new GridLayout(0, 2, 10, 10));
+        panel.setBackground(new Color(238, 237, 238));
+        contentPane.add(panel, BorderLayout.CENTER);
 
-        JLabel libInfoBatiment = new JLabel("Information sur le bâtiment");
-        panel.add(libInfoBatiment, BorderLayout.NORTH);
+        // Champ pour le nom du bâtiment
+        JLabel lblNomBatiment = new JLabel("Nom Bâtiment");
+        lblNomBatiment.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        textNomBatiment = new JTextField();
+        panel.add(lblNomBatiment);
+        panel.add(textNomBatiment);
 
-        JPanel panel_1 = new JPanel();
-        panel_1.setMinimumSize(new Dimension(5, 5));
-        panel.add(panel_1, BorderLayout.CENTER);
-        panel_1.setLayout(new GridLayout(0, 1, 0, 0));
-        
-        JPanel panelNomBatiment = new JPanel();
-        panel_1.add(panelNomBatiment);
-        
-        JLabel lblNomBatiment = new JLabel("Nom Batiment");
-        panelNomBatiment.add(lblNomBatiment);
-        
-        textIdBatiment = new JTextField();
-        panelNomBatiment.add(textIdBatiment);
-        textIdBatiment.setColumns(10);
-
-        JPanel panelRegimeJuridique = new JPanel();
-        panel_1.add(panelRegimeJuridique);
-
+        // Champ pour le régime juridique
         JLabel libRegimeJuridique = new JLabel("Régime Juridique");
-        libRegimeJuridique.setHorizontalAlignment(SwingConstants.LEFT);
-
+        libRegimeJuridique.setFont(new Font("Tahoma", Font.PLAIN, 14));
         champRegimeJuridique = new JTextField();
-        champRegimeJuridique.setHorizontalAlignment(SwingConstants.RIGHT);
-        champRegimeJuridique.setColumns(10);
-        panelRegimeJuridique.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelRegimeJuridique.add(libRegimeJuridique);
-        panelRegimeJuridique.add(champRegimeJuridique);
+        panel.add(libRegimeJuridique);
+        panel.add(champRegimeJuridique);
 
-        JPanel panelAdresse = new JPanel();
-        panel_1.add(panelAdresse);
-
+        // Champ pour l'adresse
         JLabel libAdresse = new JLabel("Adresse");
-        libAdresse.setHorizontalAlignment(SwingConstants.LEFT);
-
+        libAdresse.setFont(new Font("Tahoma", Font.PLAIN, 14));
         champAdresse = new JTextField();
-        champAdresse.setHorizontalAlignment(SwingConstants.RIGHT);
-        champAdresse.setColumns(10);
-        panelAdresse.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelAdresse.add(libAdresse);
-        panelAdresse.add(champAdresse);
+        panel.add(libAdresse);
+        panel.add(champAdresse);
 
-        JPanel panelCodePostal = new JPanel();
-        panel_1.add(panelCodePostal);
-
+        // Champ pour le code postal
         JLabel libCodePostal = new JLabel("Code Postal");
-        panelCodePostal.add(libCodePostal);
-
+        libCodePostal.setFont(new Font("Tahoma", Font.PLAIN, 14));
         champCodePostal = new JTextField();
-        champCodePostal.setColumns(10);
-        panelCodePostal.add(champCodePostal);
+        panel.add(libCodePostal);
+        panel.add(champCodePostal);
 
-        JPanel panelDateConstruction = new JPanel();
-        panel_1.add(panelDateConstruction);
-
+        // Champ pour la date de construction
         JLabel libDateConstruction = new JLabel("Date de Construction");
-        panelDateConstruction.add(libDateConstruction);
-
+        libDateConstruction.setFont(new Font("Tahoma", Font.PLAIN, 14));
         try {
             MaskFormatter dateFormatter = new MaskFormatter("##/##/####");
             champDateConstruction = new JFormattedTextField(dateFormatter);
@@ -119,75 +76,51 @@ public class FenetreAjoutBatiment extends JInternalFrame {
             e.printStackTrace();
             champDateConstruction = new JFormattedTextField();
         }
+        panel.add(libDateConstruction);
+        panel.add(champDateConstruction);
 
-        panelDateConstruction.add(champDateConstruction);
-
-        JPanel panelEquipAccesTech = new JPanel();
-        panel_1.add(panelEquipAccesTech);
-
-        JLabel libEquipAccesTech = new JLabel("Equip Acces Tech");
-        panelEquipAccesTech.add(libEquipAccesTech);
-
+        // Champ pour l'équipement d'accès technique
+        JLabel libEquipAccesTech = new JLabel("Équip. Accès Tech.");
+        libEquipAccesTech.setFont(new Font("Tahoma", Font.PLAIN, 14));
         champEquipAccesTech = new JTextField();
-        champEquipAccesTech.setColumns(10);
-        panelEquipAccesTech.add(champEquipAccesTech);
+        panel.add(libEquipAccesTech);
+        panel.add(champEquipAccesTech);
 
-        JPanel panelEnumPartiesCommunes = new JPanel();
-        panel_1.add(panelEnumPartiesCommunes);
-
-        JLabel libEnumPartiesCommunes = new JLabel("Enum Parties Communes");
-        panelEnumPartiesCommunes.add(libEnumPartiesCommunes);
-
+        // Champ pour les parties communes
+        JLabel libEnumPartiesCommunes = new JLabel("Parties Communes");
+        libEnumPartiesCommunes.setFont(new Font("Tahoma", Font.PLAIN, 14));
         champEnumPartiesCommunes = new JTextField();
-        champEnumPartiesCommunes.setColumns(10);
-        panelEnumPartiesCommunes.add(champEnumPartiesCommunes);
+        panel.add(libEnumPartiesCommunes);
+        panel.add(champEnumPartiesCommunes);
 
-        JPanel panel_2 = new JPanel();
-        contentPane.add(panel_2, BorderLayout.SOUTH);
-        panel_2.setLayout(new BorderLayout(0, 0));
+        // Boutons Annuler et Valider
+        JPanel panelButtons = new JPanel();
+        panelButtons.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        panelButtons.setBackground(new Color(238, 237, 237));
 
         JButton btnAnnuler = new JButton("Annuler");
-        btnAnnuler.addActionListener(this.gestionClic);
-        panel_2.add(btnAnnuler, BorderLayout.WEST);
+        btnAnnuler.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btnAnnuler.addActionListener(gestionClic);
+        panelButtons.add(btnAnnuler);
 
         JButton btnValider = new JButton("Valider");
-        btnValider.addActionListener(this.gestionClic);
-        panel_2.add(btnValider, BorderLayout.EAST);
+        btnValider.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btnValider.addActionListener(gestionClic);
+        panelButtons.add(btnValider);
 
-        JPanel panel_3 = new JPanel();
-        contentPane.add(panel_3, BorderLayout.NORTH);
-        panel_3.setLayout(new BorderLayout(0, 0));
-
-        JLabel libAjouterBatiment = new JLabel("Ajouter un nouveau bâtiment");
-        libAjouterBatiment.setHorizontalAlignment(SwingConstants.CENTER);
-        panel_3.add(libAjouterBatiment, BorderLayout.CENTER);
+        contentPane.add(panelButtons, BorderLayout.SOUTH);
     }
 
-    public String getIdBatiment() {
-        return textIdBatiment.getText();
-    }
-
-    public String getRegimeJuridique() {
-        return champRegimeJuridique.getText();
-    }
-
-    public String getAdresse() {
-        return champAdresse.getText();
-    }
-
-    public String getCodePostal() {
-        return champCodePostal.getText();
-    }
-
-    public String getDateConstruction() {
-        return champDateConstruction.getText();
-    }
-
-    public String getEquipAccesTech() {
-        return champEquipAccesTech.getText();
-    }
-
-    public String getEnumPartiesCommunes() {
-        return champEnumPartiesCommunes.getText();
+    public Batiment getBatimentFromInput() {
+        // Créer un objet Batiment avec les données saisies
+        return new Batiment(
+            textNomBatiment.getText(),
+            champRegimeJuridique.getText(),
+            champAdresse.getText(),
+            champCodePostal.getText(),
+            champDateConstruction.getText(),
+            champEquipAccesTech.getText(),
+            champEnumPartiesCommunes.getText()
+        );
     }
 }
