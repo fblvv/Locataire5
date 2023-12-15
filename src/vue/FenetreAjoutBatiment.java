@@ -35,7 +35,7 @@ public class FenetreAjoutBatiment extends JInternalFrame {
     private JTextField champEquipAccesTech;
     private JTextField champEnumPartiesCommunes;
     private GestionAjoutBatiment gestionClic;
-    private JTextField textNomBatiment;
+    private JTextField textIdBatiment;
 
     public FenetreAjoutBatiment() {
     	this.gestionClic = new GestionAjoutBatiment(this);
@@ -64,9 +64,9 @@ public class FenetreAjoutBatiment extends JInternalFrame {
         JLabel lblNomBatiment = new JLabel("Nom Batiment");
         panelNomBatiment.add(lblNomBatiment);
         
-        textNomBatiment = new JTextField();
-        panelNomBatiment.add(textNomBatiment);
-        textNomBatiment.setColumns(10);
+        textIdBatiment = new JTextField();
+        panelNomBatiment.add(textIdBatiment);
+        textIdBatiment.setColumns(10);
 
         JPanel panelRegimeJuridique = new JPanel();
         panel_1.add(panelRegimeJuridique);
@@ -163,16 +163,31 @@ public class FenetreAjoutBatiment extends JInternalFrame {
         panel_3.add(libAjouterBatiment, BorderLayout.CENTER);
     }
 
-    public Batiment getBatimentFromInput() {
-        // Créer un objet Batiment avec les données saisies
-        return new Batiment(
-            "",
-            champRegimeJuridique.getText(),
-            champAdresse.getText(),
-            champCodePostal.getText(),
-            champDateConstruction.getText(),
-            champEquipAccesTech.getText(),
-            champEnumPartiesCommunes.getText()
-        );
+    public String getIdBatiment() {
+        return textIdBatiment.getText();
+    }
+
+    public String getRegimeJuridique() {
+        return champRegimeJuridique.getText();
+    }
+
+    public String getAdresse() {
+        return champAdresse.getText();
+    }
+
+    public String getCodePostal() {
+        return champCodePostal.getText();
+    }
+
+    public String getDateConstruction() {
+        return champDateConstruction.getText();
+    }
+
+    public String getEquipAccesTech() {
+        return champEquipAccesTech.getText();
+    }
+
+    public String getEnumPartiesCommunes() {
+        return champEnumPartiesCommunes.getText();
     }
 }

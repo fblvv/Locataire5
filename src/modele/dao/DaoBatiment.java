@@ -1,16 +1,20 @@
 package modele.dao;
 
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
 
+import SQL.CictOracleDataSource;
 import modele.Batiment;
 import modele.BienImmobilier;
 import modele.dao.requetes.RequeteSelectBatiment;
 import modele.dao.requetes.RequeteSelectBatimentById;
 import modele.dao.requetes.RequeteSelectBienImmobilierById;
 import modele.dao.requetes.RequeteSelectLocataire;
+import modele.dao.requetes.SousProgrammeInsertBatiment;
+import modele.dao.requetes.SousProgrammeInsertLocataire;
 
 public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
 
@@ -36,8 +40,12 @@ public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
     }
 
     @Override
-    public void create(Batiment donnee) throws SQLException {
+    public void create(Batiment batiment) throws SQLException {
         // TODO: Implémenter la création d'un nouvel enregistrement
+    	SousProgrammeInsertBatiment sousProgrammeInsertBatiment = new SousProgrammeInsertBatiment();
+	    CallableStatement cs = CictOracleDataSource.getConnectionBD().prepareCall(sousProgrammeInsertBatiment.appelSousProgramme());
+	        sousProgrammeInsertBatiment.parametres(cs,batiment);
+	        cs.execute();
     }
 
     @Override
