@@ -151,7 +151,7 @@ public class FenetreAjoutBatiment extends JInternalFrame {
         panel_2.add(btnAnnuler, BorderLayout.WEST);
 
         JButton btnValider = new JButton("Valider");
-        // Ajoutez l'actionListener pour valider si nécessaire
+        btnValider.addActionListener(this.gestionClic);
         panel_2.add(btnValider, BorderLayout.EAST);
 
         JPanel panel_3 = new JPanel();
