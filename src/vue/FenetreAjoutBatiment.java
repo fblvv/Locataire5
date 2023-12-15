@@ -123,4 +123,39 @@ public class FenetreAjoutBatiment extends JInternalFrame {
             champEnumPartiesCommunes.getText()
         );
     }
+
+	public String getIdBatiment() {
+		// TODO Auto-generated method stub
+		return textNomBatiment.getText() ;
+	}
+
+	public String getRegimeJuridique() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getAdresse() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getCodePostal() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getDateConstruction() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getEquipAccesTech() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getEnumPartiesCommunes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

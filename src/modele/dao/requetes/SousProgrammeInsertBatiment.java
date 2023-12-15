@@ -28,7 +28,7 @@ public class SousProgrammeInsertBatiment implements SousProgramme<Batiment> {
         prSt.setString(1, batiment.getId_Batiment());
         prSt.setString(2, batiment.getRegime_Juridique());
         prSt.setString(3, batiment.getAdresse());
-        prSt.setString(4, batiment.getDate_Construction());
+        prSt.setDate(4, java.sql.Date.valueOf(batiment.getDate_Construction()));
         prSt.setString(5, batiment.getEquip_Acces_Tech());
         prSt.setString(6, batiment.getEnum_Parties_Communes());
         prSt.setString(7, batiment.getCodePostal());

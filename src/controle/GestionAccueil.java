@@ -13,6 +13,7 @@ import vue.Accueil;
 import vue.Connexion;
 import vue.FenetreAjoutBatiment;
 import vue.FenetreBien;
+import vue.FenetreCompteur;
 import vue.FenetreDetailsPropriete2;
 import vue.FenetreListeLocataire;
 import vue.GestionFactureWindow2;
@@ -61,6 +62,9 @@ public class GestionAccueil implements ActionListener {
 	            break;
             case "Ajouter Nouveau Batiment":
                 afficherFenetre(new FenetreAjoutBatiment(), layeredPane);
+                break;
+            case "GestionCompteur":
+                afficherFenetre(new FenetreCompteur(), layeredPane);
                 break;
         }
     }
