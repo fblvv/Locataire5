@@ -345,8 +345,24 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
         gbc_selecteurIdBien.gridx = 0;
         gbc_selecteurIdBien.gridy = 0;
         panelDroite.add(selecteurIdBien, gbc_selecteurIdBien);
-
+        
+        
+        selecteurIdBien.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    gestionClic.afficherInfoLogement();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    // Gérer l'exception, par exemple afficher un message d'erreur à l'utilisateur
+                }
+            }
+        });
+        
+        
         initComboBox();
+        
+        
+        
         
         JLabel labelHistoriquePaiements_1 = new JLabel("Historique des Paiements:");
         labelHistoriquePaiements_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -473,5 +489,99 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
             // Handle the exception, e.g., show an error message to the user
         }
     }
+    
+    
+    
+    public String getSelecteurIdBien() {
+	    return (String) selecteurIdBien.getSelectedItem();
+	   }
+
+	public JTextField getChampAdresse() {
+		return champAdresse;
+	}
+
+	public void setChampAdresse(String adresse) {
+		this.champAdresse.setText(adresse);
+	}
+
+	public JTextField  getChampType() {
+		return champType;
+	}
+
+	public void setChampType(JTextField champType) {
+		this.champType = champType;
+	}
+
+	public JTextField getChampCompteur() {
+		return champCompteur;
+	}
+
+	public void setChampCompteur(JTextField champCompteur) {
+		this.champCompteur = champCompteur;
+	}
+
+	public JTextField getChampSurface() {
+		return champSurface;
+	}
+
+	public void setChampSurface(JTextField champSurface) {
+		this.champSurface = champSurface;
+	}
+
+	public JTextField getChampEquipements() {
+		return champEquipements;
+	}
+
+	public void setChampEquipements(JTextField champEquipements) {
+		this.champEquipements = champEquipements;
+	}
+
+	public JTextField getChampDateDebut() {
+		return champDateDebut;
+	}
+
+	public void setChampDateDebut(JTextField champDateDebut) {
+		this.champDateDebut = champDateDebut;
+	}
+
+	public JTextField getChampDateFin() {
+		return champDateFin;
+	}
+
+	public void setChampDateFin(JTextField champDateFin) {
+		this.champDateFin = champDateFin;
+	}
+
+	public JTextField getChampNombrePieces() {
+		return champNombrePieces;
+	}
+
+	public void setChampNombrePieces(JTextField champNombrePieces) {
+		this.champNombrePieces = champNombrePieces;
+	}
+
+	public JTextField getChampStatutOccupation() {
+		return champStatutOccupation;
+	}
+
+	public void setChampStatutOccupation(JTextField champStatutOccupation) {
+		this.champStatutOccupation = champStatutOccupation;
+	}
+
+	public JTextField getChampContratsServices() {
+		return champContratsServices;
+	}
+
+	public void setChampContratsServices(JTextField champContratsServices) {
+		this.champContratsServices = champContratsServices;
+	}
+
+	public JTextField getChampCommentaires() {
+		return champCommentaires;
+	}
+
+	public void setChampCommentaires(JTextField champCommentaires) {
+		this.champCommentaires = champCommentaires;
+	}
 
 }
