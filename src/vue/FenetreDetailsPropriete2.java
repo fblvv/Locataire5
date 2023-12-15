@@ -9,6 +9,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.Collection;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -24,6 +26,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import controle.GestionDetailPropriete2;
 import controle.GestionListeLocataire;
+import modele.BienImmobilier;
+import modele.dao.DaoBienImmobilier;
 
 public class FenetreDetailsPropriete2 extends JInternalFrame {
 	
@@ -43,6 +47,8 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
     private JTextField champCommentaires;
     private JTable tablePaiements;
     private JTable tableHistorique;
+    private JComboBox<String> selecteurIdBien;
+
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -315,36 +321,32 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		panelGauche.add(champCommentaires, gbc_champCommentaires);
 		champCommentaires.setColumns(10);
 		
+		JPanel panelDroite = new JPanel();
+	    GridBagConstraints gbc_panelDroite = new GridBagConstraints();
+	    gbc_panelDroite.insets = new Insets(0, 0, 5, 0);
+	    gbc_panelDroite.fill = GridBagConstraints.BOTH;
+	    gbc_panelDroite.gridx = 2;
+	    gbc_panelDroite.gridy = 0;
+	    contentPane.add(panelDroite, gbc_panelDroite);
+	    GridBagLayout gbl_panelDroite = new GridBagLayout();
+	    gbl_panelDroite.columnWidths = new int[]{0, 0};
+	    gbl_panelDroite.rowHeights = new int[]{0, 30, 30, 60, 0, 0, 0, 30, 30, 30, 0};
+	    gbl_panelDroite.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+	    gbl_panelDroite.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+	    panelDroite.setLayout(gbl_panelDroite);
         
-        JComboBox selecteurLogement = new JComboBox();
-        GridBagConstraints gbc_comboBox = new GridBagConstraints();
-        gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-        gbc_comboBox.gridx = 0;
-        gbc_comboBox.gridy = 0;
-        
-        JPanel panelDroite = new JPanel();
-        GridBagConstraints gbc_panelDroite = new GridBagConstraints();
-        gbc_panelDroite.insets = new Insets(0, 0, 5, 0);
-        gbc_panelDroite.fill = GridBagConstraints.BOTH;
-        gbc_panelDroite.gridx = 2;
-        gbc_panelDroite.gridy = 0;
-        contentPane.add(panelDroite, gbc_panelDroite);
-        GridBagLayout gbl_panelDroite = new GridBagLayout();
-        gbl_panelDroite.columnWidths = new int[]{0, 0};
-        gbl_panelDroite.rowHeights = new int[]{0, 30, 30, 60, 0, 0, 0, 30, 30, 30, 0};
-        gbl_panelDroite.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-        gbl_panelDroite.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-        panelDroite.setLayout(gbl_panelDroite);
-        
-        JComboBox<String> selecteurLogement_1 = new JComboBox<>(new DefaultComboBoxModel<>(new String[]{"Appartement", "Maison", "Studio", "Autre"}));
-        GridBagConstraints gbc_selecteurLogement_1 = new GridBagConstraints();
-        gbc_selecteurLogement_1.ipady = 15;
-        gbc_selecteurLogement_1.gridheight = 2;
-        gbc_selecteurLogement_1.fill = GridBagConstraints.HORIZONTAL;
-        gbc_selecteurLogement_1.insets = new Insets(0, 0, 5, 0);
-        gbc_selecteurLogement_1.gridx = 0;
-        gbc_selecteurLogement_1.gridy = 0;
-        panelDroite.add(selecteurLogement_1, gbc_selecteurLogement_1);
+	 // Ajout de la JComboBox pour les ID bien
+        selecteurIdBien = new JComboBox<>();
+        GridBagConstraints gbc_selecteurIdBien = new GridBagConstraints();
+        gbc_selecteurIdBien.ipady = 15;
+        gbc_selecteurIdBien.gridheight = 2;
+        gbc_selecteurIdBien.fill = GridBagConstraints.HORIZONTAL;
+        gbc_selecteurIdBien.insets = new Insets(0, 0, 5, 0);
+        gbc_selecteurIdBien.gridx = 0;
+        gbc_selecteurIdBien.gridy = 0;
+        panelDroite.add(selecteurIdBien, gbc_selecteurIdBien);
+
+        initComboBox();
         
         JLabel labelHistoriquePaiements_1 = new JLabel("Historique des Paiements:");
         labelHistoriquePaiements_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -444,4 +446,32 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
         btnAutreSection.setHorizontalAlignment(SwingConstants.RIGHT);
         panelButton.add(btnAutreSection);
     }
+    
+    
+    private void initComboBox() {
+        DaoBienImmobilier daoBienImmobilier = new DaoBienImmobilier();
+        try {
+            // Fetch all biens immobiliers
+            Collection<BienImmobilier> biens = daoBienImmobilier.findAll();
+
+            // Create an array to store IDs
+            String[] ids = new String[biens.size()];
+
+            // Populate the array with IDs
+            int i = 0;
+            for (BienImmobilier bien : biens) {
+                ids[i] = bien.getId_Bien_Imm();
+                System.out.println(ids[i]);
+                i++;
+            }
+
+            // Create JComboBox with IDs
+            selecteurIdBien.setModel(new DefaultComboBoxModel<>(ids));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception, e.g., show an error message to the user
+        }
+    }
+
 }
