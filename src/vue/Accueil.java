@@ -106,10 +106,10 @@ public class Accueil extends JFrame {
         mnGestionCompteur.setFont(new Font("Lucida Grande", Font.BOLD, 19));
         menuBar.add(mnGestionCompteur);
         
-        JMenuItem mnCompteur = new JMenu("GestionCompteur");
-        mnCompteur.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-        mnCompteur.addActionListener(this.gestionClic);
-        mnGestionCompteur.add(mnCompteur);
+        JMenuItem mntmCompteur = new JMenuItem("Gestion des Compteurs");
+        mntmCompteur.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmCompteur.addActionListener(this.gestionClic);
+        mnGestionCompteur.add(mntmCompteur);
         
 
     }

@@ -18,12 +18,14 @@ public class FenetreListeLocataire extends JInternalFrame {
     private JTable table;
 
     public FenetreListeLocataire() {
+    	setMaximizable(true);
+    	setIconifiable(true);
+    	setClosable(true);
         this.gestionClic = new GestionListeLocataire(this);
         locataires = new ArrayList<>();
 
 
         setTitle("Liste des Locataires");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
 
         JPanel mainPanel = new JPanel(new BorderLayout());

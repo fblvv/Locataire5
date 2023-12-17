@@ -63,7 +63,7 @@ public class GestionAccueil implements ActionListener {
             case "Ajouter Nouveau Batiment":
                 afficherFenetre(new FenetreAjoutBatiment(), layeredPane);
                 break;
-            case "GestionCompteur":
+            case "Gestion des Compteurs":
                 afficherFenetre(new FenetreCompteur(), layeredPane);
                 break;
         }

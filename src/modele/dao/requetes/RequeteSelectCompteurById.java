@@ -14,12 +14,12 @@ public class RequeteSelectCompteurById extends Requete<Compteur> {
     @Override
     public void parametres(PreparedStatement prSt, String... id) throws SQLException {
         prSt.setString(1, id[0]);
-        prSt.setString(2, id[1]);
+        prSt.setDate(2, java.sql.Date.valueOf(id[1]));
     }
 
     @Override
-    public void parametres(PreparedStatement prSt, Compteur data) throws SQLException {
-        prSt.setString(1, data.getIdCompteur());
-        prSt.setDate(2, java.sql.Date.valueOf(data.getDateReleve()));
+    public void parametres(PreparedStatement prSt, Compteur donnee) throws SQLException {
+        prSt.setString(1, donnee.getIdCompteur());
+        prSt.setDate(2, java.sql.Date.valueOf(donnee.getDateReleve()));
     }
 }

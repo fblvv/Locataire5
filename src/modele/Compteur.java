@@ -4,15 +4,17 @@ public class Compteur {
 	private String idCompteur;
 	private String dateReleve;
 	private String typeCompteur;
-	private double valeur;
-	private static String idBienImm;
+	private Double valeur;
+	private String idBienImm;
 
 
-	public Compteur(String idCompteur,String dateReleve, String typeCompteur, double valeur) {
+
+	public Compteur(String idCompteur,String dateReleve, String typeCompteur, Double valeur,String idBien) {
 		this.dateReleve = dateReleve;
 		this.typeCompteur = typeCompteur;
 		this.valeur = valeur;
 		this.idCompteur=idCompteur;
+		this.idBienImm=idBien;
 	}
 
 	public String getIdCompteur() {
@@ -39,11 +41,11 @@ public class Compteur {
 		this.typeCompteur = typeCompteur;
 	}
 
-	public double getValeur() {
+	public Double getValeur() {
 		return valeur;
 	}
 
-	public void setValeur(double valeur) {
+	public void setValeur(Double valeur) {
 		this.valeur = valeur;
 	}
 

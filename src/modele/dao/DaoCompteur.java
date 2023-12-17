@@ -5,13 +5,15 @@ import java.sql.SQLException;
 import java.util.Collection;
 
 import modele.Compteur;
+import modele.dao.requetes.RequeteSelectCompteur;
 
 public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur> {
 
 	@Override
 	public Collection<Compteur> findAll() throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		RequeteSelectCompteur sketuveux = new RequeteSelectCompteur();
+		return find(sketuveux);
 	}
 
 	@Override
@@ -40,17 +42,16 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur> {
 
     protected Compteur creerInstance(ResultSet curseur) throws SQLException {
         // Récupérer les valeurs de la base de données
-        String idCompteur = curseur.getString("Id_Compteur");
-        String dateReleve = curseur.getString("Date_Releve");
-        String typeCompteur = curseur.getString("Type_Compteur");
-        double valeur = curseur.getDouble("Valeur");
+    	String idCompteur = curseur.getString("Id_Compteur");
+    	String dateReleve = curseur.getString("Date_Releve");
+    	String typeCompteur = curseur.getString("Type_Compteur");
+    	Double valeur = curseur.getDouble("Valeur");
+    	String idBienImm = curseur.getString("Id_Bien_Imm");
+
 
         // Créer et retourner une nouvelle instance de Compteur
-        Compteur compteur = new Compteur(idCompteur, dateReleve, typeCompteur, valeur);
+        Compteur compteur = new Compteur(idCompteur, dateReleve, typeCompteur, valeur,idBienImm);
         
-        
-        String idBienImm = curseur.getString("Id_Bien_Imm");
-        compteur.setIdBienImm(idBienImm);
 
         return compteur;
     }
