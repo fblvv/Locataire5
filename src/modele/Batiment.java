@@ -10,14 +10,15 @@ public class Batiment {
 	private String enum_Parties_Communes;
 	private String codePostal;
 
-	public Batiment(String idBatiment, String regime_Juridique, String adresse, String date_Construction, String equip_Acces_Tech, String enum_Parties_Communes,String codePostal) {
+	public Batiment(String idBatiment, String regime_Juridique, String adresse,String codePostal, String date_Construction, String equip_Acces_Tech, String enum_Parties_Communes) {
 		this.idBatiment = idBatiment;
 		this.regime_Juridique = regime_Juridique;
 		this.adresse = adresse;
+		this.codePostal=codePostal;
 		this.date_Construction = date_Construction;
 		this.equip_Acces_Tech = equip_Acces_Tech;
 		this.enum_Parties_Communes = enum_Parties_Communes;
-		this.codePostal=codePostal;
+		
 	}
 
 	public String getId_Batiment() {

@@ -59,10 +59,11 @@ public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
         String idBatiment = curseur.getString("Id_Batiment");
         String regimeJuridique = curseur.getString("Regime_Juridique");
         String adresse = curseur.getString("Adresse");
+        String codePostal = curseur.getString("Code_postal");
         String dateConstruction = curseur.getString("Date_Construction");
         String equipAccesTech = curseur.getString("Equip_Acces_Tech");
         String enumPartiesCommunes = curseur.getString("Enum_Parties_Communes");
-        String codePostal = curseur.getString("Code_postal");
+        
 
         // Créer et retourner une nouvelle instance de Batiment
         return new Batiment(idBatiment, regimeJuridique, adresse,codePostal, dateConstruction, equipAccesTech, enumPartiesCommunes);
