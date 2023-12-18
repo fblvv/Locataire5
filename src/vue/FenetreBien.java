@@ -82,7 +82,7 @@ public class FenetreBien extends JInternalFrame {
         panelAssurance.add(new JLabel("Date d'Effet (Début)", SwingConstants.RIGHT));
         panelAssurance.add(textFieldDateDebutOpt = new JTextField(10));
 
-        // Panel Autres informations à droite
+     // Panel Autres informations à droite
         JPanel panelAutres = new JPanel(new GridLayout(0, 2, 10, 10));
         mainPanel.add(panelAutres, BorderLayout.EAST);
 
@@ -94,18 +94,34 @@ public class FenetreBien extends JInternalFrame {
         comboBoxBatiment.addItem("Bâtiment 3");
         panelAutres.add(comboBoxBatiment);
 
-        // Ajout des autres champs
-        panelAutres.add(new JLabel("Adresse:", SwingConstants.RIGHT));
-        panelAutres.add(textFieldAdresse = new JTextField(10));
+        // Ajout des autres champs SQL
+        panelAutres.add(new JLabel("Id Bien Immobilier:", SwingConstants.RIGHT));
+        panelAutres.add(new JTextField(10));
 
-        panelAutres.add(new JLabel("Code Postal:", SwingConstants.RIGHT));
-        panelAutres.add(textFieldCodePostal = new JTextField(5));
+        panelAutres.add(new JLabel("Surface:", SwingConstants.RIGHT));
+        panelAutres.add(new JTextField(10));
 
-        panelAutres.add(new JLabel("Étage:", SwingConstants.RIGHT));
-        panelAutres.add(textFieldEtage = new JTextField(3));
+        panelAutres.add(new JLabel("Mode Chauffage:", SwingConstants.RIGHT));
+        panelAutres.add(new JTextField(10));
 
-        panelAutres.add(new JLabel("Description:", SwingConstants.RIGHT));
-        panelAutres.add(textFieldDescription = new JTextField(20));
+        panelAutres.add(new JLabel("Mode Eau:", SwingConstants.RIGHT));
+        panelAutres.add(new JTextField(10));
+
+        panelAutres.add(new JLabel("Nb Piece:", SwingConstants.RIGHT));
+        panelAutres.add(new JTextField(10));
+
+        panelAutres.add(new JLabel("Type Bien:", SwingConstants.RIGHT));
+        panelAutres.add(new JTextField(10));
+
+        panelAutres.add(new JLabel("Nom Proprio:", SwingConstants.RIGHT));
+        panelAutres.add(new JTextField(10));
+
+        panelAutres.add(new JLabel("Identifiant:", SwingConstants.RIGHT));
+        panelAutres.add(new JTextField(10));
+
+        panelAutres.add(new JLabel("Etage:", SwingConstants.RIGHT));
+        panelAutres.add(new JTextField(10));
+
 
         // Panel de boutons en bas
         panelButton = new JPanel();
