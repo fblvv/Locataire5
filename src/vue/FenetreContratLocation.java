@@ -23,7 +23,7 @@ public class FenetreContratLocation extends JInternalFrame {
     private JTextField champDateEntree;
     private JTextField champDateSortie;
     private JTextField champCaution;
-
+///////////////////////////////////////
     private JCheckBox optionnelCheckbox;
     private JTextField champNom;
     private JTextField champPrenom;
