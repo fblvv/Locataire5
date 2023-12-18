@@ -23,11 +23,15 @@ public class GestionPageAjoutLocataire implements ActionListener {
     private PageAjoutLocataire ajoutLocataire;
     private DaoLocataire daoLocataire;
     private DaoBienImmobilier daoBien;
+    private Locataire loc;
+    private BienImmobilier bien;
 
     public GestionPageAjoutLocataire(PageAjoutLocataire ajoutLocataire) {
         this.ajoutLocataire = ajoutLocataire;
         this.daoLocataire = new DaoLocataire();
         this.daoBien = new DaoBienImmobilier();
+        this.loc=null;
+        this.bien=null;
     }
     
 
@@ -40,15 +44,18 @@ public class GestionPageAjoutLocataire implements ActionListener {
 
             switch (button.getText()) {
                 case "Valider":
-				try {
-					JLayeredPane layeredPane = ajoutLocataire.getLayeredPane();
-					createLocataire();
-					afficherFenetre(new FenetreContratLocation(),layeredPane);
-					//ajoutLocataire.dispose();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+                    try {
+                        JLayeredPane layeredPane = ajoutLocataire.getLayeredPane();
+                        createLocataire();
+
+                        // Passer le bien immobilier et le locataire lors de l'affichage de FenetreContratLocation
+                        afficherFenetre(new FenetreContratLocation(this.bien, this.loc), layeredPane);
+
+                        //ajoutLocataire.dispose();
+                    } catch (SQLException e1) {
+                        // TODO: Gérer l'exception
+                        e1.printStackTrace();
+                    }
                     break;
                 case "Annuler":
                     ajoutLocataire.dispose();
@@ -81,6 +88,7 @@ public class GestionPageAjoutLocataire implements ActionListener {
         String id=nom+prenom;//id du locataire
         // Créer une instance de Locataire avec les valeurs récupérées
         Locataire locataire = new Locataire(id,nom, prenom, telephone, mail, adresse, codePostal);
+        
 
         // Appeler la méthode create du DAO pour insérer le locataire dans la base de données
         DaoLocataire daoLocataire = new DaoLocataire();
@@ -94,6 +102,9 @@ public class GestionPageAjoutLocataire implements ActionListener {
         ajouterLaListe(id,bienId);
 		// Afficher un message de succès ou effectuer d'autres actions si nécessaire
 		System.out.println("Locataire ajouté avec succès !");
+		//ajout des paremetre pour le lancement de la fenetre contrat location
+		this.loc=locataire;
+		this.bien=logementSelectionne;
     }
     
     

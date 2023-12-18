@@ -1,6 +1,10 @@
 package vue;
 
 import javax.swing.*;
+
+import modele.BienImmobilier;
+import modele.Locataire;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,8 +30,14 @@ public class FenetreContratLocation extends JInternalFrame {
     private JTextField champDateSortie;
     private JTextField champCaution;
     private JButton ajouterLocataireButton;
+    private BienImmobilier bienImmobilier;
+    private Locataire locataire;
 
-    public FenetreContratLocation() {
+    public FenetreContratLocation(BienImmobilier bienImmobilier, Locataire locataire) {
+        // Initialiser les champs du bien immobilier et du locataire
+        this.bienImmobilier = bienImmobilier;
+        this.locataire = locataire;
+
     	setBounds(0, 0, 550, 400);
 
         // Ajout des champs de texte
@@ -45,6 +55,15 @@ public class FenetreContratLocation extends JInternalFrame {
         champDateEntree = new JTextField("YYYY-MM-DD", 15);
         champDateSortie = new JTextField("YYYY-MM-DD", 15);
         champCaution = new JTextField(15);
+        
+        ajouterLocataireButton = new JButton("Ajouter Locataire");
+        ajouterLocataireButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Handle button click action
+                // You might want to add logic here
+            }
+        });
 
         // Bouton pour fermer la fenêtre
         JButton fermerButton = new JButton("Fermer");
@@ -81,6 +100,7 @@ public class FenetreContratLocation extends JInternalFrame {
         getContentPane().add(champCaution);
         getContentPane().add(ajouterLocataireButton);
         getContentPane().add(fermerButton);
+        champIdBienImm.setText(bienImmobilier.getId_Bien_Imm());
     }
     
     //*****************************//
@@ -213,6 +233,10 @@ public class FenetreContratLocation extends JInternalFrame {
 	public void setAjouterLocataireButton(JButton ajouterLocataireButton) {
 		this.ajouterLocataireButton = ajouterLocataireButton;
 	}
+	
+	
+	    
+	
     
     
     
