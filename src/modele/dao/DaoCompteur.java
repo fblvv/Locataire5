@@ -1,11 +1,14 @@
 package modele.dao;
 
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
+import SQL.CictOracleDataSource;
 import modele.Compteur;
 import modele.dao.requetes.RequeteSelectCompteur;
+import modele.dao.requetes.SousProgrammeInsertCompteur;
 
 public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur> {
 
@@ -29,8 +32,12 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur> {
 	}
 
 	@Override
-	public void create(Compteur donnee) throws SQLException {
+	public void create(Compteur compteur) throws SQLException {
 		// TODO Auto-generated method stub
+		SousProgrammeInsertCompteur sousProgrammeInsertCompteur = new SousProgrammeInsertCompteur();
+	    CallableStatement cs = CictOracleDataSource.getConnectionBD().prepareCall(sousProgrammeInsertCompteur.appelSousProgramme());
+	        sousProgrammeInsertCompteur.parametres(cs, compteur);
+	        cs.execute();
 		
 	}
 

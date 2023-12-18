@@ -48,22 +48,7 @@ public class FenetreContratLocation extends JInternalFrame {
 
         // Bouton pour fermer la fenêtre
         JButton fermerButton = new JButton("Fermer");
-        fermerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
-
-        // Ajout du bouton "Ajouter Locataire"
-        ajouterLocataireButton = new JButton("Ajouter Locataire");
-        ajouterLocataireButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(FenetreContratLocation.this, "Bouton marche, faut juste ajouter le locataire dans la base");
-            }
-        });
-
+        
         // Utilisation d'un GridLayout avec deux colonnes
         getContentPane().setLayout(new GridLayout(0, 2, 5, 5));
         getContentPane().add(new JLabel("Date Début Contrat (YYYY-MM-DD):"));
@@ -97,4 +82,139 @@ public class FenetreContratLocation extends JInternalFrame {
         getContentPane().add(ajouterLocataireButton);
         getContentPane().add(fermerButton);
     }
+    
+    //*****************************//
+    //GETTERS ET SETTERS DES CHAMPS//
+    //*****************************//
+	public JTextField getChampDateDebutContrat() {
+		return champDateDebutContrat;
+	}
+
+	public void setChampDateDebutContrat(JTextField champDateDebutContrat) {
+		this.champDateDebutContrat = champDateDebutContrat;
+	}
+
+	public JTextField getChampMontant() {
+		return champMontant;
+	}
+
+	public void setChampMontant(JTextField champMontant) {
+		this.champMontant = champMontant;
+	}
+
+	public JTextField getChampMontantDernierLoyer() {
+		return champMontantDernierLoyer;
+	}
+
+	public void setChampMontantDernierLoyer(JTextField champMontantDernierLoyer) {
+		this.champMontantDernierLoyer = champMontantDernierLoyer;
+	}
+
+	public JTextField getChampDateVersementLoyer() {
+		return champDateVersementLoyer;
+	}
+
+	public void setChampDateVersementLoyer(JTextField champDateVersementLoyer) {
+		this.champDateVersementLoyer = champDateVersementLoyer;
+	}
+
+	public JTextField getChampDepotGarantie() {
+		return champDepotGarantie;
+	}
+
+	public void setChampDepotGarantie(JTextField champDepotGarantie) {
+		this.champDepotGarantie = champDepotGarantie;
+	}
+
+	public JTextField getChampDateRevision() {
+		return champDateRevision;
+	}
+
+	public void setChampDateRevision(JTextField champDateRevision) {
+		this.champDateRevision = champDateRevision;
+	}
+
+	public JTextField getChampPeriodicitePaiement() {
+		return champPeriodicitePaiement;
+	}
+
+	public void setChampPeriodicitePaiement(JTextField champPeriodicitePaiement) {
+		this.champPeriodicitePaiement = champPeriodicitePaiement;
+	}
+
+	public JTextField getChampDateFinContrat() {
+		return champDateFinContrat;
+	}
+
+	public void setChampDateFinContrat(JTextField champDateFinContrat) {
+		this.champDateFinContrat = champDateFinContrat;
+	}
+
+	public JTextField getChampChargesProvisionnelles() {
+		return champChargesProvisionnelles;
+	}
+
+	public void setChampChargesProvisionnelles(JTextField champChargesProvisionnelles) {
+		this.champChargesProvisionnelles = champChargesProvisionnelles;
+	}
+
+	public JTextField getChampIdICC() {
+		return champIdICC;
+	}
+
+	public void setChampIdICC(JTextField champIdICC) {
+		this.champIdICC = champIdICC;
+	}
+
+	public JTextField getChampValeurICC() {
+		return champValeurICC;
+	}
+
+	public void setChampValeurICC(JTextField champValeurICC) {
+		this.champValeurICC = champValeurICC;
+	}
+
+	public JTextField getChampIdBienImm() {
+		return champIdBienImm;
+	}
+
+	public void setChampIdBienImm(JTextField champIdBienImm) {
+		this.champIdBienImm = champIdBienImm;
+	}
+
+	public JTextField getChampDateEntree() {
+		return champDateEntree;
+	}
+
+	public void setChampDateEntree(JTextField champDateEntree) {
+		this.champDateEntree = champDateEntree;
+	}
+
+	public JTextField getChampDateSortie() {
+		return champDateSortie;
+	}
+
+	public void setChampDateSortie(JTextField champDateSortie) {
+		this.champDateSortie = champDateSortie;
+	}
+
+	public JTextField getChampCaution() {
+		return champCaution;
+	}
+
+	public void setChampCaution(JTextField champCaution) {
+		this.champCaution = champCaution;
+	}
+
+	public JButton getAjouterLocataireButton() {
+		return ajouterLocataireButton;
+	}
+
+	public void setAjouterLocataireButton(JButton ajouterLocataireButton) {
+		this.ajouterLocataireButton = ajouterLocataireButton;
+	}
+    
+    
+    
+    
 }

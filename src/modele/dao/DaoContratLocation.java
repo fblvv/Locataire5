@@ -1,10 +1,13 @@
 package modele.dao;
 
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
+import SQL.CictOracleDataSource;
 import modele.ContratLocation;
+import modele.dao.requetes.SousProgrammeInsertContrat;
 
 public class DaoContratLocation extends DaoModele<ContratLocation> implements Dao<ContratLocation> {
 
@@ -27,9 +30,12 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 	}
 
 	@Override
-	public void create(ContratLocation donnee) throws SQLException {
+	public void create(ContratLocation contrat) throws SQLException {
 		// TODO Auto-generated method stub
-		
+		SousProgrammeInsertContrat sousProgrammeInsertContrat = new SousProgrammeInsertContrat();
+	    CallableStatement cs = CictOracleDataSource.getConnectionBD().prepareCall(sousProgrammeInsertContrat.appelSousProgramme());
+	        sousProgrammeInsertContrat.parametres(cs, contrat);
+	        cs.execute();
 	}
 
 	@Override
@@ -43,7 +49,7 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 	        // Récupérer les valeurs de la base de données
 	        String dateDebutContrat = curseur.getString("Date_Debut_Contrat");
 	        double montant = curseur.getDouble("Montant");
-	        String montantDernierLoyer = curseur.getString("Montant_Dernier_Loyer");
+	        double montantDernierLoyer = curseur.getDouble("Montant_Dernier_Loyer");
 	        String dateVersementLoyer = curseur.getString("Date_Versement_Loyer");
 	        String depotGarantie = curseur.getString("Depot_Garantie");
 	        String dateRevision = curseur.getString("Date_Revision");

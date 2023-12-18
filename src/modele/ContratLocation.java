@@ -3,7 +3,7 @@ package modele;
 public class ContratLocation {
 	private String dateDebutContrat;
 	private double montant;
-	private String montantDernierLoyer;
+	private double montantDernierLoyer;
 	private String dateVersementLoyer;
 	private String depotGarantie;
 	private String dateRevision;
@@ -14,7 +14,7 @@ public class ContratLocation {
 	private String valeurICC;
 	private static String idBienImm;
 
-	public ContratLocation(String dateDebutContrat, double montant, String montantDernierLoyer,
+	public ContratLocation(String dateDebutContrat, double montant, double montantDernierLoyer,
 			String dateVersementLoyer, String depotGarantie, String dateRevision,
 			String periodicitePaiement, String dateFinContrat, double chargesProvisionnelles,
 			String idICC, String valeurICC) {
@@ -46,7 +46,7 @@ public class ContratLocation {
 		this.montant = montant;
 	}
 
-	public String getMontantDernierLoyer() {
+	public double getMontantDernierLoyer() {
 		return montantDernierLoyer;
 	}
 
