@@ -7,6 +7,7 @@ import java.util.Collection;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLayeredPane;
 
 import modele.Batiment;
 import modele.BienImmobilier;
@@ -15,6 +16,7 @@ import modele.dao.DaoBatiment;
 import modele.dao.DaoBienImmobilier;
 import modele.dao.DaoLocataire;
 import vue.PageAjoutLocataire;
+import vue.FenetreContratLocation;
 
 public class GestionPageAjoutLocataire implements ActionListener {
 
@@ -27,6 +29,7 @@ public class GestionPageAjoutLocataire implements ActionListener {
         this.daoLocataire = new DaoLocataire();
         this.daoBien = new DaoBienImmobilier();
     }
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -38,8 +41,10 @@ public class GestionPageAjoutLocataire implements ActionListener {
             switch (button.getText()) {
                 case "Valider":
 				try {
+					JLayeredPane layeredPane = ajoutLocataire.getLayeredPane();
 					createLocataire();
-					ajoutLocataire.dispose();
+					afficherFenetre(new FenetreContratLocation(),layeredPane);
+					//ajoutLocataire.dispose();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -96,6 +101,11 @@ public class GestionPageAjoutLocataire implements ActionListener {
     	Locataire locataire = daoLocataire.findById(idLocataire);
     	BienImmobilier bien = daoBien.findById(idBien);
     	bien.ajoutLocataire(locataire);
+    }
+    
+    private void afficherFenetre(javax.swing.JInternalFrame fenetre, JLayeredPane layeredPane) {
+        layeredPane.add(fenetre);
+        fenetre.setVisible(true);
     }
  }
 

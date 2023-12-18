@@ -26,9 +26,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
 import controle.GestionPageAjoutLocataire;
-import modele.Batiment;
 import modele.BienImmobilier;
-import modele.dao.DaoBatiment;
 import modele.dao.DaoBienImmobilier;
 
 public class PageAjoutLocataire extends JInternalFrame {
@@ -61,7 +59,7 @@ public class PageAjoutLocataire extends JInternalFrame {
     public PageAjoutLocataire() {
         this.gestionClic = new GestionPageAjoutLocataire(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 720, 300);
+        setBounds(100, 100, 800, 500);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -222,37 +220,37 @@ public class PageAjoutLocataire extends JInternalFrame {
     public void setChampMail(JTextField champMail) {
         this.champMail = champMail;
     }
-    
+
     private void initComboBox() {
         DaoBienImmobilier daoBienImmobilier = new DaoBienImmobilier();
         try {
-            // Fetch all batiments
+            // Récupérer tous les biens immobiliers
             Collection<BienImmobilier> biens = daoBienImmobilier.findAll();
 
-            // Create an array to store building IDs
+            // Créer un tableau pour stocker les identifiants des bâtiments
             String[] idBat = new String[biens.size()];
 
-            // Populate the array with building IDs
-            int i=0;
+            // Remplir le tableau avec les identifiants des bâtiments
+            int i = 0;
             for (BienImmobilier bien : biens) {
                 idBat[i] = bien.getId_Bien_Imm();
                 System.out.println(idBat[i]);
                 i++;
             }
 
-            // Create JComboBox with building IDs
+            // Créer une JComboBox avec les identifiants des bâtiments
             comboBoxLogement = new JComboBox<>(idBat);
 
-            // Add the JComboBox to your UI
-            // Assuming you have a panel where you want to add it
-            // Modify this part according to your UI structure
+            // Ajouter la JComboBox à votre interface utilisateur
+            // En supposant que vous ayez un panneau où vous voulez l'ajouter
+            // Modifiez cette partie en fonction de votre structure d'interface utilisateur
             JPanel panelComboBoxLogement = new JPanel();
             panelComboBoxLogement.add(comboBoxLogement);
             contentPane.add(panelComboBoxLogement, BorderLayout.CENTER);
 
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle the exception, e.g., show an error message to the user
+            // Gérer l'exception, par exemple, afficher un message d'erreur à l'utilisateur
         }
     }
 }
