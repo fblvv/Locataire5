@@ -17,7 +17,7 @@ public class ContratLocation {
 	public ContratLocation(String dateDebutContrat, double montant, double montantDernierLoyer,
 			String dateVersementLoyer, String depotGarantie, String dateRevision,
 			String periodicitePaiement, String dateFinContrat, double chargesProvisionnelles,
-			String idICC, String valeurICC) {
+			String idICC, String valeurICC,String idBien) {
 		this.dateDebutContrat = dateDebutContrat;
 		this.montant = montant;
 		this.montantDernierLoyer = montantDernierLoyer;
@@ -28,6 +28,7 @@ public class ContratLocation {
 		this.dateFinContrat = dateFinContrat;
 		this.chargesProvisionnelles = chargesProvisionnelles;
 		this.valeurICC = valeurICC;
+		this.idBienImm=idBien;
 	}
 
 	public String getDateDebutContrat() {
@@ -50,7 +51,7 @@ public class ContratLocation {
 		return montantDernierLoyer;
 	}
 
-	public void setMontantDernierLoyer(String montantDernierLoyer) {
+	public void setMontantDernierLoyer(double montantDernierLoyer) {
 		this.montantDernierLoyer = montantDernierLoyer;
 	}
 

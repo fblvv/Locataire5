@@ -30,6 +30,7 @@ public class DaoCharges extends DaoModele<Charges> implements Dao<Charges> {
 	public void create(Charges donnee) throws SQLException {
 		// TODO Auto-generated method stub
 		
+		
 	}
 
 	@Override

@@ -58,16 +58,16 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 	        double chargesProvisionnelles = curseur.getDouble("Charges_Provisionnelles");
 	        String idICC = curseur.getString("Id_ICC");
 	        String valeurICC = curseur.getString("Valeur_ICC");
+	        String idBien =curseur.getString("Id_Bien_Imm");
 
 	        // Créer et retourner une nouvelle instance de ContratLocation
 	        ContratLocation contratLocation = new ContratLocation(dateDebutContrat, montant, montantDernierLoyer,
 	                dateVersementLoyer, depotGarantie, dateRevision, periodicitePaiement, dateFinContrat,
-	                chargesProvisionnelles, idICC, valeurICC);
+	                chargesProvisionnelles, idICC, valeurICC,idBien);
 
 	        // Vous n'avez pas de colonne Id_Bien_Imm dans votre SELECT, donc je suppose que vous le récupérez d'une autre manière
 	        // Supposons que vous avez une colonne Id_Bien_Imm dans votre table Contrat_Location
-	        String idBienImm = curseur.getString("Id_Bien_Imm");
-	        contratLocation.setIdBienImm(idBienImm);
+
 
 	        return contratLocation;
 	    }
