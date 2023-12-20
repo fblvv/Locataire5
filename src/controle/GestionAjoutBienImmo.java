@@ -91,9 +91,9 @@ public class GestionAjoutBienImmo implements ActionListener{
         JComboBox<String> comboBoxLogement = detailPropriete.getComboBoxBatiment();
         String id_Batiment = (String) comboBoxLogement.getSelectedItem();
 
-        Assurance ass = new Assurance(tarifInitial, typeAssurance, dateEffetDebut, numPolice,id_Bien_Imm,id_Batiment);
+        Assurance assurance = new Assurance(numPolice,tarifInitial, typeAssurance, dateEffetDebut,id_Bien_Imm,id_Batiment);
  
-            daoAssurance.create(ass);
+            daoAssurance.create(assurance);
             this.insertion=true;
         } catch (SQLException e1) {
             // TODO Auto-generated catch block
