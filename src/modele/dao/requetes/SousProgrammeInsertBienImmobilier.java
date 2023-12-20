@@ -7,9 +7,9 @@ import modele.Batiment;
 import modele.BienImmobilier;
 import modele.dao.SousProgramme;
 
-public class SousProgrammeIsertBienImmobilier implements SousProgramme<BienImmobilier>{
+public class SousProgrammeInsertBienImmobilier implements SousProgramme<BienImmobilier>{
 
-    public SousProgrammeIsertBienImmobilier() {
+    public SousProgrammeInsertBienImmobilier() {
         // TODO Auto-generated constructor stub
     }
 
