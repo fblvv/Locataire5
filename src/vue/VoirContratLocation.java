@@ -70,4 +70,3 @@ public class VoirContratLocation extends JInternalFrame {
 		
 
 	}
-
