@@ -17,20 +17,29 @@ import controle.GestionFenetreBien;
 public class FenetreBien extends JInternalFrame {
 
     private static final long serialVersionUID = 1L;
-    private JTextField textFieldAdresse;
-    private JTextField textFieldCodePostal;
-    private JTextField textFieldEtage;
-    private JTextField textFieldDescription;
 
+    // JTextFields for Assurance Obligatoire
     private JTextField textFieldNumeroPoliceObl;
     private JTextField textFieldTarifInitialObl;
     private JTextField textFieldTypeAssuranceObl;
     private JTextField textFieldDateDebutObl;
 
+    // JTextFields for Assurance Optionnelle
     private JTextField textFieldNumeroPoliceOpt;
     private JTextField textFieldTarifInitialOpt;
     private JTextField textFieldTypeAssuranceOpt;
     private JTextField textFieldDateDebutOpt;
+
+    // JTextFields for Autres informations
+    private JTextField textFieldIdBienImmobilier;
+    private JTextField textFieldSurface;
+    private JTextField textFieldModeChauffage;
+    private JTextField textFieldModeEau;
+    private JTextField textFieldNbPiece;
+    private JTextField textFieldTypeBien;
+    private JTextField textFieldNomProprio;
+    private JTextField textFieldIdentifiant;
+    private JTextField textFieldEtage;
 
     private JPanel panelButton;
     private JButton btnAnnuler;
@@ -47,7 +56,7 @@ public class FenetreBien extends JInternalFrame {
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
         mainPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         getContentPane().add(mainPanel);
-
+        
         // Panel Assurance à gauche
         JPanel panelAssurance = new JPanel(new GridLayout(0, 1, 10, 10));
         mainPanel.add(panelAssurance, BorderLayout.WEST);
@@ -82,7 +91,7 @@ public class FenetreBien extends JInternalFrame {
         panelAssurance.add(new JLabel("Date d'Effet (Début)", SwingConstants.RIGHT));
         panelAssurance.add(textFieldDateDebutOpt = new JTextField(10));
 
-     // Panel Autres informations à droite
+        // Panel Autres informations à droite
         JPanel panelAutres = new JPanel(new GridLayout(0, 2, 10, 10));
         mainPanel.add(panelAutres, BorderLayout.EAST);
 
@@ -94,33 +103,42 @@ public class FenetreBien extends JInternalFrame {
         comboBoxBatiment.addItem("Bâtiment 3");
         panelAutres.add(comboBoxBatiment);
 
-        // Ajout des autres champs SQL
+     // Ajout des autres champs SQL
         panelAutres.add(new JLabel("Id Bien Immobilier:", SwingConstants.RIGHT));
-        panelAutres.add(new JTextField(10));
+        textFieldIdBienImmobilier = new JTextField(10);
+        panelAutres.add(textFieldIdBienImmobilier);
 
         panelAutres.add(new JLabel("Surface:", SwingConstants.RIGHT));
-        panelAutres.add(new JTextField(10));
+        textFieldSurface = new JTextField(10);
+        panelAutres.add(textFieldSurface);
 
         panelAutres.add(new JLabel("Mode Chauffage:", SwingConstants.RIGHT));
-        panelAutres.add(new JTextField(10));
+        textFieldModeChauffage = new JTextField(10);
+        panelAutres.add(textFieldModeChauffage);
 
         panelAutres.add(new JLabel("Mode Eau:", SwingConstants.RIGHT));
-        panelAutres.add(new JTextField(10));
+        textFieldModeEau = new JTextField(10);
+        panelAutres.add(textFieldModeEau);
 
         panelAutres.add(new JLabel("Nb Piece:", SwingConstants.RIGHT));
-        panelAutres.add(new JTextField(10));
+        textFieldNbPiece = new JTextField(10);
+        panelAutres.add(textFieldNbPiece);
 
         panelAutres.add(new JLabel("Type Bien:", SwingConstants.RIGHT));
-        panelAutres.add(new JTextField(10));
+        textFieldTypeBien = new JTextField(10);
+        panelAutres.add(textFieldTypeBien);
 
         panelAutres.add(new JLabel("Nom Proprio:", SwingConstants.RIGHT));
-        panelAutres.add(new JTextField(10));
+        textFieldNomProprio = new JTextField(10);
+        panelAutres.add(textFieldNomProprio);
 
         panelAutres.add(new JLabel("Identifiant:", SwingConstants.RIGHT));
-        panelAutres.add(new JTextField(10));
+        textFieldIdentifiant = new JTextField(10);
+        panelAutres.add(textFieldIdentifiant);
 
         panelAutres.add(new JLabel("Etage:", SwingConstants.RIGHT));
-        panelAutres.add(new JTextField(10));
+        textFieldEtage = new JTextField(10);
+        panelAutres.add(textFieldEtage);
 
 
         // Panel de boutons en bas
