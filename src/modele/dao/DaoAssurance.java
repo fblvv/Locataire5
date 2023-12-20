@@ -1,10 +1,13 @@
 package modele.dao;
 
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
+import SQL.CictOracleDataSource;
 import modele.Assurance;
+import modele.dao.requetes.SousProgrammeInsertAssurance;
 
 public class DaoAssurance extends DaoModele<Assurance> implements Dao<Assurance> {
 
@@ -29,6 +32,10 @@ public class DaoAssurance extends DaoModele<Assurance> implements Dao<Assurance>
 	@Override
 	public void create(Assurance donnee) throws SQLException {
 		// TODO Auto-generated method stub
+		SousProgrammeInsertAssurance sousProgrammeInsertAssurance = new SousProgrammeInsertAssurance();
+        CallableStatement cs = CictOracleDataSource.getConnectionBD().prepareCall(sousProgrammeInsertAssurance.appelSousProgramme());
+        sousProgrammeInsertAssurance.parametres(cs, donnee);
+            cs.execute();
 		
 	}
 

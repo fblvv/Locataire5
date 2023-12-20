@@ -7,17 +7,24 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
+import modele.Assurance;
 import modele.BienImmobilier;
+import modele.dao.DaoAssurance;
 import modele.dao.DaoBienImmobilier;
 import vue.FenetreBien;
 
 public class GestionAjoutBienImmo implements ActionListener{
 	private FenetreBien detailPropriete;
     private DaoBienImmobilier daoBienI;
+    private DaoAssurance daoAssurance;
+    private boolean insertion;
 
 	public GestionAjoutBienImmo(FenetreBien detailPropriete) {
 		this.detailPropriete = detailPropriete;
-        this.daoBienI = new DaoBienImmobilier();	}
+        this.daoBienI = new DaoBienImmobilier();
+        this.daoAssurance= new DaoAssurance();
+        this.insertion=false;
+        }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -65,6 +72,26 @@ public class GestionAjoutBienImmo implements ActionListener{
 			e1.printStackTrace();
 		}
 	}
+	
+	
+	
+	public void ajouterAss() {
+        String numPolice = detailPropriete.getTextFieldNumeroPoliceObl();
+        String tarifInitial = detailPropriete.getTextFieldTarifInitialObl();
+        String typeAssurance = detailPropriete.getTextFieldTypeAssuranceObl();
+        String dateEffetDebut = detailPropriete.getTextFieldDateDebutObl();
+        String id_Bien_Imm=    detailPropriete.getTextFieldIdBienImmobilier();
+        JComboBox<String> comboBoxLogement = detailPropriete.getComboBoxBatiment();
+        String id_Batiment = (String) comboBoxLogement.getSelectedItem();
+
+        Assurance ass = new Assurance(tarifInitial, typeAssurance, dateEffetDebut, numPolice,id_Bien_Imm,id_Batiment);
+        try {
+            daoAssurance.create(ass);
+        } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+    }
 
 
 
