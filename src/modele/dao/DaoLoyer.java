@@ -10,6 +10,7 @@ import SQL.CictOracleDataSource;
 import modele.Loyer;
 import modele.dao.requetes.RequeteSelectLoyer;
 import modele.dao.requetes.RequeteSelectLoyerById;
+import modele.dao.requetes.SousProgrammeInsertLoyer;
 
 public class DaoLoyer extends DaoModele<Loyer> implements Dao<Loyer> {
 	

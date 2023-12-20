@@ -1,8 +1,9 @@
-package modele.dao;
+package modele.dao.requetes;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import modele.Loyer;
+import modele.dao.SousProgramme;
 
 
 public class SousProgrammeInsertLoyer implements SousProgramme<Loyer> {
