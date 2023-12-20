@@ -36,8 +36,14 @@ public class GestionAjoutBienImmo implements ActionListener{
             switch (button.getText()) {
                 case "Valider":
                     // Code à exécuter pour le bouton "Autre Section"
-                	ajouterBien();
-                	detailPropriete.dispose();
+                	
+                	ajouterAssurance();
+                    if(this.insertion == true) {
+                    ajouterBien();
+                    }else {
+                        System.out.println("Il faut une assurance");
+                    }
+                    detailPropriete.dispose();
                     break;
                     
                 case "Annuler":
@@ -75,7 +81,8 @@ public class GestionAjoutBienImmo implements ActionListener{
 	
 	
 	
-	public void ajouterAss() {
+	public void ajouterAssurance() {
+	       try {
         String numPolice = detailPropriete.getTextFieldNumeroPoliceObl();
         String tarifInitial = detailPropriete.getTextFieldTarifInitialObl();
         String typeAssurance = detailPropriete.getTextFieldTypeAssuranceObl();
@@ -85,8 +92,9 @@ public class GestionAjoutBienImmo implements ActionListener{
         String id_Batiment = (String) comboBoxLogement.getSelectedItem();
 
         Assurance ass = new Assurance(tarifInitial, typeAssurance, dateEffetDebut, numPolice,id_Bien_Imm,id_Batiment);
-        try {
+ 
             daoAssurance.create(ass);
+            this.insertion=true;
         } catch (SQLException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
