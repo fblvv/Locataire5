@@ -1,127 +1,152 @@
 package modele;
 
 public class ContratLocation {
-	private String dateDebutContrat;
-	private double montant;
-	private double montantDernierLoyer;
-	private String dateVersementLoyer;
-	private String depotGarantie;
-	private String dateRevision;
-	private String periodicitePaiement;
-	private String dateFinContrat;
-	private double chargesProvisionnelles;
-	private static String idICC;
-	private String valeurICC;
-	private static String idBienImm;
+    private String idLocataire;
+    private String dateDebutContrat;
+    private double montant;
+    private double montantLoyer;
+    private String dateVersementLoyer;
+    private String dateEntree;
+    private String dateSortie;
+    private String depotDeGarantie;
+    private String dateRevision;
+    private String periodicitePaiement;
+    private String dateFinContrat;
+    private double chargesProvisionnelles;
+    private String idICC;
+    private double caution;
+    private String idBienImm;
 
-	public ContratLocation(String dateDebutContrat, double montant, double montantDernierLoyer,
-			String dateVersementLoyer, String depotGarantie, String dateRevision,
-			String periodicitePaiement, String dateFinContrat, double chargesProvisionnelles,
-			String idICC, String valeurICC,String idBien) {
-		this.dateDebutContrat = dateDebutContrat;
-		this.montant = montant;
-		this.montantDernierLoyer = montantDernierLoyer;
-		this.dateVersementLoyer = dateVersementLoyer;
-		this.depotGarantie = depotGarantie;
-		this.dateRevision = dateRevision;
-		this.periodicitePaiement = periodicitePaiement;
-		this.dateFinContrat = dateFinContrat;
-		this.chargesProvisionnelles = chargesProvisionnelles;
-		this.valeurICC = valeurICC;
-		this.idBienImm=idBien;
-	}
+    public ContratLocation(String idLocataire, String dateDebutContrat, double montant, double montantLoyer,
+            String dateVersementLoyer, String dateEntree, String dateSortie, String depotDeGarantie, String dateRevision,
+            String periodicitePaiement, String dateFinContrat, double chargesProvisionnelles, String idICC,
+            double caution, String idBienImm) {
+        this.idLocataire = idLocataire;
+        this.dateDebutContrat = dateDebutContrat;
+        this.montant = montant;
+        this.montantLoyer = montantLoyer;
+        this.dateVersementLoyer = dateVersementLoyer;
+        this.dateEntree = dateEntree;
+        this.dateSortie = dateSortie;
+        this.depotDeGarantie = depotDeGarantie;
+        this.dateRevision = dateRevision;
+        this.periodicitePaiement = periodicitePaiement;
+        this.dateFinContrat = dateFinContrat;
+        this.chargesProvisionnelles = chargesProvisionnelles;
+        this.idICC = idICC;
+        this.caution = caution;
+        this.idBienImm = idBienImm;
+    }
 
-	public String getDateDebutContrat() {
-		return dateDebutContrat;
-	}
+    public String getIdLocataire() {
+        return idLocataire;
+    }
 
-	public void setDateDebutContrat(String dateDebutContrat) {
-		this.dateDebutContrat = dateDebutContrat;
-	}
+    public String getDateDebutContrat() {
+        return dateDebutContrat;
+    }
 
-	public double getMontant() {
-		return montant;
-	}
+    public double getMontant() {
+        return montant;
+    }
 
-	public void setMontant(double montant) {
-		this.montant = montant;
-	}
+    public void setMontant(double montant) {
+        this.montant = montant;
+    }
 
-	public double getMontantDernierLoyer() {
-		return montantDernierLoyer;
-	}
+    public double getMontantLoyer() {
+        return montantLoyer;
+    }
 
-	public void setMontantDernierLoyer(double montantDernierLoyer) {
-		this.montantDernierLoyer = montantDernierLoyer;
-	}
+    public void setMontantLoyer(double montantLoyer) {
+        this.montantLoyer = montantLoyer;
+    }
 
-	public String getDateVersementLoyer() {
-		return dateVersementLoyer;
-	}
+    public String getDateVersementLoyer() {
+        return dateVersementLoyer;
+    }
 
-	public void setDateVersementLoyer(String dateVersementLoyer) {
-		this.dateVersementLoyer = dateVersementLoyer;
-	}
+    public void setDateVersementLoyer(String dateVersementLoyer) {
+        this.dateVersementLoyer = dateVersementLoyer;
+    }
 
-	public String getDepotGarantie() {
-		return depotGarantie;
-	}
+    public String getDateEntree() {
+        return dateEntree;
+    }
 
-	public void setDepotGarantie(String depotGarantie) {
-		this.depotGarantie = depotGarantie;
-	}
+    public void setDateEntree(String dateEntree) {
+        this.dateEntree = dateEntree;
+    }
 
-	public String getDateRevision() {
-		return dateRevision;
-	}
+    public String getDateSortie() {
+        return dateSortie;
+    }
 
-	public void setDateRevision(String dateRevision) {
-		this.dateRevision = dateRevision;
-	}
+    public void setDateSortie(String dateSortie) {
+        this.dateSortie = dateSortie;
+    }
 
-	public String getPeriodicitePaiement() {
-		return periodicitePaiement;
-	}
+    public String getDepotDeGarantie() {
+        return depotDeGarantie;
+    }
 
-	public void setPeriodicitePaiement(String periodicitePaiement) {
-		this.periodicitePaiement = periodicitePaiement;
-	}
+    public void setDepotDeGarantie(String depotDeGarantie) {
+        this.depotDeGarantie = depotDeGarantie;
+    }
 
-	public String getDateFinContrat() {
-		return dateFinContrat;
-	}
+    public String getDateRevision() {
+        return dateRevision;
+    }
 
-	public void setDateFinContrat(String dateFinContrat) {
-		this.dateFinContrat = dateFinContrat;
-	}
+    public void setDateRevision(String dateRevision) {
+        this.dateRevision = dateRevision;
+    }
 
-	public double getChargesProvisionnelles() {
-		return chargesProvisionnelles;
-	}
+    public String getPeriodicitePaiement() {
+        return periodicitePaiement;
+    }
 
-	public void setChargesProvisionnelles(double chargesProvisionnelles) {
-		this.chargesProvisionnelles = chargesProvisionnelles;
-	}
+    public void setPeriodicitePaiement(String periodicitePaiement) {
+        this.periodicitePaiement = periodicitePaiement;
+    }
 
-	public String getIdICC() {
-		return idICC;
-	}
+    public String getDateFinContrat() {
+        return dateFinContrat;
+    }
 
-	public String getValeurICC() {
-		return valeurICC;
-	}
+    public void setDateFinContrat(String dateFinContrat) {
+        this.dateFinContrat = dateFinContrat;
+    }
 
-	public void setValeurICC(String valeurICC) {
-		this.valeurICC = valeurICC;
-	}
-	
-	
-	public void setIdBienImm(String idBien){
-		this.idBienImm=idBien;
-		
-	}
+    public double getChargesProvisionnelles() {
+        return chargesProvisionnelles;
+    }
 
-	public String getIdBienImm() {
-		return idBienImm;
-	}
+    public void setChargesProvisionnelles(double chargesProvisionnelles) {
+        this.chargesProvisionnelles = chargesProvisionnelles;
+    }
+
+    public String getIdICC() {
+        return idICC;
+    }
+
+    public void setIdICC(String idICC) {
+        this.idICC = idICC;
+    }
+
+    public double getCaution() {
+        return caution;
+    }
+
+    public void setCaution(double caution) {
+        this.caution = caution;
+    }
+
+    public String getIdBienImm() {
+        return idBienImm;
+    }
+
+    public void setIdBienImm(String idBienImm) {
+        this.idBienImm = idBienImm;
+    }
 }
