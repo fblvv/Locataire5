@@ -3,6 +3,9 @@ package vue;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.sql.SQLException;
+import java.util.Collection;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
@@ -12,7 +15,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import controle.GestionFenetreBien;
+import controle.GestionAjoutBienImmo;
+import modele.Batiment;
+import modele.dao.DaoBatiment;
 
 public class FenetreBien extends JInternalFrame {
 
@@ -43,12 +48,13 @@ public class FenetreBien extends JInternalFrame {
 
     private JPanel panelButton;
     private JButton btnAnnuler;
-    private GestionFenetreBien gestionClic;
+    private JButton btnValider;
+    private GestionAjoutBienImmo gestionClic;
 
     private JComboBox<String> comboBoxBatiment;
 
     public FenetreBien() {
-        this.gestionClic = new GestionFenetreBien(this);
+        this.gestionClic = new GestionAjoutBienImmo(this);
         setTitle("Gestion de Logement");
         setDefaultCloseOperation(JInternalFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -94,14 +100,13 @@ public class FenetreBien extends JInternalFrame {
         // Panel Autres informations à droite
         JPanel panelAutres = new JPanel(new GridLayout(0, 2, 10, 10));
         mainPanel.add(panelAutres, BorderLayout.EAST);
-
-        // Combobox pour les bâtiments
+        
         panelAutres.add(new JLabel("Bâtiment:", SwingConstants.RIGHT));
-        comboBoxBatiment = new JComboBox<>();
-        comboBoxBatiment.addItem("Bâtiment 1");
-        comboBoxBatiment.addItem("Bâtiment 2");
-        comboBoxBatiment.addItem("Bâtiment 3");
+        initComboBoxBatiment();
         panelAutres.add(comboBoxBatiment);
+        
+        initComboBoxBatiment();
+
 
      // Ajout des autres champs SQL
         panelAutres.add(new JLabel("Id Bien Immobilier:", SwingConstants.RIGHT));
@@ -145,15 +150,227 @@ public class FenetreBien extends JInternalFrame {
         panelButton = new JPanel();
         mainPanel.add(panelButton, BorderLayout.SOUTH);
 
+        btnValider = new JButton("Valider");
+        btnValider.addActionListener(this.gestionClic);
+        panelButton.add(btnValider);
+
         btnAnnuler = new JButton("Annuler");
         btnAnnuler.addActionListener(this.gestionClic);
         panelButton.add(btnAnnuler);
+        
 
-        JButton btnValider = new JButton("Valider");
-        panelButton.add(btnValider);
+    }
+    
+
+    public String getTextFieldNumeroPoliceObl() {
+		return textFieldNumeroPoliceObl.getText();
+	}
+
+
+	public void setTextFieldNumeroPoliceObl(JTextField textFieldNumeroPoliceObl) {
+		this.textFieldNumeroPoliceObl = textFieldNumeroPoliceObl;
+	}
+
+
+	public String getTextFieldTarifInitialObl() {
+		return textFieldTarifInitialObl.getText();
+	}
+
+
+	public void setTextFieldTarifInitialObl(JTextField textFieldTarifInitialObl) {
+		this.textFieldTarifInitialObl = textFieldTarifInitialObl;
+	}
+
+
+	public String getTextFieldTypeAssuranceObl() {
+		return textFieldTypeAssuranceObl.getText();
+	}
+
+
+	public void setTextFieldTypeAssuranceObl(JTextField textFieldTypeAssuranceObl) {
+		this.textFieldTypeAssuranceObl = textFieldTypeAssuranceObl;
+	}
+
+
+	public String getTextFieldDateDebutObl() {
+		return textFieldDateDebutObl.getText();
+	}
+
+
+	public void setTextFieldDateDebutObl(JTextField textFieldDateDebutObl) {
+		this.textFieldDateDebutObl = textFieldDateDebutObl;
+	}
+
+
+	public String getTextFieldNumeroPoliceOpt() {
+		return textFieldNumeroPoliceOpt.getText();
+	}
+
+
+	public void setTextFieldNumeroPoliceOpt(JTextField textFieldNumeroPoliceOpt) {
+		this.textFieldNumeroPoliceOpt = textFieldNumeroPoliceOpt;
+	}
+
+
+	public String getTextFieldTarifInitialOpt() {
+		return textFieldTarifInitialOpt.getText();
+	}
+
+
+	public void setTextFieldTarifInitialOpt(JTextField textFieldTarifInitialOpt) {
+		this.textFieldTarifInitialOpt = textFieldTarifInitialOpt;
+	}
+
+
+	public String getTextFieldTypeAssuranceOpt() {
+		return textFieldTypeAssuranceOpt.getText();
+	}
+
+
+	public void setTextFieldTypeAssuranceOpt(JTextField textFieldTypeAssuranceOpt) {
+		this.textFieldTypeAssuranceOpt = textFieldTypeAssuranceOpt;
+	}
+
+
+	public String getTextFieldDateDebutOpt() {
+		return textFieldDateDebutOpt.getText();
+	}
+
+
+	public void setTextFieldDateDebutOpt(JTextField textFieldDateDebutOpt) {
+		this.textFieldDateDebutOpt = textFieldDateDebutOpt;
+	}
+
+
+	public String getTextFieldIdBienImmobilier() {
+		return textFieldIdBienImmobilier.getText();
+	}
+
+
+	public void setTextFieldIdBienImmobilier(JTextField textFieldIdBienImmobilier) {
+		this.textFieldIdBienImmobilier = textFieldIdBienImmobilier;
+	}
+
+
+	public String getTextFieldSurface() {
+		return textFieldSurface.getText();
+	}
+
+
+	public void setTextFieldSurface(JTextField textFieldSurface) {
+		this.textFieldSurface = textFieldSurface;
+	}
+
+
+	public String getTextFieldModeChauffage() {
+		return textFieldModeChauffage.getText();
+	}
+
+
+	public void setTextFieldModeChauffage(JTextField textFieldModeChauffage) {
+		this.textFieldModeChauffage = textFieldModeChauffage;
+	}
+
+
+	public String getTextFieldModeEau() {
+		return textFieldModeEau.getText();
+	}
+
+
+	public void setTextFieldModeEau(JTextField textFieldModeEau) {
+		this.textFieldModeEau = textFieldModeEau;
+	}
+
+
+	public String getTextFieldNbPiece() {
+		return textFieldNbPiece.getText();
+	}
+
+
+	public void setTextFieldNbPiece(JTextField textFieldNbPiece) {
+		this.textFieldNbPiece = textFieldNbPiece;
+	}
+
+
+	public String getTextFieldTypeBien() {
+		return textFieldTypeBien.getText();
+	}
+
+
+	public void setTextFieldTypeBien(JTextField textFieldTypeBien) {
+		this.textFieldTypeBien = textFieldTypeBien;
+	}
+
+
+	public String getTextFieldNomProprio() {
+		return textFieldNomProprio.getText();
+	}
+
+
+	public void setTextFieldNomProprio(JTextField textFieldNomProprio) {
+		this.textFieldNomProprio = textFieldNomProprio;
+	}
+
+
+	public String getTextFieldIdentifiant() {
+		return textFieldIdentifiant.getText();
+	}
+
+
+	public void setTextFieldIdentifiant(JTextField textFieldIdentifiant) {
+		this.textFieldIdentifiant = textFieldIdentifiant;
+	}
+
+
+	public String getTextFieldEtage() {
+		return textFieldEtage.getText();
+	}
+
+
+	public void setTextFieldEtage(JTextField textFieldEtage) {
+		this.textFieldEtage = textFieldEtage;
+	}
+
+
+	public JComboBox<String> getComboBoxBatiment() {
+		return comboBoxBatiment;
+	}
+
+
+	public void setComboBoxBatiment(JComboBox<String> comboBoxBatiment) {
+		this.comboBoxBatiment = comboBoxBatiment;
+	}
+	
+	
+	private void initComboBoxBatiment() {
+        DaoBatiment daoBatiment = new DaoBatiment();
+
+        try {
+            // Récupérer tous les bâtiments
+            Collection<Batiment> batiments = daoBatiment.findAll();
+
+            // Créer un tableau pour stocker les identifiants des bâtiments
+            String[] idBats = new String[batiments.size()];
+
+            // Remplir le tableau avec les identifiants des bâtiments
+            int i = 0;
+            for (Batiment batiment : batiments) {
+                idBats[i] = String.valueOf(batiment.getId_Batiment());
+                System.out.println(idBats[i]);
+                i++;
+            }
+
+            // Créer une JComboBox avec les identifiants des bâtiments
+            comboBoxBatiment = new JComboBox<>(idBats);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer l'exception, par exemple, afficher un message d'erreur à l'utilisateur
+        }
     }
 
-    public static void main(String[] args) {
+
+	public static void main(String[] args) {
         FenetreBien frame = new FenetreBien();
         frame.setVisible(true);
     }
