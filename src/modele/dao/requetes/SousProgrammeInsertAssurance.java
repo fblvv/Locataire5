@@ -32,7 +32,7 @@ public class SousProgrammeInsertAssurance implements SousProgramme<Assurance>{
         prSt.setString(1, donnee.getNumPolice());
         prSt.setString(2, donnee.getTarifInitial());
         prSt.setString(3, donnee.getTypeAssurance());
-        prSt.setString(4, donnee.getDateEffetDebut());
+        prSt.setDate(4,java.sql.Date.valueOf(donnee.getDateEffetDebut()));
         prSt.setString(5, donnee.getIdBienImm());
         prSt.setString(6, donnee.getIdBatiment());
 
