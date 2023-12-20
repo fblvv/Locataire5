@@ -66,6 +66,6 @@ public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
         
 
         // Créer et retourner une nouvelle instance de Batiment
-        return new Batiment(idBatiment, regimeJuridique, adresse,codePostal, dateConstruction, equipAccesTech, enumPartiesCommunes);
+        return new Batiment(idBatiment, regimeJuridique, adresse,dateConstruction, equipAccesTech, enumPartiesCommunes,codePostal);
     }
 }

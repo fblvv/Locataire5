@@ -64,13 +64,15 @@ public class FenetreAjoutBatiment extends JInternalFrame {
         panel.add(libCodePostal);
         panel.add(champCodePostal);
 
-        // Champ pour la date de construction
+     // Champ pour la date de construction
         JLabel libDateConstruction = new JLabel("Date de Construction");
         libDateConstruction.setFont(new Font("Tahoma", Font.PLAIN, 14));
         try {
             MaskFormatter dateFormatter = new MaskFormatter("##/##/####");
             champDateConstruction = new JFormattedTextField(dateFormatter);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+            // Utilisez le format "YYYY-MM-DD" pour correspondre à la procédure stockée Oracle
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             champDateConstruction.setValue(dateFormat.format(new Date()));
         } catch (ParseException e) {
             e.printStackTrace();
@@ -131,31 +133,35 @@ public class FenetreAjoutBatiment extends JInternalFrame {
 
 	public String getRegimeJuridique() {
 		// TODO Auto-generated method stub
-		return null;
+		return champRegimeJuridique.getText();
 	}
 
 	public String getAdresse() {
 		// TODO Auto-generated method stub
-		return null;
+		return champAdresse.getText();
+	            
 	}
 
 	public String getCodePostal() {
 		// TODO Auto-generated method stub
-		return null;
+		return champCodePostal.getText();
+	            
 	}
 
 	public String getDateConstruction() {
 		// TODO Auto-generated method stub
-		return null;
+		return champDateConstruction.getText();
+	            
 	}
 
 	public String getEquipAccesTech() {
 		// TODO Auto-generated method stub
-		return null;
+		return champEquipAccesTech.getText();
+	            
 	}
 
 	public String getEnumPartiesCommunes() {
 		// TODO Auto-generated method stub
-		return null;
+		return champEnumPartiesCommunes.getText();
 	}
 }
