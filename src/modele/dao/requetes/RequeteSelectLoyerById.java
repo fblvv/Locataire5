@@ -18,6 +18,6 @@ public class RequeteSelectLoyerById extends Requete<Loyer> {
 
     @Override
     public void parametres(PreparedStatement prSt, Loyer data) throws SQLException {
-        prSt.setString(1, data.getId_Loyer());
+        prSt.setString(1, data.getIdLocataire());
     }
 }
