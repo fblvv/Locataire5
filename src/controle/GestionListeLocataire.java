@@ -8,9 +8,11 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import SQL.CictOracleDataSource;
+import modele.GenererContratDeLocation;
 import modele.Locataire;
 import modele.dao.DaoLocataire;
 import vue.FenetreListeLocataire;
@@ -53,9 +55,14 @@ public class GestionListeLocataire implements ActionListener {
                 case "Annuler":
                     listeLocataire.dispose();
                     break;
+                    
+                case "Générer Contrat":
+                	genererContratPourLocataireSelectionne();
+    			    break;
+            }
             }
         }
-    }
+    
     
     public void afficherLocataire() throws SQLException {
         Collection<Locataire> locataires = daoLocataire.findAll();
@@ -108,7 +115,26 @@ public class GestionListeLocataire implements ActionListener {
     	
     }
 
-
+    private void genererContratPourLocataireSelectionne() {
+    	int selectedRow = listeLocataire.getTable().getSelectedRow();
+	    if (selectedRow != -1) {
+    	String nom = (String) listeLocataire.getTable().getValueAt(selectedRow, 0);
+        String prenom = (String) listeLocataire.getTable().getValueAt(selectedRow, 1);
+    	String id = nom+prenom;
+            try {
+                GenererContratDeLocation genererContrat = new GenererContratDeLocation();
+                genererContrat.genererPdf(id);
+                System.out.println("Contrat généré pour le locataire ID: " + id);
+                System.out.println(id);
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(listeLocataire, "Erreur lors de la génération du contrat", "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(listeLocataire, "Veuillez sélectionner un locataire", "Aucun locataire sélectionné", JOptionPane.WARNING_MESSAGE);
+        }
+	    
+    }
 
 
 //    public void ecrireLigneTable(int numeroLigne, Locataire loc) {

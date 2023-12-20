@@ -19,6 +19,7 @@ import vue.FenetreListeLocataire;
 import vue.FenetreLoyer;
 import vue.GestionFactureWindow2;
 import vue.PageAjoutLocataire;
+import vue.VoirContratLocation;
 
 public class GestionAccueil implements ActionListener {
     private Accueil accueil;
@@ -51,6 +52,9 @@ public class GestionAccueil implements ActionListener {
                 break;
             case "Ajouter logement":
                 afficherFenetre(new FenetreBien(), layeredPane);
+                break;
+            case "Consulter contrat de location":
+                afficherFenetre(new VoirContratLocation(), layeredPane);
                 break;
             case "Consulter logement":
                 afficherFenetre(new FenetreDetailsPropriete2(), layeredPane);

@@ -13,7 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FenetreListeLocataire extends JInternalFrame {
-    private List<Locataire> locataires;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Locataire> locataires;
     private GestionListeLocataire gestionClic;
     private JTable table;
 
@@ -53,6 +57,9 @@ public class FenetreListeLocataire extends JInternalFrame {
         JButton supprimerButton = new JButton("Supprimer");
         supprimerButton.addActionListener(this.gestionClic);
  
+        JButton genererContratButton = new JButton("Générer Contrat");
+        genererContratButton.addActionListener(this.gestionClic);
+        
 
         JButton btnAnnuler = new JButton("Annuler");
         btnAnnuler.addActionListener(this.gestionClic);
@@ -60,8 +67,9 @@ public class FenetreListeLocataire extends JInternalFrame {
         btnAnnuler.setHorizontalAlignment(SwingConstants.LEFT);
         buttonPanel.add(btnAnnuler);
         buttonPanel.add(supprimerButton);
+        buttonPanel.add(genererContratButton);
 
-        JButton voirBienButton = new JButton("Voir le bien immobilier concerné");
+        JButton voirBienButton = new JButton("Voir le bien");
         voirBienButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

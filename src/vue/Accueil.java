@@ -69,6 +69,11 @@ public class Accueil extends JFrame {
         mntmConsultation.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         mntmConsultation.addActionListener(this.gestionClic);
         mnLocataire.add(mntmConsultation);
+        
+        JMenuItem mntmConsultationLocation = new JMenuItem("Consulter contrat de location");
+        mntmConsultationLocation.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmConsultationLocation.addActionListener(this.gestionClic);
+        mnLocataire.add(mntmConsultationLocation);
 
         JMenu mnLogement = new JMenu("Logement");
         mnLogement.setFont(new Font("Lucida Grande", Font.BOLD, 18));
