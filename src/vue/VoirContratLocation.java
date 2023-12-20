@@ -1,6 +1,7 @@
 package vue;
 
 import javax.swing.JInternalFrame;
+
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import java.awt.Font;

@@ -2,6 +2,7 @@ package vue;
 
 import javax.swing.*;
 
+import controle.GestionContratLocation;
 import modele.BienImmobilier;
 import modele.Locataire;
 
@@ -16,7 +17,7 @@ public class FenetreContratLocation extends JInternalFrame {
 
     private JTextField champDateDebutContrat;
     private JTextField champMontant;
-    private JTextField champMontantDernierLoyer;
+    private JTextField champMontantLoyer;
     private JTextField champDateVersementLoyer;
     private JTextField champDepotGarantie;
     private JTextField champDateRevision;
@@ -32,17 +33,21 @@ public class FenetreContratLocation extends JInternalFrame {
     private JButton ajouterLocataireButton;
     private BienImmobilier bienImmobilier;
     private Locataire locataire;
+    private PageAjoutLocataire pageAjoutLocataire;
+    private GestionContratLocation gestionClic;
+	private FenetreContratLocation contratLocation;
 
     public FenetreContratLocation(BienImmobilier bienImmobilier, Locataire locataire) {
         // Initialiser les champs du bien immobilier et du locataire
         this.bienImmobilier = bienImmobilier;
         this.locataire = locataire;
+        this.gestionClic= new GestionContratLocation(this,this.pageAjoutLocataire);
 
     	setBounds(0, 0, 550, 400);
 
         // Ajout des champs de texte
         champDateDebutContrat = new JTextField("YYYY-MM-DD", 15);
-        champMontantDernierLoyer = new JTextField(15);
+        champMontantLoyer = new JTextField(15);
         champDateVersementLoyer = new JTextField("YYYY-MM-DD", 15);
         champDepotGarantie = new JTextField(15);
         champDateRevision = new JTextField(15);
@@ -57,23 +62,20 @@ public class FenetreContratLocation extends JInternalFrame {
         champCaution = new JTextField(15);
         
         ajouterLocataireButton = new JButton("Ajouter Locataire");
-        ajouterLocataireButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Handle button click action
-                // You might want to add logic here
-            }
-        });
+        ajouterLocataireButton.addActionListener(this.gestionClic);
+            
 
         // Bouton pour fermer la fenêtre
-        JButton fermerButton = new JButton("Fermer");
+        JButton btnFermer = new JButton("Fermer");
+        btnFermer.addActionListener(this.gestionClic);
+        
         
         // Utilisation d'un GridLayout avec deux colonnes
         getContentPane().setLayout(new GridLayout(0, 2, 5, 5));
         getContentPane().add(new JLabel("Date Début Contrat (YYYY-MM-DD):"));
         getContentPane().add(champDateDebutContrat);
-        getContentPane().add(new JLabel("Montant Dernier Loyer:"));
-        getContentPane().add(champMontantDernierLoyer);
+        getContentPane().add(new JLabel("Montant du Loyer:"));
+        getContentPane().add(champMontantLoyer);
         getContentPane().add(new JLabel("Date Versement Loyer (YYYY-MM-DD):"));
         getContentPane().add(champDateVersementLoyer);
         getContentPane().add(new JLabel("Dépôt Garantie:"));
@@ -99,7 +101,7 @@ public class FenetreContratLocation extends JInternalFrame {
         getContentPane().add(new JLabel("Caution:"));
         getContentPane().add(champCaution);
         getContentPane().add(ajouterLocataireButton);
-        getContentPane().add(fermerButton);
+        getContentPane().add(btnFermer);
         champIdBienImm.setText(bienImmobilier.getId_Bien_Imm());
     }
     
@@ -123,11 +125,11 @@ public class FenetreContratLocation extends JInternalFrame {
 	}
 
 	public JTextField getChampMontantDernierLoyer() {
-		return champMontantDernierLoyer;
+		return champMontantLoyer;
 	}
 
 	public void setChampMontantDernierLoyer(JTextField champMontantDernierLoyer) {
-		this.champMontantDernierLoyer = champMontantDernierLoyer;
+		this.champMontantLoyer = champMontantDernierLoyer;
 	}
 
 	public JTextField getChampDateVersementLoyer() {
