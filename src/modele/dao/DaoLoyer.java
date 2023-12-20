@@ -8,61 +8,56 @@ import java.util.List;
 
 import SQL.CictOracleDataSource;
 import modele.Loyer;
-import modele.Locataire;
-import modele.Loyer;
 import modele.dao.requetes.RequeteSelectLoyer;
 import modele.dao.requetes.RequeteSelectLoyerById;
-import modele.dao.requetes.SousProgrammeInsertLoyer;
 
 public class DaoLoyer extends DaoModele<Loyer> implements Dao<Loyer> {
 	
-	
-	
 	@Override
 	public Collection<Loyer> findAll() throws SQLException {
-		// TODO Auto-generated method stub
-		RequeteSelectLoyer sketuveux = new RequeteSelectLoyer();
-		return find(sketuveux);
+		RequeteSelectLoyer requeteSelectLoyer = new RequeteSelectLoyer();
+		return find(requeteSelectLoyer);
 	}
 
 	@Override
 	public Loyer findById(String... id) throws SQLException {
-		List<Loyer> bien = find(new RequeteSelectLoyerById(), id);
-        if (bien.isEmpty()) {
-            return null;
-        }
-        return bien.get(0);
+		List<Loyer> loyers = find(new RequeteSelectLoyerById(), id);
+		if (loyers.isEmpty()) {
+			return null;
+		}
+		return loyers.get(0);
 	}
 
 	@Override
-	public void update(Loyer donnee) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	public void update(Loyer loyer) throws SQLException {
+		// TODO: Implémentez la mise à jour du loyer dans la base de données
 	}
 
 	@Override
-	public void create(Loyer bien) throws SQLException {
-		// TODO Auto-generated method stub
+	public void create(Loyer loyer) throws SQLException {
 		SousProgrammeInsertLoyer sousProgrammeInsertLoyer = new SousProgrammeInsertLoyer();
-	    CallableStatement cs = CictOracleDataSource.getConnectionBD().prepareCall(sousProgrammeInsertLoyer.appelSousProgramme());
-	        sousProgrammeInsertLoyer.parametres(cs, bien);
-	        cs.execute();
+		CallableStatement cs = CictOracleDataSource.getConnectionBD().prepareCall(sousProgrammeInsertLoyer.appelSousProgramme());
+		sousProgrammeInsertLoyer.parametres(cs, loyer);
+		cs.execute();
 	}
 
 	@Override
-	public void delete(Loyer donnee) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	public void delete(Loyer loyer) throws SQLException {
+		// TODO: Implémentez la suppression du loyer de la base de données
 	}
 
 	@Override
 	protected Loyer creerInstance(ResultSet curseur) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Loyer loyer = new Loyer(
+			curseur.getString("Id_Loyer"),
+			curseur.getDouble("Loyer_charges"),
+			curseur.getDouble("Charges"),
+			curseur.getString("Date_paiement"),
+			curseur.getDouble("Montant_paiement"),
+			curseur.getString("Type_paiement"),
+			curseur.getString("Id_locataire"),
+			curseur.getString("Date_Debut_Contrat")
+		);
+		return loyer;
 	}
-
-	
-	
-
-
 }
