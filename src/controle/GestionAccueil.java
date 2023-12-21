@@ -32,7 +32,7 @@ public class GestionAccueil implements ActionListener {
     
     private void ConnectionBaseDonnee() {
         try {
-            CictOracleDataSource.creerAcces("lrf4482a", "oracle");
+            CictOracleDataSource.creerAcces("lrf4482aflffkf", "oracle");
         } catch (SQLException e) {
             e.printStackTrace();
             // Gérer l'erreur de connexion (peut-être afficher un message à l'utilisateur)
