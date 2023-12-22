@@ -124,7 +124,7 @@ public class FenetreContratLocation extends JInternalFrame {
 		this.champMontant = champMontant;
 	}
 
-	public JTextField getChampMontantDernierLoyer() {
+	public JTextField getChampMontantLoyer() {
 		return champMontantLoyer;
 	}
 

@@ -2,6 +2,7 @@ package vue;
 
 import java.awt.BorderLayout;
 
+
 import java.awt.Font;
 import java.awt.GridLayout;
 
@@ -15,9 +16,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.DefaultComboBoxModel;
 
-
+import controle.GestionFenetreBien;
 
 public class FenetreLoyer extends JInternalFrame {
 
@@ -27,17 +27,18 @@ public class FenetreLoyer extends JInternalFrame {
     private JTextField textFieldCharges;
     private JTextField textFieldDatePaiement;
     private JTextField textFieldMontantPaiement;
+    private JTextField textFieldTypePaiement;
+    private JTextField textFieldIdLocataire;
+    private JTextField textFieldIdLocataire1;
     private JTextField textFieldDateDebutContrat;
 
     private JTable tableLoyer;
     private JPanel panelButton;
     private JButton btnAnnuler;
-    private JComboBox comboBox;
-    private JComboBox comboBox_1;
- //   private GestionFenetreBien gestionClic;
+    private GestionFenetreBien gestionClic;
 
     public FenetreLoyer() {
- //       this.gestionClic = new GestionFenetreBien(this);
+        this.gestionClic = new GestionFenetreBien(this);
         setTitle("Gestion des Loyers");
         setDefaultCloseOperation(JInternalFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 600);
@@ -53,12 +54,6 @@ public class FenetreLoyer extends JInternalFrame {
         panelLoyer.add(new JLabel("ID Loyer:"));
         textFieldIdLoyer = new JTextField(10);
         panelLoyer.add(textFieldIdLoyer);
-        
-                JLabel label = new JLabel("ID Locataire:");
-                panelLoyer.add(label);
-        
-        comboBox_1 = new JComboBox();
-        panelLoyer.add(comboBox_1);
 
         panelLoyer.add(new JLabel("Loyer Charges:"));
         textFieldLoyerCharges = new JTextField(10);
@@ -77,10 +72,16 @@ public class FenetreLoyer extends JInternalFrame {
         panelLoyer.add(textFieldMontantPaiement);
 
         panelLoyer.add(new JLabel("Type Paiement:"));
-        
-        comboBox = new JComboBox<String>();
-        comboBox.setModel(new DefaultComboBoxModel(new String[] {"CB", "Espece", "CAF"}));
-        panelLoyer.add(comboBox);
+        textFieldTypePaiement = new JTextField(10);
+        panelLoyer.add(textFieldTypePaiement);
+
+        panelLoyer.add(new JLabel("ID Locataire:"));
+        textFieldIdLocataire = new JTextField(10);
+        panelLoyer.add(textFieldIdLocataire);
+
+        panelLoyer.add(new JLabel("ID Locataire 1:"));
+        textFieldIdLocataire1 = new JTextField(10);
+        panelLoyer.add(textFieldIdLocataire1);
 
         panelLoyer.add(new JLabel("Date Début Contrat:"));
         textFieldDateDebutContrat = new JTextField(10);
@@ -105,7 +106,7 @@ public class FenetreLoyer extends JInternalFrame {
         panel.add(panelButton, BorderLayout.SOUTH);
 
         btnAnnuler = new JButton("Annuler");
- //       btnAnnuler.addActionListener(this.gestionClic);
+        btnAnnuler.addActionListener(this.gestionClic);
         panelButton.add(btnAnnuler);
 
         // Bouton Valider en bas

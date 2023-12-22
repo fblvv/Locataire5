@@ -1,6 +1,7 @@
 package controle;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
@@ -120,21 +121,24 @@ public class GestionContratLocation implements ActionListener{
 		
 		String dateDebutContrat = contratLocation.getChampDateDebutContrat().getText();
 	    double montant = Double.parseDouble(contratLocation.getChampMontant().getText());
-	    double montantDernierLoyer = Double.parseDouble(contratLocation.getChampMontantDernierLoyer().getText());
+	    double montantLoyer = Double.parseDouble(contratLocation.getChampMontantLoyer().getText());
 	    String dateVersementLoyer = contratLocation.getChampDateVersementLoyer().getText();
+	    String dateEntree = contratLocation.getChampDateEntree().getText();
+	    String dateSortie = contratLocation.getChampDateSortie().getText();
 	    String depotGarantie = contratLocation.getChampDepotGarantie().getText();
 	    String dateRevision = contratLocation.getChampDateRevision().getText();
 	    String periodicitePaiement = contratLocation.getChampPeriodicitePaiement().getText();
 	    String dateFinContrat = contratLocation.getChampDateFinContrat().getText();
 	    double chargesProvisionnelles = Double.parseDouble(contratLocation.getChampChargesProvisionnelles().getText());
 	    String idICC = contratLocation.getChampIdICC().getText();
-	    String valeurICC = contratLocation.getChampValeurICC().getText();
+	    double caution = Double.parseDouble(contratLocation.getChampMontantLoyer().getText());
 	    String idBienImm = contratLocation.getChampIdBienImm().getText();
+	    
 	    
 	    String id= dateDebutContrat;
 	    
-	    ContratLocation contrat = new ContratLocation(id,montant,montantDernierLoyer,dateVersementLoyer,depotGarantie
-	    		,dateRevision,periodicitePaiement,dateFinContrat,chargesProvisionnelles,idICC,valeurICC,idBienImm);
+	    ContratLocation contrat = new ContratLocation(id,dateDebutContrat,montant,montantLoyer,dateVersementLoyer,dateEntree,dateSortie,depotGarantie
+	    		,dateRevision,periodicitePaiement,dateFinContrat,chargesProvisionnelles,idICC,caution,idBienImm);
 
 	    
 	    DaoContratLocation daoContrat = new DaoContratLocation();
