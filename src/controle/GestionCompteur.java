@@ -33,6 +33,9 @@ public class GestionCompteur implements ActionListener {
             JButton button = (JButton) source;
 
             switch (button.getText()) {
+            	case "Annuler":
+	                fenetreCompteur.dispose();
+	                break;
                 case "Ajouter Relevé":
                     ajouterReleve();
                     break;
