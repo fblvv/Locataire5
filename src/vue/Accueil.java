@@ -56,6 +56,7 @@ public class Accueil extends JFrame {
         menuBar.setBounds(20, 30, 1200, 30);
         contentPane.add(menuBar);
 
+        //q
         JMenu mnLocataire = new JMenu("Locataire");
         mnLocataire.setFont(new Font("Lucida Grande", Font.BOLD, 18));
         menuBar.add(mnLocataire);
