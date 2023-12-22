@@ -47,23 +47,27 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 	 @Override
 	    protected ContratLocation creerInstance(ResultSet curseur) throws SQLException {
 	        // Récupérer les valeurs de la base de données
+		 	String id = curseur.getString("ID_Locataire");
 	        String dateDebutContrat = curseur.getString("Date_Debut_Contrat");
 	        double montant = curseur.getDouble("Montant");
-	        double montantDernierLoyer = curseur.getDouble("Montant_Dernier_Loyer");
+	        double montantLoyer = curseur.getDouble("Montant_Loyer");
 	        String dateVersementLoyer = curseur.getString("Date_Versement_Loyer");
+	        String dateEntree = curseur.getString("Date_Entree");
+	        String dateSortie = curseur.getString("Date_Sortie");
 	        String depotGarantie = curseur.getString("Depot_Garantie");
-	        String dateRevision = curseur.getString("Date_Revision");
-	        String periodicitePaiement = curseur.getString("Periodicite_Paiement");
+	        String dateRevision = curseur.getString("Date_Révision");
+	        String periodicitePaiement = curseur.getString("Périodicité_Paiement");
 	        String dateFinContrat = curseur.getString("Date_Fin_Contrat");
 	        double chargesProvisionnelles = curseur.getDouble("Charges_Provisionnelles");
 	        String idICC = curseur.getString("Id_ICC");
-	        String valeurICC = curseur.getString("Valeur_ICC");
+	        double caution = curseur.getDouble("Caution");
 	        String idBien =curseur.getString("Id_Bien_Imm");
 
 	        // Créer et retourner une nouvelle instance de ContratLocation
-	        ContratLocation contratLocation = new ContratLocation(dateDebutContrat, montant, montantDernierLoyer,
-	                dateVersementLoyer, depotGarantie, dateRevision, periodicitePaiement, dateFinContrat,
-	                chargesProvisionnelles, idICC, valeurICC,idBien);
+	        ContratLocation contratLocation = new ContratLocation(id,dateDebutContrat,montant,montantLoyer
+	        		,dateVersementLoyer,dateEntree,dateSortie,depotGarantie,dateRevision,
+	        		periodicitePaiement,dateFinContrat,chargesProvisionnelles,idICC,caution,
+	        		idBien);
 
 	        // Vous n'avez pas de colonne Id_Bien_Imm dans votre SELECT, donc je suppose que vous le récupérez d'une autre manière
 	        // Supposons que vous avez une colonne Id_Bien_Imm dans votre table Contrat_Location
