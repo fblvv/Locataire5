@@ -23,17 +23,18 @@ public class SousProgrammeInsertContrat implements SousProgramme<ContratLocation
 	@Override
 	public void parametres(CallableStatement prSt, ContratLocation contrat) throws SQLException {
 		// TODO Auto-generated method stub
-		prSt.setString(1, contrat.getDateDebutContrat());
-	    prSt.setDouble(2, contrat.getMontant());
-	    prSt.setDouble(3, contrat.getMontantDernierLoyer());
-	    prSt.setString(4, contrat.getDateVersementLoyer());
-	    prSt.setString(5, contrat.getDepotGarantie());
-	    prSt.setString(6, contrat.getDateRevision());
-	    prSt.setString(7, contrat.getPeriodicitePaiement());
-	    prSt.setString(8, contrat.getDateFinContrat());
-	    prSt.setDouble(9, contrat.getChargesProvisionnelles());
-	    prSt.setString(10, contrat.getIdICC());
-	    prSt.setString(11, contrat.getValeurICC());
-	    prSt.setString(12, contrat.getIdBienImm());
+		prSt.setString(1, contrat.getIdLocataire());
+		prSt.setString(2, contrat.getDateDebutContrat());
+	    prSt.setDouble(3, contrat.getMontant());
+	    prSt.setDouble(4, contrat.getMontantLoyer());
+	    prSt.setString(5, contrat.getDateVersementLoyer());
+	    prSt.setString(6, contrat.getDepotDeGarantie());
+	    prSt.setString(7, contrat.getDateRevision());
+	    prSt.setString(8, contrat.getPeriodicitePaiement());
+	    prSt.setString(9, contrat.getDateFinContrat());
+	    prSt.setDouble(10, contrat.getChargesProvisionnelles());
+	    prSt.setString(11, contrat.getIdICC());
+	    prSt.setDouble(12, contrat.getValeurIcc());
+	    prSt.setString(13, contrat.getIdBienImm());
 	}
 }

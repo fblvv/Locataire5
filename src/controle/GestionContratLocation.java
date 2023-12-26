@@ -131,14 +131,15 @@ public class GestionContratLocation implements ActionListener{
 	    String dateFinContrat = contratLocation.getChampDateFinContrat().getText();
 	    double chargesProvisionnelles = Double.parseDouble(contratLocation.getChampChargesProvisionnelles().getText());
 	    String idICC = contratLocation.getChampIdICC().getText();
+	    double valICC = Double.parseDouble(contratLocation.getChampValeurICC().getText());
 	    double caution = Double.parseDouble(contratLocation.getChampMontantLoyer().getText());
 	    String idBienImm = contratLocation.getChampIdBienImm().getText();
 	    
 	    
-	    String id= dateDebutContrat;
+	    String idLocataire=contratLocation.getLocataire();
 	    
-	    ContratLocation contrat = new ContratLocation(id,dateDebutContrat,montant,montantLoyer,dateVersementLoyer,dateEntree,dateSortie,depotGarantie
-	    		,dateRevision,periodicitePaiement,dateFinContrat,chargesProvisionnelles,idICC,caution,idBienImm);
+	    ContratLocation contrat = new ContratLocation(idLocataire,dateDebutContrat,montant,montantLoyer,dateVersementLoyer,dateEntree,dateSortie,depotGarantie
+	    		,dateRevision,periodicitePaiement,dateFinContrat,chargesProvisionnelles,idICC,valICC,caution,idBienImm);
 
 	    
 	    DaoContratLocation daoContrat = new DaoContratLocation();

@@ -237,6 +237,14 @@ public class FenetreContratLocation extends JInternalFrame {
 	}
 	
 	
+	public String getLocataire() {
+		return this.locataire.getId_Locataire();
+	}
+	
+	public String getBien_Immo() {
+		return this.bienImmobilier.getId_Bien_Imm();
+	}
+	
 	    
 	
     

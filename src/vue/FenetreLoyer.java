@@ -28,14 +28,13 @@ public class FenetreLoyer extends JInternalFrame {
     private JTextField textFieldDatePaiement;
     private JTextField textFieldMontantPaiement;
     private JTextField textFieldTypePaiement;
-    private JTextField textFieldIdLocataire;
-    private JTextField textFieldIdLocataire1;
     private JTextField textFieldDateDebutContrat;
 
     private JTable tableLoyer;
     private JPanel panelButton;
     private JButton btnAnnuler;
     private GestionFenetreBien gestionClic;
+    private JComboBox comboBox;
 
     public FenetreLoyer() {
         this.gestionClic = new GestionFenetreBien(this);
@@ -54,6 +53,12 @@ public class FenetreLoyer extends JInternalFrame {
         panelLoyer.add(new JLabel("ID Loyer:"));
         textFieldIdLoyer = new JTextField(10);
         panelLoyer.add(textFieldIdLoyer);
+        
+                JLabel lblIdLocataire = new JLabel("ID Locataire:");
+                panelLoyer.add(lblIdLocataire);
+        
+        comboBox = new JComboBox();
+        panelLoyer.add(comboBox);
 
         panelLoyer.add(new JLabel("Loyer Charges:"));
         textFieldLoyerCharges = new JTextField(10);
@@ -74,14 +79,6 @@ public class FenetreLoyer extends JInternalFrame {
         panelLoyer.add(new JLabel("Type Paiement:"));
         textFieldTypePaiement = new JTextField(10);
         panelLoyer.add(textFieldTypePaiement);
-
-        panelLoyer.add(new JLabel("ID Locataire:"));
-        textFieldIdLocataire = new JTextField(10);
-        panelLoyer.add(textFieldIdLocataire);
-
-        panelLoyer.add(new JLabel("ID Locataire 1:"));
-        textFieldIdLocataire1 = new JTextField(10);
-        panelLoyer.add(textFieldIdLocataire1);
 
         panelLoyer.add(new JLabel("Date Début Contrat:"));
         textFieldDateDebutContrat = new JTextField(10);

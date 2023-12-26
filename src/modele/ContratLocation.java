@@ -14,12 +14,13 @@ public class ContratLocation {
     private String dateFinContrat;
     private double chargesProvisionnelles; //voila
     private String idICC;
+    private double valeurIcc;
     private double caution;
     private String idBienImm;
 
     public ContratLocation(String idLocataire, String dateDebutContrat, double montant, double montantLoyer,
             String dateVersementLoyer, String dateEntree, String dateSortie, String depotDeGarantie, String dateRevision,
-            String periodicitePaiement, String dateFinContrat, double chargesProvisionnelles, String idICC,
+            String periodicitePaiement, String dateFinContrat, double chargesProvisionnelles, String idICC,double valeurIcc,
             double caution, String idBienImm) {
         this.idLocataire = idLocataire;
         this.dateDebutContrat = dateDebutContrat;
@@ -34,8 +35,10 @@ public class ContratLocation {
         this.dateFinContrat = dateFinContrat;
         this.chargesProvisionnelles = chargesProvisionnelles;
         this.idICC = idICC;
+        this.valeurIcc=valeurIcc;
         this.caution = caution;
         this.idBienImm = idBienImm;
+        
     }
 
     public String getIdLocataire() {
@@ -149,4 +152,12 @@ public class ContratLocation {
     public void setIdBienImm(String idBienImm) {
         this.idBienImm = idBienImm;
     }
+
+	public double getValeurIcc() {
+		return valeurIcc;
+	}
+
+	public void setValeurIcc(double valeurIcc) {
+		this.valeurIcc = valeurIcc;
+	}
 }
