@@ -23,11 +23,11 @@ public class SousProgrammeInsertLoyer implements SousProgramme<Loyer> {
         prSt.setString(1, loyer.getIdLoyer());
         prSt.setDouble(2, loyer.getLoyerCharges());
         prSt.setDouble(3, loyer.getCharges());
-        prSt.setString(4, loyer.getDatePaiement());
+        prSt.setString(4,loyer.getDatePaiement()); // Convert LocalDate to SQL Date
         prSt.setDouble(5, loyer.getMontantPaiement());
         prSt.setString(6, loyer.getTypePaiement());
         prSt.setString(7, loyer.getIdLocataire());
-        prSt.setString(8, loyer.getDateDebutContrat());
-     
+        prSt.setString(8,loyer.getDateDebutContrat()); // Convert LocalDate to SQL Date
     }
+
 }

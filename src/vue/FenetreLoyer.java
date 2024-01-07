@@ -1,10 +1,10 @@
 package vue;
 
 import java.awt.BorderLayout;
-
-
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.sql.SQLException;
+import java.util.Collection;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,7 +17,12 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
-import controle.GestionFenetreBien;
+import controle.GestionFenetreLoyer;
+import modele.Locataire;
+import modele.dao.DaoLocataire;
+import javax.swing.DefaultComboBoxModel;
+
+
 
 public class FenetreLoyer extends JInternalFrame {
 
@@ -27,17 +32,20 @@ public class FenetreLoyer extends JInternalFrame {
     private JTextField textFieldCharges;
     private JTextField textFieldDatePaiement;
     private JTextField textFieldMontantPaiement;
-    private JTextField textFieldTypePaiement;
     private JTextField textFieldDateDebutContrat;
+    
+    
 
     private JTable tableLoyer;
     private JPanel panelButton;
     private JButton btnAnnuler;
-    private GestionFenetreBien gestionClic;
-    private JComboBox comboBox;
+    private GestionFenetreLoyer gestionClic;
+    private JComboBox<String> comboBoxLocataire; // Change to JComboBox<String>
+    private JComboBox comboBoxPaiement;
+    private JButton btnAjouter;
 
     public FenetreLoyer() {
-        this.gestionClic = new GestionFenetreBien(this);
+        this.gestionClic = new GestionFenetreLoyer(this);
         setTitle("Gestion des Loyers");
         setDefaultCloseOperation(JInternalFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 600);
@@ -53,12 +61,12 @@ public class FenetreLoyer extends JInternalFrame {
         panelLoyer.add(new JLabel("ID Loyer:"));
         textFieldIdLoyer = new JTextField(10);
         panelLoyer.add(textFieldIdLoyer);
-        
-                JLabel lblIdLocataire = new JLabel("ID Locataire:");
-                panelLoyer.add(lblIdLocataire);
-        
-        comboBox = new JComboBox();
-        panelLoyer.add(comboBox);
+
+        JLabel lblIdLocataire = new JLabel("ID Locataire:");
+        panelLoyer.add(lblIdLocataire);
+
+        initComboBox();
+        panelLoyer.add(comboBoxLocataire);
 
         panelLoyer.add(new JLabel("Loyer Charges:"));
         textFieldLoyerCharges = new JTextField(10);
@@ -69,7 +77,7 @@ public class FenetreLoyer extends JInternalFrame {
         panelLoyer.add(textFieldCharges);
 
         panelLoyer.add(new JLabel("Date Paiement:"));
-        textFieldDatePaiement = new JTextField(10);
+        textFieldDatePaiement = new JTextField(20);
         panelLoyer.add(textFieldDatePaiement);
 
         panelLoyer.add(new JLabel("Montant Paiement:"));
@@ -77,11 +85,13 @@ public class FenetreLoyer extends JInternalFrame {
         panelLoyer.add(textFieldMontantPaiement);
 
         panelLoyer.add(new JLabel("Type Paiement:"));
-        textFieldTypePaiement = new JTextField(10);
-        panelLoyer.add(textFieldTypePaiement);
+        
+        comboBoxPaiement = new JComboBox();
+        comboBoxPaiement.setModel(new DefaultComboBoxModel(new String[] {"CB", "Chèque", "Espèce"}));
+        panelLoyer.add(comboBoxPaiement);
 
         panelLoyer.add(new JLabel("Date Début Contrat:"));
-        textFieldDateDebutContrat = new JTextField(10);
+        textFieldDateDebutContrat = new JTextField(20);
         panelLoyer.add(textFieldDateDebutContrat);
 
         // Tableau des loyers avec JScrollPane
@@ -110,14 +120,76 @@ public class FenetreLoyer extends JInternalFrame {
         JButton btnValider = new JButton("Valider");
         btnValider.setHorizontalAlignment(SwingConstants.RIGHT);
         panelButton.add(btnValider);
+        
+        btnAjouter = new JButton("Ajouter");
+        btnAjouter.addActionListener(this.gestionClic);
+        panelButton.add(btnAjouter);
     }
-    
+
     public JButton getBtnAnnuler() {
         return btnAnnuler;
+    }
+    
+    
+    public String getTextFieldIdLoyer() {
+        return textFieldIdLoyer.getText();
+    }
+
+    public String getTextFieldLoyerCharges() {
+        return textFieldLoyerCharges.getText();
+    }
+
+    public String getTextFieldCharges() {
+        return textFieldCharges.getText();
+    }
+
+    public String getTextFieldDatePaiement() {
+        return textFieldDatePaiement.getText();
+    }
+
+    public String getTextFieldMontantPaiement() {
+        return textFieldMontantPaiement.getText();
+    }
+
+    public String getTextFieldDateDebutContrat() {
+        return textFieldDateDebutContrat.getText();
+    }
+
+    public String getComboBoxLocataire() {
+        return (String) comboBoxLocataire.getSelectedItem();
+    }
+
+    public String getComboBoxPaiement() {
+        return (String) comboBoxPaiement.getSelectedItem();
     }
 
     public static void main(String[] args) {
         FenetreLoyer frame = new FenetreLoyer();
         frame.setVisible(true);
+    }
+
+    private void initComboBox() {
+        DaoLocataire daoLocataire = new DaoLocataire();
+        try {
+            // Récupérer tous les locataires
+            Collection<Locataire> locataires = daoLocataire.findAll();
+
+            // Créer un tableau pour stocker les identifiants des locataires
+            String[] locataireId = new String[locataires.size()];
+
+            // Remplir le tableau avec les identifiants des locataires
+            int i = 0;
+            for (Locataire loca : locataires) {
+                locataireId[i] = loca.getId_Locataire();
+                i++;
+            }
+
+            // Créer une JComboBox avec les identifiants des locataires
+            comboBoxLocataire = new JComboBox<>(locataireId);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer l'exception, par exemple, afficher un message d'erreur à l'utilisateur
+        }
     }
 }
