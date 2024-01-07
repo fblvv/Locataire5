@@ -4,24 +4,33 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
 import SQL.CictOracleDataSource;
+import modele.Batiment;
 import modele.ContratLocation;
+import modele.dao.requetes.RequeteSelectBatimentById;
+import modele.dao.requetes.RequeteSelectContratLocation;
+import modele.dao.requetes.RequeteSelectContratLocationById;
 import modele.dao.requetes.SousProgrammeInsertContrat;
 
 public class DaoContratLocation extends DaoModele<ContratLocation> implements Dao<ContratLocation> {
 
 	@Override
 	public Collection<ContratLocation> findAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+    	RequeteSelectContratLocation contratLoc = new RequeteSelectContratLocation();
+		return find(contratLoc);
 	}
 
 	@Override
 	public ContratLocation findById(String... id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        // TODO: Implémenter la récupération d'un enregistrement par ID
+    	List<ContratLocation> batiment = find(new RequeteSelectContratLocationById(), id);
+        if (batiment.isEmpty()) {
+            return null;
+        }
+        return batiment.get(0);
+    }
 
 	@Override
 	public void update(ContratLocation donnee) throws SQLException {

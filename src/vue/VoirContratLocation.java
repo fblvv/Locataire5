@@ -20,6 +20,7 @@ import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.table.DefaultTableModel;
 
 public class VoirContratLocation extends JInternalFrame {
 
@@ -42,7 +43,7 @@ public class VoirContratLocation extends JInternalFrame {
 		setIconifiable(true);
 		setMaximizable(true);
 		setClosable(true);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 962, 477);
 		
 		JLabel voirContratLocation = new JLabel("Voir Contrat Location");
 		voirContratLocation.setHorizontalAlignment(SwingConstants.CENTER);
@@ -60,12 +61,30 @@ public class VoirContratLocation extends JInternalFrame {
 		annuler.addActionListener(gestionClic);
 		panel.add(annuler);
 		
-		JButton VoirFacture_1 = new JButton("voir cette facture");
+		JButton VoirFacture_1 = new JButton("Voir cette facture");
 		VoirFacture_1.addActionListener(gestionClic);
 		panel.add(VoirFacture_1);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ID Locataire", "Date Debut Contrat", "Montant", "Montant Loyer", "Date Versement Loyer", "Date d'Entree", "Date de Sortie", "Depot De Garantie", "Date Revision", "Periodicite Paiement", "Date Fin Contrat", "Charges Provisionnelles", "Valeur ICC", "Caution", "ID Bien Immo"
+			}
+		));
+		getContentPane().add(table, BorderLayout.WEST);
 			
 			
-		};
+		}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	};
 		
 		
 
