@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controle.GestionAccueil;
+import javax.swing.JButton;
 
 public class Accueil extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -121,7 +122,16 @@ public class Accueil extends JFrame {
         mntmCompteur.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         mntmCompteur.addActionListener(this.gestionClic);
         mnGestionCompteur.add(mntmCompteur);
+    
+        JMenu mnLireCSV = new JMenu("CSV");
+        mnLireCSV.setFont(new Font("Lucida Grande", Font.BOLD, 19));
+        menuBar.add(mnLireCSV);
         
+        JMenuItem mntmLireCSV = new JMenuItem("Lire fichier CSV");
+        mntmLireCSV.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmLireCSV.addActionListener(this.gestionClic);
+        mnLireCSV.add(mntmLireCSV);
+    
 
     }
 
