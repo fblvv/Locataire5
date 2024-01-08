@@ -47,6 +47,7 @@ public class FenetreContratLocation extends JInternalFrame {
 
         // Ajout des champs de texte
         champDateDebutContrat = new JTextField("YYYY-MM-DD", 15);
+        champMontant=new JTextField(15);
         champMontantLoyer = new JTextField(15);
         champDateVersementLoyer = new JTextField("YYYY-MM-DD", 15);
         champDepotGarantie = new JTextField(15);
@@ -75,6 +76,8 @@ public class FenetreContratLocation extends JInternalFrame {
         getContentPane().add(new JLabel("Date Début Contrat (YYYY-MM-DD):"));
         getContentPane().add(champDateDebutContrat);
         getContentPane().add(new JLabel("Montant du Loyer:"));
+        getContentPane().add(champMontant);
+        getContentPane().add(new JLabel("Montant du dernier Loyer:"));
         getContentPane().add(champMontantLoyer);
         getContentPane().add(new JLabel("Date Versement Loyer (YYYY-MM-DD):"));
         getContentPane().add(champDateVersementLoyer);

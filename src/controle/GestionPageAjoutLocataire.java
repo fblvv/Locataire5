@@ -99,7 +99,7 @@ public class GestionPageAjoutLocataire implements ActionListener {
 			e.printStackTrace();
 		}
         
-        ajouterLaListe(id,bienId);
+//        ajouterLaListe(id,bienId);
 		// Afficher un message de succès ou effectuer d'autres actions si nécessaire
 		System.out.println("Locataire ajouté avec succès !");
 		//ajout des paremetre pour le lancement de la fenetre contrat location
@@ -108,11 +108,11 @@ public class GestionPageAjoutLocataire implements ActionListener {
     }
     
     
-    public void ajouterLaListe (String idLocataire,String idBien) throws SQLException{
-    	Locataire locataire = daoLocataire.findById(idLocataire);
-    	BienImmobilier bien = daoBien.findById(idBien);
-    	bien.ajoutLocataire(locataire);
-    }
+//    public void ajouterLaListe (String idLocataire,String idBien) throws SQLException{
+//    	Locataire locataire = daoLocataire.findById(idLocataire);
+//    	BienImmobilier bien = daoBien.findById(idBien);
+//    	bien.ajoutLocataire(locataire);
+//    }
     
     private void afficherFenetre(javax.swing.JInternalFrame fenetre, JLayeredPane layeredPane) {
         layeredPane.add(fenetre);

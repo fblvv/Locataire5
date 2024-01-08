@@ -28,13 +28,15 @@ public class SousProgrammeInsertContrat implements SousProgramme<ContratLocation
 	    prSt.setDouble(3, contrat.getMontant());
 	    prSt.setDouble(4, contrat.getMontantLoyer());
 	    prSt.setString(5, contrat.getDateVersementLoyer());
-	    prSt.setString(6, contrat.getDepotDeGarantie());
-	    prSt.setString(7, contrat.getDateRevision());
-	    prSt.setString(8, contrat.getPeriodicitePaiement());
-	    prSt.setString(9, contrat.getDateFinContrat());
-	    prSt.setDouble(10, contrat.getChargesProvisionnelles());
-	    prSt.setString(11, contrat.getIdICC());
-	    prSt.setDouble(12, contrat.getValeurIcc());
-	    prSt.setString(13, contrat.getIdBienImm());
+	    prSt.setString(6, contrat.getDateEntree());
+	    prSt.setString(7, contrat.getDateSortie());
+	    prSt.setString(8, contrat.getDepotDeGarantie());
+	    prSt.setString(9, contrat.getDateRevision());
+	    prSt.setString(10, contrat.getPeriodicitePaiement());
+	    prSt.setString(11, contrat.getDateFinContrat());
+	    prSt.setDouble(12, contrat.getChargesProvisionnelles());
+	    prSt.setString(13, contrat.getIdICC());
+	    prSt.setDouble(14, contrat.getCaution());
+	    prSt.setString(15, contrat.getIdBienImm());
 	}
 }

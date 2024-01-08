@@ -47,7 +47,7 @@ public class GestionContratLocation implements ActionListener{
                 case "Ajouter Locataire":
 				try {
 					JLayeredPane layeredPane = contratLocation.getLayeredPane();
-					createLocataire();
+//					createLocataire();
 					createContratLocation();
 					JOptionPane.showMessageDialog(contratLocation, "Locataire et contrat ajoutés avec succès");
 					//ajoutLocataire.dispose();
@@ -67,50 +67,50 @@ public class GestionContratLocation implements ActionListener{
 	//*****************************//
     //Methode pour creer le LOCATAIRE//
     //*****************************//
-	private void createLocataire() throws SQLException {
-        JComboBox<String> comboBoxLogement = ajoutLocataire.getComboBoxLogement();
-        String bienId = (String) comboBoxLogement.getSelectedItem();
-
-        System.out.println("Selected Batiment ID: " + bienId);
-
-        DaoBienImmobilier daoBien = new DaoBienImmobilier();
-        BienImmobilier logementSelectionne = daoBien.findById(bienId);
-        
-        String idBat = logementSelectionne.getId_Batiment();
-        DaoBatiment daoBat = new DaoBatiment();
-        Batiment bat = daoBat.findById(idBat);
-
-            String adresse = bat.getAdresse();
-            String codePostal = bat.getCodePostal();
-        // Récupérer les valeurs des champs depuis PageAjoutLocataire
-        String nom = ajoutLocataire.getChampNom();
-        String prenom = ajoutLocataire.getChampPrenom();
-        String telephone = ajoutLocataire.getChampTelephone().getText();
-        String mail = ajoutLocataire.getChampMail();
-
-        String id=nom+prenom;//id du locataire
-        // Créer une instance de Locataire avec les valeurs récupérées
-        Locataire locataire = new Locataire(id,nom, prenom, telephone, mail, adresse, codePostal);
-
-        // Appeler la méthode create du DAO pour insérer le locataire dans la base de données
-        DaoLocataire daoLocataire = new DaoLocataire();
-        try {
-			daoLocataire.create(locataire);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        ajouterLaListeLocataire(id,bienId);
-		// Afficher un message de succès ou effectuer d'autres actions si nécessaire
-		System.out.println("Locataire ajouté avec succès !");
-    }
-	
-	public void ajouterLaListeLocataire (String idLocataire,String idBien) throws SQLException{
-    	Locataire locataire = daoLocataire.findById(idLocataire);
-    	BienImmobilier bien = daoBien.findById(idBien);
-    	bien.ajoutLocataire(locataire);
-    }
+//	private void createLocataire() throws SQLException {
+//        JComboBox<String> comboBoxLogement = ajoutLocataire.getComboBoxLogement();
+//        String bienId = (String) comboBoxLogement.getSelectedItem();
+//
+//        System.out.println("Selected Batiment ID: " + bienId);
+//
+//        DaoBienImmobilier daoBien = new DaoBienImmobilier();
+//        BienImmobilier logementSelectionne = daoBien.findById(bienId);
+//        
+//        String idBat = logementSelectionne.getId_Batiment();
+//        DaoBatiment daoBat = new DaoBatiment();
+//        Batiment bat = daoBat.findById(idBat);
+//
+//            String adresse = bat.getAdresse();
+//            String codePostal = bat.getCodePostal();
+//        // Récupérer les valeurs des champs depuis PageAjoutLocataire
+//        String nom = ajoutLocataire.getChampNom();
+//        String prenom = ajoutLocataire.getChampPrenom();
+//        String telephone = ajoutLocataire.getChampTelephone().getText();
+//        String mail = ajoutLocataire.getChampMail();
+//
+//        String id=nom+prenom;//id du locataire
+//        // Créer une instance de Locataire avec les valeurs récupérées
+//        Locataire locataire = new Locataire(id,nom, prenom, telephone, mail, adresse, codePostal);
+//
+//        // Appeler la méthode create du DAO pour insérer le locataire dans la base de données
+//        DaoLocataire daoLocataire = new DaoLocataire();
+//        try {
+//			daoLocataire.create(locataire);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//        
+//        ajouterLaListeLocataire(id,bienId);
+//		// Afficher un message de succès ou effectuer d'autres actions si nécessaire
+//		System.out.println("Locataire ajouté avec succès !");
+//    }
+//	
+//	public void ajouterLaListeLocataire (String idLocataire,String idBien) throws SQLException{
+//    	Locataire locataire = daoLocataire.findById(idLocataire);
+//    	BienImmobilier bien = daoBien.findById(idBien);
+//    	bien.ajoutLocataire(locataire);
+//    }
 	
 	
 	//*****************************************//
@@ -120,8 +120,11 @@ public class GestionContratLocation implements ActionListener{
 	private void createContratLocation() throws SQLException{
 		
 		String dateDebutContrat = contratLocation.getChampDateDebutContrat().getText();
-	    double montant = Double.parseDouble(contratLocation.getChampMontant().getText());
-	    double montantLoyer = Double.parseDouble(contratLocation.getChampMontantLoyer().getText());
+		String montantText = contratLocation.getChampMontant().getText();
+		double montant = montantText.isEmpty() ? 0.0 : Double.parseDouble(montantText);
+
+		String montantLoyerText = contratLocation.getChampMontantLoyer().getText();
+		double montantLoyer = montantLoyerText.isEmpty() ? 0.0 : Double.parseDouble(montantLoyerText);
 	    String dateVersementLoyer = contratLocation.getChampDateVersementLoyer().getText();
 	    String dateEntree = contratLocation.getChampDateEntree().getText();
 	    String dateSortie = contratLocation.getChampDateSortie().getText();
@@ -137,6 +140,7 @@ public class GestionContratLocation implements ActionListener{
 	    
 	    
 	    String idLocataire=contratLocation.getLocataire();
+	    System.out.println(idLocataire);
 	    
 	    ContratLocation contrat = new ContratLocation(idLocataire,dateDebutContrat,montant,montantLoyer,dateVersementLoyer,dateEntree,dateSortie,depotGarantie
 	    		,dateRevision,periodicitePaiement,dateFinContrat,chargesProvisionnelles,idICC,valICC,caution,idBienImm);
