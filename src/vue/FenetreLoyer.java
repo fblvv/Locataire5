@@ -67,6 +67,8 @@ public class FenetreLoyer extends JInternalFrame {
 
         initComboBox();
         panelLoyer.add(comboBoxLocataire);
+        comboBoxLocataire.addActionListener(this.gestionClic);
+
 
         panelLoyer.add(new JLabel("Loyer Charges:"));
         textFieldLoyerCharges = new JTextField(10);
@@ -96,15 +98,14 @@ public class FenetreLoyer extends JInternalFrame {
 
         // Tableau des loyers avec JScrollPane
         tableLoyer = new JTable(new DefaultTableModel(
-                new Object[][] {
-                        {"1", "1000.00", "200.00", "2023-01-01", "1200.00", "Type1", "1", "2", "2023-01-01"},
-                        {"2", "1200.00", "250.00", "2023-02-01", "1450.00", "Type2", "3", "4", "2023-02-01"}
-                },
+                new Object[][] {},
                 new String[] {
                         "ID Loyer", "Loyer Charges", "Charges", "Date Paiement", "Montant Paiement",
-                        "Type Paiement", "ID Locataire", "ID Locataire 1", "Date Début Contrat"
+                        "Type Paiement"
                 }
         ));
+        
+        
         JScrollPane scrollPane = new JScrollPane(tableLoyer);
         panel.add(scrollPane, BorderLayout.CENTER);
 
@@ -161,6 +162,10 @@ public class FenetreLoyer extends JInternalFrame {
 
     public String getComboBoxPaiement() {
         return (String) comboBoxPaiement.getSelectedItem();
+    }
+    
+    public JTable getTableloyer() {
+    	return tableLoyer;
     }
 
     public static void main(String[] args) {

@@ -3,9 +3,11 @@ package controle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Collection;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
 
 import modele.Assurance;
 import modele.Loyer;
@@ -36,18 +38,58 @@ public class GestionFenetreLoyer implements ActionListener {
 
             switch (button.getText()) {
                 case "Ajouter":
-                    // Code à exécuter pour le bouton "Autre Section"
-                	ajouterLoyer();
-                	fenetreloyer.dispose();
-                	
+                    ajouterLoyer();
+                    fenetreloyer.dispose();
                     break;
-                    
+
                 case "Annuler":
                     fenetreloyer.dispose();
                     break;
             }
+        } else if (source instanceof JComboBox) {
+            // Handle JComboBox selection change
+                try {
+					updateTableData();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            }
+        }
+    
+
+    private void updateTableData() throws SQLException {
+        // Get the selected tenant ID from the JComboBox
+        String locataireId = fenetreloyer.getComboBoxLocataire();
+        
+
+        DaoLoyer daoLoyer = new DaoLoyer();
+        Collection<Loyer> loyers = daoLoyer.findByIds(locataireId);
+        if (loyers.isEmpty()) {
+            // If there are no rent records, clear the JTable
+            DefaultTableModel model = (DefaultTableModel) fenetreloyer.getTableloyer().getModel();
+            model.setRowCount(0);
+            
+        }else {
+        updateJTable(loyers);
+            }
+    }
+
+    // Add this method to update the JTable with new data
+    private void updateJTable(Collection<Loyer> loyers) {
+        // Clear existing data in the JTable
+        DefaultTableModel model = (DefaultTableModel) fenetreloyer.getTableloyer().getModel();
+        model.setRowCount(0);
+
+        // Add new data to the JTable
+        for (Loyer loyer : loyers) {
+            model.addRow(new Object[] {
+                    loyer.getIdLoyer(),loyer.getLoyerCharges(),loyer.getCharges(),
+                    loyer.getDatePaiement(), loyer.getMontantPaiement(),loyer.getTypePaiement()
+            });
         }
     }
+
     
     
     

@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import SQL.CictOracleDataSource;
@@ -28,6 +29,16 @@ public class DaoLoyer extends DaoModele<Loyer> implements Dao<Loyer> {
 		}
 		return loyers.get(0);
 	}
+	
+	
+	public Collection<Loyer> findByIds(String... id) throws SQLException {
+		Collection<Loyer> loyers = find(new RequeteSelectLoyerById(), id);
+		if (loyers.isEmpty()) {
+			return Collections.emptyList();
+		}
+		return loyers;
+	}
+
 
 	@Override
 	public void update(Loyer loyer) throws SQLException {
