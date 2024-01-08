@@ -18,12 +18,14 @@ public class GestionAjoutBienImmo implements ActionListener{
     private DaoBienImmobilier daoBienI;
     private DaoAssurance daoAssurance;
     private boolean insertion;
+    private boolean insertion1;
 
 	public GestionAjoutBienImmo(FenetreBien detailPropriete) {
 		this.detailPropriete = detailPropriete;
         this.daoBienI = new DaoBienImmobilier();
         this.daoAssurance= new DaoAssurance();
         this.insertion=false;
+        this.insertion1=false;
         }
 
 	@Override
@@ -37,7 +39,13 @@ public class GestionAjoutBienImmo implements ActionListener{
                 case "Valider":
                     // Code à exécuter pour le bouton "Autre Section"
                 	ajouterBien();
-                	ajouterAssurance();
+                	if (this.insertion = true) {
+                    	ajouterAssurance(); 
+                    	if (this.insertion1 = false) {
+                    		supprimerBien();
+                    	}
+                	}
+
 //                    if(this.insertion == true) {
 //                    ajouterBien();
 //                   }else {
@@ -72,6 +80,7 @@ public class GestionAjoutBienImmo implements ActionListener{
         		type_Bien, nom_Proprio, identifiant, etage,id_Batiment);
 
 			daoBienI.create(bienIm);
+			this.insertion = true;
 			System.out.println("bien ajouté!");
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -94,12 +103,38 @@ public class GestionAjoutBienImmo implements ActionListener{
         Assurance assurance = new Assurance(numPolice,tarifInitial, typeAssurance, dateEffetDebut,id_Bien_Imm,id_Batiment);
  
             daoAssurance.create(assurance);
-            this.insertion=true;
+            this.insertion1=true;
         } catch (SQLException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
         }
     }
+	public void supprimerBien() {
+		
+        try {
+        String id_Bien_Imm=	detailPropriete.getTextFieldIdBienImmobilier();
+        double surface= Double.parseDouble(detailPropriete.getTextFieldSurface());
+        String mode_Chauffage= detailPropriete.getTextFieldModeChauffage();
+        String mode_Eau= detailPropriete.getTextFieldModeEau();
+        int nb_Piece= Integer.parseInt(detailPropriete.getTextFieldNbPiece());
+        String type_Bien= detailPropriete.getTextFieldTypeBien();
+        String nom_Proprio= detailPropriete.getTextFieldNomProprio();
+        String identifiant= detailPropriete.getTextFieldIdentifiant();
+        String etage= detailPropriete.getTextFieldEtage();
+        JComboBox<String> comboBoxLogement = detailPropriete.getComboBoxBatiment();
+        String id_Batiment = (String) comboBoxLogement.getSelectedItem();	
+        
+        BienImmobilier bienIm = new BienImmobilier(id_Bien_Imm, surface, mode_Chauffage, mode_Eau, nb_Piece,
+        		type_Bien, nom_Proprio, identifiant, etage,id_Batiment);
+
+			daoBienI.delete(bienIm);
+			this.insertion = true;
+			System.out.println("bien ajouté!");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 
 
 
