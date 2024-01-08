@@ -46,20 +46,20 @@ public class FenetreContratLocation extends JInternalFrame {
     	setBounds(0, 0, 550, 400);
 
         // Ajout des champs de texte
-        champDateDebutContrat = new JTextField("YYYY-MM-DD", 15);
+        champDateDebutContrat = new JTextField("DD-MM-YYYY", 15);
         champMontant=new JTextField(15);
         champMontantLoyer = new JTextField(15);
-        champDateVersementLoyer = new JTextField("YYYY-MM-DD", 15);
+        champDateVersementLoyer = new JTextField("DD-MM-YYYY", 15);
         champDepotGarantie = new JTextField(15);
-        champDateRevision = new JTextField(15);
+        champDateRevision = new JTextField("DD-MM-YYYY", 15);
         champPeriodicitePaiement = new JTextField(15);
-        champDateFinContrat = new JTextField("YYYY-MM-DD", 15);
+        champDateFinContrat = new JTextField("DD-MM-YYYY", 15);
         champChargesProvisionnelles = new JTextField(15);
         champIdICC = new JTextField(15);
         champValeurICC = new JTextField(15);
         champIdBienImm = new JTextField(15);
-        champDateEntree = new JTextField("YYYY-MM-DD", 15);
-        champDateSortie = new JTextField("YYYY-MM-DD", 15);
+        champDateEntree = new JTextField("DD-MM-YYYY", 15);
+        champDateSortie = new JTextField("DD-MM-YYYY", 15);
         champCaution = new JTextField(15);
         
         ajouterLocataireButton = new JButton("Ajouter Locataire");
