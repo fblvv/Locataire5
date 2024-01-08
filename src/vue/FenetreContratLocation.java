@@ -73,13 +73,13 @@ public class FenetreContratLocation extends JInternalFrame {
         
         // Utilisation d'un GridLayout avec deux colonnes
         getContentPane().setLayout(new GridLayout(0, 2, 5, 5));
-        getContentPane().add(new JLabel("Date Début Contrat (YYYY-MM-DD):"));
+        getContentPane().add(new JLabel("Date Début Contrat (DD-MM-YYYY):"));
         getContentPane().add(champDateDebutContrat);
         getContentPane().add(new JLabel("Montant du Loyer:"));
         getContentPane().add(champMontant);
         getContentPane().add(new JLabel("Montant du dernier Loyer:"));
         getContentPane().add(champMontantLoyer);
-        getContentPane().add(new JLabel("Date Versement Loyer (YYYY-MM-DD):"));
+        getContentPane().add(new JLabel("Date Versement Loyer (DD-MM-YYYY):"));
         getContentPane().add(champDateVersementLoyer);
         getContentPane().add(new JLabel("Dépôt Garantie:"));
         getContentPane().add(champDepotGarantie);
@@ -87,7 +87,7 @@ public class FenetreContratLocation extends JInternalFrame {
         getContentPane().add(champDateRevision);
         getContentPane().add(new JLabel("Périodicité Paiement:"));
         getContentPane().add(champPeriodicitePaiement);
-        getContentPane().add(new JLabel("Date Fin Contrat (YYYY-MM-DD):"));
+        getContentPane().add(new JLabel("Date Fin Contrat (DD-MM-YYYY):"));
         getContentPane().add(champDateFinContrat);
         getContentPane().add(new JLabel("Charges Provisionnelles:"));
         getContentPane().add(champChargesProvisionnelles);
@@ -97,9 +97,9 @@ public class FenetreContratLocation extends JInternalFrame {
         getContentPane().add(champValeurICC);
         getContentPane().add(new JLabel("ID Bien Imm:"));
         getContentPane().add(champIdBienImm);
-        getContentPane().add(new JLabel("Date Entrée (YYYY-MM-DD):"));
+        getContentPane().add(new JLabel("Date Entrée (DD-MM-YYYY):"));
         getContentPane().add(champDateEntree);
-        getContentPane().add(new JLabel("Date Sortie (YYYY-MM-DD):"));
+        getContentPane().add(new JLabel("Date Sortie (DD-MM-YYYY):"));
         getContentPane().add(champDateSortie);
         getContentPane().add(new JLabel("Caution:"));
         getContentPane().add(champCaution);
