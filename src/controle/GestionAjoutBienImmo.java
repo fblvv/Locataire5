@@ -36,7 +36,7 @@ public class GestionAjoutBienImmo implements ActionListener{
             switch (button.getText()) {
                 case "Valider":
                     // Code à exécuter pour le bouton "Autre Section"
-                	
+                	ajouterBien();
                 	ajouterAssurance();
                     if(this.insertion == true) {
                     ajouterBien();
