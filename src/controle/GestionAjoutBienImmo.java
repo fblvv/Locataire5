@@ -38,11 +38,11 @@ public class GestionAjoutBienImmo implements ActionListener{
                     // Code à exécuter pour le bouton "Autre Section"
                 	ajouterBien();
                 	ajouterAssurance();
-                    if(this.insertion == true) {
-                    ajouterBien();
-                    }else {
-                        System.out.println("Il faut une assurance");
-                    }
+//                    if(this.insertion == true) {
+//                    ajouterBien();
+//                   }else {
+//                        System.out.println("Il faut une assurance");
+//                    }
                     detailPropriete.dispose();
                     break;
                     
