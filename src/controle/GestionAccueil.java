@@ -5,10 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
+import javax.swing.JFileChooser;
 import javax.swing.JLayeredPane;
 import javax.swing.JMenuItem;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import SQL.CictOracleDataSource;
+import modele.LireCSV;
 import vue.Accueil;
 import vue.Connexion;
 import vue.FenetreAjoutBatiment;
@@ -73,6 +76,15 @@ public class GestionAccueil implements ActionListener {
                 break;
             case "Gestion des Compteurs":
                 afficherFenetre(new FenetreCompteur(), layeredPane);
+                break;
+            case "Lire fichier CSV":
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setFileFilter(new FileNameExtensionFilter("Fichiers CSV", "csv"));
+                int result = fileChooser.showOpenDialog(null);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    String csvFilePath = fileChooser.getSelectedFile().getAbsolutePath();
+                    new LireCSV().lireEtInsererCSV(csvFilePath);
+                }
                 break;
         }
     }
