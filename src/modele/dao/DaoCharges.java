@@ -3,21 +3,29 @@ package modele.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
+import modele.BienImmobilier;
 import modele.Charges;
+import modele.dao.requetes.RequeteSelectBienImmobilier;
+import modele.dao.requetes.RequeteSelectBienImmobilierById;
+import modele.dao.requetes.RequeteSelectCharges;
 
 public class DaoCharges extends DaoModele<Charges> implements Dao<Charges> {
 
 	@Override
 	public Collection<Charges> findAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		RequeteSelectCharges sketuveux = new RequeteSelectCharges();
+		return find(sketuveux);
 	}
 
 	@Override
 	public Charges findById(String... id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Charges> bien = find(new RequeteSelectChargesById(), id);
+        if (bien.isEmpty()) {
+            return null;
+        }
+        return bien.get(0);
 	}
 
 	@Override
