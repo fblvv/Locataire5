@@ -8,9 +8,12 @@ import controle.GestionGestionFactures;
 import modele.BienImmobilier;
 import modele.Charges;
 import modele.Compteur;
+import modele.Facture;
 import modele.dao.DaoBienImmobilier;
 import modele.dao.DaoCharges;
 import modele.dao.DaoCompteur;
+import modele.dao.DaoFacture;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,8 +30,8 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
     private JButton ajouterButton;
     private JButton validerButton;
     private JButton annulerButton;
-    private DaoCharges daoCharge;
-    private List<Charges> charges; 
+    private DaoFacture daoFacture;
+    private List<Facture> factures; 
     private JPanel panelBoutons;
     private GestionGestionFactures gestionClic;
 
@@ -38,11 +41,11 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
         setSize(800, 600);
 
         this.gestionClic = new GestionGestionFactures(this);
-        this.daoCharge = new DaoCharges();
-        this.charges = new ArrayList<>(); 
+        this.daoFacture = new DaoFacture();
+        this.factures = new ArrayList<>(); 
 
         JPanel panel = new JPanel(new FlowLayout());
-        String[] typesCompteur = {"Tout Type", "Eau", "Electricite", "Gaz"};
+        String[] typesCompteur = {"Tout Type", "Entretien", "Travaux"};
         typeCompteurComboBox = new JComboBox<>(typesCompteur);
         panel.add(new JLabel("Type de Charge:"));
         panel.add(typeCompteurComboBox);
@@ -57,12 +60,12 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
         getContentPane().add(panel, BorderLayout.NORTH);
 
         String[] columnNames = {"ID Compteur", "Date de Relevé", "Type", "Valeur", "ID Bien"};
-        Object[][] data = new Object[charges.size()][5]; // Utilisation de la liste de compteurs
+        Object[][] data = new Object[factures.size()][5]; // Utilisation de la liste de compteurs
         compteurTable = new JTable(new DefaultTableModel(
         	new Object[][] {
         	},
         	new String[] {
-        		"ID Charge", "Montant", "Date", "Type", "Pourcentage Entretien"
+        		"ID Facture", "Siren", "Prix", "Type", "Date "
         	}
         ));
         JScrollPane scrollPane = new JScrollPane(compteurTable);
@@ -72,7 +75,7 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
         panelBoutons = new JPanel(new FlowLayout());
         annulerButton = new JButton("Annuler");
         panelBoutons.add(annulerButton);
-        ajouterButton = 	new JButton("Imprimer La Facture");
+        ajouterButton = 	new JButton("Ajouter Facture");
         panelBoutons.add(ajouterButton);
         validerButton = new JButton("Valider");
         panelBoutons.add(validerButton);
@@ -82,7 +85,7 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
         ajouterButton.addActionListener(this.gestionClic);
         annulerButton.addActionListener(this.gestionClic);
 
-        initComboBoxIdBien();
+         initComboBoxIdBien();
 
 		
 		  try { afficherCompteurs(); } catch (SQLException e) { e.printStackTrace(); }
@@ -102,13 +105,13 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
     }
 
     public void afficherCompteurs() throws SQLException {
-        Collection<Charges> compteurs = daoCharge.findAll();
+        Collection<Facture> compteurs = daoFacture.findAll();
         DefaultTableModel tableModel = (DefaultTableModel) compteurTable.getModel();
         
         tableModel.setRowCount(0);
-        for (Charges compteur : compteurs) {
-            tableModel.addRow(new Object[]{compteur.getIdCharges(), compteur.getMontant(),
-                    compteur.getDateCharge(), compteur.getTypeCharge(),compteur.getPourcentagePartEntretien()});
+        for (Facture compteur : compteurs) {
+            tableModel.addRow(new Object[]{compteur.getIdFacture(), compteur.getSiren(),
+                    compteur.getPrix(), compteur.getTypeEntretien(),compteur.getDateFacture()});
         }
     }
 

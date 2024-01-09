@@ -107,6 +107,7 @@ public class Accueil extends JFrame {
         
         JMenuItem mntmNewMenuItem = new JMenuItem("Gestion Factures");
         mntmNewMenuItem.setFont(new Font("Dialog", Font.PLAIN, 15));
+        mntmNewMenuItem.addActionListener(this.gestionClic);
         mnDocument.add(mntmNewMenuItem);
         
         JMenu mnAjouterBatiment = new JMenu("Ajouter Batiment");

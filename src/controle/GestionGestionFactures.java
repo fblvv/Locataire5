@@ -11,17 +11,19 @@ import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
 import modele.Charges;
+import modele.Facture;
 import modele.dao.DaoCharges;
+import modele.dao.DaoFacture;
 import vue.GestionFacture;
 
 public class GestionGestionFactures implements ActionListener  {
 
     private GestionFacture gestionFactures;
-    private DaoCharges daocharge;
+    private DaoFacture daoFacture;
 
     public GestionGestionFactures(GestionFacture gestionFactures) {
         this.gestionFactures = gestionFactures;
-        this.daocharge = new DaoCharges();
+        this.daoFacture = new DaoFacture();
     }
 
     @Override
@@ -50,13 +52,13 @@ public class GestionGestionFactures implements ActionListener  {
 
 
     public void filtrerCompteurs() throws SQLException {
-        Collection<Charges> compteurs = daocharge.findAll();
+        Collection<Facture> compteurs = daoFacture.findAll();
         String typeSelectionne = (String) gestionFactures.getTypeCompteurComboBox().getSelectedItem();
         String idBienSelectionne = (String) gestionFactures.getIdBienComboBox().getSelectedItem();
 
-        List<Charges> compteursFiltres = new ArrayList<>();
-        for (Charges compteur : compteurs) {
-            boolean typeMatch = "Tout Type".equals(typeSelectionne) || typeSelectionne.equals(compteur.getTypeCharge());
+        List<Facture> compteursFiltres = new ArrayList<>();
+        for (Facture compteur : compteurs) {
+            boolean typeMatch = "Tout Type".equals(typeSelectionne) || typeSelectionne.equals(compteur.getTypeEntretien());
             boolean idBienMatch = "Tous".equals(idBienSelectionne) || idBienSelectionne.equals(compteur.getIdBienImm());
 
             // For debugging purposes, print the filters and the matching condition
@@ -74,9 +76,9 @@ public class GestionGestionFactures implements ActionListener  {
         DefaultTableModel tableModel = (DefaultTableModel) gestionFactures.getTable().getModel();
         tableModel.setRowCount(0);
 
-        for (Charges compteur : compteursFiltres) {
-            tableModel.addRow(new Object[]{compteur.getIdCharges(), compteur.getMontant(),
-                    compteur.getDateCharge(), compteur.getTypeCharge(),compteur.getPourcentagePartEntretien()});
+        for (Facture compteur : compteursFiltres) {
+            tableModel.addRow(new Object[]{compteur.getIdFacture(), compteur.getSiren(),
+                    compteur.getPrix(), compteur.getTypeEntretien(),compteur.getDateFacture()});
         }
     }
     public static void main(String[] args) {
