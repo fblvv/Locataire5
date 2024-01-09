@@ -1,16 +1,20 @@
 package modele.dao;
 
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
 
+import SQL.CictOracleDataSource;
 import modele.Charges;
 import modele.Facture;
 import modele.dao.requetes.RequeteSelectCharges;
 import modele.dao.requetes.RequeteSelectChargesById;
 import modele.dao.requetes.RequeteSelectFacture;
 import modele.dao.requetes.RequeteSelectFactureById;
+import modele.dao.requetes.SousProgrammeInsertCompteur;
+import modele.dao.requetes.SousProgrammeInsertFacture;
 
 public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 
@@ -36,9 +40,11 @@ public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 	}
 
 	@Override
-	public void create(Facture donnee) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	public void create(Facture facture) throws SQLException {
+		SousProgrammeInsertFacture sousProgrammeInsertFacture = new SousProgrammeInsertFacture();
+	    CallableStatement cs = CictOracleDataSource.getConnectionBD().prepareCall(sousProgrammeInsertFacture.appelSousProgramme());
+	    sousProgrammeInsertFacture.parametres(cs, facture);
+	        cs.execute();
 	}
 
 	@Override
