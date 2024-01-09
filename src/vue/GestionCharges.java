@@ -2,15 +2,11 @@ package vue;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import controle.GestionCompteur;
 import controle.GestionGestionCharges;
-import controle.GestionGestionFactures;
 import modele.BienImmobilier;
 import modele.Charges;
-import modele.Compteur;
 import modele.dao.DaoBienImmobilier;
 import modele.dao.DaoCharges;
-import modele.dao.DaoCompteur;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class GestionFacture extends JInternalFrame implements ActionListener { 
+public class GestionCharges extends JInternalFrame implements ActionListener { 
 
     private JComboBox<String> typeCompteurComboBox;
     private JComboBox<String> idBienComboBox;
@@ -30,14 +26,14 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
     private DaoCharges daoCharge;
     private List<Charges> charges; 
     private JPanel panelBoutons;
-    private GestionGestionFactures gestionClic;
+    private GestionGestionCharges gestionClic;
 
 
-    public GestionFacture() {
+    public GestionCharges() {
         super("Fenetre Compteur", true, true, true, true);
         setSize(800, 600);
 
-        this.gestionClic = new GestionGestionFactures(this);
+        this.gestionClic = new GestionGestionCharges(this);
         this.daoCharge = new DaoCharges();
         this.charges = new ArrayList<>(); 
 
@@ -139,7 +135,7 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new GestionFacture().setVisible(true); // Assurez-vous que la fenêtre est visible
+                new GestionCharges().setVisible(true); // Assurez-vous que la fenêtre est visible
             }
         });
     }

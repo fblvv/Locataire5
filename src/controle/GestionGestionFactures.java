@@ -2,28 +2,25 @@ package controle;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 
 import modele.Charges;
-import modele.Compteur;
 import modele.dao.DaoCharges;
 import vue.GestionFacture;
 
-public class GestionGestionFacture implements ActionListener {
+public class GestionGestionFactures implements ActionListener  {
 
-    private GestionFacture gestionFacture;
+    private GestionFacture gestionFactures;
     private DaoCharges daocharge;
 
-    public GestionGestionFacture(GestionFacture gestionFacture) {
-        this.gestionFacture = gestionFacture;
+    public GestionGestionFactures(GestionFacture gestionFactures) {
+        this.gestionFactures = gestionFactures;
         this.daocharge = new DaoCharges();
     }
 
@@ -45,7 +42,7 @@ public class GestionGestionFacture implements ActionListener {
                     
                 		break;
                 case "Annuler":
-                	gestionFacture.dispose();
+                	gestionFactures.dispose();
                     break;
             }
         }
@@ -54,8 +51,8 @@ public class GestionGestionFacture implements ActionListener {
 
     public void filtrerCompteurs() throws SQLException {
         Collection<Charges> compteurs = daocharge.findAll();
-        String typeSelectionne = (String) gestionFacture.getTypeCompteurComboBox().getSelectedItem();
-        String idBienSelectionne = (String) gestionFacture.getIdBienComboBox().getSelectedItem();
+        String typeSelectionne = (String) gestionFactures.getTypeCompteurComboBox().getSelectedItem();
+        String idBienSelectionne = (String) gestionFactures.getIdBienComboBox().getSelectedItem();
 
         List<Charges> compteursFiltres = new ArrayList<>();
         for (Charges compteur : compteurs) {
@@ -74,7 +71,7 @@ public class GestionGestionFacture implements ActionListener {
         }
 
         // Update the table model directly
-        DefaultTableModel tableModel = (DefaultTableModel) gestionFacture.getTable().getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) gestionFactures.getTable().getModel();
         tableModel.setRowCount(0);
 
         for (Charges compteur : compteursFiltres) {
