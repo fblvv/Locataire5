@@ -15,7 +15,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controle.GestionFenetreBien;
 import controle.GestionGestionFacture;
 
 import javax.swing.JButton;
@@ -23,7 +22,7 @@ import javax.swing.JComboBox;
 
 public class GestionFactureWindow2 extends JInternalFrame {
     
-    private GestionFenetreBien gestionClic;
+    private GestionGestionFacture gestionClic;
     private JPanel contentPane;
     private JTable tableEau;
     private JTable tableElectricite;
