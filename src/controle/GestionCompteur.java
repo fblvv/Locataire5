@@ -2,6 +2,8 @@ package controle;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,10 +18,11 @@ import modele.Compteur;
 import modele.dao.DaoCompteur;
 import vue.FenetreCompteur;
 
-public class GestionCompteur implements ActionListener {
+public class GestionCompteur implements ActionListener, ItemListener {
 
     private FenetreCompteur fenetreCompteur;
     private DaoCompteur daoCompteur;
+
     public GestionCompteur(FenetreCompteur fenetreCompteur) {
         this.fenetreCompteur = fenetreCompteur;
         this.daoCompteur = new DaoCompteur();
@@ -33,43 +36,69 @@ public class GestionCompteur implements ActionListener {
             JButton button = (JButton) source;
 
             switch (button.getText()) {
-            	case "Annuler":
-	                fenetreCompteur.dispose();
-	                break;
+                case "Annuler":
+                    fenetreCompteur.dispose();
+                    break;
                 case "Ajouter Relevé":
                     ajouterReleve();
                     break;
                 case "Valider":
-                	try {
-            			filtrerCompteurs();
-            		} catch (SQLException ex) {
-            			// TODO Auto-generated catch block
-            			ex.printStackTrace();
-            		}
+                    try {
+                        insererCompteur();
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
                     break;
             }
         }
     }
 
-    // Méthode pour ajouter une ligne vierge à la table
     private void ajouterReleve() {
-        // Exemple de données par défaut (à remplacer par vos propres valeurs par défaut)
-        Object[] data = {"", "", "", ""};
-
-        // Ajout de la ligne à la table
         DefaultTableModel model = (DefaultTableModel) fenetreCompteur.getTable().getModel();
-        model.addRow(data);
+        model.addRow(new Object[]{"", "", "", "", ""});
+    }
+
+    private void insererCompteur() throws SQLException {
+        DefaultTableModel model = (DefaultTableModel) fenetreCompteur.getTable().getModel();
+        int selectedRow = fenetreCompteur.getTable().getSelectedRow();
+
+        // Assuming your columns are in the order of ID, Date, Type, Valeur, ID_Bien
+        Object[] rowData = new Object[5];
+        for (int i = 0; i < 5; i++) {
+            rowData[i] = model.getValueAt(selectedRow, i);
+        }
+    	String idCompteur = (String)rowData[0];
+    	String dateReleve = (String)rowData[1];
+    	String typeCompteur =(String)rowData[2];
+    	Double valeur = Double.parseDouble((String)rowData[3]);
+    	String idBienImm =(String)rowData[4];
+        
+        Compteur compteur = new Compteur(idCompteur,dateReleve,typeCompteur,valeur,idBienImm);
+
+        daoCompteur.create(compteur);
+
+        fenetreCompteur.afficherCompteurs();
     }
     
-    
-    
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        // Handle the item state change event for comboboxes
+        if (e.getSource() == fenetreCompteur.getTypeCompteurComboBox()
+                || e.getSource() == fenetreCompteur.getIdBienComboBox()) {
+            try {
+                filtrerCompteurs();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
     public void filtrerCompteurs() throws SQLException {
-    	Collection<Compteur> compteurs = daoCompteur.findAll();
-        // Récupérer les valeurs sélectionnées dans les JComboBox
-    	String typeSelectionne = (String) fenetreCompteur.getTypeCompteurComboBox().getSelectedItem();
+        Collection<Compteur> compteurs = daoCompteur.findAll();
+        String typeSelectionne = (String) fenetreCompteur.getTypeCompteurComboBox().getSelectedItem();
         String idBienSelectionne = (String) fenetreCompteur.getIdBienComboBox().getSelectedItem();
 
-        // Filtrer les compteurs en fonction des critères de sélection
         List<Compteur> compteursFiltres = new ArrayList<>();
         for (Compteur compteur : compteurs) {
             boolean typeMatch = "Tout Type".equals(typeSelectionne) || typeSelectionne.equals(compteur.getTypeCompteur());
@@ -80,7 +109,7 @@ public class GestionCompteur implements ActionListener {
             }
         }
 
-        // Mettre à jour le modèle de la JTable avec les compteurs filtrés
+        // Update the table model directly
         DefaultTableModel tableModel = (DefaultTableModel) fenetreCompteur.getTable().getModel();
         tableModel.setRowCount(0);
 
@@ -89,8 +118,4 @@ public class GestionCompteur implements ActionListener {
                     compteur.getValeur(), compteur.getIdBienImm()});
         }
     }
-    
-    
-
-    
 }

@@ -24,6 +24,7 @@ public class SousProgrammeInsertCompteur implements SousProgramme<Compteur> {
     @Override
     public void parametres(CallableStatement prSt, Compteur compteur) throws SQLException {
         prSt.setString(1, compteur.getIdCompteur());
+        //prSt.setDate(2, java.sql.Date.valueOf(compteur.getDateReleve()));
         prSt.setString(2, compteur.getDateReleve());
         prSt.setString(3, compteur.getTypeCompteur());
         prSt.setDouble(4, compteur.getValeur());
