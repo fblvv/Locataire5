@@ -2,16 +2,29 @@ package controle;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
+import javax.swing.table.DefaultTableModel;
+
+import modele.Charges;
+import modele.Compteur;
+import modele.dao.DaoCharges;
+import vue.GestionFacture;
 
 public class GestionGestionFacture implements ActionListener {
 
-    private JInternalFrame fenetreGestionFacture;
+    private GestionFacture gestionFacture;
+    private DaoCharges daocharge;
 
-    public GestionGestionFacture(JInternalFrame fenetreGestionFacture) {
-        this.fenetreGestionFacture = fenetreGestionFacture;
+    public GestionGestionFacture(GestionFacture gestionFacture) {
+        this.gestionFacture = gestionFacture;
+        this.daocharge = new DaoCharges();
     }
 
     @Override
@@ -23,14 +36,52 @@ public class GestionGestionFacture implements ActionListener {
 
             switch (buttonValider.getText()) {
                 case "Valider":
-                    break;
+                	
+                        try {
+                            filtrerCompteurs();
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    
+                		break;
                 case "Annuler":
-                	fenetreGestionFacture.dispose();
+                	gestionFacture.dispose();
                     break;
             }
         }
     }
 
+
+    public void filtrerCompteurs() throws SQLException {
+        Collection<Charges> compteurs = daocharge.findAll();
+        String typeSelectionne = (String) gestionFacture.getTypeCompteurComboBox().getSelectedItem();
+        String idBienSelectionne = (String) gestionFacture.getIdBienComboBox().getSelectedItem();
+
+        List<Charges> compteursFiltres = new ArrayList<>();
+        for (Charges compteur : compteurs) {
+            boolean typeMatch = "Tout Type".equals(typeSelectionne) || typeSelectionne.equals(compteur.getTypeCharge());
+            boolean idBienMatch = "Tous".equals(idBienSelectionne) || idBienSelectionne.equals(compteur.getIdBienImm());
+
+            // For debugging purposes, print the filters and the matching condition
+            System.out.println("Type Selectionne: " + typeSelectionne);
+            System.out.println("IdBien Selectionne: " + idBienSelectionne);
+            System.out.println("Type Match: " + typeMatch);
+            System.out.println("IdBien Match: " + idBienMatch);
+
+            if (typeMatch && idBienMatch) {
+                compteursFiltres.add(compteur);
+            }
+        }
+
+        // Update the table model directly
+        DefaultTableModel tableModel = (DefaultTableModel) gestionFacture.getTable().getModel();
+        tableModel.setRowCount(0);
+
+        for (Charges compteur : compteursFiltres) {
+            tableModel.addRow(new Object[]{compteur.getIdCharges(), compteur.getMontant(),
+                    compteur.getDateCharge(), compteur.getTypeCharge(),compteur.getPourcentagePartEntretien()});
+        }
+    }
     public static void main(String[] args) {
     }
 }
