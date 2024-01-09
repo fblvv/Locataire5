@@ -30,7 +30,7 @@ public class GestionCharges extends JInternalFrame implements ActionListener {
 
 
     public GestionCharges() {
-        super("Fenetre Compteur", true, true, true, true);
+        super("Charges", true, true, true, true);
         setSize(800, 600);
 
         this.gestionClic = new GestionGestionCharges(this);
@@ -40,7 +40,7 @@ public class GestionCharges extends JInternalFrame implements ActionListener {
         JPanel panel = new JPanel(new FlowLayout());
         String[] typesCompteur = {"Tout Type", "Eau", "Electricite", "Gaz"};
         typeCompteurComboBox = new JComboBox<>(typesCompteur);
-        panel.add(new JLabel("Type de Charge:"));
+        panel.add(new JLabel("Type de Charge :"));
         panel.add(typeCompteurComboBox);
 
         idBienComboBox = new JComboBox<>();

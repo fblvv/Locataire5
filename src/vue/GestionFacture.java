@@ -37,7 +37,7 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
 
 
     public GestionFacture() {
-        super("Fenetre Compteur", true, true, true, true);
+        super("Factures", true, true, true, true);
         setSize(800, 600);
 
         this.gestionClic = new GestionGestionFactures(this);
@@ -47,7 +47,7 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
         JPanel panel = new JPanel(new FlowLayout());
         String[] typesCompteur = {"Tout Type", "Entretien", "Travaux"};
         typeCompteurComboBox = new JComboBox<>(typesCompteur);
-        panel.add(new JLabel("Type de Charge:"));
+        panel.add(new JLabel("Type de Factures :"));
         panel.add(typeCompteurComboBox);
 
         idBienComboBox = new JComboBox<>();
