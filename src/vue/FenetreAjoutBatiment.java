@@ -14,7 +14,7 @@ public class FenetreAjoutBatiment extends JInternalFrame {
 
     private static final long serialVersionUID = 1L;
     private JTextField champRegimeJuridique, champAdresse, champCodePostal, champEquipAccesTech, champEnumPartiesCommunes, textNomBatiment;
-    private JFormattedTextField champDateConstruction;
+    private JTextField champDateConstruction;
     private GestionAjoutBatiment gestionClic;
 
     public FenetreAjoutBatiment() {
@@ -67,17 +67,7 @@ public class FenetreAjoutBatiment extends JInternalFrame {
      // Champ pour la date de construction
         JLabel libDateConstruction = new JLabel("Date de Construction");
         libDateConstruction.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        try {
-            MaskFormatter dateFormatter = new MaskFormatter("##/##/####");
-            champDateConstruction = new JFormattedTextField(dateFormatter);
-
-            // Utilisez le format "YYYY-MM-DD" pour correspondre à la procédure stockée Oracle
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            champDateConstruction.setValue(dateFormat.format(new Date()));
-        } catch (ParseException e) {
-            e.printStackTrace();
-            champDateConstruction = new JFormattedTextField();
-        }
+        champDateConstruction = new JTextField();
         panel.add(libDateConstruction);
         panel.add(champDateConstruction);
 
