@@ -20,12 +20,10 @@ import vue.FenetreCompteur;
 import vue.FenetreDetailsPropriete2;
 import vue.FenetreListeLocataire;
 import vue.FenetreLoyer;
-<<<<<<< HEAD
+
 import vue.FenetreSoldeToutCompte;
 import vue.GestionFactureWindow2;
-=======
 import vue.GestionFacture;
->>>>>>> 9d48f9a1730a97e7081216f250b89fd4c541cc35
 import vue.PageAjoutLocataire;
 import vue.VoirContratLocation;
 
