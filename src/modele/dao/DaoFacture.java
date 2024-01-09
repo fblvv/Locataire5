@@ -3,21 +3,30 @@ package modele.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
+import modele.Charges;
 import modele.Facture;
+import modele.dao.requetes.RequeteSelectCharges;
+import modele.dao.requetes.RequeteSelectChargesById;
+import modele.dao.requetes.RequeteSelectFacture;
+import modele.dao.requetes.RequeteSelectFactureById;
 
 public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 
 	@Override
 	public Collection<Facture> findAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		RequeteSelectFacture facture = new RequeteSelectFacture();
+		return find(facture);
 	}
 
 	@Override
 	public Facture findById(String... id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Facture> bien = find(new RequeteSelectFactureById(), id);
+        if (bien.isEmpty()) {
+            return null;
+        }
+        return bien.get(0);
 	}
 
 	@Override
@@ -43,10 +52,13 @@ public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
         Facture facture = null;
         try {
             facture = new Facture(
-                    curseur.getString("ID_FACTURE"),
+            		curseur.getString("ID_FACTURE"),
+            		curseur.getString("SIREN"),
                     curseur.getDouble("PRIX"),
                     curseur.getString("TYPE_ENTRETIEN"),
-                    curseur.getString("DATE_FACTURE")
+                    curseur.getString("DATE_FACTURE"),
+                    curseur.getString("ID_BIEN_IMM"),
+                    curseur.getString("ID_BATIMENT")
             );
         } catch (SQLException e) {
             // Handle the exception appropriately, e.g., log or throw a custom exception

@@ -1,5 +1,4 @@
 package vue;
-
 import java.awt.Color;
 import java.awt.Font;
 
@@ -14,9 +13,13 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import controle.GestionSoldeDeToutCompte;
+import modele.Locataire;
+import modele.dao.DaoLocataire;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
+import java.util.Collection;
 
 public class FenetreSoldeToutCompte extends JInternalFrame {
     private static final long serialVersionUID = 1L;
@@ -24,6 +27,7 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
     private final JScrollPane scrollPane = new JScrollPane();
     private JTable tableauCharges;
     private GestionSoldeDeToutCompte gestionClic;
+    private JComboBox<String> selecteurIdLocataire;
 
     public FenetreSoldeToutCompte() {
         this.gestionClic = new GestionSoldeDeToutCompte(this);
@@ -49,14 +53,21 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
         tableauCharges.getColumnModel().getColumn(3).setPreferredWidth(102);
         scrollPane.setViewportView(tableauCharges);
 
-        JComboBox<Object> comboBox = new JComboBox<>();
-        comboBox.addActionListener(new ActionListener() {
+        selecteurIdLocataire = new JComboBox<>();
+        // Remplissez la JComboBox avec les ID des locataires ici
+        remplirSelecteurIdLocataire();
+        selecteurIdLocataire.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                try {
+                    gestionClic.afficherInfoLocataire();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
-        comboBox.setBackground(Color.WHITE);
-        comboBox.setBounds(20, 72, 156, 22);
-        contentPane.add(comboBox);
+        selecteurIdLocataire.setBackground(Color.WHITE);
+        selecteurIdLocataire.setBounds(20, 72, 156, 22);
+        contentPane.add(selecteurIdLocataire);
 
         JButton btnGenererRecu = new JButton("Générer le reçu");
         btnGenererRecu.addActionListener(this.gestionClic);
@@ -85,5 +96,30 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
         JLabel lblLocataire = new JLabel("Locataire");
         lblLocataire.setBounds(20, 53, 55, 13);
         contentPane.add(lblLocataire);
+    }
+    
+    private void remplirSelecteurIdLocataire() {
+        // Vous devrez peut-être récupérer les ID des locataires depuis votre source de données (base de données, fichier, etc.) 
+        // et les ajouter à la JComboBox ici.
+        // Par exemple, vous pouvez utiliser la méthode findAll() de votre DAO pour obtenir tous les locataires et les ajouter à la JComboBox.
+        try {
+            DaoLocataire daoLocataire = new DaoLocataire();
+            Collection<Locataire> locataires = daoLocataire.findAll();
+            for (Locataire locataire : locataires) {
+                selecteurIdLocataire.addItem(locataire.getId_Locataire());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getSelecteurIdLocataire() {
+        return (String) selecteurIdLocataire.getSelectedItem();
+    }
+
+    public static void main(String[] args) {
+        // Create an instance of your FenetreSoldeToutCompte class and display it.
+        FenetreSoldeToutCompte fenetre = new FenetreSoldeToutCompte();
+        fenetre.setVisible(true);
     }
 }

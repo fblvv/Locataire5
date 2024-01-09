@@ -95,7 +95,7 @@ public class Accueil extends JFrame {
         mnDocument.setFont(new Font("Lucida Grande", Font.BOLD, 19));
         menuBar.add(mnDocument);
 
-        JMenuItem mntmGestionFacture = new JMenuItem("Gestion factures");
+        JMenuItem mntmGestionFacture = new JMenuItem("Gestion Charges");
         mntmGestionFacture.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         mntmGestionFacture.addActionListener(this.gestionClic);
         mnDocument.add(mntmGestionFacture);
@@ -104,6 +104,11 @@ public class Accueil extends JFrame {
         mntmGestionLoyer.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         mntmGestionLoyer.addActionListener(this.gestionClic);
         mnDocument.add(mntmGestionLoyer);
+        
+        JMenuItem mntmNewMenuItem = new JMenuItem("Gestion Factures");
+        mntmNewMenuItem.setFont(new Font("Dialog", Font.PLAIN, 15));
+        mntmNewMenuItem.addActionListener(this.gestionClic);
+        mnDocument.add(mntmNewMenuItem);
         
         JMenu mnAjouterBatiment = new JMenu("Ajouter Batiment");
         mnAjouterBatiment.setFont(new Font("Lucida Grande", Font.BOLD, 19));

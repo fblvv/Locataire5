@@ -2,15 +2,16 @@ package modele;
 
 public class Charges {
 	private String idBienImm;
-	private static String idCharges;
+	private String idCharges;
 	private double montant;
 	private String dateCharge;
 	private String typeCharge;
 	private String pourcentagePartEntretien;
 
 
-	public Charges(String idBienImm,double montant, String dateCharge, String typeCharge,
+	public Charges(String idCharge,String idBienImm,double montant, String dateCharge, String typeCharge,
 			String pourcentagePartEntretien) {
+		this.idCharges = idCharge;
 		this.montant = montant;
 		this.dateCharge = dateCharge;
 		this.typeCharge = typeCharge;

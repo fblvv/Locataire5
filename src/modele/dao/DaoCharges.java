@@ -10,13 +10,14 @@ import modele.Charges;
 import modele.dao.requetes.RequeteSelectBienImmobilier;
 import modele.dao.requetes.RequeteSelectBienImmobilierById;
 import modele.dao.requetes.RequeteSelectCharges;
+import modele.dao.requetes.RequeteSelectChargesById;
 
 public class DaoCharges extends DaoModele<Charges> implements Dao<Charges> {
 
 	@Override
 	public Collection<Charges> findAll() throws SQLException {
-		RequeteSelectCharges sketuveux = new RequeteSelectCharges();
-		return find(sketuveux);
+		RequeteSelectCharges charge = new RequeteSelectCharges();
+		return find(charge);
 	}
 
 	@Override
@@ -51,6 +52,7 @@ public class DaoCharges extends DaoModele<Charges> implements Dao<Charges> {
 	@Override
     protected Charges creerInstance(ResultSet curseur) throws SQLException {
         // Récupérer les valeurs de la base de données
+		String idCharge = curseur.getString("ID_CHARGES");
         String idBienImm = curseur.getString("Id_Bien_Imm");
         double montant = curseur.getDouble("Montant");
         String dateCharge = curseur.getString("Date_Charge");
@@ -58,7 +60,7 @@ public class DaoCharges extends DaoModele<Charges> implements Dao<Charges> {
         String pourcentagePartEntretien = curseur.getString("Pourcentage_Part_Entretien");
 
         // Créer et retourner une nouvelle instance de Charges
-        return new Charges(idBienImm, montant, dateCharge, typeCharge, pourcentagePartEntretien);
+        return new Charges(idCharge,idBienImm, montant, dateCharge, typeCharge, pourcentagePartEntretien);
     }
 }
 
