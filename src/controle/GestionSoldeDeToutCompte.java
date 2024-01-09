@@ -2,8 +2,10 @@ package controle;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 import vue.FenetreSoldeToutCompte;
 
@@ -31,8 +33,16 @@ public class GestionSoldeDeToutCompte implements ActionListener{
 	                fenetreSolde.dispose();
 	                break;
 	        }
-	    }
+	    }else if (source instanceof JComboBox) {
+            // Handle JComboBox selection change
+            try {
+				updateTableData();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+        }
 	}
 
 	}
-
+}
