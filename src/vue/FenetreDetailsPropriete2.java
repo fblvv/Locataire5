@@ -43,7 +43,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
     private JTextField champNombrePieces;
     private JTable table;
     private JTextField champStatutOccupation;
-    private JTextField champContratsServices;//a
+    private JTextField champContratsServices;
     private JTextField champCommentaires;
     private JTable tablePaiements;
     private JTable tableHistorique;
