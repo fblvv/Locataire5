@@ -43,7 +43,7 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
         JPanel panel = new JPanel(new FlowLayout());
         String[] typesCompteur = {"Tout Type", "Eau", "Électricité", "Gaz"};
         typeCompteurComboBox = new JComboBox<>(typesCompteur);
-        panel.add(new JLabel("Type de Compteur: "));
+        panel.add(new JLabel("Type de Charge:"));
         panel.add(typeCompteurComboBox);
 
         idBienComboBox = new JComboBox<>();
@@ -57,7 +57,13 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
 
         String[] columnNames = {"ID Compteur", "Date de Relevé", "Type", "Valeur", "ID Bien"};
         Object[][] data = new Object[charges.size()][5]; // Utilisation de la liste de compteurs
-        compteurTable = new JTable(new DefaultTableModel(data, columnNames));
+        compteurTable = new JTable(new DefaultTableModel(
+        	new Object[][] {
+        	},
+        	new String[] {
+        		"ID Charge", "Montant", "Date", "Type", "Pourcentage Entretien"
+        	}
+        ));
         JScrollPane scrollPane = new JScrollPane(compteurTable);
         getContentPane().add(scrollPane, BorderLayout.CENTER);
 
