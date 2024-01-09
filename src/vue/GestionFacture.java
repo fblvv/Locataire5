@@ -20,7 +20,7 @@ import controle.GestionGestionFacture;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
-public class GestionFactureWindow2 extends JInternalFrame {
+public class GestionFacture extends JInternalFrame {
     
     private GestionGestionFacture gestionClic;
     private JPanel contentPane;
@@ -36,7 +36,7 @@ public class GestionFactureWindow2 extends JInternalFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    GestionFactureWindow2 frame = new GestionFactureWindow2();
+                	GestionFacture frame = new GestionFacture();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -45,7 +45,7 @@ public class GestionFactureWindow2 extends JInternalFrame {
         });
     }
 
-    public GestionFactureWindow2() {
+    public GestionFacture() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 802, 526);
         contentPane = new JPanel();
