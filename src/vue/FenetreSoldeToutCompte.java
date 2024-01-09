@@ -1,8 +1,8 @@
 package vue;
+
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
@@ -13,16 +13,22 @@ import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import controle.GestionSoldeDeToutCompte;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class FenetreSoldeToutCompte extends JInternalFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private final JScrollPane scrollPane = new JScrollPane();
     private JTable tableauCharges;
+    private GestionSoldeDeToutCompte gestionClic;
 
     public FenetreSoldeToutCompte() {
+        this.gestionClic = new GestionSoldeDeToutCompte(this);
         setClosable(true);
         setBorder(null);
-        setFrameIcon(new ImageIcon(FenetreSoldeToutCompte.class.getResource("/data/deconnexion.png")));
         setBackground(new Color(240, 240, 240));
         setTitle("Solde de tout compte");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -44,19 +50,23 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
         scrollPane.setViewportView(tableauCharges);
 
         JComboBox<Object> comboBox = new JComboBox<>();
+        comboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
         comboBox.setBackground(Color.WHITE);
         comboBox.setBounds(20, 72, 156, 22);
         contentPane.add(comboBox);
 
         JButton btnGenererRecu = new JButton("Générer le reçu");
+        btnGenererRecu.addActionListener(this.gestionClic);
         btnGenererRecu.setBackground(Color.WHITE);
-        btnGenererRecu.setIcon(new ImageIcon(FenetreSoldeToutCompte.class.getResource("/data/papier.png")));
         btnGenererRecu.setBounds(115, 311, 131, 22);
         contentPane.add(btnGenererRecu);
 
         JButton btnAnnulerRecu = new JButton("Annuler");
+        btnAnnulerRecu.addActionListener(this.gestionClic);
         btnAnnulerRecu.setBackground(Color.WHITE);
-        btnAnnulerRecu.setIcon(new ImageIcon(FenetreSoldeToutCompte.class.getResource("/data/log-out.png")));
         btnAnnulerRecu.setBounds(260, 311, 115, 22);
         contentPane.add(btnAnnulerRecu);
 

@@ -35,7 +35,7 @@ public class FenetreContratLocation extends JInternalFrame {
     private Locataire locataire;
     private PageAjoutLocataire pageAjoutLocataire;
     private GestionContratLocation gestionClic;
-	private FenetreContratLocation contratLocation;
+    
 
     public FenetreContratLocation(BienImmobilier bienImmobilier, Locataire locataire) {
         // Initialiser les champs du bien immobilier et du locataire

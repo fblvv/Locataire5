@@ -131,6 +131,15 @@ public class Accueil extends JFrame {
         mntmLireCSV.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         mntmLireCSV.addActionListener(this.gestionClic);
         mnLireCSV.add(mntmLireCSV);
+        
+        JMenu mnSoldeDeToutCompte = new JMenu("Solde de tout compte");
+        mnSoldeDeToutCompte.setFont(new Font("Lucida Grande", Font.BOLD, 19));
+        menuBar.add(mnSoldeDeToutCompte);
+        
+        JMenuItem mntmSoldeDeToutCompte = new JMenuItem("Vérifier le Solde de tout compte");
+        mntmSoldeDeToutCompte.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmSoldeDeToutCompte.addActionListener(this.gestionClic);
+        mnSoldeDeToutCompte.add(mntmSoldeDeToutCompte);
     
 
     }
