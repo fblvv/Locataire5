@@ -46,6 +46,9 @@ public class FenetreCompteur extends JInternalFrame {
         panel.add(new JLabel("ID du Bien: "));
         panel.add(idBienComboBox);
         idBienComboBox.addItem("Tous");
+        
+        typeCompteurComboBox.addItemListener(this.gestionClic);
+        idBienComboBox.addItemListener(this.gestionClic);
 
         // Modification ici pour utiliser BorderLayout
         getContentPane().setLayout(new BorderLayout());

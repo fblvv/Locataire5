@@ -20,6 +20,9 @@ import vue.FenetreCompteur;
 import vue.FenetreDetailsPropriete2;
 import vue.FenetreListeLocataire;
 import vue.FenetreLoyer;
+
+import vue.FenetreSoldeToutCompte;
+import vue.GestionFactureWindow2;
 import vue.GestionFacture;
 import vue.PageAjoutLocataire;
 import vue.VoirContratLocation;
@@ -86,6 +89,9 @@ public class GestionAccueil implements ActionListener {
                     new LireCSV().lireEtInsererCSV(csvFilePath);
                 }
                 break;
+                case "Vérifier le Solde de tout compte":
+                    afficherFenetre(new FenetreSoldeToutCompte(), layeredPane);
+                    break;
         }
     }
     
