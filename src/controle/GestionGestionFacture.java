@@ -22,8 +22,7 @@ public class GestionGestionFacture implements ActionListener {
             JButton buttonValider = (JButton) source;
 
             switch (buttonValider.getText()) {
-                case "Imprimer Facture":
-                    // Ajoutez ici le code à exécuter lorsque le bouton "Valider" est cliqué
+                case "Valider":
                     break;
                 case "Annuler":
                 	fenetreGestionFacture.dispose();

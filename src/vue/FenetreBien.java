@@ -80,7 +80,7 @@ public class FenetreBien extends JInternalFrame {
         panelAssurance.add(textFieldTypeAssuranceObl = new JTextField(10));
 
         panelAssurance.add(new JLabel("Date d'Effet (Début)", SwingConstants.RIGHT));
-        panelAssurance.add(textFieldDateDebutObl = new JTextField(10));
+        panelAssurance.add(textFieldDateDebutObl = new JTextField(25));
 
         // Assurance optionnelle
         panelAssurance.add(new JLabel("Assurance Optionnelle", SwingConstants.CENTER));

@@ -8,7 +8,7 @@ public class Assurance {
 	private static String idBienImm;
 	private static String idBatiment;
 
-	public Assurance(String tarifInitial, String typeAssurance, String dateEffetDebut, String numPolice,String idBienImm,String idBatiment) {
+	public Assurance(String numPolice,String tarifInitial, String typeAssurance, String dateEffetDebut,String idBienImm,String idBatiment) {
 		this.tarifInitial = tarifInitial;
 		this.typeAssurance = typeAssurance;
 		this.dateEffetDebut = dateEffetDebut;
