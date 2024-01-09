@@ -1,13 +1,16 @@
 package modele.dao;
 
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import SQL.CictOracleDataSource;
 import modele.BienImmobilier;
+import modele.dao.requetes.RequeteOccupationBien;
 import modele.dao.requetes.RequeteSelectBatiment;
 import modele.dao.requetes.RequeteSelectBienImmobilier;
 import modele.dao.requetes.RequeteSelectBienImmobilierById;
@@ -30,6 +33,8 @@ public class DaoBienImmobilier  extends DaoModele<BienImmobilier> implements Dao
         }
         return bien.get(0);
 	}
+	
+	
 
 	@Override
 	public void update(BienImmobilier donnee) throws SQLException {
@@ -51,6 +56,8 @@ public class DaoBienImmobilier  extends DaoModele<BienImmobilier> implements Dao
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 
 	@Override
     protected BienImmobilier creerInstance(ResultSet curseur) throws SQLException {
@@ -72,4 +79,26 @@ public class DaoBienImmobilier  extends DaoModele<BienImmobilier> implements Dao
 
         return bienImmobilier;
     }
+	
+	//savoir si un bien est occupé 
+	public String estOccupe(String id) {
+	    RequeteOccupationBien occupation = new RequeteOccupationBien();
+	    
+	    try (PreparedStatement st = CictOracleDataSource.getConnectionBD().prepareStatement(occupation.requete())) {
+	        occupation.parametres(st, id);
+
+	        List<String> statut = new ArrayList<>();
+	        try (ResultSet curseur = st.executeQuery()) {
+	            while (curseur.next()) {
+	                String instance = curseur.getString("Statut_Du_Bien");
+	                statut.add(instance);
+	            }
+	        }
+
+	        return statut.isEmpty() ? "inconnu" : statut.get(0);
+	    } catch (SQLException e) {
+	        e.printStackTrace(); // Handle the exception according to your needs
+	        return "erreur";
+	    }
+	}
 }

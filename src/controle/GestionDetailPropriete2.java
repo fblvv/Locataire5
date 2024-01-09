@@ -71,13 +71,8 @@ public class GestionDetailPropriete2 implements ActionListener {
         //String DateFin = contratLoc.getDateFinContrat();
         String Equipements = bat.getEquip_Acces_Tech();
         String NombrePieces = ""+bienImmo.getNb_Piece();
-        String StatutOccupation;
-        if(bienImmo.voirLocataires().isEmpty() ) {
-        	 StatutOccupation = "non occupé";
-        }
-        else {
-        	 StatutOccupation = "occupé";
-        }
+        String StatutOccupation=daoBienI.estOccupe(bienImmo.getId_Bien_Imm());
+        
         String Surface =""+ bienImmo.getSurface();
         String Type = bienImmo.getType_Bien();
         
