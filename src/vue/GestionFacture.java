@@ -71,7 +71,7 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
         panelBoutons = new JPanel(new FlowLayout());
         annulerButton = new JButton("Annuler");
         panelBoutons.add(annulerButton);
-        ajouterButton = new JButton("Ajouter Relevé");
+        ajouterButton = 	new JButton("Imprimer La Facture");
         panelBoutons.add(ajouterButton);
         validerButton = new JButton("Valider");
         panelBoutons.add(validerButton);
@@ -103,10 +103,11 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
     public void afficherCompteurs() throws SQLException {
         Collection<Charges> compteurs = daoCharge.findAll();
         DefaultTableModel tableModel = (DefaultTableModel) compteurTable.getModel();
+        
         tableModel.setRowCount(0);
         for (Charges compteur : compteurs) {
-            tableModel.addRow(new Object[]{compteur.getIdCompteur(), compteur.getDateReleve(),
-                    compteur.getTypeCompteur(), compteur.getValeur(), compteur.getIdBienImm()});
+            tableModel.addRow(new Object[]{compteur.getIdCharges(), compteur.getMontant(),
+                    compteur.getDateCharge(), compteur.getTypeCharge(),compteur.getPourcentagePartEntretien()});
         }
     }
 
