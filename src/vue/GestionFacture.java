@@ -81,11 +81,11 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
         ajouterButton.addActionListener(this.gestionClic);
         annulerButton.addActionListener(this.gestionClic);
 
-        //initComboBoxIdBien();
+        initComboBoxIdBien();
 
-		/*
-		 * try { afficherCompteurs(); } catch (SQLException e) { e.printStackTrace(); }
-		 */
+		
+		  try { afficherCompteurs(); } catch (SQLException e) { e.printStackTrace(); }
+		 
     }
 
     private void initComboBoxIdBien() {
