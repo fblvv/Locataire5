@@ -2,6 +2,8 @@ package controle;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,7 +22,7 @@ import modele.dao.DaoCharges;
 import modele.dao.DaoFacture;
 import vue.GestionFacture;
 
-public class GestionGestionFactures implements ActionListener  {
+public class GestionGestionFactures implements ActionListener , ItemListener  {
 
 	private GestionFacture gestionFactures;
 	private DaoFacture daoFacture;
@@ -67,13 +69,7 @@ public class GestionGestionFactures implements ActionListener  {
 
 	private void ajouterReleve() {		
 	    DefaultTableModel model = (DefaultTableModel) gestionFactures.getTable().getModel();
-	    model.addRow(new Object[]{"", "", "", "", ""});
-	    this.ajouterLigne = true;
-	    int rowCount = model.getRowCount();
-	    if (rowCount > 0) {
-	        gestionFactures.getTable().setRowSelectionInterval(rowCount - 1, rowCount - 1);
-	    }
-		
+	    model.addRow(new Object[]{"", "", "", "", ""});	
 	}
 
 	private void insererFacture() throws SQLException {
@@ -99,16 +95,29 @@ public class GestionGestionFactures implements ActionListener  {
 
 		daoFacture.create(facture);
 
-		gestionFactures.afficherCompteurs();
+		gestionFactures.afficherFactures();
 	}
 
-
+	
+	
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        // Handle the item state change event for comboboxes
+        if (e.getSource() == gestionFactures.getTypefactureComboBox()
+                || e.getSource() == gestionFactures.getIdBienComboBox()) {
+            try {
+                filtrerCompteurs();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 
 
 
 	public void filtrerCompteurs() throws SQLException {
 		Collection<Facture> compteurs = daoFacture.findAll();
-		String typeSelectionne = (String) gestionFactures.getTypeCompteurComboBox().getSelectedItem();
+		String typeSelectionne = (String) gestionFactures.getTypefactureComboBox().getSelectedItem();
 		String idBienSelectionne = (String) gestionFactures.getIdBienComboBox().getSelectedItem();
 
 		List<Facture> compteursFiltres = new ArrayList<>();

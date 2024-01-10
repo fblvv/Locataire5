@@ -2,16 +2,16 @@ package vue;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import controle.GestionCompteur;
+import controle.Gestionfacture;
 import controle.GestionGestionCharges;
 import controle.GestionGestionFactures;
 import modele.BienImmobilier;
 import modele.Charges;
-import modele.Compteur;
+import modele.facture;
 import modele.Facture;
 import modele.dao.DaoBienImmobilier;
 import modele.dao.DaoCharges;
-import modele.dao.DaoCompteur;
+import modele.dao.Daofacture;
 import modele.dao.DaoFacture;
 
 import java.awt.*;
@@ -22,11 +22,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class GestionFacture extends JInternalFrame implements ActionListener { 
+public class GestionFacture extends JInternalFrame { 
 
-    private JComboBox<String> typeCompteurComboBox;
+    private JComboBox<String> typefactureComboBox;
     private JComboBox<String> idBienComboBox;
-    private JTable compteurTable;
+    private JTable factureTable;
     private JButton ajouterButton;
     private JButton validerButton;
     private JButton annulerButton;
@@ -45,10 +45,10 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
         this.factures = new ArrayList<>(); 
 
         JPanel panel = new JPanel(new FlowLayout());
-        String[] typesCompteur = {"Tout Type", "Entretien", "Travaux"};
-        typeCompteurComboBox = new JComboBox<>(typesCompteur);
+        String[] typesfacture = {"Tout Type", "Entretien", "Travaux"};
+        typefactureComboBox = new JComboBox<>(typesfacture);
         panel.add(new JLabel("Type de Factures :"));
-        panel.add(typeCompteurComboBox);
+        panel.add(typefactureComboBox);
 
         idBienComboBox = new JComboBox<>();
         panel.add(new JLabel("ID du Bien: "));
@@ -59,16 +59,13 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(panel, BorderLayout.NORTH);
 
-        String[] columnNames = {"ID Compteur", "Date de Relevé", "Type", "Valeur", "ID Bien"};
-        Object[][] data = new Object[factures.size()][5]; // Utilisation de la liste de compteurs
-        compteurTable = new JTable(new DefaultTableModel(
-        	new Object[][] {
-        	},
-        	new String[] {
-        		"ID Facture", "Siren", "Prix", "Type", "Date "
-        	}
-        ));
-        JScrollPane scrollPane = new JScrollPane(compteurTable);
+        typefactureComboBox.addItemListener(this.gestionClic);
+        idBienComboBox.addItemListener(this.gestionClic);
+
+        String[] columnNames = {"ID Facture","Siren","Prix","Type","Date "};
+        Object[][] data = new Object[factures.size()][5];
+        factureTable = new JTable(new DefaultTableModel(data, columnNames));
+        JScrollPane scrollPane = new JScrollPane(factureTable);
         getContentPane().add(scrollPane, BorderLayout.CENTER);
 
         // Initialisation et ajout de panelBoutons en bas
@@ -88,7 +85,7 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
          initComboBoxIdBien();
 
 		
-		  try { afficherCompteurs(); } catch (SQLException e) { e.printStackTrace(); }
+		  try { afficherFactures(); } catch (SQLException e) { e.printStackTrace(); }
 		 
     }
 
@@ -104,19 +101,19 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
         }
     }
 
-    public void afficherCompteurs() throws SQLException {
-        Collection<Facture> compteurs = daoFacture.findAll();
-        DefaultTableModel tableModel = (DefaultTableModel) compteurTable.getModel();
+    public void afficherFactures() throws SQLException {
+        Collection<Facture> factures = daoFacture.findAll();
+        DefaultTableModel tableModel = (DefaultTableModel) factureTable.getModel();
         
         tableModel.setRowCount(0);
-        for (Facture compteur : compteurs) {
-            tableModel.addRow(new Object[]{compteur.getIdFacture(), compteur.getSiren(),
-                    compteur.getPrix(), compteur.getTypeEntretien(),compteur.getDateFacture()});
+        for (Facture facture : factures) {
+            tableModel.addRow(new Object[]{facture.getIdFacture(), facture.getSiren(),
+                    facture.getPrix(), facture.getTypeEntretien(),facture.getDateFacture()});
         }
     }
 
-    public JComboBox<String> getTypeCompteurComboBox() {
-        return typeCompteurComboBox;
+    public JComboBox<String> getTypefactureComboBox() {
+        return typefactureComboBox;
     }
 
     public JComboBox<String> getIdBienComboBox() {
@@ -124,19 +121,10 @@ public class GestionFacture extends JInternalFrame implements ActionListener {
     }
 
     public JTable getTable() {
-        return compteurTable;
+        return factureTable;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) { // Ajout de la méthode actionPerformed pour gérer les actions des boutons
-        if (e.getSource() == ajouterButton) {
-            // Code à exécuter lorsque le bouton "Ajouter Relevé" est cliqué
-        } else if (e.getSource() == validerButton) {
-            // Code à exécuter lorsque le bouton "Valider" est cliqué
-        } else if (e.getSource() == annulerButton) {
-            // Code à exécuter lorsque le bouton "Annuler" est cliqué
-        }
-    }
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
