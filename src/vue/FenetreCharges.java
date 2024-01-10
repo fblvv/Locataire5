@@ -19,7 +19,7 @@ public class FenetreCharges extends JInternalFrame {
 
     private JComboBox<String> typeCompteurComboBox;
     private JComboBox<String> idBienComboBox;
-    private JTable compteurTable;
+    private JTable chargeTable;
     private JButton imprimerButton;
     private JButton validerButton;
     private JButton annulerButton;
@@ -40,7 +40,7 @@ public class FenetreCharges extends JInternalFrame {
 
         JPanel panel = new JPanel(new FlowLayout());
         String[] typesCompteur = {"Tout Type", "Eau", "Electricite", "Gaz"};
-        //typeCompteurComboBox = new JComboBox<>(typesCompteur);
+        typeCompteurComboBox = new JComboBox<>(typesCompteur);
         panel.add(new JLabel("Type de Charge :"));
         panel.add(typeCompteurComboBox);
 
@@ -58,14 +58,14 @@ public class FenetreCharges extends JInternalFrame {
 
         String[] columnNames = {"ID Compteur", "Date de Relevé", "Type", "Valeur", "ID Bien"};
         Object[][] data = new Object[charges.size()][5]; // Utilisation de la liste de compteurs
-        compteurTable = new JTable(new DefaultTableModel(
+        chargeTable = new JTable(new DefaultTableModel(
         	new Object[][] {
         	},
         	new String[] {
         		"ID Charge", "Montant", "Date", "Type", "Pourcentage Entretien"
         	}
         ));
-        JScrollPane scrollPane = new JScrollPane(compteurTable);
+        JScrollPane scrollPane = new JScrollPane(chargeTable);
         getContentPane().add(scrollPane, BorderLayout.CENTER);
 
         // Initialisation et ajout de panelBoutons en bas
@@ -76,6 +76,7 @@ public class FenetreCharges extends JInternalFrame {
         panelBoutons.add(imprimerButton);
         
         ajouterButton = new JButton("Ajouter Charge");
+        ajouterButton.setEnabled(false);
         ajouterButton.addActionListener(this.gestionClic);
         
         panelBoutons.add(ajouterButton);
@@ -108,7 +109,7 @@ public class FenetreCharges extends JInternalFrame {
 
     public void afficherCompteurs() throws SQLException {
         Collection<Charges> compteurs = daoCharge.findAll();
-        DefaultTableModel tableModel = (DefaultTableModel) compteurTable.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) chargeTable.getModel();
         
         tableModel.setRowCount(0);
         for (Charges compteur : compteurs) {
@@ -126,9 +127,12 @@ public class FenetreCharges extends JInternalFrame {
     }
 
     public JTable getTable() {
-        return compteurTable;
+        return chargeTable;
     }
-
+    
+    public JButton getAjouterButton() {
+        return ajouterButton;
+    }
 
 
     public static void main(String[] args) {

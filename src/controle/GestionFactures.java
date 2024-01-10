@@ -92,7 +92,7 @@ public class GestionFactures implements ActionListener , ItemListener  {
 
 		daoFacture.create(facture);
 
-		gestionFactures.afficherFactures();
+		filtrerFactures();
 	}
 
 	
@@ -103,7 +103,7 @@ public class GestionFactures implements ActionListener , ItemListener  {
         if (e.getSource() == gestionFactures.getTypefactureComboBox()
                 || e.getSource() == gestionFactures.getIdBienComboBox()) {
             try {
-                filtrerCompteurs();
+                filtrerFactures();
                 activerBoutonAjouter();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -120,7 +120,7 @@ public class GestionFactures implements ActionListener , ItemListener  {
     }
 
 
-	public void filtrerCompteurs() throws SQLException {
+	public void filtrerFactures() throws SQLException {
 		Collection<Facture> compteurs = daoFacture.findAll();
 		String typeSelectionne = (String) gestionFactures.getTypefactureComboBox().getSelectedItem();
 		String idBienSelectionne = (String) gestionFactures.getIdBienComboBox().getSelectedItem();

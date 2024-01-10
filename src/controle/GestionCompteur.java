@@ -77,7 +77,7 @@ public class GestionCompteur implements ActionListener, ItemListener {
 
         daoCompteur.create(compteur);
 
-        fenetreCompteur.afficherCompteurs();
+        filtrerCompteurs();
     }
     
 
@@ -88,10 +88,19 @@ public class GestionCompteur implements ActionListener, ItemListener {
                 || e.getSource() == fenetreCompteur.getIdBienComboBox()) {
             try {
                 filtrerCompteurs();
+                activerBoutonAjouter();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
         }
+    }
+    
+    
+    private void activerBoutonAjouter() {
+        String idBienSelectionne = (String) fenetreCompteur.getIdBienComboBox().getSelectedItem();
+        
+        // Activer le bouton si un bien est sélectionné, sinon le désactiver
+        fenetreCompteur.getAjouterButton().setEnabled(!"Tous".equals(idBienSelectionne));
     }
 
     public void filtrerCompteurs() throws SQLException {

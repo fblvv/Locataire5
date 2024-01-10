@@ -66,6 +66,7 @@ public class FenetreCompteur extends JInternalFrame {
         panelBoutons.add(annulerButton);
         ajouterButton = new JButton("Ajouter Relevé");
         panelBoutons.add(ajouterButton);
+        
         validerButton = new JButton("Valider");
         panelBoutons.add(validerButton);
         getContentPane().add(panelBoutons, BorderLayout.SOUTH);
@@ -115,6 +116,10 @@ public class FenetreCompteur extends JInternalFrame {
 
     public JTable getTable() {
         return compteurTable;
+    }
+    
+    public JButton getAjouterButton() {
+    	return ajouterButton;
     }
 
     public static void main(String[] args) {
