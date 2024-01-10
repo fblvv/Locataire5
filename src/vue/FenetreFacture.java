@@ -2,16 +2,15 @@ package vue;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import controle.Gestionfacture;
-import controle.GestionGestionCharges;
-import controle.GestionGestionFactures;
+import controle.GestionCharges;
+import controle.GestionFactures;
 import modele.BienImmobilier;
 import modele.Charges;
-import modele.facture;
+
 import modele.Facture;
 import modele.dao.DaoBienImmobilier;
 import modele.dao.DaoCharges;
-import modele.dao.Daofacture;
+import modele.dao.DaoFacture;
 import modele.dao.DaoFacture;
 
 import java.awt.*;
@@ -22,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class GestionFacture extends JInternalFrame { 
+public class FenetreFacture extends JInternalFrame { 
 
     private JComboBox<String> typefactureComboBox;
     private JComboBox<String> idBienComboBox;
@@ -33,14 +32,14 @@ public class GestionFacture extends JInternalFrame {
     private DaoFacture daoFacture;
     private List<Facture> factures; 
     private JPanel panelBoutons;
-    private GestionGestionFactures gestionClic;
+    private GestionFactures gestionClic;
 
 
-    public GestionFacture() {
+    public FenetreFacture() {
         super("Factures", true, true, true, true);
         setSize(800, 600);
 
-        this.gestionClic = new GestionGestionFactures(this);
+        this.gestionClic = new GestionFactures(this);
         this.daoFacture = new DaoFacture();
         this.factures = new ArrayList<>(); 
 
@@ -73,6 +72,7 @@ public class GestionFacture extends JInternalFrame {
         annulerButton = new JButton("Annuler");
         panelBoutons.add(annulerButton);
         ajouterButton = 	new JButton("Ajouter Facture");
+        ajouterButton.setEnabled(false);
         panelBoutons.add(ajouterButton);
         validerButton = new JButton("Valider");
         panelBoutons.add(validerButton);
@@ -123,6 +123,10 @@ public class GestionFacture extends JInternalFrame {
     public JTable getTable() {
         return factureTable;
     }
+    
+    public JButton getAjouterButton() {
+        return ajouterButton;
+    }
 
 
 
@@ -130,7 +134,7 @@ public class GestionFacture extends JInternalFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new GestionFacture().setVisible(true); // Assurez-vous que la fenêtre est visible
+                new FenetreFacture().setVisible(true); // Assurez-vous que la fenêtre est visible
             }
         });
     }

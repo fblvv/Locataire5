@@ -20,16 +20,16 @@ import modele.dao.DaoBatiment;
 import modele.dao.DaoBienImmobilier;
 import modele.dao.DaoCharges;
 import modele.dao.DaoFacture;
-import vue.GestionFacture;
+import vue.FenetreFacture;
 
-public class GestionGestionFactures implements ActionListener , ItemListener  {
+public class GestionFactures implements ActionListener , ItemListener  {
 
-	private GestionFacture gestionFactures;
+	private FenetreFacture gestionFactures;
 	private DaoFacture daoFacture;
 	private DaoBienImmobilier daoBienImmobilier;
 	private Boolean ajouterLigne;
 
-	public GestionGestionFactures(GestionFacture gestionFactures) {
+	public GestionFactures(FenetreFacture gestionFactures) {
 		this.gestionFactures = gestionFactures;
 		this.daoFacture = new DaoFacture();
 		this.daoBienImmobilier = new DaoBienImmobilier();
@@ -45,16 +45,11 @@ public class GestionGestionFactures implements ActionListener , ItemListener  {
 
 			switch (buttonValider.getText()) {
 			case "Valider":
-
-				try {
-					filtrerCompteurs();
-					if(this.ajouterLigne == true) {
-						insererFacture();
-					}
-				} catch (SQLException ex) {
-					ex.printStackTrace();
-				}
-
+                try {
+                    insererFacture();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
 				break;
 			case "Ajouter Facture":
 				ajouterReleve();
@@ -87,8 +82,10 @@ public class GestionGestionFactures implements ActionListener , ItemListener  {
 		String Type = (String)rowData[3];
 		String Date =(String)rowData[4];
 		String idBienSelectionne = (String) gestionFactures.getIdBienComboBox().getSelectedItem();
+		System.out.println(idBienSelectionne);
 		BienImmobilier bat = daoBienImmobilier.findById(idBienSelectionne);
 		String idBat = bat.getId_Batiment();
+		System.out.println(idBat);
 
 
 		Facture facture = new Facture(idFacture,Siren,prix,Type,Date,idBienSelectionne,idBat);
@@ -107,12 +104,20 @@ public class GestionGestionFactures implements ActionListener , ItemListener  {
                 || e.getSource() == gestionFactures.getIdBienComboBox()) {
             try {
                 filtrerCompteurs();
+                activerBoutonAjouter();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
         }
     }
-
+    
+    
+    private void activerBoutonAjouter() {
+        String idBienSelectionne = (String) gestionFactures.getIdBienComboBox().getSelectedItem();
+        
+        // Activer le bouton si un bien est sélectionné, sinon le désactiver
+        gestionFactures.getAjouterButton().setEnabled(!"Tous".equals(idBienSelectionne));
+    }
 
 
 	public void filtrerCompteurs() throws SQLException {

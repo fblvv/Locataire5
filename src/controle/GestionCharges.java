@@ -16,14 +16,14 @@ import modele.Charges;
 import modele.Compteur;
 import modele.dao.DaoCharges;
 import vue.FenetreCharges;
-import vue.GestionFacture;
+import vue.FenetreFacture;
 
-public class GestionGestionCharges implements ActionListener {
+public class GestionCharges implements ActionListener {
 
     private FenetreCharges gestionCharges;
     private DaoCharges daocharge;
 
-    public GestionGestionCharges(FenetreCharges gestionCharges) {
+    public GestionCharges(FenetreCharges gestionCharges) {
         this.gestionCharges = gestionCharges;
         this.daocharge = new DaoCharges();
     }

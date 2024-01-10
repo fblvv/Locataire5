@@ -2,7 +2,7 @@ package vue;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import controle.GestionGestionCharges;
+import controle.GestionCharges;
 import modele.BienImmobilier;
 import modele.Charges;
 import modele.dao.DaoBienImmobilier;
@@ -26,14 +26,14 @@ public class FenetreCharges extends JInternalFrame {
     private DaoCharges daoCharge;
     private List<Charges> charges; 
     private JPanel panelBoutons;
-    private GestionGestionCharges gestionClic;
+    private GestionCharges gestionClic;
 
 
     public FenetreCharges() {
         super("Charges", true, true, true, true);
         setSize(800, 600);
 
-        this.gestionClic = new GestionGestionCharges(this);
+        this.gestionClic = new GestionCharges(this);
         this.daoCharge = new DaoCharges();
         this.charges = new ArrayList<>(); 
 

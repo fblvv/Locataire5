@@ -23,7 +23,7 @@ import vue.FenetreLoyer;
 
 import vue.FenetreSoldeToutCompte;
 import vue.FenetreCharges;
-import vue.GestionFacture;
+import vue.FenetreFacture;
 import vue.PageAjoutLocataire;
 import vue.VoirContratLocation;
 
@@ -69,7 +69,7 @@ public class GestionAccueil implements ActionListener {
                 afficherFenetre(new FenetreListeLocataire(), layeredPane);
                 break;
             case "Gestion Factures":
-	            afficherFenetre(new GestionFacture(), layeredPane);
+	            afficherFenetre(new FenetreFacture(), layeredPane);
 	            break;
             case "Gestion Charges":
 	            afficherFenetre(new FenetreCharges(), layeredPane);
