@@ -21,8 +21,8 @@ public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
     @Override
     public Collection<Batiment> findAll() throws SQLException {
         // TODO: Implémenter la récupération de tous les enregistrements de la table Batiment
-    	RequeteSelectBatiment sketuveux = new RequeteSelectBatiment();
-		return find(sketuveux);
+    	RequeteSelectBatiment batiment = new RequeteSelectBatiment();
+		return find(batiment);
     }
 
     @Override

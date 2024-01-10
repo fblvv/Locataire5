@@ -21,17 +21,17 @@ public class DaoBienImmobilier  extends DaoModele<BienImmobilier> implements Dao
 	@Override
 	public Collection<BienImmobilier> findAll() throws SQLException {
 		// TODO Auto-generated method stub
-		RequeteSelectBienImmobilier sketuveux = new RequeteSelectBienImmobilier();
-		return find(sketuveux);
+		RequeteSelectBienImmobilier bienImmobilier = new RequeteSelectBienImmobilier();
+		return find(bienImmobilier);
 	}
 
 	@Override
 	public BienImmobilier findById(String... id) throws SQLException {
-		List<BienImmobilier> bien = find(new RequeteSelectBienImmobilierById(), id);
-        if (bien.isEmpty()) {
+		List<BienImmobilier> bienImmobilier = find(new RequeteSelectBienImmobilierById(), id);
+        if (bienImmobilier.isEmpty()) {
             return null;
         }
-        return bien.get(0);
+        return bienImmobilier.get(0);
 	}
 	
 	

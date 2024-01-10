@@ -18,18 +18,18 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 
 	@Override
 	public Collection<ContratLocation> findAll() throws SQLException {
-    	RequeteSelectContratLocation contratLoc = new RequeteSelectContratLocation();
-		return find(contratLoc);
+    	RequeteSelectContratLocation contratLocation = new RequeteSelectContratLocation();
+		return find(contratLocation);
 	}
 
 	@Override
 	public ContratLocation findById(String... id) throws SQLException {
         // TODO: Implémenter la récupération d'un enregistrement par ID
-    	List<ContratLocation> batiment = find(new RequeteSelectContratLocationById(), id);
-        if (batiment.isEmpty()) {
+    	List<ContratLocation> contratLocation = find(new RequeteSelectContratLocationById(), id);
+        if (contratLocation.isEmpty()) {
             return null;
         }
-        return batiment.get(0);
+        return contratLocation.get(0);
     }
 
 	@Override

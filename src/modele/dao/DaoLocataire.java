@@ -20,15 +20,15 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 	@Override
 	public Collection<Locataire> findAll() throws SQLException {
 
-		RequeteSelectLocataire sketuveux = new RequeteSelectLocataire();
-		return find(sketuveux);
+		RequeteSelectLocataire locataire = new RequeteSelectLocataire();
+		return find(locataire);
 
 	}
 
 	@Override
 	public Locataire findById(String... id) throws SQLException {
-    	Locataire Locataire = findById(new RequeteSelectLocataireById(), id);
-        return Locataire;
+    	Locataire locataire = findById(new RequeteSelectLocataireById(), id);
+        return locataire;
 	}
 
 	@Override

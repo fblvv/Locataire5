@@ -26,11 +26,11 @@ public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 
 	@Override
 	public Facture findById(String... id) throws SQLException {
-		List<Facture> bien = find(new RequeteSelectFactureById(), id);
-        if (bien.isEmpty()) {
+		List<Facture> facture = find(new RequeteSelectFactureById(), id);
+        if (facture.isEmpty()) {
             return null;
         }
-        return bien.get(0);
+        return facture.get(0);
 	}
 
 	@Override

@@ -15,8 +15,8 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur> {
 	@Override
 	public Collection<Compteur> findAll() throws SQLException {
 		// TODO Auto-generated method stub
-		RequeteSelectCompteur sketuveux = new RequeteSelectCompteur();
-		return find(sketuveux);
+		RequeteSelectCompteur compteur = new RequeteSelectCompteur();
+		return find(compteur);
 	}
 
 	@Override

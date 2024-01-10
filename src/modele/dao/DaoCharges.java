@@ -22,11 +22,11 @@ public class DaoCharges extends DaoModele<Charges> implements Dao<Charges> {
 
 	@Override
 	public Charges findById(String... id) throws SQLException {
-		List<Charges> bien = find(new RequeteSelectChargesById(), id);
-        if (bien.isEmpty()) {
+		List<Charges> charge = find(new RequeteSelectChargesById(), id);
+        if (charge.isEmpty()) {
             return null;
         }
-        return bien.get(0);
+        return charge.get(0);
 	}
 
 	@Override
