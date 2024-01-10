@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 import javax.swing.JButton;
 
-import modele.Batiment;
 import modele.Locataire;
 import modele.dao.DaoLocataire;
 import vue.FenetreSoldeToutCompte;
