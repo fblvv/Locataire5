@@ -37,7 +37,7 @@ public class FenetreCompteur extends JInternalFrame {
         this.compteurs = new ArrayList<>();
 
         JPanel panel = new JPanel(new FlowLayout());
-        String[] typesCompteur = {"Tout Type", "Eau", "Électricité", "Gaz"};
+        String[] typesCompteur = {"Tout Type", "Eau", "Electricite", "Gaz"};
         typeCompteurComboBox = new JComboBox<>(new DefaultComboBoxModel<>(typesCompteur));
         panel.add(new JLabel("Type de Compteur: "));
         panel.add(typeCompteurComboBox);
@@ -54,7 +54,7 @@ public class FenetreCompteur extends JInternalFrame {
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(panel, BorderLayout.NORTH);
 
-        String[] columnNames = {"ID Compteur", "Date de Relevé", "Type", "Valeur", "ID Bien"};
+        String[] columnNames = {"ID Compteur", "Date de Releve", "Type", "Valeur", "ID Bien"};
         Object[][] data = new Object[compteurs.size()][5];
         compteurTable = new JTable(new DefaultTableModel(data, columnNames));
         JScrollPane scrollPane = new JScrollPane(compteurTable);

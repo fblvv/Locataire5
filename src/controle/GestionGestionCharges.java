@@ -15,15 +15,15 @@ import javax.swing.table.DefaultTableModel;
 import modele.Charges;
 import modele.Compteur;
 import modele.dao.DaoCharges;
-import vue.GestionCharges;
+import vue.FenetreCharges;
 import vue.GestionFacture;
 
 public class GestionGestionCharges implements ActionListener {
 
-    private GestionCharges gestionCharges;
+    private FenetreCharges gestionCharges;
     private DaoCharges daocharge;
 
-    public GestionGestionCharges(GestionCharges gestionCharges) {
+    public GestionGestionCharges(FenetreCharges gestionCharges) {
         this.gestionCharges = gestionCharges;
         this.daocharge = new DaoCharges();
     }
