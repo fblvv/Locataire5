@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controle.GestionAccueil;
-import javax.swing.JButton;
 
 public class Accueil extends JFrame {
     private static final long serialVersionUID = 1L;
