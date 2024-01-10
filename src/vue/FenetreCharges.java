@@ -20,13 +20,14 @@ public class FenetreCharges extends JInternalFrame {
     private JComboBox<String> typeCompteurComboBox;
     private JComboBox<String> idBienComboBox;
     private JTable compteurTable;
-    private JButton ajouterButton;
+    private JButton imprimerButton;
     private JButton validerButton;
     private JButton annulerButton;
     private DaoCharges daoCharge;
     private List<Charges> charges; 
     private JPanel panelBoutons;
     private GestionCharges gestionClic;
+    private JButton ajouterButton;
 
 
     public FenetreCharges() {
@@ -39,7 +40,7 @@ public class FenetreCharges extends JInternalFrame {
 
         JPanel panel = new JPanel(new FlowLayout());
         String[] typesCompteur = {"Tout Type", "Eau", "Electricite", "Gaz"};
-        typeCompteurComboBox = new JComboBox<>(typesCompteur);
+        //typeCompteurComboBox = new JComboBox<>(typesCompteur);
         panel.add(new JLabel("Type de Charge :"));
         panel.add(typeCompteurComboBox);
 
@@ -51,6 +52,9 @@ public class FenetreCharges extends JInternalFrame {
         // Modification ici pour utiliser BorderLayout
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(panel, BorderLayout.NORTH);
+        
+        typeCompteurComboBox.addItemListener(this.gestionClic);
+        idBienComboBox.addItemListener(this.gestionClic);
 
         String[] columnNames = {"ID Compteur", "Date de Relevé", "Type", "Valeur", "ID Bien"};
         Object[][] data = new Object[charges.size()][5]; // Utilisation de la liste de compteurs
@@ -68,14 +72,19 @@ public class FenetreCharges extends JInternalFrame {
         panelBoutons = new JPanel(new FlowLayout());
         annulerButton = new JButton("Annuler");
         panelBoutons.add(annulerButton);
-        ajouterButton = 	new JButton("Imprimer La Facture");
+        imprimerButton = 	new JButton("Imprimer La Facture");
+        panelBoutons.add(imprimerButton);
+        
+        ajouterButton = new JButton("Ajouter Charge");
+        ajouterButton.addActionListener(this.gestionClic);
+        
         panelBoutons.add(ajouterButton);
         validerButton = new JButton("Valider");
         panelBoutons.add(validerButton);
         getContentPane().add(panelBoutons, BorderLayout.SOUTH);
 
         validerButton.addActionListener(this.gestionClic);
-        ajouterButton.addActionListener(this.gestionClic);
+        imprimerButton.addActionListener(this.gestionClic);
         annulerButton.addActionListener(this.gestionClic);
 
         initComboBoxIdBien();
