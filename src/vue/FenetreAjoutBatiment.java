@@ -60,14 +60,14 @@ public class FenetreAjoutBatiment extends JInternalFrame {
         // Champ pour le code postal
         JLabel libCodePostal = new JLabel("Code Postal");
         libCodePostal.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        champCodePostal = new JTextField();
+        champCodePostal = new JTextField("12345");
         panel.add(libCodePostal);
         panel.add(champCodePostal);
 
      // Champ pour la date de construction
         JLabel libDateConstruction = new JLabel("Date de Construction");
         libDateConstruction.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        champDateConstruction = new JTextField();
+        champDateConstruction = new JTextField("DD/MM/YYYY"); 
         panel.add(libDateConstruction);
         panel.add(champDateConstruction);
 
