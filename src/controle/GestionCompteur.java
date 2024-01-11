@@ -59,15 +59,18 @@ public class GestionCompteur implements ActionListener, ItemListener {
 
     private void ajouterReleve() {
         DefaultTableModel model = (DefaultTableModel) fenetreCompteur.getTable().getModel();
-        model.addRow(new Object[]{"", "DD/MM/YYYY", "Eau,Elec ou Gaz", "Integer", "Bien Valide"});
+        String typeCompteur = (String) fenetreCompteur.getTypeCompteurComboBox().getSelectedItem();
+        String idBien = (String) fenetreCompteur.getIdBienComboBox().getSelectedItem();
 
-        // Récupérez la dernière ligne ajoutée
-        int lastRow = model.getRowCount() - 1;
+        Object[] newRow = new Object[]{
+            "", 
+            "DD/MM/YYYY", 
+            "Tout Type".equals(typeCompteur) ? "Eau,Elec ou Gaz" : typeCompteur, 
+            "Integer", 
+            "Tous".equals(idBien) ? "Bien Valide" : idBien
+        };
 
-        // Appliquez le renderer aux cellules de la dernière ligne
-        for (int i = 0; i < model.getColumnCount(); i++) {
-            JTable table = fenetreCompteur.getTable();
-        }
+        model.addRow(newRow);
     }
 
 
