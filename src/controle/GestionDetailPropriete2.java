@@ -61,14 +61,18 @@ public class GestionDetailPropriete2 implements ActionListener {
     	BienImmobilier bienImmo = daoBienI.findById(get);
     	String nbBat = bienImmo.getId_Batiment();
     	Batiment bat = daoBat.findById(nbBat);
-    	//ContratLocation contratLoc = daoContrat.findById(bienImmo.getId_Bien_Imm());
+    	System.out.println(get);
+    	System.out.println(nbBat);
+    	
+    	//informations du contrat à partir de l'id du bien 
+    	ContratLocation contratLoc = daoContrat.findById(bienImmo.getId_Bien_Imm());
     	//Compteur compt = daoCompteur.findById(nbBat);
         String adresse = bat.getAdresse();
         String commentaire  = "";
         //String Compteur = compt.getTypeCompteur();
         //String ContratsServices = compt.getIdCompteur();
-        //String DateDebut = contratLoc.getDateDebutContrat();
-        //String DateFin = contratLoc.getDateFinContrat();
+        String DateDebut = contratLoc.getDateDebutContrat();
+        String DateFin = contratLoc.getDateFinContrat();
         String Equipements = bat.getEquip_Acces_Tech();
         String NombrePieces = ""+bienImmo.getNb_Piece();
         String StatutOccupation=daoBienI.estOccupe(bienImmo.getId_Bien_Imm());
@@ -76,12 +80,14 @@ public class GestionDetailPropriete2 implements ActionListener {
         String Surface =""+ bienImmo.getSurface();
         String Type = bienImmo.getType_Bien();
         
+        
+     
     	detailPropriete.getChampAdresse().setText(adresse);
     	detailPropriete.getChampCommentaires().setText(commentaire);
     	detailPropriete.getChampCompteur().setText("Compteur");
-    	detailPropriete.getChampContratsServices().setText("Contrat");
-    	detailPropriete.getChampDateDebut().setText("debut");
-    	detailPropriete.getChampDateFin().setText("fin");
+    	detailPropriete.getChampContratsServices().setText(DateDebut);
+    	detailPropriete.getChampDateDebut().setText(DateDebut);
+    	detailPropriete.getChampDateFin().setText(DateFin);
     	detailPropriete.getChampEquipements().setText(Equipements);
     	detailPropriete.getChampNombrePieces().setText(NombrePieces);
     	detailPropriete.getChampStatutOccupation().setText(StatutOccupation);

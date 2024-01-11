@@ -143,7 +143,7 @@ public class GestionContratLocation implements ActionListener{
 	    System.out.println(idLocataire);
 	    
 	    ContratLocation contrat = new ContratLocation(idLocataire,dateDebutContrat,montant,montantLoyer,dateVersementLoyer,dateEntree,dateSortie,depotGarantie
-	    		,dateRevision,periodicitePaiement,dateFinContrat,chargesProvisionnelles,idICC,valICC,caution,idBienImm);
+	    		,dateRevision,periodicitePaiement,dateFinContrat,chargesProvisionnelles,idICC,caution,idBienImm);
 
 	    
 	    DaoContratLocation daoContrat = new DaoContratLocation();

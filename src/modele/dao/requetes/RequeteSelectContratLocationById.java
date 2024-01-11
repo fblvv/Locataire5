@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class RequeteSelectContratLocationById extends Requete<ContratLocation> {
     @Override
     public String requete() {
-        return "SELECT * FROM CONTRAT_LOCATION WHERE DATE_DEBUT_CONTRAT = ?";
+        return "SELECT * FROM CONTRAT_LOCATION WHERE ID_BIEN = ?";
     }
 
     @Override
@@ -18,6 +18,6 @@ public class RequeteSelectContratLocationById extends Requete<ContratLocation> {
 
     @Override
     public void parametres(PreparedStatement prSt, ContratLocation data) throws SQLException {
-        prSt.setDate(1, java.sql.Date.valueOf(data.getDateDebutContrat()));
+        prSt.setString(1,data.getIdBienImm());
     }
 }
