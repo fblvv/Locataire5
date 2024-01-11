@@ -349,16 +349,6 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
         panelDroite.add(selecteurIdBien, gbc_selecteurIdBien);
         
         
-        selecteurIdBien.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    gestionClic.afficherInfoLogement();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                    // Gérer l'exception, par exemple afficher un message d'erreur à l'utilisateur
-                }
-            }
-        });
         
         
         initComboBox();
@@ -479,18 +469,31 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
             int i = 0;
             for (BienImmobilier bien : biens) {
                 ids[i] = bien.getId_Bien_Imm();
-                System.out.println(ids[i]);
                 i++;
             }
 
             // Create JComboBox with IDs
             selecteurIdBien.setModel(new DefaultComboBoxModel<>(ids));
 
+            // Add ActionListener to update information when an item is selected
+            selecteurIdBien.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        gestionClic.afficherInfoLogement();
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                        // Handle the exception, e.g., show an error message to the user
+                    }
+                }
+            });
+
         } catch (SQLException e) {
             e.printStackTrace();
             // Handle the exception, e.g., show an error message to the user
         }
     }
+
     
     
     

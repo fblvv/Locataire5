@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
@@ -64,15 +67,32 @@ public class GestionDetailPropriete2 implements ActionListener {
     	System.out.println(get);
     	System.out.println(nbBat);
     	
-    	//informations du contrat à partir de l'id du bien 
-    	ContratLocation contratLoc = daoContrat.findById(bienImmo.getId_Bien_Imm());
+    	ContratLocation contratLoc =null;
+    	
+    	//informations du contrat à partir de l'id du bien
+    	Collection<ContratLocation>contrats=new LinkedList<>();
+    	
+    	contrats=daoContrat.findAll();
+    	
+    	for (ContratLocation contrat:contrats) {
+    		if (contrat.getIdBienImm().equals(get)) {
+    			contratLoc=contrat;
+    		}
+    	}
+    	
+    	 
+
     	//Compteur compt = daoCompteur.findById(nbBat);
         String adresse = bat.getAdresse();
         String commentaire  = "";
         //String Compteur = compt.getTypeCompteur();
         //String ContratsServices = compt.getIdCompteur();
-        String DateDebut = contratLoc.getDateDebutContrat();
-        String DateFin = contratLoc.getDateFinContrat();
+        String DateDebut = "";
+        String DateFin ="";
+        if(!(contratLoc==null)) {
+         DateDebut = contratLoc.getDateDebutContrat();
+         DateFin = contratLoc.getDateFinContrat();
+        }
         String Equipements = bat.getEquip_Acces_Tech();
         String NombrePieces = ""+bienImmo.getNb_Piece();
         String StatutOccupation=daoBienI.estOccupe(bienImmo.getId_Bien_Imm());
