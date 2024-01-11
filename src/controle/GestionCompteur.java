@@ -1,6 +1,5 @@
 package controle;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -11,11 +10,7 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import modele.Compteur;
@@ -59,15 +54,18 @@ public class GestionCompteur implements ActionListener, ItemListener {
 
     private void ajouterReleve() {
         DefaultTableModel model = (DefaultTableModel) fenetreCompteur.getTable().getModel();
-        model.addRow(new Object[]{"", "DD/MM/YYYY", "Eau,Elec ou Gaz", "Integer", "Bien Valide"});
+        String typeCompteur = (String) fenetreCompteur.getTypeCompteurComboBox().getSelectedItem();
+        String idBien = (String) fenetreCompteur.getIdBienComboBox().getSelectedItem();
 
-        // Récupérez la dernière ligne ajoutée
-        int lastRow = model.getRowCount() - 1;
+        Object[] newRow = new Object[]{
+            "sketuveux", 
+            "YYYY-MM-DD", 
+            "Tout Type".equals(typeCompteur) ? "" : typeCompteur, 
+            "Integer", 
+            "Tous".equals(idBien) ? "" : idBien
+        };
 
-        // Appliquez le renderer aux cellules de la dernière ligne
-        for (int i = 0; i < model.getColumnCount(); i++) {
-            JTable table = fenetreCompteur.getTable();
-        }
+        model.addRow(newRow);
     }
 
 

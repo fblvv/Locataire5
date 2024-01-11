@@ -8,8 +8,6 @@ import modele.Compteur;
 import modele.dao.DaoBienImmobilier;
 import modele.dao.DaoCompteur;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -65,6 +63,7 @@ public class FenetreCompteur extends JInternalFrame {
         annulerButton= new JButton("Annuler");
         panelBoutons.add(annulerButton);
         ajouterButton = new JButton("Ajouter Relevé");
+        ajouterButton.setEnabled(false);
         panelBoutons.add(ajouterButton);
         
         validerButton = new JButton("Valider");
