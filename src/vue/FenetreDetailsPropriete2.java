@@ -41,7 +41,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
     private JTextField champDateDebut;
     private JTextField champDateFin;
     private JTextField champNombrePieces;
-    private JTable table;
+    private JTable tableLocataire;
     private JTextField champStatutOccupation;
     private JTextField champContratsServices;
     private JTextField champCommentaires;
@@ -261,8 +261,8 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		gbc_scrollPaneLocatairesActuels.gridy = 11;
 		panelGauche.add(scrollPaneLocatairesActuels, gbc_scrollPaneLocatairesActuels);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		tableLocataire = new JTable();
+		tableLocataire.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
 				{null, null, null},
@@ -271,7 +271,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 				"ID", "Nom", "Durée du séjour"
 			}
 		));
-		scrollPaneLocatairesActuels.setViewportView(table);
+		scrollPaneLocatairesActuels.setViewportView(tableLocataire);
 		
 		JLabel labelStatutOccupation = new JLabel("Statut d'Occupation:");
 		GridBagConstraints gbc_labelStatutOccupation = new GridBagConstraints();
@@ -349,16 +349,6 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
         panelDroite.add(selecteurIdBien, gbc_selecteurIdBien);
         
         
-        selecteurIdBien.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    gestionClic.afficherInfoLogement();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                    // Gérer l'exception, par exemple afficher un message d'erreur à l'utilisateur
-                }
-            }
-        });
         
         
         initComboBox();
@@ -392,10 +382,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
         		{null, null, null},
         		{null, null, null},
         		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
+
         	},
         	new String[] {
         		"Date", "Montant", "Mode de paiement"
@@ -469,28 +456,40 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
     private void initComboBox() {
         DaoBienImmobilier daoBienImmobilier = new DaoBienImmobilier();
         try {
-            // Fetch all biens immobiliers
+ 
             Collection<BienImmobilier> biens = daoBienImmobilier.findAll();
 
-            // Create an array to store IDs
+
             String[] ids = new String[biens.size()];
 
-            // Populate the array with IDs
             int i = 0;
             for (BienImmobilier bien : biens) {
                 ids[i] = bien.getId_Bien_Imm();
-                System.out.println(ids[i]);
                 i++;
             }
 
-            // Create JComboBox with IDs
+
             selecteurIdBien.setModel(new DefaultComboBoxModel<>(ids));
+
+
+            selecteurIdBien.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        gestionClic.afficherInfoLogement();
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+          
+                    }
+                }
+            });
 
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle the exception, e.g., show an error message to the user
+        
         }
     }
+
     
     
     
@@ -585,5 +584,15 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 	public void setChampCommentaires(JTextField champCommentaires) {
 		this.champCommentaires = champCommentaires;
 	}
+	
+	public JTable getTableLocataire() {
+		return tableLocataire;
+	}
+	
+	public JTable getTablePaiement() {
+		return tablePaiements;
+	}
+	
+	
 
 }

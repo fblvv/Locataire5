@@ -60,17 +60,17 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 	        String dateDebutContrat = curseur.getString("Date_Debut_Contrat");
 	        double montant = curseur.getDouble("Montant");
 	        double montantLoyer = curseur.getDouble("Montant_Loyer");
-	        String dateVersementLoyer = curseur.getString("Date_Versement_Loyer");
+	        String dateVersementLoyer = curseur.getString("Date_De_Versement_Loyer");
 	        String dateEntree = curseur.getString("Date_Entree");
 	        String dateSortie = curseur.getString("Date_Sortie");
-	        String depotGarantie = curseur.getString("Depot_Garantie");
-	        String dateRevision = curseur.getString("Date_Révision");
-	        String periodicitePaiement = curseur.getString("Périodicité_Paiement");
+	        String depotGarantie = curseur.getString("Depot_De_Garantie");
+	        String dateRevision = curseur.getString("Date_Revision");
+	        String periodicitePaiement = curseur.getString("Periodicite_Paiement");
 	        String dateFinContrat = curseur.getString("Date_Fin_Contrat");
 	        double chargesProvisionnelles = curseur.getDouble("Charges_Provisionnelles");
 	        String idICC = curseur.getString("Id_ICC");
 	        double caution = curseur.getDouble("Caution");
-	        String idBien =curseur.getString("Id_Bien");
+	        String idBien =curseur.getString("IdBien");
 
 	        // Créer et retourner une nouvelle instance de ContratLocation
 	        ContratLocation contratLocation = new ContratLocation(id,dateDebutContrat,montant,montantLoyer
