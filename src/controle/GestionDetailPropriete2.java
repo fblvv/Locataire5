@@ -16,11 +16,13 @@ import modele.BienImmobilier;
 import modele.Compteur;
 import modele.ContratLocation;
 import modele.Locataire;
+import modele.Loyer;
 import modele.dao.DaoBatiment;
 import modele.dao.DaoBienImmobilier;
 import modele.dao.DaoCompteur;
 import modele.dao.DaoContratLocation;
 import modele.dao.DaoLocataire;
+import modele.dao.DaoLoyer;
 import modele.dao.requetes.RequeteSelectBienImmobilierById;
 import vue.FenetreDetailsPropriete2; // Ajout de l'importation
 
@@ -31,7 +33,9 @@ public class GestionDetailPropriete2 implements ActionListener {
     private DaoBatiment daoBat;
     private DaoCompteur daoCompteur;
     private DaoContratLocation daoContrat;
-
+    private DaoLocataire daoLocataire;
+    private DaoLoyer daoLoyer;
+    
 
     public GestionDetailPropriete2(FenetreDetailsPropriete2 detailPropriete) {
         this.detailPropriete = detailPropriete;
@@ -39,6 +43,8 @@ public class GestionDetailPropriete2 implements ActionListener {
         this.daoBat = new DaoBatiment();
         this.daoCompteur = new DaoCompteur();
         this.daoContrat = new DaoContratLocation();
+        this.daoLocataire = new DaoLocataire();
+        this.daoLoyer=new DaoLoyer();
     }
 
     @Override
@@ -92,13 +98,39 @@ public class GestionDetailPropriete2 implements ActionListener {
         if(!(contratLoc==null)) {
          DateDebut = contratLoc.getDateDebutContrat();
          DateFin = contratLoc.getDateFinContrat();
+         
+       //recuperation des infos du locataire 
+         Locataire locataire =daoLocataire.findById(contratLoc.getIdLocataire());
+         
+         //remplissage du tableau 
+         DefaultTableModel tableModel = (DefaultTableModel)detailPropriete.getTableLocataire().getModel();
+         tableModel.setRowCount(0);
+
+         tableModel.addRow(new Object[]{locataire.getId_Locataire(),locataire.getNom()+locataire.getPrenom(),"xxx"});
+         
+        //recuperation des loyers
+         Collection<Loyer>loyers=new LinkedList<>();
+         loyers =daoLoyer.findByIds(contratLoc.getIdLocataire());
+         
+         //remplissage du tableau 
+         DefaultTableModel tableModel_2 = (DefaultTableModel)detailPropriete.getTablePaiement().getModel();
+         tableModel_2.setRowCount(0);
+         
+         for(Loyer loyer:loyers) {
+         tableModel_2.addRow(new Object[]{loyer.getDatePaiement(),loyer.getMontantPaiement(),loyer.getTypePaiement()});
+         }
         }
+        
+        
         String Equipements = bat.getEquip_Acces_Tech();
         String NombrePieces = ""+bienImmo.getNb_Piece();
         String StatutOccupation=daoBienI.estOccupe(bienImmo.getId_Bien_Imm());
         
         String Surface =""+ bienImmo.getSurface();
         String Type = bienImmo.getType_Bien();
+        
+        
+        
         
         
      
