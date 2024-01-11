@@ -1,5 +1,6 @@
 package controle;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -11,7 +12,10 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import modele.Compteur;
@@ -55,30 +59,46 @@ public class GestionCompteur implements ActionListener, ItemListener {
 
     private void ajouterReleve() {
         DefaultTableModel model = (DefaultTableModel) fenetreCompteur.getTable().getModel();
-        model.addRow(new Object[]{"", "", "", "", ""});
-    }
+        model.addRow(new Object[]{"", "DD/MM/YYYY", "Eau,Elec ou Gaz", "Integer", "Bien Valide"});
 
-    private void insererCompteur() throws SQLException {
-        DefaultTableModel model = (DefaultTableModel) fenetreCompteur.getTable().getModel();
-        int selectedRow = fenetreCompteur.getTable().getSelectedRow();
+        // Récupérez la dernière ligne ajoutée
+        int lastRow = model.getRowCount() - 1;
 
-        // Assuming your columns are in the order of ID, Date, Type, Valeur, ID_Bien
-        Object[] rowData = new Object[5];
-        for (int i = 0; i < 5; i++) {
-            rowData[i] = model.getValueAt(selectedRow, i);
+        // Appliquez le renderer aux cellules de la dernière ligne
+        for (int i = 0; i < model.getColumnCount(); i++) {
+            JTable table = fenetreCompteur.getTable();
         }
-    	String idCompteur = (String)rowData[0];
-    	String dateReleve = (String)rowData[1];
-    	String typeCompteur =(String)rowData[2];
-    	Double valeur = Double.parseDouble((String)rowData[3]);
-    	String idBienImm =(String)rowData[4];
-        
-        Compteur compteur = new Compteur(idCompteur,dateReleve,typeCompteur,valeur,idBienImm);
-
-        daoCompteur.create(compteur);
-
-        filtrerCompteurs();
     }
+
+
+
+        private void insererCompteur() throws SQLException {
+            DefaultTableModel model = (DefaultTableModel) fenetreCompteur.getTable().getModel();
+            int selectedRow = fenetreCompteur.getTable().getSelectedRow();
+        
+            // Vérifier si une ligne est sélectionnée
+            if (selectedRow >= 0) {
+                // Assuming your columns are in the order of ID, Date, Type, Valeur, ID_Bien
+                Object[] rowData = new Object[5];
+                for (int i = 0; i < 5; i++) {
+                    rowData[i] = model.getValueAt(selectedRow, i);
+                }
+                String idCompteur = (String) rowData[0];
+                String dateReleve = (String) rowData[1];
+                String typeCompteur = (String) rowData[2];
+                Double valeur = Double.parseDouble((String) rowData[3]);
+                String idBienImm = (String) rowData[4];
+        
+                Compteur compteur = new Compteur(idCompteur, dateReleve, typeCompteur, valeur, idBienImm);
+        
+                daoCompteur.create(compteur);
+        
+                filtrerCompteurs();
+            } else {
+            	JOptionPane.showMessageDialog(fenetreCompteur, "Aucune ligne sélectionnée. Veuillez sélectionner une ligne à insérer.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    
     
 
     @Override
