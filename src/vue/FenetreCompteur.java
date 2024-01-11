@@ -65,6 +65,7 @@ public class FenetreCompteur extends JInternalFrame {
         annulerButton= new JButton("Annuler");
         panelBoutons.add(annulerButton);
         ajouterButton = new JButton("Ajouter Relevé");
+        ajouterButton.setEnabled(false);
         panelBoutons.add(ajouterButton);
         
         validerButton = new JButton("Valider");

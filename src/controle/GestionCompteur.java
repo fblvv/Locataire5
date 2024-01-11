@@ -63,11 +63,11 @@ public class GestionCompteur implements ActionListener, ItemListener {
         String idBien = (String) fenetreCompteur.getIdBienComboBox().getSelectedItem();
 
         Object[] newRow = new Object[]{
-            "", 
-            "DD/MM/YYYY", 
-            "Tout Type".equals(typeCompteur) ? "Eau,Elec ou Gaz" : typeCompteur, 
+            "sketuveux", 
+            "YYYY-MM-DD", 
+            "Tout Type".equals(typeCompteur) ? "" : typeCompteur, 
             "Integer", 
-            "Tous".equals(idBien) ? "Bien Valide" : idBien
+            "Tous".equals(idBien) ? "" : idBien
         };
 
         model.addRow(newRow);
