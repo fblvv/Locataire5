@@ -1,7 +1,6 @@
 package vue;
 
 import java.awt.BorderLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -11,7 +10,9 @@ import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -52,6 +53,8 @@ public class FenetreBien extends JInternalFrame {
     private GestionAjoutBienImmo gestionClic;
 
     private JComboBox<String> comboBoxBatiment;
+    private JComboBox<String> comboBoxTypeBien; 
+    private JSpinner spinnerEtage;
 
     public FenetreBien() {
         this.gestionClic = new GestionAjoutBienImmo(this);
@@ -129,9 +132,12 @@ public class FenetreBien extends JInternalFrame {
         textFieldNbPiece = new JTextField(10);
         panelAutres.add(textFieldNbPiece);
 
-        panelAutres.add(new JLabel("Type Bien:", SwingConstants.RIGHT));
-        textFieldTypeBien = new JTextField(10);
-        panelAutres.add(textFieldTypeBien);
+        panelAutres.add(new JLabel("Type de Bien:", SwingConstants.RIGHT));
+        
+        // La JComboBox avec les valeurs de T1 à T4
+        String[] typesBien = {"T1", "T2", "T3", "T4"};
+        comboBoxTypeBien = new JComboBox<>(typesBien);
+        panelAutres.add(comboBoxTypeBien);
 
         panelAutres.add(new JLabel("Nom Proprio:", SwingConstants.RIGHT));
         textFieldNomProprio = new JTextField(10);
@@ -141,9 +147,10 @@ public class FenetreBien extends JInternalFrame {
         textFieldIdentifiant = new JTextField(10);
         panelAutres.add(textFieldIdentifiant);
 
-        panelAutres.add(new JLabel("Etage:", SwingConstants.RIGHT));
-        textFieldEtage = new JTextField(10);
-        panelAutres.add(textFieldEtage);
+        panelAutres.add(new JLabel("Étage:", SwingConstants.RIGHT));
+        SpinnerNumberModel etageModel = new SpinnerNumberModel(0, 0, 20, 1); 
+        spinnerEtage = new JSpinner(etageModel);
+        panelAutres.add(spinnerEtage);
 
 
         // Panel de boutons en bas
@@ -293,7 +300,7 @@ public class FenetreBien extends JInternalFrame {
 
 
 	public String getTextFieldTypeBien() {
-		return textFieldTypeBien.getText();
+		return comboBoxTypeBien.getSelectedItem().toString();
 	}
 
 
@@ -323,7 +330,7 @@ public class FenetreBien extends JInternalFrame {
 
 
 	public String getTextFieldEtage() {
-		return textFieldEtage.getText();
+		return spinnerEtage.getName();
 	}
 
 
