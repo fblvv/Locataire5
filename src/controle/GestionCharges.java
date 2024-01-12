@@ -97,7 +97,7 @@ public class GestionCharges implements ActionListener , ItemListener {
 		Double montant = Double.parseDouble((String)rowData[1]);
 		String date  = (String)rowData[2];
 		String type = (String)rowData[3];
-		String pourcentage = (String)rowData[3];
+		String pourcentage = (String)rowData[4];
 
 		String idBienSelectionne = (String) gestionCharges.getIdBienComboBox().getSelectedItem();
 		logger.info(idBienSelectionne);
@@ -113,9 +113,12 @@ public class GestionCharges implements ActionListener , ItemListener {
 
 	private void activerBoutonAjouter() {
 		String idBienSelectionne = (String) gestionCharges.getIdBienComboBox().getSelectedItem();
+		String typeCompteur = (String) gestionCharges.getTypeCompteurComboBox().getSelectedItem();
+
 
 		// Activer le bouton si un bien est sélectionné, sinon le désactiver
 		gestionCharges.getAjouterButton().setEnabled(!"Tous".equals(idBienSelectionne));
+		gestionCharges.getAjouterButton().setEnabled(!"Tout Type".equals(typeCompteur));
 	}
 
 
