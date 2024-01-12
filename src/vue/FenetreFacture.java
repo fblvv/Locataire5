@@ -2,20 +2,14 @@ package vue;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import controle.GestionCharges;
 import controle.GestionFactures;
 import modele.BienImmobilier;
-import modele.Charges;
 
 import modele.Facture;
 import modele.dao.DaoBienImmobilier;
-import modele.dao.DaoCharges;
-import modele.dao.DaoFacture;
 import modele.dao.DaoFacture;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,7 +17,8 @@ import java.util.List;
 
 public class FenetreFacture extends JInternalFrame { 
 
-    private JComboBox<String> typefactureComboBox;
+    private static final long serialVersionUID = 4265026694822721451L;
+	private JComboBox<String> typefactureComboBox;
     private JComboBox<String> idBienComboBox;
     private JTable factureTable;
     private JButton ajouterButton;
@@ -126,16 +121,5 @@ public class FenetreFacture extends JInternalFrame {
     
     public JButton getAjouterButton() {
         return ajouterButton;
-    }
-
-
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new FenetreFacture().setVisible(true); // Assurez-vous que la fenêtre est visible
-            }
-        });
     }
 }

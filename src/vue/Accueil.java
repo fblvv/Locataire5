@@ -1,4 +1,3 @@
-
 package vue;
 
 import java.awt.EventQueue;
@@ -21,6 +20,7 @@ public class Accueil extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private GestionAccueil gestionClic;
+    private static final String POLICE = "Tahoma";
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -52,96 +52,96 @@ public class Accueil extends JFrame {
         contentPane.add(lblImageBG);
 
         JMenuBar menuBar = new JMenuBar();
-        menuBar.setFont(new Font("Lucida Grande", Font.BOLD, 18));
+        menuBar.setFont(new Font(POLICE, Font.BOLD, 18));
         menuBar.setBounds(20, 30, 1200, 30);
         contentPane.add(menuBar);
 
         //q
         JMenu mnLocataire = new JMenu("Locataire");
-        mnLocataire.setFont(new Font("Lucida Grande", Font.BOLD, 18));
+        mnLocataire.setFont(new Font(POLICE, Font.BOLD, 18));
         menuBar.add(mnLocataire);
 
         JMenuItem mntmAjouterLocataire = new JMenuItem("Ajouter locataire");
-        mntmAjouterLocataire.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmAjouterLocataire.setFont(new Font(POLICE, Font.PLAIN, 15));
         mntmAjouterLocataire.addActionListener(this.gestionClic);
         mnLocataire.add(mntmAjouterLocataire);
 
         JMenuItem mntmConsultation = new JMenuItem("Liste des locataires");
-        mntmConsultation.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmConsultation.setFont(new Font(POLICE, Font.PLAIN, 15));
         mntmConsultation.addActionListener(this.gestionClic);
         mnLocataire.add(mntmConsultation);
         
         JMenuItem mntmConsultationLocation = new JMenuItem("Consulter contrat de location");
-        mntmConsultationLocation.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmConsultationLocation.setFont(new Font(POLICE, Font.PLAIN, 15));
         mntmConsultationLocation.addActionListener(this.gestionClic);
         mnLocataire.add(mntmConsultationLocation);
 
         JMenu mnLogement = new JMenu("Logement");
-        mnLogement.setFont(new Font("Lucida Grande", Font.BOLD, 18));
+        mnLogement.setFont(new Font(POLICE, Font.BOLD, 18));
         menuBar.add(mnLogement);
 
         JMenuItem mntmAjouterLogement = new JMenuItem("Ajouter logement");
-        mntmAjouterLogement.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmAjouterLogement.setFont(new Font(POLICE, Font.PLAIN, 15));
         mntmAjouterLogement.addActionListener(this.gestionClic);
         mnLogement.add(mntmAjouterLogement);
 
         JMenuItem mntmConsulterLogement = new JMenuItem("Consulter logement");
-        mntmConsulterLogement.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmConsulterLogement.setFont(new Font(POLICE, Font.PLAIN, 15));
         mntmConsulterLogement.addActionListener(this.gestionClic);
         mnLogement.add(mntmConsulterLogement);
 
         JMenu mnDocument = new JMenu("Documents");
-        mnDocument.setFont(new Font("Lucida Grande", Font.BOLD, 19));
+        mnDocument.setFont(new Font(POLICE, Font.BOLD, 19));
         menuBar.add(mnDocument);
 
         JMenuItem mntmGestionFacture = new JMenuItem("Gestion Charges");
-        mntmGestionFacture.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmGestionFacture.setFont(new Font(POLICE, Font.PLAIN, 15));
         mntmGestionFacture.addActionListener(this.gestionClic);
         mnDocument.add(mntmGestionFacture);
         
         JMenuItem mntmGestionLoyer = new JMenuItem("Ajouter loyers");
-        mntmGestionLoyer.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmGestionLoyer.setFont(new Font(POLICE, Font.PLAIN, 15));
         mntmGestionLoyer.addActionListener(this.gestionClic);
         mnDocument.add(mntmGestionLoyer);
         
         JMenuItem mntmNewMenuItem = new JMenuItem("Gestion Factures");
-        mntmNewMenuItem.setFont(new Font("Dialog", Font.PLAIN, 15));
+        mntmNewMenuItem.setFont(new Font(POLICE, Font.PLAIN, 15));
         mntmNewMenuItem.addActionListener(this.gestionClic);
         mnDocument.add(mntmNewMenuItem);
         
         JMenu mnAjouterBatiment = new JMenu("Ajouter Batiment");
-        mnAjouterBatiment.setFont(new Font("Lucida Grande", Font.BOLD, 19));
+        mnAjouterBatiment.setFont(new Font(POLICE, Font.BOLD, 19));
         menuBar.add(mnAjouterBatiment);
         
         JMenuItem mntmAjouterBatiment = new JMenuItem("Ajouter Nouveau Batiment");
-        mntmAjouterBatiment.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmAjouterBatiment.setFont(new Font(POLICE, Font.PLAIN, 15));
         mntmAjouterBatiment.addActionListener(this.gestionClic);
         mnAjouterBatiment.add(mntmAjouterBatiment);
         
         JMenu mnGestionCompteur = new JMenu("Gestion Compteur");
-        mnGestionCompteur.setFont(new Font("Lucida Grande", Font.BOLD, 19));
+        mnGestionCompteur.setFont(new Font(POLICE, Font.BOLD, 19));
         menuBar.add(mnGestionCompteur);
         
         JMenuItem mntmCompteur = new JMenuItem("Gestion des Compteurs");
-        mntmCompteur.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmCompteur.setFont(new Font(POLICE, Font.PLAIN, 15));
         mntmCompteur.addActionListener(this.gestionClic);
         mnGestionCompteur.add(mntmCompteur);
     
         JMenu mnLireCSV = new JMenu("CSV");
-        mnLireCSV.setFont(new Font("Lucida Grande", Font.BOLD, 19));
+        mnLireCSV.setFont(new Font(POLICE, Font.BOLD, 19));
         menuBar.add(mnLireCSV);
         
         JMenuItem mntmLireCSV = new JMenuItem("Lire fichier CSV");
-        mntmLireCSV.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmLireCSV.setFont(new Font(POLICE, Font.PLAIN, 15));
         mntmLireCSV.addActionListener(this.gestionClic);
         mnLireCSV.add(mntmLireCSV);
         
         JMenu mnSoldeDeToutCompte = new JMenu("Solde de tout compte");
-        mnSoldeDeToutCompte.setFont(new Font("Lucida Grande", Font.BOLD, 19));
+        mnSoldeDeToutCompte.setFont(new Font(POLICE, Font.BOLD, 19));
         menuBar.add(mnSoldeDeToutCompte);
         
         JMenuItem mntmSoldeDeToutCompte = new JMenuItem("Vérifier le Solde de tout compte");
-        mntmSoldeDeToutCompte.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        mntmSoldeDeToutCompte.setFont(new Font(POLICE, Font.PLAIN, 15));
         mntmSoldeDeToutCompte.addActionListener(this.gestionClic);
         mnSoldeDeToutCompte.add(mntmSoldeDeToutCompte);
     

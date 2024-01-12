@@ -25,12 +25,12 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import controle.GestionDetailPropriete2;
-import controle.GestionListeLocataire;
 import modele.BienImmobilier;
 import modele.dao.DaoBienImmobilier;
 
 public class FenetreDetailsPropriete2 extends JInternalFrame {
 	
+	private static final long serialVersionUID = -5616565275219625019L;
 	private GestionDetailPropriete2 gestionClic;
     private JPanel contentPane;
     private JTextField champAdresse;
@@ -48,6 +48,8 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
     private JTable tablePaiements;
     private JTable tableHistorique;
     private JComboBox<String> selecteurIdBien;
+    
+    private static final String POLICE = "Tahoma";
 
 
     public static void main(String[] args) {
@@ -72,194 +74,194 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
-        GridBagLayout gbl_contentPane = new GridBagLayout();
-        gbl_contentPane.columnWidths = new int[] { 266, 40, 266 };
-        gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 30 };
-        gbl_contentPane.columnWeights = new double[] { 1.0, 0.0, 0.0 };
-        gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 1.0 };
-        contentPane.setLayout(gbl_contentPane);
+        GridBagLayout gblContentPane = new GridBagLayout();
+        gblContentPane.columnWidths = new int[] { 266, 40, 266 };
+        gblContentPane.rowHeights = new int[] { 0, 0, 0, 30 };
+        gblContentPane.columnWeights = new double[] { 1.0, 0.0, 0.0 };
+        gblContentPane.rowWeights = new double[] { 0.0, 0.0, 1.0 };
+        contentPane.setLayout(gblContentPane);
 		
 		JPanel panelGauche = new JPanel();
-		GridBagConstraints gbc_panelGauche = new GridBagConstraints();
-		gbc_panelGauche.fill = GridBagConstraints.BOTH;
-		gbc_panelGauche.insets = new Insets(0, 0, 5, 5);
-		gbc_panelGauche.gridx = 0;
-		gbc_panelGauche.gridy = 0;
-		contentPane.add(panelGauche, gbc_panelGauche);
-		GridBagLayout gbl_panelGauche = new GridBagLayout();
-		gbl_panelGauche.columnWidths = new int[]{114, 207, 0};
-		gbl_panelGauche.rowHeights = new int[] {100, 0, 0, 0, 0, 0, 0, 0, 0, 30, 37, 75, 30, 0, 0, 0, 30};
-		gbl_panelGauche.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-		gbl_panelGauche.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-		panelGauche.setLayout(gbl_panelGauche);
+		GridBagConstraints gbcPanelGauche = new GridBagConstraints();
+		gbcPanelGauche.fill = GridBagConstraints.BOTH;
+		gbcPanelGauche.insets = new Insets(0, 0, 5, 5);
+		gbcPanelGauche.gridx = 0;
+		gbcPanelGauche.gridy = 0;
+		contentPane.add(panelGauche, gbcPanelGauche);
+		GridBagLayout gblPanelGauche = new GridBagLayout();
+		gblPanelGauche.columnWidths = new int[]{114, 207, 0};
+		gblPanelGauche.rowHeights = new int[] {100, 0, 0, 0, 0, 0, 0, 0, 0, 30, 37, 75, 30, 0, 0, 0, 30};
+		gblPanelGauche.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gblPanelGauche.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+		panelGauche.setLayout(gblPanelGauche);
 		
 		JLabel labelTypeLogement = new JLabel("Type de Logement");
 		labelTypeLogement.setToolTipText("");
 		labelTypeLogement.setForeground(Color.BLACK);
 		labelTypeLogement.setBackground(Color.LIGHT_GRAY);
-		labelTypeLogement.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		GridBagConstraints gbc_labelTypeLogement = new GridBagConstraints();
-		gbc_labelTypeLogement.gridwidth = 2;
-		gbc_labelTypeLogement.insets = new Insets(0, 0, 5, 0);
-		gbc_labelTypeLogement.gridx = 0;
-		gbc_labelTypeLogement.gridy = 0;
-		panelGauche.add(labelTypeLogement, gbc_labelTypeLogement);
+		labelTypeLogement.setFont(new Font(POLICE, Font.PLAIN, 16));
+		GridBagConstraints gbcLabelTypeLogement = new GridBagConstraints();
+		gbcLabelTypeLogement.gridwidth = 2;
+		gbcLabelTypeLogement.insets = new Insets(0, 0, 5, 0);
+		gbcLabelTypeLogement.gridx = 0;
+		gbcLabelTypeLogement.gridy = 0;
+		panelGauche.add(labelTypeLogement, gbcLabelTypeLogement);
 		
 		JLabel labelAdresse = new JLabel("Adresse:");
 		labelAdresse.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_labelAdresse = new GridBagConstraints();
-		gbc_labelAdresse.insets = new Insets(0, 0, 5, 5);
-		gbc_labelAdresse.anchor = GridBagConstraints.WEST;
-		gbc_labelAdresse.gridx = 0;
-		gbc_labelAdresse.gridy = 1;
-		panelGauche.add(labelAdresse, gbc_labelAdresse);
+		GridBagConstraints gbcLabelAdresse = new GridBagConstraints();
+		gbcLabelAdresse.insets = new Insets(0, 0, 5, 5);
+		gbcLabelAdresse.anchor = GridBagConstraints.WEST;
+		gbcLabelAdresse.gridx = 0;
+		gbcLabelAdresse.gridy = 1;
+		panelGauche.add(labelAdresse, gbcLabelAdresse);
 		
 		champAdresse = new JTextField();
 		champAdresse.setColumns(5);
-		GridBagConstraints gbc_champAdresse = new GridBagConstraints();
-		gbc_champAdresse.insets = new Insets(0, 0, 5, 0);
-		gbc_champAdresse.fill = GridBagConstraints.HORIZONTAL;
-		gbc_champAdresse.gridx = 1;
-		gbc_champAdresse.gridy = 1;
-		panelGauche.add(champAdresse, gbc_champAdresse);
+		GridBagConstraints gbcChampAdresse = new GridBagConstraints();
+		gbcChampAdresse.insets = new Insets(0, 0, 5, 0);
+		gbcChampAdresse.fill = GridBagConstraints.HORIZONTAL;
+		gbcChampAdresse.gridx = 1;
+		gbcChampAdresse.gridy = 1;
+		panelGauche.add(champAdresse, gbcChampAdresse);
 		
 		JLabel labelType = new JLabel("Type:");
-		GridBagConstraints gbc_labelType = new GridBagConstraints();
-		gbc_labelType.anchor = GridBagConstraints.WEST;
-		gbc_labelType.insets = new Insets(0, 0, 5, 5);
-		gbc_labelType.gridx = 0;
-		gbc_labelType.gridy = 2;
-		panelGauche.add(labelType, gbc_labelType);
+		GridBagConstraints gbcLabelType = new GridBagConstraints();
+		gbcLabelType.anchor = GridBagConstraints.WEST;
+		gbcLabelType.insets = new Insets(0, 0, 5, 5);
+		gbcLabelType.gridx = 0;
+		gbcLabelType.gridy = 2;
+		panelGauche.add(labelType, gbcLabelType);
 		
 		champType = new JTextField();
 		champType.setColumns(5);
-		GridBagConstraints gbc_champType = new GridBagConstraints();
-		gbc_champType.insets = new Insets(0, 0, 5, 0);
-		gbc_champType.fill = GridBagConstraints.HORIZONTAL;
-		gbc_champType.gridx = 1;
-		gbc_champType.gridy = 2;
-		panelGauche.add(champType, gbc_champType);
+		GridBagConstraints gbcChampType = new GridBagConstraints();
+		gbcChampType.insets = new Insets(0, 0, 5, 0);
+		gbcChampType.fill = GridBagConstraints.HORIZONTAL;
+		gbcChampType.gridx = 1;
+		gbcChampType.gridy = 2;
+		panelGauche.add(champType, gbcChampType);
 		
 		JLabel labelNombreCompteurs = new JLabel("Nombre de Compteurs:");
-		GridBagConstraints gbc_labelNombreCompteurs = new GridBagConstraints();
-		gbc_labelNombreCompteurs.anchor = GridBagConstraints.WEST;
-		gbc_labelNombreCompteurs.insets = new Insets(0, 0, 5, 5);
-		gbc_labelNombreCompteurs.gridx = 0;
-		gbc_labelNombreCompteurs.gridy = 3;
-		panelGauche.add(labelNombreCompteurs, gbc_labelNombreCompteurs);
+		GridBagConstraints gbcLabelNombreCompteurs = new GridBagConstraints();
+		gbcLabelNombreCompteurs.anchor = GridBagConstraints.WEST;
+		gbcLabelNombreCompteurs.insets = new Insets(0, 0, 5, 5);
+		gbcLabelNombreCompteurs.gridx = 0;
+		gbcLabelNombreCompteurs.gridy = 3;
+		panelGauche.add(labelNombreCompteurs, gbcLabelNombreCompteurs);
 		
 		champCompteur = new JTextField();
 		champCompteur.setColumns(5);
-		GridBagConstraints gbc_champCompteur = new GridBagConstraints();
-		gbc_champCompteur.insets = new Insets(0, 0, 5, 0);
-		gbc_champCompteur.fill = GridBagConstraints.HORIZONTAL;
-		gbc_champCompteur.gridx = 1;
-		gbc_champCompteur.gridy = 3;
-		panelGauche.add(champCompteur, gbc_champCompteur);
+		GridBagConstraints gbcChampCompteur = new GridBagConstraints();
+		gbcChampCompteur.insets = new Insets(0, 0, 5, 0);
+		gbcChampCompteur.fill = GridBagConstraints.HORIZONTAL;
+		gbcChampCompteur.gridx = 1;
+		gbcChampCompteur.gridy = 3;
+		panelGauche.add(champCompteur, gbcChampCompteur);
 		
 		JLabel labelSurface = new JLabel("Surface:");
-		GridBagConstraints gbc_labelSurface = new GridBagConstraints();
-		gbc_labelSurface.anchor = GridBagConstraints.WEST;
-		gbc_labelSurface.insets = new Insets(0, 0, 5, 5);
-		gbc_labelSurface.gridx = 0;
-		gbc_labelSurface.gridy = 4;
-		panelGauche.add(labelSurface, gbc_labelSurface);
+		GridBagConstraints gbcLabelSurface = new GridBagConstraints();
+		gbcLabelSurface.anchor = GridBagConstraints.WEST;
+		gbcLabelSurface.insets = new Insets(0, 0, 5, 5);
+		gbcLabelSurface.gridx = 0;
+		gbcLabelSurface.gridy = 4;
+		panelGauche.add(labelSurface, gbcLabelSurface);
 		
 		champSurface = new JTextField();
 		champSurface.setColumns(5);
-		GridBagConstraints gbc_champSurface = new GridBagConstraints();
-		gbc_champSurface.insets = new Insets(0, 0, 5, 0);
-		gbc_champSurface.fill = GridBagConstraints.HORIZONTAL;
-		gbc_champSurface.gridx = 1;
-		gbc_champSurface.gridy = 4;
-		panelGauche.add(champSurface, gbc_champSurface);
+		GridBagConstraints gbcChampSurface = new GridBagConstraints();
+		gbcChampSurface.insets = new Insets(0, 0, 5, 0);
+		gbcChampSurface.fill = GridBagConstraints.HORIZONTAL;
+		gbcChampSurface.gridx = 1;
+		gbcChampSurface.gridy = 4;
+		panelGauche.add(champSurface, gbcChampSurface);
 		
 		JLabel labelNombrePieces = new JLabel("Nombre de Pièces:");
-		GridBagConstraints gbc_labelNombrePieces = new GridBagConstraints();
-		gbc_labelNombrePieces.anchor = GridBagConstraints.WEST;
-		gbc_labelNombrePieces.insets = new Insets(0, 0, 5, 5);
-		gbc_labelNombrePieces.gridx = 0;
-		gbc_labelNombrePieces.gridy = 5;
-		panelGauche.add(labelNombrePieces, gbc_labelNombrePieces);
+		GridBagConstraints gbcLabelNombrePieces = new GridBagConstraints();
+		gbcLabelNombrePieces.anchor = GridBagConstraints.WEST;
+		gbcLabelNombrePieces.insets = new Insets(0, 0, 5, 5);
+		gbcLabelNombrePieces.gridx = 0;
+		gbcLabelNombrePieces.gridy = 5;
+		panelGauche.add(labelNombrePieces, gbcLabelNombrePieces);
 		
 		champNombrePieces = new JTextField();
 		champNombrePieces.setColumns(5);
-		GridBagConstraints gbc_champNombrePieces = new GridBagConstraints();
-		gbc_champNombrePieces.insets = new Insets(0, 0, 5, 0);
-		gbc_champNombrePieces.fill = GridBagConstraints.HORIZONTAL;
-		gbc_champNombrePieces.gridx = 1;
-		gbc_champNombrePieces.gridy = 5;
-		panelGauche.add(champNombrePieces, gbc_champNombrePieces);
+		GridBagConstraints gbcChampNombrePieces = new GridBagConstraints();
+		gbcChampNombrePieces.insets = new Insets(0, 0, 5, 0);
+		gbcChampNombrePieces.fill = GridBagConstraints.HORIZONTAL;
+		gbcChampNombrePieces.gridx = 1;
+		gbcChampNombrePieces.gridy = 5;
+		panelGauche.add(champNombrePieces, gbcChampNombrePieces);
 		
 		JLabel labelEquipements = new JLabel("Équipements:");
-		GridBagConstraints gbc_labelEquipements = new GridBagConstraints();
-		gbc_labelEquipements.anchor = GridBagConstraints.WEST;
-		gbc_labelEquipements.insets = new Insets(0, 0, 5, 5);
-		gbc_labelEquipements.gridx = 0;
-		gbc_labelEquipements.gridy = 6;
-		panelGauche.add(labelEquipements, gbc_labelEquipements);
+		GridBagConstraints gbcLabelEquipements = new GridBagConstraints();
+		gbcLabelEquipements.anchor = GridBagConstraints.WEST;
+		gbcLabelEquipements.insets = new Insets(0, 0, 5, 5);
+		gbcLabelEquipements.gridx = 0;
+		gbcLabelEquipements.gridy = 6;
+		panelGauche.add(labelEquipements, gbcLabelEquipements);
 		
 		champEquipements = new JTextField();
 		champEquipements.setColumns(5);
-		GridBagConstraints gbc_champEquipements = new GridBagConstraints();
-		gbc_champEquipements.insets = new Insets(0, 0, 5, 0);
-		gbc_champEquipements.fill = GridBagConstraints.HORIZONTAL;
-		gbc_champEquipements.gridx = 1;
-		gbc_champEquipements.gridy = 6;
-		panelGauche.add(champEquipements, gbc_champEquipements);
+		GridBagConstraints gbcChampEquipements = new GridBagConstraints();
+		gbcChampEquipements.insets = new Insets(0, 0, 5, 0);
+		gbcChampEquipements.fill = GridBagConstraints.HORIZONTAL;
+		gbcChampEquipements.gridx = 1;
+		gbcChampEquipements.gridy = 6;
+		panelGauche.add(champEquipements, gbcChampEquipements);
 		
 		JLabel labelDateDebut = new JLabel("Date de Début:");
-		GridBagConstraints gbc_labelDateDebut = new GridBagConstraints();
-		gbc_labelDateDebut.anchor = GridBagConstraints.WEST;
-		gbc_labelDateDebut.insets = new Insets(0, 0, 5, 5);
-		gbc_labelDateDebut.gridx = 0;
-		gbc_labelDateDebut.gridy = 7;
-		panelGauche.add(labelDateDebut, gbc_labelDateDebut);
+		GridBagConstraints gbcLabelDateDebut = new GridBagConstraints();
+		gbcLabelDateDebut.anchor = GridBagConstraints.WEST;
+		gbcLabelDateDebut.insets = new Insets(0, 0, 5, 5);
+		gbcLabelDateDebut.gridx = 0;
+		gbcLabelDateDebut.gridy = 7;
+		panelGauche.add(labelDateDebut, gbcLabelDateDebut);
 		
 		champDateDebut = new JTextField();
 		champDateDebut.setColumns(5);
-		GridBagConstraints gbc_champDateDebut = new GridBagConstraints();
-		gbc_champDateDebut.insets = new Insets(0, 0, 5, 0);
-		gbc_champDateDebut.fill = GridBagConstraints.HORIZONTAL;
-		gbc_champDateDebut.gridx = 1;
-		gbc_champDateDebut.gridy = 7;
-		panelGauche.add(champDateDebut, gbc_champDateDebut);
+		GridBagConstraints gbcShampDateDebut = new GridBagConstraints();
+		gbcShampDateDebut.insets = new Insets(0, 0, 5, 0);
+		gbcShampDateDebut.fill = GridBagConstraints.HORIZONTAL;
+		gbcShampDateDebut.gridx = 1;
+		gbcShampDateDebut.gridy = 7;
+		panelGauche.add(champDateDebut, gbcShampDateDebut);
 		
 		JLabel labelDateFin = new JLabel("Date de Fin:");
-		GridBagConstraints gbc_labelDateFin = new GridBagConstraints();
-		gbc_labelDateFin.anchor = GridBagConstraints.WEST;
-		gbc_labelDateFin.insets = new Insets(0, 0, 5, 5);
-		gbc_labelDateFin.gridx = 0;
-		gbc_labelDateFin.gridy = 8;
-		panelGauche.add(labelDateFin, gbc_labelDateFin);
+		GridBagConstraints gbcLabelDateFin = new GridBagConstraints();
+		gbcLabelDateFin.anchor = GridBagConstraints.WEST;
+		gbcLabelDateFin.insets = new Insets(0, 0, 5, 5);
+		gbcLabelDateFin.gridx = 0;
+		gbcLabelDateFin.gridy = 8;
+		panelGauche.add(labelDateFin, gbcLabelDateFin);
 		
 		champDateFin = new JTextField();
 		champDateFin.setColumns(5);
-		GridBagConstraints gbc_champDateFin = new GridBagConstraints();
-		gbc_champDateFin.insets = new Insets(0, 0, 5, 0);
-		gbc_champDateFin.fill = GridBagConstraints.HORIZONTAL;
-		gbc_champDateFin.gridx = 1;
-		gbc_champDateFin.gridy = 8;
-		panelGauche.add(champDateFin, gbc_champDateFin);
+		GridBagConstraints gbcChampDateFin = new GridBagConstraints();
+		gbcChampDateFin.insets = new Insets(0, 0, 5, 0);
+		gbcChampDateFin.fill = GridBagConstraints.HORIZONTAL;
+		gbcChampDateFin.gridx = 1;
+		gbcChampDateFin.gridy = 8;
+		panelGauche.add(champDateFin, gbcChampDateFin);
 		
 		JLabel labelLocatairesActuels = new JLabel("Locataires Actuels");
-		labelLocatairesActuels.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelLocatairesActuels.setFont(new Font(POLICE, Font.PLAIN, 14));
 		labelLocatairesActuels.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_labelLocatairesActuels = new GridBagConstraints();
-		gbc_labelLocatairesActuels.anchor = GridBagConstraints.WEST;
-		gbc_labelLocatairesActuels.insets = new Insets(0, 0, 5, 5);
-		gbc_labelLocatairesActuels.gridx = 0;
-		gbc_labelLocatairesActuels.gridy = 10;
-		panelGauche.add(labelLocatairesActuels, gbc_labelLocatairesActuels);
+		GridBagConstraints gbcLabelLocatairesActuels = new GridBagConstraints();
+		gbcLabelLocatairesActuels.anchor = GridBagConstraints.WEST;
+		gbcLabelLocatairesActuels.insets = new Insets(0, 0, 5, 5);
+		gbcLabelLocatairesActuels.gridx = 0;
+		gbcLabelLocatairesActuels.gridy = 10;
+		panelGauche.add(labelLocatairesActuels, gbcLabelLocatairesActuels);
 		
 		JScrollPane scrollPaneLocatairesActuels = new JScrollPane((Component) null);
-		GridBagConstraints gbc_scrollPaneLocatairesActuels = new GridBagConstraints();
-		gbc_scrollPaneLocatairesActuels.insets = new Insets(0, 0, 5, 0);
-		gbc_scrollPaneLocatairesActuels.gridwidth = 2;
-		gbc_scrollPaneLocatairesActuels.fill = GridBagConstraints.BOTH;
-		gbc_scrollPaneLocatairesActuels.gridx = 0;
-		gbc_scrollPaneLocatairesActuels.gridy = 11;
-		panelGauche.add(scrollPaneLocatairesActuels, gbc_scrollPaneLocatairesActuels);
+		GridBagConstraints gbcScrollPaneLocatairesActuels = new GridBagConstraints();
+		gbcScrollPaneLocatairesActuels.insets = new Insets(0, 0, 5, 0);
+		gbcScrollPaneLocatairesActuels.gridwidth = 2;
+		gbcScrollPaneLocatairesActuels.fill = GridBagConstraints.BOTH;
+		gbcScrollPaneLocatairesActuels.gridx = 0;
+		gbcScrollPaneLocatairesActuels.gridy = 11;
+		panelGauche.add(scrollPaneLocatairesActuels, gbcScrollPaneLocatairesActuels);
 		
 		tableLocataire = new JTable();
 		tableLocataire.setModel(new DefaultTableModel(
@@ -274,79 +276,79 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		scrollPaneLocatairesActuels.setViewportView(tableLocataire);
 		
 		JLabel labelStatutOccupation = new JLabel("Statut d'Occupation:");
-		GridBagConstraints gbc_labelStatutOccupation = new GridBagConstraints();
-		gbc_labelStatutOccupation.anchor = GridBagConstraints.WEST;
-		gbc_labelStatutOccupation.insets = new Insets(0, 0, 5, 5);
-		gbc_labelStatutOccupation.gridx = 0;
-		gbc_labelStatutOccupation.gridy = 13;
-		panelGauche.add(labelStatutOccupation, gbc_labelStatutOccupation);
+		GridBagConstraints gbcLabelStatutOccupation = new GridBagConstraints();
+		gbcLabelStatutOccupation.anchor = GridBagConstraints.WEST;
+		gbcLabelStatutOccupation.insets = new Insets(0, 0, 5, 5);
+		gbcLabelStatutOccupation.gridx = 0;
+		gbcLabelStatutOccupation.gridy = 13;
+		panelGauche.add(labelStatutOccupation, gbcLabelStatutOccupation);
 		
 		champStatutOccupation = new JTextField();
 		champStatutOccupation.setColumns(5);
-		GridBagConstraints gbc_champStatutOccupation = new GridBagConstraints();
-		gbc_champStatutOccupation.insets = new Insets(0, 0, 5, 0);
-		gbc_champStatutOccupation.fill = GridBagConstraints.HORIZONTAL;
-		gbc_champStatutOccupation.gridx = 1;
-		gbc_champStatutOccupation.gridy = 13;
-		panelGauche.add(champStatutOccupation, gbc_champStatutOccupation);
+		GridBagConstraints gbcChampStatutOccupation = new GridBagConstraints();
+		gbcChampStatutOccupation.insets = new Insets(0, 0, 5, 0);
+		gbcChampStatutOccupation.fill = GridBagConstraints.HORIZONTAL;
+		gbcChampStatutOccupation.gridx = 1;
+		gbcChampStatutOccupation.gridy = 13;
+		panelGauche.add(champStatutOccupation, gbcChampStatutOccupation);
 		
 		JLabel labelContratsServices = new JLabel("Contrats de Services:");
-		GridBagConstraints gbc_labelContratsServices = new GridBagConstraints();
-		gbc_labelContratsServices.anchor = GridBagConstraints.WEST;
-		gbc_labelContratsServices.insets = new Insets(0, 0, 5, 5);
-		gbc_labelContratsServices.gridx = 0;
-		gbc_labelContratsServices.gridy = 14;
-		panelGauche.add(labelContratsServices, gbc_labelContratsServices);
+		GridBagConstraints gbcLabelContratsServices = new GridBagConstraints();
+		gbcLabelContratsServices.anchor = GridBagConstraints.WEST;
+		gbcLabelContratsServices.insets = new Insets(0, 0, 5, 5);
+		gbcLabelContratsServices.gridx = 0;
+		gbcLabelContratsServices.gridy = 14;
+		panelGauche.add(labelContratsServices, gbcLabelContratsServices);
 		
 		champContratsServices = new JTextField();
-		GridBagConstraints gbc_champContratsServices = new GridBagConstraints();
-		gbc_champContratsServices.insets = new Insets(0, 0, 5, 0);
-		gbc_champContratsServices.fill = GridBagConstraints.HORIZONTAL;
-		gbc_champContratsServices.gridx = 1;
-		gbc_champContratsServices.gridy = 14;
-		panelGauche.add(champContratsServices, gbc_champContratsServices);
+		GridBagConstraints gbcChampContratsServices = new GridBagConstraints();
+		gbcChampContratsServices.insets = new Insets(0, 0, 5, 0);
+		gbcChampContratsServices.fill = GridBagConstraints.HORIZONTAL;
+		gbcChampContratsServices.gridx = 1;
+		gbcChampContratsServices.gridy = 14;
+		panelGauche.add(champContratsServices, gbcChampContratsServices);
 		champContratsServices.setColumns(10);
 		
 		JLabel labelCommentaires = new JLabel("Commentaires:");
-		GridBagConstraints gbc_labelCommentaires = new GridBagConstraints();
-		gbc_labelCommentaires.anchor = GridBagConstraints.WEST;
-		gbc_labelCommentaires.insets = new Insets(0, 0, 0, 5);
-		gbc_labelCommentaires.gridx = 0;
-		gbc_labelCommentaires.gridy = 15;
-		panelGauche.add(labelCommentaires, gbc_labelCommentaires);
+		GridBagConstraints gbcLabelCommentaires = new GridBagConstraints();
+		gbcLabelCommentaires.anchor = GridBagConstraints.WEST;
+		gbcLabelCommentaires.insets = new Insets(0, 0, 0, 5);
+		gbcLabelCommentaires.gridx = 0;
+		gbcLabelCommentaires.gridy = 15;
+		panelGauche.add(labelCommentaires, gbcLabelCommentaires);
 		
 		champCommentaires = new JTextField();
-		GridBagConstraints gbc_champCommentaires = new GridBagConstraints();
-		gbc_champCommentaires.fill = GridBagConstraints.HORIZONTAL;
-		gbc_champCommentaires.gridx = 1;
-		gbc_champCommentaires.gridy = 15;
-		panelGauche.add(champCommentaires, gbc_champCommentaires);
+		GridBagConstraints gbcChampCommentaires = new GridBagConstraints();
+		gbcChampCommentaires.fill = GridBagConstraints.HORIZONTAL;
+		gbcChampCommentaires.gridx = 1;
+		gbcChampCommentaires.gridy = 15;
+		panelGauche.add(champCommentaires, gbcChampCommentaires);
 		champCommentaires.setColumns(10);
 		
 		JPanel panelDroite = new JPanel();
-	    GridBagConstraints gbc_panelDroite = new GridBagConstraints();
-	    gbc_panelDroite.insets = new Insets(0, 0, 5, 0);
-	    gbc_panelDroite.fill = GridBagConstraints.BOTH;
-	    gbc_panelDroite.gridx = 2;
-	    gbc_panelDroite.gridy = 0;
-	    contentPane.add(panelDroite, gbc_panelDroite);
-	    GridBagLayout gbl_panelDroite = new GridBagLayout();
-	    gbl_panelDroite.columnWidths = new int[]{0, 0};
-	    gbl_panelDroite.rowHeights = new int[]{0, 30, 30, 60, 0, 0, 0, 30, 30, 30, 0};
-	    gbl_panelDroite.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-	    gbl_panelDroite.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-	    panelDroite.setLayout(gbl_panelDroite);
+	    GridBagConstraints gbcPanelDroite = new GridBagConstraints();
+	    gbcPanelDroite.insets = new Insets(0, 0, 5, 0);
+	    gbcPanelDroite.fill = GridBagConstraints.BOTH;
+	    gbcPanelDroite.gridx = 2;
+	    gbcPanelDroite.gridy = 0;
+	    contentPane.add(panelDroite, gbcPanelDroite);
+	    GridBagLayout gblPanelDroite = new GridBagLayout();
+	    gblPanelDroite.columnWidths = new int[]{0, 0};
+	    gblPanelDroite.rowHeights = new int[]{0, 30, 30, 60, 0, 0, 0, 30, 30, 30, 0};
+	    gblPanelDroite.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+	    gblPanelDroite.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+	    panelDroite.setLayout(gblPanelDroite);
         
 	 // Ajout de la JComboBox pour les ID bien
         selecteurIdBien = new JComboBox<>();
-        GridBagConstraints gbc_selecteurIdBien = new GridBagConstraints();
-        gbc_selecteurIdBien.ipady = 15;
-        gbc_selecteurIdBien.gridheight = 2;
-        gbc_selecteurIdBien.fill = GridBagConstraints.HORIZONTAL;
-        gbc_selecteurIdBien.insets = new Insets(0, 0, 5, 0);
-        gbc_selecteurIdBien.gridx = 0;
-        gbc_selecteurIdBien.gridy = 0;
-        panelDroite.add(selecteurIdBien, gbc_selecteurIdBien);
+        GridBagConstraints gbcSelecteurIdBien = new GridBagConstraints();
+        gbcSelecteurIdBien.ipady = 15;
+        gbcSelecteurIdBien.gridheight = 2;
+        gbcSelecteurIdBien.fill = GridBagConstraints.HORIZONTAL;
+        gbcSelecteurIdBien.insets = new Insets(0, 0, 5, 0);
+        gbcSelecteurIdBien.gridx = 0;
+        gbcSelecteurIdBien.gridy = 0;
+        panelDroite.add(selecteurIdBien, gbcSelecteurIdBien);
         
         
         
@@ -356,22 +358,22 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
         
         
         
-        JLabel labelHistoriquePaiements_1 = new JLabel("Historique des Paiements:");
-        labelHistoriquePaiements_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        GridBagConstraints gbc_labelHistoriquePaiements_1 = new GridBagConstraints();
-        gbc_labelHistoriquePaiements_1.anchor = GridBagConstraints.WEST;
-        gbc_labelHistoriquePaiements_1.insets = new Insets(0, 0, 5, 0);
-        gbc_labelHistoriquePaiements_1.gridx = 0;
-        gbc_labelHistoriquePaiements_1.gridy = 2;
-        panelDroite.add(labelHistoriquePaiements_1, gbc_labelHistoriquePaiements_1);
+        JLabel labelHistoriquePaiements = new JLabel("Historique des Paiements:");
+        labelHistoriquePaiements.setFont(new Font(POLICE, Font.PLAIN, 14));
+        GridBagConstraints gbcLabelHistoriquePaiements = new GridBagConstraints();
+        gbcLabelHistoriquePaiements.anchor = GridBagConstraints.WEST;
+        gbcLabelHistoriquePaiements.insets = new Insets(0, 0, 5, 0);
+        gbcLabelHistoriquePaiements.gridx = 0;
+        gbcLabelHistoriquePaiements.gridy = 2;
+        panelDroite.add(labelHistoriquePaiements, gbcLabelHistoriquePaiements);
         
-        JScrollPane scrollPaneHistoriquePaiements_1 = new JScrollPane();
-        GridBagConstraints gbc_scrollPaneHistoriquePaiements_1 = new GridBagConstraints();
-        gbc_scrollPaneHistoriquePaiements_1.fill = GridBagConstraints.BOTH;
-        gbc_scrollPaneHistoriquePaiements_1.insets = new Insets(0, 0, 5, 0);
-        gbc_scrollPaneHistoriquePaiements_1.gridx = 0;
-        gbc_scrollPaneHistoriquePaiements_1.gridy = 3;
-        panelDroite.add(scrollPaneHistoriquePaiements_1, gbc_scrollPaneHistoriquePaiements_1);
+        JScrollPane scrollPaneHistoriquePaiements = new JScrollPane();
+        GridBagConstraints gbcScrollPaneHistoriquePaiements = new GridBagConstraints();
+        gbcScrollPaneHistoriquePaiements.fill = GridBagConstraints.BOTH;
+        gbcScrollPaneHistoriquePaiements.insets = new Insets(0, 0, 5, 0);
+        gbcScrollPaneHistoriquePaiements.gridx = 0;
+        gbcScrollPaneHistoriquePaiements.gridy = 3;
+        panelDroite.add(scrollPaneHistoriquePaiements, gbcScrollPaneHistoriquePaiements);
         
         tablePaiements = new JTable();
         tablePaiements.setModel(new DefaultTableModel(
@@ -388,24 +390,24 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
         		"Date", "Montant", "Mode de paiement"
         	}
         ));
-        scrollPaneHistoriquePaiements_1.setViewportView(tablePaiements);
+        scrollPaneHistoriquePaiements.setViewportView(tablePaiements);
         
-        JLabel labelHistoriqueReparations_1 = new JLabel("Historique des Réparations:");
-        labelHistoriqueReparations_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        GridBagConstraints gbc_labelHistoriqueReparations_1 = new GridBagConstraints();
-        gbc_labelHistoriqueReparations_1.anchor = GridBagConstraints.WEST;
-        gbc_labelHistoriqueReparations_1.insets = new Insets(0, 0, 5, 0);
-        gbc_labelHistoriqueReparations_1.gridx = 0;
-        gbc_labelHistoriqueReparations_1.gridy = 5;
-        panelDroite.add(labelHistoriqueReparations_1, gbc_labelHistoriqueReparations_1);
+        JLabel labelHistoriqueReparations = new JLabel("Historique des Réparations:");
+        labelHistoriqueReparations.setFont(new Font(POLICE, Font.PLAIN, 14));
+        GridBagConstraints gbcLabelHistoriqueReparations = new GridBagConstraints();
+        gbcLabelHistoriqueReparations.anchor = GridBagConstraints.WEST;
+        gbcLabelHistoriqueReparations.insets = new Insets(0, 0, 5, 0);
+        gbcLabelHistoriqueReparations.gridx = 0;
+        gbcLabelHistoriqueReparations.gridy = 5;
+        panelDroite.add(labelHistoriqueReparations, gbcLabelHistoriqueReparations);
         
-        JScrollPane scrollPaneHistoriqueReparations_1 = new JScrollPane();
-        GridBagConstraints gbc_scrollPaneHistoriqueReparations_1 = new GridBagConstraints();
-        gbc_scrollPaneHistoriqueReparations_1.fill = GridBagConstraints.BOTH;
-        gbc_scrollPaneHistoriqueReparations_1.insets = new Insets(0, 0, 5, 0);
-        gbc_scrollPaneHistoriqueReparations_1.gridx = 0;
-        gbc_scrollPaneHistoriqueReparations_1.gridy = 6;
-        panelDroite.add(scrollPaneHistoriqueReparations_1, gbc_scrollPaneHistoriqueReparations_1);
+        JScrollPane scrollPaneHistoriqueReparations = new JScrollPane();
+        GridBagConstraints gbcScrollPaneHistoriqueReparations = new GridBagConstraints();
+        gbcScrollPaneHistoriqueReparations.fill = GridBagConstraints.BOTH;
+        gbcScrollPaneHistoriqueReparations.insets = new Insets(0, 0, 5, 0);
+        gbcScrollPaneHistoriqueReparations.gridx = 0;
+        gbcScrollPaneHistoriqueReparations.gridy = 6;
+        panelDroite.add(scrollPaneHistoriqueReparations, gbcScrollPaneHistoriqueReparations);
         
         tableHistorique = new JTable();
         tableHistorique.setModel(new DefaultTableModel(
@@ -432,15 +434,15 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
         		"Date", "Description", "Co\u00FBt"
         	}
         ));
-        scrollPaneHistoriqueReparations_1.setViewportView(tableHistorique);
+        scrollPaneHistoriqueReparations.setViewportView(tableHistorique);
         
         JPanel panelButton = new JPanel();
-        GridBagConstraints gbc_panelButton = new GridBagConstraints();
-        gbc_panelButton.insets = new Insets(0, 0, 5, 5);
-        gbc_panelButton.fill = GridBagConstraints.BOTH;
-        gbc_panelButton.gridx = 0;
-        gbc_panelButton.gridy = 2;
-        contentPane.add(panelButton, gbc_panelButton);
+        GridBagConstraints gbcPanelButton = new GridBagConstraints();
+        gbcPanelButton.insets = new Insets(0, 0, 5, 5);
+        gbcPanelButton.fill = GridBagConstraints.BOTH;
+        gbcPanelButton.gridx = 0;
+        gbcPanelButton.gridy = 2;
+        contentPane.add(panelButton, gbcPanelButton);
         
         JButton btnAnnuler = new JButton("Annuler");
         btnAnnuler.setHorizontalAlignment(SwingConstants.LEFT);
