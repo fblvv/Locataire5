@@ -117,8 +117,7 @@ public class GestionCharges implements ActionListener , ItemListener {
 
 
 		// Activer le bouton si un bien est sélectionné, sinon le désactiver
-		gestionCharges.getAjouterButton().setEnabled(!"Tous".equals(idBienSelectionne));
-		gestionCharges.getAjouterButton().setEnabled(!"Tout Type".equals(typeCompteur));
+		gestionCharges.getAjouterButton().setEnabled(!"Tous".equals(idBienSelectionne) && !"Tout Type".equals(typeCompteur));
 	}
 
 
