@@ -15,7 +15,11 @@ import java.util.Date;
 
 public class FenetreContratLocation extends JInternalFrame {
 
-    private JTextField champDateDebutContrat;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTextField champDateDebutContrat;
     private JTextField champMontant;
     private JTextField champMontantLoyer;
     private JTextField champDateVersementLoyer;

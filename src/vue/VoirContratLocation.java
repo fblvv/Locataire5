@@ -28,7 +28,6 @@ public class VoirContratLocation extends JInternalFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private List<ContratLocation> contratLocation;
 	private GestionVoirContratLocation gestionClic;
 	private JTable table;
 
