@@ -13,7 +13,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import SQL.CictOracleDataSource;
 import modele.LireCSV;
 import vue.Accueil;
-import vue.Connexion;
 import vue.FenetreAjoutBatiment;
 import vue.FenetreBien;
 import vue.FenetreCompteur;

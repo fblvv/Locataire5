@@ -3,14 +3,11 @@ package controle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 
 import SQL.CictOracleDataSource;
 import vue.Connexion;
-import vue.Accueil;
 
 public class GestionConnexion implements ActionListener{
 	private Connexion connexion;
