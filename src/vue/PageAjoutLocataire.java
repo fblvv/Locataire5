@@ -2,16 +2,14 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -37,24 +35,11 @@ public class PageAjoutLocataire extends JInternalFrame {
     private JTextField champPrenom;
     private JTextField champTelephone;
     private JTextField champMail;
-    private JTextField textField_9;
     private GestionPageAjoutLocataire gestionClic;
     private JComboBox<String> comboBoxLogement;
     private JFormattedTextField champDateEntree;
-
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    PageAjoutLocataire frame = new PageAjoutLocataire();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+    
+    Logger logger = Logger.getLogger(getClass().getName());
 
     public PageAjoutLocataire() {
         this.gestionClic = new GestionPageAjoutLocataire(this);
@@ -73,13 +58,13 @@ public class PageAjoutLocataire extends JInternalFrame {
         JLabel libInfoLocataire = new JLabel("Information sur le locataire");
         panel.add(libInfoLocataire, BorderLayout.NORTH);
 
-        JPanel panel_1 = new JPanel();
-        panel_1.setMinimumSize(new Dimension(5, 5));
-        panel.add(panel_1, BorderLayout.CENTER);
-        panel_1.setLayout(new GridLayout(0, 1, 0, 0));
+        JPanel panel1 = new JPanel();
+        panel1.setMinimumSize(new Dimension(5, 5));
+        panel.add(panel1, BorderLayout.CENTER);
+        panel1.setLayout(new GridLayout(0, 1, 0, 0));
 
         JPanel panelNom = new JPanel();
-        panel_1.add(panelNom);
+        panel1.add(panelNom);
 
         JLabel libNom = new JLabel("Nom");
         libNom.setHorizontalAlignment(SwingConstants.LEFT);
@@ -92,7 +77,7 @@ public class PageAjoutLocataire extends JInternalFrame {
         panelNom.add(champNom);
 
         JPanel panelPrenom = new JPanel();
-        panel_1.add(panelPrenom);
+        panel1.add(panelPrenom);
 
         JLabel libPrenom = new JLabel("Prénom");
         libPrenom.setHorizontalAlignment(SwingConstants.LEFT);
@@ -105,7 +90,7 @@ public class PageAjoutLocataire extends JInternalFrame {
         panelPrenom.add(champPrenom);
 
         JPanel panelTelephone = new JPanel();
-        panel_1.add(panelTelephone);
+        panel1.add(panelTelephone);
 
         JLabel libTelephone = new JLabel("Télephone");
         panelTelephone.add(libTelephone);
@@ -115,7 +100,7 @@ public class PageAjoutLocataire extends JInternalFrame {
         panelTelephone.add(champTelephone);
 
         JPanel panelMail = new JPanel();
-        panel_1.add(panelMail);
+        panel1.add(panelMail);
 
         JLabel libMail = new JLabel("Mail");
         panelMail.add(libMail);
@@ -125,7 +110,7 @@ public class PageAjoutLocataire extends JInternalFrame {
         panelMail.add(champMail);
 
         JPanel panelDateEntree = new JPanel();
-        panel_1.add(panelDateEntree);
+        panel1.add(panelDateEntree);
 
         JLabel libDateEntree = new JLabel("Date d'entrée");
         panelDateEntree.add(libDateEntree);
@@ -142,25 +127,25 @@ public class PageAjoutLocataire extends JInternalFrame {
 
         panelDateEntree.add(champDateEntree);
 
-        JPanel panel_2 = new JPanel();
-        contentPane.add(panel_2, BorderLayout.SOUTH);
-        panel_2.setLayout(new BorderLayout(0, 0));
+        JPanel panel2 = new JPanel();
+        contentPane.add(panel2, BorderLayout.SOUTH);
+        panel2.setLayout(new BorderLayout(0, 0));
 
         JButton btnAnnuler = new JButton("Annuler");
         btnAnnuler.addActionListener(this.gestionClic);
-        panel_2.add(btnAnnuler, BorderLayout.WEST);
+        panel2.add(btnAnnuler, BorderLayout.WEST);
 
         JButton btnValider = new JButton("Valider");
         btnValider.addActionListener(this.gestionClic);
-        panel_2.add(btnValider, BorderLayout.EAST);
+        panel2.add(btnValider, BorderLayout.EAST);
 
-        JPanel panel_3 = new JPanel();
-        contentPane.add(panel_3, BorderLayout.NORTH);
-        panel_3.setLayout(new BorderLayout(0, 0));
+        JPanel panel3 = new JPanel();
+        contentPane.add(panel3, BorderLayout.NORTH);
+        panel3.setLayout(new BorderLayout(0, 0));
 
         JLabel libAjouterLocataire = new JLabel("Ajouter un nouveau locataire");
         libAjouterLocataire.setHorizontalAlignment(SwingConstants.CENTER);
-        panel_3.add(libAjouterLocataire, BorderLayout.CENTER);
+        panel3.add(libAjouterLocataire, BorderLayout.CENTER);
 
         JPanel panelLogementAssocie = new JPanel();
         contentPane.add(panelLogementAssocie, BorderLayout.EAST);
@@ -234,7 +219,7 @@ public class PageAjoutLocataire extends JInternalFrame {
             int i = 0;
             for (BienImmobilier bien : biens) {
                 idBat[i] = bien.getId_Bien_Imm();
-                System.out.println(idBat[i]);
+                logger.info(idBat[i]);
                 i++;
             }
 

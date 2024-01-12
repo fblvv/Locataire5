@@ -8,23 +8,20 @@ import modele.Charges;
 import modele.dao.DaoBienImmobilier;
 import modele.dao.DaoCharges;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class FenetreCharges extends JInternalFrame { 
 
-    private JComboBox<String> typeCompteurComboBox;
+	private static final long serialVersionUID = 4570267966938554819L;
+	private JComboBox<String> typeCompteurComboBox;
     private JComboBox<String> idBienComboBox;
     private JTable chargeTable;
     private JButton imprimerButton;
     private JButton validerButton;
     private JButton annulerButton;
     private DaoCharges daoCharge;
-    private List<Charges> charges; 
     private JPanel panelBoutons;
     private GestionCharges gestionClic;
     private JButton ajouterButton;
@@ -36,7 +33,7 @@ public class FenetreCharges extends JInternalFrame {
 
         this.gestionClic = new GestionCharges(this);
         this.daoCharge = new DaoCharges();
-        this.charges = new ArrayList<>(); 
+        new ArrayList<>(); 
 
         JPanel panel = new JPanel(new FlowLayout());
         String[] typesCompteur = {"Tout Type", "Eau", "Electricite", "Gaz"};
@@ -56,8 +53,6 @@ public class FenetreCharges extends JInternalFrame {
         typeCompteurComboBox.addItemListener(this.gestionClic);
         idBienComboBox.addItemListener(this.gestionClic);
 
-        String[] columnNames = {"ID Compteur", "Date de Relevé", "Type", "Valeur", "ID Bien"};
-        Object[][] data = new Object[charges.size()][5]; // Utilisation de la liste de compteurs
         chargeTable = new JTable(new DefaultTableModel(
         	new Object[][] {
         	},
@@ -132,15 +127,5 @@ public class FenetreCharges extends JInternalFrame {
     
     public JButton getAjouterButton() {
         return ajouterButton;
-    }
-
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new FenetreCharges().setVisible(true); // Assurez-vous que la fenêtre est visible
-            }
-        });
     }
 }

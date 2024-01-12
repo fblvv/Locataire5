@@ -93,13 +93,4 @@ public class FenetreListeLocataire extends JInternalFrame {
 	public void setTable(JTable table) {
 		this.table = table;
 	}
-
-	public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new FenetreListeLocataire();
-            }
-        });
-    }
 }

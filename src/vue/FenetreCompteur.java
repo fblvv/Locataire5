@@ -15,7 +15,8 @@ import java.util.List;
 
 public class FenetreCompteur extends JInternalFrame {
 
-    private JComboBox<String> typeCompteurComboBox;
+    private static final long serialVersionUID = -1022228749473052973L;
+	private JComboBox<String> typeCompteurComboBox;
     private JComboBox<String> idBienComboBox;
     private JTable compteurTable;
     private GestionCompteur gestionClic;
@@ -119,14 +120,5 @@ public class FenetreCompteur extends JInternalFrame {
     
     public JButton getAjouterButton() {
     	return ajouterButton;
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new FenetreCompteur().setVisible(true); // Assurez-vous que la fenêtre est visible
-            }
-        });
     }
 }

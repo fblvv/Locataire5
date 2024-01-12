@@ -34,13 +34,11 @@ public class DaoCharges extends DaoModele<Charges> implements Dao<Charges> {
 
 	@Override
 	public void update(Charges donnee) throws SQLException {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void create(Charges charge) throws SQLException {
-		// TODO Auto-generated method stub
 		SousProgrammeInsertCharges sousProgrammeInsertCharges = new SousProgrammeInsertCharges();
 	    CallableStatement cs = CictOracleDataSource.getConnectionBD().prepareCall(sousProgrammeInsertCharges.appelSousProgramme());
 	        sousProgrammeInsertCharges.parametres(cs, charge);
@@ -51,9 +49,7 @@ public class DaoCharges extends DaoModele<Charges> implements Dao<Charges> {
 
 	@Override
 	public void delete(Charges donnee) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
+ }
 
 	
 	@Override
