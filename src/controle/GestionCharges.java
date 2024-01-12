@@ -64,8 +64,9 @@ public class GestionCharges implements ActionListener , ItemListener {
 
 
 	private void ajouterReleve() {		
+		String typeCompteur = (String) gestionCharges.getTypeCompteurComboBox().getSelectedItem();
 		DefaultTableModel model = (DefaultTableModel) gestionCharges.getTable().getModel();
-		model.addRow(new Object[]{"", "", "", "", ""});	
+		model.addRow(new Object[]{"", "", "", typeCompteur, ""});	
 	}
 
 
