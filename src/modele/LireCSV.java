@@ -1,6 +1,8 @@
 package modele;
 
 import SQL.CictOracleDataSource;
+import modele.dao.DaoContratLocation;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.io.BufferedReader;
@@ -22,7 +24,7 @@ public class LireCSV {
             connection = CictOracleDataSource.getConnectionBD();
             connection.setAutoCommit(false);
 
-            String sql = "INSERT INTO Loyer2 (IdLogement, IdLocataire, DateCol, Loyer,Provision) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO LOYER (ID_LOYER, LOYER_CHARGES, CHARGES, DATE_PAIEMENT, MONTANT_PAIEMENT, TYPE_PAIEMENT, ID_LOCATAIRE, DATE_DEBUT_CONTRAT) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(sql);
 
             lineReader = new BufferedReader(new FileReader(csvFilePath));
@@ -31,30 +33,53 @@ public class LireCSV {
             String lineText;
             while ((lineText = lineReader.readLine()) != null) {
                 String[] data = lineText.split(",");
-                statement.setString(1, data[0]);
-                statement.setString(2, data[1]);
-                statement.setString(3, data[2]);
-                statement.setString(4, data[3]);
-                statement.setString(5, data[4]);
+                
+                for (int i = 0; i < data.length; i++) {
+                    data[i] = data[i].replace("\"", ""); // Supprimer les guillemets doubles
+                }
+                
+                String stt ="Loyer"+ data[0]+data[2];
+                System.out.println(stt);
+                statement.setString(1,"Loyer"+ data[0]+data[2]);
+                statement.setDouble(2, Double.parseDouble(data[3]));
+                statement.setDouble(3, Double.parseDouble(data[4]));
+                statement.setDate(4, java.sql.Date.valueOf(data[2]));
+                System.out.println(data[2]);
+                statement.setDouble(5, Double.parseDouble(data[3])+Double.parseDouble(data[4]));
+                statement.setString(6, "CB");
+                statement.setString(7, data[1]);
+                String idLoc = data[1]; // Assigner la valeur de data[1] à la variable idLoc
+                System.out.println(idLoc);
+                DaoContratLocation contrat = new DaoContratLocation();
+                ContratLocation contratLoc = contrat.findById(idLoc);
+                String str = contratLoc.getDateDebutContrat();
+                String sousChaine;
+                sousChaine = str.substring(0, 10);
+                statement.setDate(8,java.sql.Date.valueOf(sousChaine));
+                System.out.println(sousChaine);
+                
 
                 statement.addBatch();
                 if (++count % batchSize == 0) {
                     statement.executeBatch();
                 }
             }
+            
+          
+            
             statement.executeBatch();
             connection.commit();
             System.out.println("Informations ajoutés");
-        } catch (SQLException | IOException ex) {
-            ex.printStackTrace();
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
             System.out.println("Informations non ajoutés");
             if (connection != null) {
                 try {
                     connection.rollback();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+                } catch (SQLException en) {
+                    en.printStackTrace();
+                
+       
         } finally {
             try {
                 if (lineReader != null) lineReader.close();
@@ -63,6 +88,8 @@ public class LireCSV {
             } catch (SQLException | IOException ex) {
                 ex.printStackTrace();
             }
+        }
+    }
         }
     }
 }
