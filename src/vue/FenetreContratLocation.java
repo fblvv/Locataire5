@@ -7,18 +7,10 @@ import modele.BienImmobilier;
 import modele.Locataire;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class FenetreContratLocation extends JInternalFrame {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 7654884561916041199L;
 	private JTextField champDateDebutContrat;
     private JTextField champMontant;
     private JTextField champMontantLoyer;
@@ -40,6 +32,8 @@ public class FenetreContratLocation extends JInternalFrame {
     private PageAjoutLocataire pageAjoutLocataire;
     private GestionContratLocation gestionClic;
     
+    private static final String FORMAT_DATE = "DD-MM-YYYY";
+    
 
     public FenetreContratLocation(BienImmobilier bienImmobilier, Locataire locataire) {
         // Initialiser les champs du bien immobilier et du locataire
@@ -50,20 +44,20 @@ public class FenetreContratLocation extends JInternalFrame {
     	setBounds(0, 0, 550, 400);
 
         // Ajout des champs de texte
-        champDateDebutContrat = new JTextField("DD-MM-YYYY", 15);
+        champDateDebutContrat = new JTextField(FORMAT_DATE, 15);
         champMontant=new JTextField(15);
         champMontantLoyer = new JTextField(15);
-        champDateVersementLoyer = new JTextField("DD-MM-YYYY", 15);
+        champDateVersementLoyer = new JTextField(FORMAT_DATE, 15);
         champDepotGarantie = new JTextField(15);
-        champDateRevision = new JTextField("DD-MM-YYYY", 15);
+        champDateRevision = new JTextField(FORMAT_DATE, 15);
         champPeriodicitePaiement = new JTextField(15);
-        champDateFinContrat = new JTextField("DD-MM-YYYY", 15);
+        champDateFinContrat = new JTextField(FORMAT_DATE, 15);
         champChargesProvisionnelles = new JTextField(15);
         champIdICC = new JTextField(15);
         champValeurICC = new JTextField(15);
         champIdBienImm = new JTextField(15);
-        champDateEntree = new JTextField("DD-MM-YYYY", 15);
-        champDateSortie = new JTextField("DD-MM-YYYY", 15);
+        champDateEntree = new JTextField(FORMAT_DATE, 15);
+        champDateSortie = new JTextField(FORMAT_DATE, 15);
         champCaution = new JTextField(15);
         
         ajouterLocataireButton = new JButton("Ajouter Locataire");
@@ -248,14 +242,7 @@ public class FenetreContratLocation extends JInternalFrame {
 		return this.locataire.getId_Locataire();
 	}
 	
-	public String getBien_Immo() {
+	public String getBienImmo() {
 		return this.bienImmobilier.getId_Bien_Imm();
-	}
-	
-	    
-	
-    
-    
-    
-    
+	}    
 }

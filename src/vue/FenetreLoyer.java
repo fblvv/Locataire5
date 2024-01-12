@@ -1,7 +1,6 @@
 package vue;
 
 import java.awt.BorderLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -41,7 +40,7 @@ public class FenetreLoyer extends JInternalFrame {
     private JButton btnAnnuler;
     private GestionFenetreLoyer gestionClic;
     private JComboBox<String> comboBoxLocataire; // Change to JComboBox<String>
-    private JComboBox comboBoxPaiement;
+    private JComboBox<String> comboBoxPaiement;
     private JButton btnAjouter;
 
     public FenetreLoyer() {
@@ -88,8 +87,8 @@ public class FenetreLoyer extends JInternalFrame {
 
         panelLoyer.add(new JLabel("Type Paiement:"));
         
-        comboBoxPaiement = new JComboBox();
-        comboBoxPaiement.setModel(new DefaultComboBoxModel(new String[] {"CB", "Chèque", "Espèce"}));
+        comboBoxPaiement = new JComboBox<>();
+        comboBoxPaiement.setModel(new DefaultComboBoxModel<>(new String[] {"CB", "Chèque", "Espèce"}));
         panelLoyer.add(comboBoxPaiement);
 
         panelLoyer.add(new JLabel("Date Début Contrat:"));

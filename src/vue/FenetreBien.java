@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -42,10 +43,8 @@ public class FenetreBien extends JInternalFrame {
     private JTextField textFieldModeChauffage;
     private JTextField textFieldModeEau;
     private JTextField textFieldNbPiece;
-    private JTextField textFieldTypeBien;
     private JTextField textFieldNomProprio;
     private JTextField textFieldIdentifiant;
-    private JTextField textFieldEtage;
 
     private JPanel panelButton;
     private JButton btnAnnuler;
@@ -55,6 +54,8 @@ public class FenetreBien extends JInternalFrame {
     private JComboBox<String> comboBoxBatiment;
     private JComboBox<String> comboBoxTypeBien; 
     private JSpinner spinnerEtage;
+    
+    Logger logger = Logger.getLogger(getClass().getName());
 
     public FenetreBien() {
         this.gestionClic = new GestionAjoutBienImmo(this);
@@ -304,11 +305,6 @@ public class FenetreBien extends JInternalFrame {
 	}
 
 
-	public void setTextFieldTypeBien(JTextField textFieldTypeBien) {
-		this.textFieldTypeBien = textFieldTypeBien;
-	}
-
-
 	public String getTextFieldNomProprio() {
 		return textFieldNomProprio.getText();
 	}
@@ -331,11 +327,6 @@ public class FenetreBien extends JInternalFrame {
 
 	public String getTextFieldEtage() {
 		return spinnerEtage.getName();
-	}
-
-
-	public void setTextFieldEtage(JTextField textFieldEtage) {
-		this.textFieldEtage = textFieldEtage;
 	}
 
 
@@ -363,7 +354,7 @@ public class FenetreBien extends JInternalFrame {
             int i = 0;
             for (Batiment batiment : batiments) {
                 idBats[i] = String.valueOf(batiment.getId_Batiment());
-                System.out.println(idBats[i]);
+                logger.info(idBats[i]);
                 i++;
             }
 

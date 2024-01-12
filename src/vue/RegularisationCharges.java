@@ -6,7 +6,8 @@ import java.awt.event.ActionListener;
 
 public class RegularisationCharges extends JInternalFrame {
 
-    private JTextField champProvisions;
+    private static final long serialVersionUID = 6013966151528868138L;
+	private JTextField champProvisions;
     private JTextField champChargesReelles;
     private JButton boutonCalculer;
     private JTextArea zoneResultat;
@@ -74,21 +75,5 @@ public class RegularisationCharges extends JInternalFrame {
         } catch (NumberFormatException ex) {
             zoneResultat.setText("Veuillez saisir des valeurs valides pour les montants.");
         }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                RegularisationCharges frame = new RegularisationCharges();
-                frame.setBounds(100, 100, 450, 300);
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setVisible(true);
-            }
-        });
     }
 }

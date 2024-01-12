@@ -3,15 +3,11 @@ import java.awt.EventQueue;
 
 
 import javax.swing.JInternalFrame;
-import javax.swing.JMenuItem;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import controle.GestionConnexion;
-import controle.GestionAccueil;
 
 import javax.swing.JPasswordField;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -54,27 +50,27 @@ public class Connexion extends JInternalFrame  {
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Connecter");
-		btnNewButton.addActionListener(this.gestionClic);
-		btnNewButton.setBounds(67, 240, 97, 21);
-		getContentPane().add(btnNewButton);
+		JButton btnConnnecter = new JButton("Connecter");
+		btnConnnecter.addActionListener(this.gestionClic);
+		btnConnnecter.setBounds(67, 240, 97, 21);
+		getContentPane().add(btnConnnecter);
 		
-		JButton btnNewButton_1 = new JButton("Annuler");
-		btnNewButton_1.addActionListener(this.gestionClic);
-		btnNewButton_1.setBounds(256, 240, 97, 21);
-		getContentPane().add(btnNewButton_1);
+		JButton btnAnnuler = new JButton("Annuler");
+		btnAnnuler.addActionListener(this.gestionClic);
+		btnAnnuler.setBounds(256, 240, 97, 21);
+		getContentPane().add(btnAnnuler);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(212, 151, 195, 19);
 		getContentPane().add(passwordField);
 		
-		JLabel lblNewLabel = new JLabel("Login :");
-		lblNewLabel.setBounds(67, 89, 60, 22);
-		getContentPane().add(lblNewLabel);
+		JLabel lblLogin = new JLabel("Login :");
+		lblLogin.setBounds(67, 89, 60, 22);
+		getContentPane().add(lblLogin);
 		
-		JLabel lblNewLabel_1 = new JLabel("Mot de passe :");
-		lblNewLabel_1.setBounds(70, 154, 82, 19);
-		getContentPane().add(lblNewLabel_1);
+		JLabel lblMdp = new JLabel("Mot de passe :");
+		lblMdp.setBounds(70, 154, 82, 19);
+		getContentPane().add(lblMdp);
 
 	}
 	public void actionPerformed(ActionEvent e) {
