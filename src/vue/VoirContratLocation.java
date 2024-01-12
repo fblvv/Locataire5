@@ -16,8 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollBar;
-import java.awt.Scrollbar;
+
 
 public class VoirContratLocation extends JInternalFrame {
 
