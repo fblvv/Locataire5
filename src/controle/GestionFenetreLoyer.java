@@ -11,8 +11,9 @@ import javax.swing.table.DefaultTableModel;
 
 import java.util.logging.Logger;
 
-
+import modele.ContratLocation;
 import modele.Loyer;
+import modele.dao.DaoContratLocation;
 import modele.dao.DaoLoyer;
 import vue.FenetreLoyer;
 
@@ -59,10 +60,21 @@ public class GestionFenetreLoyer implements ActionListener {
 
 	private void updateTableData() throws SQLException {
 		// Get the selected tenant ID from the JComboBox
+		
 		String locataireId = fenetreloyer.getComboBoxLocataire();
 
-
+		DaoContratLocation daoContrat= new DaoContratLocation();
+		ContratLocation contratLoc = daoContrat.findById(locataireId);
+		if (!(contratLoc==null)) {
+		String dateContrat=contratLoc.getDateDebutContrat().substring(0,10);
+		fenetreloyer.getTextFieldDateDebutContrat().setText(dateContrat);
+		fenetreloyer.getBtnAjouter().setEnabled(true);
+		}else {
+		fenetreloyer.getTextFieldDateDebutContrat().setText("Aucun Contrat");
+		fenetreloyer.getBtnAjouter().setEnabled(false);
+		}
 		DaoLoyer daoLoyer = new DaoLoyer();
+		
 		Collection<Loyer> loyers = daoLoyer.findByIds(locataireId);
 		if (loyers.isEmpty()) {
 			// If there are no rent records, clear the JTable
@@ -103,7 +115,7 @@ public class GestionFenetreLoyer implements ActionListener {
 			Double montant=  Double.parseDouble(fenetreloyer.getTextFieldMontantPaiement());
 			String typePaiement = fenetreloyer.getComboBoxPaiement();
 			String idLocataire = fenetreloyer.getComboBoxLocataire();
-			String dateDebut = fenetreloyer.getTextFieldDateDebutContrat();     
+			String dateDebut = fenetreloyer.getTextFieldDateDebutContrat().getText();     
 
 			Loyer loyer = new Loyer(idLoyer,loyerMontant,charges,datePaiement,montant,typePaiement,idLocataire,dateDebut);
 

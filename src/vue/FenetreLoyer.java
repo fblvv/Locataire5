@@ -151,8 +151,12 @@ public class FenetreLoyer extends JInternalFrame {
         return textFieldMontantPaiement.getText();
     }
 
-    public String getTextFieldDateDebutContrat() {
-        return textFieldDateDebutContrat.getText();
+    public JTextField getTextFieldDateDebutContrat() {
+        return textFieldDateDebutContrat;
+    }
+    
+    public JButton getBtnAjouter() {
+    	return btnAjouter;
     }
 
     public String getComboBoxLocataire() {

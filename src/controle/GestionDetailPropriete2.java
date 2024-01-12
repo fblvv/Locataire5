@@ -100,7 +100,7 @@ public class GestionDetailPropriete2 implements ActionListener {
 			DefaultTableModel tableModel = (DefaultTableModel)detailPropriete.getTableLocataire().getModel();
 			tableModel.setRowCount(0);
 
-			tableModel.addRow(new Object[]{locataire.getId_Locataire(),locataire.getNom()+locataire.getPrenom(),"xxx"});
+			tableModel.addRow(new Object[]{locataire.getId_Locataire(),locataire.getNom()+" "+locataire.getPrenom(),"xxx"});
 
 			//recuperation des loyers
 			Collection<Loyer>loyers=new LinkedList<>();
