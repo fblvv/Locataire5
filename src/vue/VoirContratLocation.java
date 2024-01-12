@@ -21,6 +21,8 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollBar;
+import java.awt.Scrollbar;
 
 public class VoirContratLocation extends JInternalFrame {
 
@@ -43,7 +45,7 @@ public class VoirContratLocation extends JInternalFrame {
 		setIconifiable(true);
 		setMaximizable(true);
 		setClosable(true);
-		setBounds(100, 100, 962, 477);
+		setBounds(100, 100, 1207, 634);
 		
 		JLabel voirContratLocation = new JLabel("Voir Contrat Location");
 		voirContratLocation.setHorizontalAlignment(SwingConstants.CENTER);

@@ -60,7 +60,10 @@ public class GestionVoirContratLocation implements ActionListener {
 		for (ContratLocation contLoc : contratLocation) {
 
 			// Add a new row if needed
-			tableModel.addRow(new Object[] {contLoc.getIdLocataire(),contLoc.getDateDebutContrat(),contLoc.getMontant(),contLoc.getMontantLoyer(),contLoc.getDateVersementLoyer(),contLoc.getDateEntree(),contLoc.getDateSortie(),contLoc.getDepotDeGarantie(),contLoc.getDateRevision(),contLoc.getPeriodicitePaiement(),contLoc.getDateFinContrat(),contLoc.getChargesProvisionnelles(),contLoc.getIdICC(),contLoc.getCaution(),contLoc.getIdBienImm()});
+			tableModel.addRow(new Object[] {contLoc.getIdLocataire(),contLoc.getDateDebutContrat(),contLoc.getMontant(),contLoc.getMontantLoyer(),
+					contLoc.getDateVersementLoyer(),contLoc.getDateEntree(),contLoc.getDateSortie(),contLoc.getDepotDeGarantie(),
+					contLoc.getDateRevision(),contLoc.getPeriodicitePaiement(),contLoc.getDateFinContrat(),contLoc.getChargesProvisionnelles(),
+					contLoc.getIdICC(),contLoc.getCaution(),contLoc.getIdBienImm()});
 
 
 
