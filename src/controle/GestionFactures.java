@@ -12,13 +12,12 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
+import java.util.logging.Logger;
+
+
 import modele.BienImmobilier;
-import modele.Charges;
-import modele.Compteur;
 import modele.Facture;
-import modele.dao.DaoBatiment;
 import modele.dao.DaoBienImmobilier;
-import modele.dao.DaoCharges;
 import modele.dao.DaoFacture;
 import vue.FenetreFacture;
 
@@ -27,13 +26,12 @@ public class GestionFactures implements ActionListener , ItemListener  {
 	private FenetreFacture gestionFactures;
 	private DaoFacture daoFacture;
 	private DaoBienImmobilier daoBienImmobilier;
-	private Boolean ajouterLigne;
+	private Logger logger = Logger.getLogger(getClass().getName());
 
-	public GestionFactures(FenetreFacture gestionFactures) {
-		this.gestionFactures = gestionFactures;
+	public GestionFactures(FenetreFacture gestionFacture) {
+		this.gestionFactures = gestionFacture;
 		this.daoFacture = new DaoFacture();
 		this.daoBienImmobilier = new DaoBienImmobilier();
-		this.ajouterLigne = false;
 	}
 
 	@Override
@@ -45,11 +43,11 @@ public class GestionFactures implements ActionListener , ItemListener  {
 
 			switch (buttonValider.getText()) {
 			case "Valider":
-                try {
-                    insererFacture();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
+				try {
+					insererFacture();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
 				break;
 			case "Ajouter Facture":
 				ajouterReleve();
@@ -57,14 +55,16 @@ public class GestionFactures implements ActionListener , ItemListener  {
 			case "Annuler":
 				gestionFactures.dispose();
 				break;
+			default:
+				break;
 			}
 		}
 	}
 
 
 	private void ajouterReleve() {		
-	    DefaultTableModel model = (DefaultTableModel) gestionFactures.getTable().getModel();
-	    model.addRow(new Object[]{"", "", "", "", ""});	
+		DefaultTableModel model = (DefaultTableModel) gestionFactures.getTable().getModel();
+		model.addRow(new Object[]{"", "", "", "", ""});	
 	}
 
 	private void insererFacture() throws SQLException {
@@ -77,47 +77,47 @@ public class GestionFactures implements ActionListener , ItemListener  {
 			rowData[i] = model.getValueAt(selectedRow, i);
 		}
 		String idFacture = (String)rowData[0];
-		String Siren = (String)rowData[1];
+		String siren = (String)rowData[1];
 		Double prix = Double.parseDouble((String)rowData[2]);
-		String Type = (String)rowData[3];
-		String Date =(String)rowData[4];
+		String type = (String)rowData[3];
+		String date =(String)rowData[4];
 		String idBienSelectionne = (String) gestionFactures.getIdBienComboBox().getSelectedItem();
-		System.out.println(idBienSelectionne);
+		logger.info(idBienSelectionne);
 		BienImmobilier bat = daoBienImmobilier.findById(idBienSelectionne);
 		String idBat = bat.getId_Batiment();
-		System.out.println(idBat);
+		logger.info(idBat);
 
 
-		Facture facture = new Facture(idFacture,Siren,prix,Type,Date,idBienSelectionne,idBat);
+		Facture facture = new Facture(idFacture,siren,prix,type,date,idBienSelectionne,idBat);
 
 		daoFacture.create(facture);
 
 		filtrerFactures();
 	}
 
-	
-	
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        // Handle the item state change event for comboboxes
-        if (e.getSource() == gestionFactures.getTypefactureComboBox()
-                || e.getSource() == gestionFactures.getIdBienComboBox()) {
-            try {
-                filtrerFactures();
-                activerBoutonAjouter();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
-    
-    
-    private void activerBoutonAjouter() {
-        String idBienSelectionne = (String) gestionFactures.getIdBienComboBox().getSelectedItem();
-        
-        // Activer le bouton si un bien est sélectionné, sinon le désactiver
-        gestionFactures.getAjouterButton().setEnabled(!"Tous".equals(idBienSelectionne));
-    }
+
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		// Handle the item state change event for comboboxes
+		if (e.getSource() == gestionFactures.getTypefactureComboBox()
+				|| e.getSource() == gestionFactures.getIdBienComboBox()) {
+			try {
+				filtrerFactures();
+				activerBoutonAjouter();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
+
+
+	private void activerBoutonAjouter() {
+		String idBienSelectionne = (String) gestionFactures.getIdBienComboBox().getSelectedItem();
+
+		// Activer le bouton si un bien est sélectionné, sinon le désactiver
+		gestionFactures.getAjouterButton().setEnabled(!"Tous".equals(idBienSelectionne));
+	}
 
 
 	public void filtrerFactures() throws SQLException {
@@ -131,10 +131,10 @@ public class GestionFactures implements ActionListener , ItemListener  {
 			boolean idBienMatch = "Tous".equals(idBienSelectionne) || idBienSelectionne.equals(compteur.getIdBienImm());
 
 			// For debugging purposes, print the filters and the matching condition
-			System.out.println("Type Selectionne: " + typeSelectionne);
-			System.out.println("IdBien Selectionne: " + idBienSelectionne);
-			System.out.println("Type Match: " + typeMatch);
-			System.out.println("IdBien Match: " + idBienMatch);
+			logger.info("Type Selectionne: " + typeSelectionne);
+			logger.info("IdBien Selectionne: " + idBienSelectionne);
+			logger.info("Type Match: " + typeMatch);
+			logger.info("IdBien Match: " + idBienMatch);
 
 			if (typeMatch && idBienMatch) {
 				compteursFiltres.add(compteur);
@@ -150,6 +150,5 @@ public class GestionFactures implements ActionListener , ItemListener  {
 					compteur.getPrix(), compteur.getTypeEntretien(),compteur.getDateFacture()});
 		}
 	}
-	public static void main(String[] args) {
-	}
+
 }
