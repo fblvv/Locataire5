@@ -27,7 +27,7 @@ import controle.GestionPageAjoutLocataire;
 import modele.BienImmobilier;
 import modele.dao.DaoBienImmobilier;
 
-public class PageAjoutLocataire extends JInternalFrame {
+public class FenetreAjoutLocataire extends JInternalFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -41,7 +41,7 @@ public class PageAjoutLocataire extends JInternalFrame {
     
     Logger logger = Logger.getLogger(getClass().getName());
 
-    public PageAjoutLocataire() {
+    public FenetreAjoutLocataire() {
         this.gestionClic = new GestionPageAjoutLocataire(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 500);

@@ -33,7 +33,7 @@ public class FenetreContratLocation extends JInternalFrame {
     private JButton ajouterLocataireButton;
     private BienImmobilier bienImmobilier;
     private Locataire locataire;
-    private PageAjoutLocataire pageAjoutLocataire;
+    private FenetreAjoutLocataire pageAjoutLocataire;
     private GestionContratLocation gestionClic;
     
 

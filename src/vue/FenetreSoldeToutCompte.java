@@ -13,7 +13,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import SQL.CictOracleDataSource;
-import controle.GestionSoldeDeToutCompte;
+import controle.GestionSoldeToutCompte;
 import modele.Locataire;
 import modele.dao.DaoLocataire;
 
@@ -30,13 +30,14 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
     private JPanel contentPane;
     private final JScrollPane scrollPane = new JScrollPane();
     private JTable tableauCharges;
-    private GestionSoldeDeToutCompte gestionClic;
+    private GestionSoldeToutCompte gestionClic;
     private JComboBox<String> selecteurIdLocataire;
     private JTextField textSolde;
     private JTextField textRegularisation;
+    private JTextField textFieldBien;
 
     public FenetreSoldeToutCompte() {
-        this.gestionClic = new GestionSoldeDeToutCompte(this);
+        this.gestionClic = new GestionSoldeToutCompte(this);
         setClosable(true);
         setBorder(null);
         setBackground(new Color(240, 240, 240));
@@ -59,21 +60,24 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
         tableauCharges.getColumnModel().getColumn(3).setPreferredWidth(102);
         scrollPane.setViewportView(tableauCharges);
         
+        
         selecteurIdLocataire = new JComboBox<>();
-        calculerSolde();
+        //calculerSolde();
         // Remplissez la JComboBox avec les ID des locataires ici
         remplirSelecteurIdLocataire();
         selecteurIdLocataire.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    gestionClic.afficherInfoLocataire();
+                	gestionClic.afficherInfoLocataire();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
+      
                 }
             }
-            
-            
         });
+
+
         selecteurIdLocataire.setBackground(Color.WHITE);
         selecteurIdLocataire.setBounds(20, 72, 156, 22);
         contentPane.add(selecteurIdLocataire);
@@ -107,6 +111,7 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
         contentPane.add(lblLocataire);
         
         textSolde = new JTextField();
+        textSolde.addActionListener(gestionClic);
         textSolde.setBounds(142, 124, 81, 19);
         contentPane.add(textSolde);
         textSolde.setColumns(10);
@@ -132,6 +137,17 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
         JScrollPane scrollPane_1 = new JScrollPane();
         scrollPane_1.setBounds(260, 177, 203, 107);
         contentPane.add(scrollPane_1);
+        
+        textFieldBien = new JTextField();
+        //textFieldBien.addActionListener(gestionClic);
+        
+        textFieldBien.setBounds(401, 74, 96, 19);
+        contentPane.add(textFieldBien);
+        textFieldBien.setColumns(10);
+        
+        JLabel lblBien = new JLabel("Bien associé");
+        lblBien.setBounds(291, 77, 100, 13);
+        contentPane.add(lblBien);
     }
     
     private void remplirSelecteurIdLocataire() {
@@ -149,46 +165,38 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
         }
     }
 
-    private void calculerSolde() {
-        String idBien = getSelecteurIdLocataire();
-        System.out.println("Voici l'id du bien"+idBien);
-        java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
-        System.out.println("Voici la date" + date);
-
-        try {
-            // Préparez l'appel à la fonction SQL
-            String sql = "{ ? = call regularisation_charge(?, ?) }";
-            CallableStatement callableStatement = CictOracleDataSource.getConnectionBD().prepareCall(sql);
-
-            // Définissez les paramètres d'entrée
-            callableStatement.registerOutParameter(1, Types.NUMERIC); // Paramètre de sortie
-            callableStatement.setString(2, idBien);
-            callableStatement.setDate(3, date);
-
-            // Exécutez la fonction SQL
-            callableStatement.execute();
-
-            // Récupérez le résultat
-            double resultat = callableStatement.getDouble(1);
-
-            // Mettez à jour le champ de texte textSolde avec le résultat
-            textSolde.setText(Double.toString(resultat));
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-    
-    
     public String getSelecteurIdLocataire() {
         return (String) selecteurIdLocataire.getSelectedItem();
     }
     
-   
+    public JTextField getTextSolde() {
+		return textSolde;
+	}
+    
+    
+    public JTextField getTextBien() {
+		return textFieldBien;
+	}
+    
+    
+    public JTextField getTextRegularisation() {
+		return textRegularisation;
+	}
+    
+    public JTable getTable() {
+		return tableauCharges;
+	}
+    
+    
+
 
     public static void main(String[] args) {
         // Create an instance of your FenetreSoldeToutCompte class and display it.
         FenetreSoldeToutCompte fenetre = new FenetreSoldeToutCompte();
         fenetre.setVisible(true);
     }
+
+	
+
+	
 }

@@ -103,25 +103,4 @@ public class DaoBienImmobilier  extends DaoModele<BienImmobilier> implements Dao
 	    }
 	}
 	
-	
-	public String Regularisation(String id,String date) {
-	    RequeteRegularisation regularisation = new RequeteRegularisation();
-	    
-	    try (PreparedStatement st = CictOracleDataSource.getConnectionBD().prepareStatement(regularisation.requete())) {
-	        regularisation.parametres(st, id, date);
-
-	        List<String> statut = new ArrayList<>();
-	        try (ResultSet curseur = st.executeQuery()) {
-	            while (curseur.next()) {
-	                String instance = curseur.getString("montant_regularisation");
-	                statut.add(instance);
-	            }
-	        }
-
-	        return statut.isEmpty() ? "0.0" : statut.get(0);
-	    } catch (SQLException e) {
-	        e.printStackTrace(); // Handle the exception according to your needs
-	        return "erreur";
-	    }
-	}
 }

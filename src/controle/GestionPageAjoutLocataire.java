@@ -16,18 +16,18 @@ import modele.Locataire;
 import modele.dao.DaoBatiment;
 import modele.dao.DaoBienImmobilier;
 import modele.dao.DaoLocataire;
-import vue.PageAjoutLocataire;
+import vue.FenetreAjoutLocataire;
 import vue.FenetreContratLocation;
 
 public class GestionPageAjoutLocataire implements ActionListener {
 	private   Logger logger = Logger.getLogger(getClass().getName());
-	private PageAjoutLocataire ajoutLocataire;
+	private FenetreAjoutLocataire ajoutLocataire;
 	private DaoLocataire daoLocataire;
 	private DaoBienImmobilier daoBien;
 	private Locataire loc;
 	private BienImmobilier bien;
 
-	public GestionPageAjoutLocataire(PageAjoutLocataire ajoutLocataire) {
+	public GestionPageAjoutLocataire(FenetreAjoutLocataire ajoutLocataire) {
 		this.ajoutLocataire = ajoutLocataire;
 		this.daoLocataire = new DaoLocataire();
 		this.daoBien = new DaoBienImmobilier();
