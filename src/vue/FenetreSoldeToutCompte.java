@@ -12,25 +12,32 @@ import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controle.GestionSoldeDeToutCompte;
+import SQL.CictOracleDataSource;
+import controle.GestionSoldeToutCompte;
 import modele.Locataire;
 import modele.dao.DaoLocataire;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.CallableStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.Collection;
+import javax.swing.JTextField;
 
 public class FenetreSoldeToutCompte extends JInternalFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private final JScrollPane scrollPane = new JScrollPane();
     private JTable tableauCharges;
-    private GestionSoldeDeToutCompte gestionClic;
+    private GestionSoldeToutCompte gestionClic;
     private JComboBox<String> selecteurIdLocataire;
+    private JTextField textSolde;
+    private JTextField textRegularisation;
+    private JTextField textFieldBien;
 
     public FenetreSoldeToutCompte() {
-        this.gestionClic = new GestionSoldeDeToutCompte(this);
+        this.gestionClic = new GestionSoldeToutCompte(this);
         setClosable(true);
         setBorder(null);
         setBackground(new Color(240, 240, 240));
@@ -43,7 +50,7 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
 
         setContentPane(contentPane);
 
-        scrollPane.setBounds(20, 105, 496, 179);
+        scrollPane.setBounds(20, 177, 203, 107);
         contentPane.add(scrollPane);
 
         tableauCharges = new JTable();
@@ -52,19 +59,25 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
         tableauCharges.getColumnModel().getColumn(2).setPreferredWidth(66);
         tableauCharges.getColumnModel().getColumn(3).setPreferredWidth(102);
         scrollPane.setViewportView(tableauCharges);
-
+        
+        
         selecteurIdLocataire = new JComboBox<>();
+        //calculerSolde();
         // Remplissez la JComboBox avec les ID des locataires ici
         remplirSelecteurIdLocataire();
         selecteurIdLocataire.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    gestionClic.afficherInfoLocataire();
+                	gestionClic.afficherInfoLocataire();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
+      
                 }
             }
         });
+
+
         selecteurIdLocataire.setBackground(Color.WHITE);
         selecteurIdLocataire.setBounds(20, 72, 156, 22);
         contentPane.add(selecteurIdLocataire);
@@ -96,6 +109,45 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
         JLabel lblLocataire = new JLabel("Locataire");
         lblLocataire.setBounds(20, 53, 55, 13);
         contentPane.add(lblLocataire);
+        
+        textSolde = new JTextField();
+        textSolde.addActionListener(gestionClic);
+        textSolde.setBounds(142, 124, 81, 19);
+        contentPane.add(textSolde);
+        textSolde.setColumns(10);
+        
+        JLabel lblSoldeDeToutCompte = new JLabel("Solde de tout compte");
+        lblSoldeDeToutCompte.setBounds(20, 127, 131, 13);
+        contentPane.add(lblSoldeDeToutCompte);
+        
+        textRegularisation = new JTextField();
+        textRegularisation.setBounds(401, 124, 96, 19);
+        contentPane.add(textRegularisation);
+        textRegularisation.setColumns(10);
+        
+        JLabel lblRégularisationDesCharges = new JLabel("Régularisation Des Charges");
+        lblRégularisationDesCharges.setBounds(262, 127, 156, 13);
+        contentPane.add(lblRégularisationDesCharges);
+        
+        JLabel lblNewLabel_3 = new JLabel("Coût Actuellement");
+        lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 12));
+        lblNewLabel_3.setBounds(20, 104, 121, 13);
+        contentPane.add(lblNewLabel_3);
+        
+        JScrollPane scrollPane_1 = new JScrollPane();
+        scrollPane_1.setBounds(260, 177, 203, 107);
+        contentPane.add(scrollPane_1);
+        
+        textFieldBien = new JTextField();
+        //textFieldBien.addActionListener(gestionClic);
+        
+        textFieldBien.setBounds(401, 74, 96, 19);
+        contentPane.add(textFieldBien);
+        textFieldBien.setColumns(10);
+        
+        JLabel lblBien = new JLabel("Bien associé");
+        lblBien.setBounds(291, 77, 100, 13);
+        contentPane.add(lblBien);
     }
     
     private void remplirSelecteurIdLocataire() {
@@ -116,10 +168,35 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
     public String getSelecteurIdLocataire() {
         return (String) selecteurIdLocataire.getSelectedItem();
     }
+    
+    public JTextField getTextSolde() {
+		return textSolde;
+	}
+    
+    
+    public JTextField getTextBien() {
+		return textFieldBien;
+	}
+    
+    
+    public JTextField getTextRegularisation() {
+		return textRegularisation;
+	}
+    
+    public JTable getTable() {
+		return tableauCharges;
+	}
+    
+    
+
 
     public static void main(String[] args) {
         // Create an instance of your FenetreSoldeToutCompte class and display it.
         FenetreSoldeToutCompte fenetre = new FenetreSoldeToutCompte();
         fenetre.setVisible(true);
     }
+
+	
+
+	
 }

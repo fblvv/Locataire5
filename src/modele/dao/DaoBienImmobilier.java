@@ -11,6 +11,7 @@ import java.util.List;
 import SQL.CictOracleDataSource;
 import modele.BienImmobilier;
 import modele.dao.requetes.RequeteOccupationBien;
+import modele.dao.requetes.RequeteRegularisation;
 import modele.dao.requetes.RequeteSelectBatiment;
 import modele.dao.requetes.RequeteSelectBienImmobilier;
 import modele.dao.requetes.RequeteSelectBienImmobilierById;
@@ -101,4 +102,5 @@ public class DaoBienImmobilier  extends DaoModele<BienImmobilier> implements Dao
 	        return "erreur";
 	    }
 	}
+	
 }

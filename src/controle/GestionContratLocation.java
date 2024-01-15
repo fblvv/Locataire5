@@ -15,17 +15,17 @@ import java.util.logging.Logger;
 import modele.ContratLocation;
 import modele.dao.DaoContratLocation;
 import vue.FenetreContratLocation;
-import vue.PageAjoutLocataire;
+import vue.FenetreAjoutLocataire;
 
 public class GestionContratLocation implements ActionListener{
 
 	private FenetreContratLocation contratLocation;
-	private PageAjoutLocataire pageAjoutLocataire;
+	private FenetreAjoutLocataire pageAjoutLocataire;
 	private DaoContratLocation daoContrat;
 	private Logger logger = Logger.getLogger(getClass().getName());
 
 
-	public GestionContratLocation(FenetreContratLocation contratLocation, PageAjoutLocataire pageAjoutLocataire) {
+	public GestionContratLocation(FenetreContratLocation contratLocation, FenetreAjoutLocataire pageAjoutLocataire) {
 		this.contratLocation=contratLocation;
 		this.pageAjoutLocataire = pageAjoutLocataire;
 	}

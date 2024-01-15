@@ -23,7 +23,7 @@ import vue.FenetreLoyer;
 import vue.FenetreSoldeToutCompte;
 import vue.FenetreCharges;
 import vue.FenetreFacture;
-import vue.PageAjoutLocataire;
+import vue.FenetreAjoutLocataire;
 import vue.VoirContratLocation;
 
 public class GestionAccueil implements ActionListener {
@@ -50,7 +50,7 @@ public class GestionAccueil implements ActionListener {
 
 		switch (menuItem.getText()) {
 		case "Ajouter locataire":
-			afficherFenetre(new PageAjoutLocataire(), layeredPane);
+			afficherFenetre(new FenetreAjoutLocataire(), layeredPane);
 			break;
 		case "Consulter locataire":
 			afficherFenetre(new FenetreListeLocataire(), layeredPane);
