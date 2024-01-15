@@ -80,7 +80,12 @@ public class GestionListeLocataire implements ActionListener {
                     break;
 
                 case "Générer Contrat":
-                    genererContratPourLocataireSelectionne();
+				try {
+					genererContratPourLocataireSelectionne();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
                     break;
                 default:
                     break;
@@ -136,15 +141,29 @@ public class GestionListeLocataire implements ActionListener {
         }
     }
 
-    private void genererContratPourLocataireSelectionne() {
+    private void genererContratPourLocataireSelectionne() throws SQLException {
         int selectedRow = listeLocataire.getTable().getSelectedRow();
         if (selectedRow != -1) {
             String nom = (String) listeLocataire.getTable().getValueAt(selectedRow, 0);
             String prenom = (String) listeLocataire.getTable().getValueAt(selectedRow, 1);
-            String id = nom + prenom;
+
+            DaoLocataire daoLoc = new DaoLocataire();
+            Collection<Locataire> locataires = daoLoc.findAll();
+            Locataire monLoc=null;
+            
+            for (Locataire locataire : locataires) {
+            	if(locataire.getNom().equals(nom) && locataire.getPrenom().equals(prenom)) {
+            		monLoc=locataire;
+            	}
+            }
+            
+            
+            String id = monLoc.getId_Locataire();
+            DaoContratLocation daoContrat = new DaoContratLocation();
+            ContratLocation contrat = daoContrat.findById(id);
             try {
                 GenererContratDeLocation genererContrat = new GenererContratDeLocation();
-                genererContrat.genererPdf(id,);
+                genererContrat.genererPdf(id,contrat);
                 logger.info("Contrat généré pour le locataire ID: " + id);
                 logger.info(id);
             } catch (Exception e) {
