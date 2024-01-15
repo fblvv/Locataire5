@@ -20,9 +20,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import SQL.CictOracleDataSource;
+import modele.Charges;
 import modele.Compteur;
 import modele.ContratLocation;
 import modele.Locataire;
+import modele.dao.DaoCharges;
 import modele.dao.DaoCompteur;
 import modele.dao.DaoContratLocation;
 import modele.dao.DaoLocataire;
@@ -33,10 +35,12 @@ public class GestionSoldeToutCompte implements ActionListener {
 	private Logger logger = Logger.getLogger(getClass().getName());
 	private FenetreSoldeToutCompte fenetreSolde;
 	private DaoCompteur daoCompteur;
+	
 
 	public GestionSoldeToutCompte(FenetreSoldeToutCompte fenetreRegularisation) {
 		this.fenetreSolde = fenetreRegularisation;
 		this.daoCompteur = new DaoCompteur();
+		 
 	}
 
 	@Override
@@ -52,6 +56,12 @@ public class GestionSoldeToutCompte implements ActionListener {
 				break;
 			case "Générer le reçu":
 				regulariser();
+				soldes();
+				try {
+					afficherRecu();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 				break;
 			default:
 				break;
@@ -83,18 +93,27 @@ public class GestionSoldeToutCompte implements ActionListener {
 		ContratLocation contrat = daoContrat.findById(locataire.getId_Locataire());
 		if (contrat !=null) {
 		fenetreSolde.getTextBien().setText(contrat.getIdBienImm());
+		calculerRegularisation();
+		fenetreSolde.getTextSolde().setText(contrat.getIdBienImm());
 		calculerSolde();
 		}else {
 		fenetreSolde.getTextBien().setText("");
 		fenetreSolde.getTextRegularisation().setText("");
+		fenetreSolde.getTextSolde().setText("");
+		fenetreSolde.getTextSolde().setText("");
 		}
 		
 		mettreAJourJTable(fenetreSolde.getTextBien().getText());
+		mettreAJourJTableSolde(fenetreSolde.getTextSolde().getText());
+		fenetreSolde.getBoutonGenererReçu().setEnabled(true);
+		
+		
+		
 	}
 	
 	
 	
-	private void calculerSolde() {
+	private void calculerRegularisation() {
         String idBien = fenetreSolde.getTextBien().getText();
         System.out.println("Voici l'id du bien"+idBien);
         java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
@@ -102,7 +121,7 @@ public class GestionSoldeToutCompte implements ActionListener {
 
         try {
             // Préparez l'appel à la fonction SQL
-            String sql = "{ ? = call function1(?, ?) }";
+            String sql = "{ ? = call REGULARISATION_CHARGE(?, ?) }";
             CallableStatement callableStatement = CictOracleDataSource.getConnectionBD().prepareCall(sql);
 
             // Définissez les paramètres d'entrée
@@ -122,13 +141,46 @@ public class GestionSoldeToutCompte implements ActionListener {
             if (resultat<=0){
             	fenetreSolde.getTextRegularisation().setForeground(Color.RED);
             }
-            
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 	
+	private void calculerSolde() {
+	    String idBien = fenetreSolde.getTextBien().getText();
+	    System.out.println("Voici l'id du bien" + idBien);
+	    java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+	    System.out.println("Voici la date" + date);
+
+	    try {
+	        // Préparez l'appel à la fonction SQL
+	        String sql = "{ ? = call SOLDE_TOUT_COMPTE(?, ?) }"; // Utilisez "call" pour appeler la procédure
+	        CallableStatement callableStatement = CictOracleDataSource.getConnectionBD().prepareCall(sql);
+
+	        // Définissez les paramètres d'entrée
+	        callableStatement.registerOutParameter(1, Types.NUMERIC); // Paramètre de sortie
+	        callableStatement.setString(2, idBien);
+	        callableStatement.setDate(3, date);
+
+	        // Exécutez la fonction SQL
+	        callableStatement.execute();
+
+	        // Récupérez le résultat
+	        double solde = callableStatement.getDouble(1);
+
+	        // Mettez à jour le champ de texte textSolde avec le résultat
+	        fenetreSolde.getTextSolde().setText(Double.toString(solde));
+	        fenetreSolde.getTextSolde().setForeground(Color.GREEN);
+	        if (solde <= 0) {
+	            fenetreSolde.getTextSolde().setForeground(Color.RED);
+	        }
+
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    }
+	}
+
 	
 	
 	private void regulariser() {
@@ -144,6 +196,27 @@ public class GestionSoldeToutCompte implements ActionListener {
 
             // Mettre à jour la JTable avec les nouvelles données
             mettreAJourJTable(idBien);
+            fenetreSolde.getBoutonGenererReçu().setEnabled(false);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+	
+	private void soldes() {
+        String idBien = fenetreSolde.getTextBien().getText();
+        java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+
+        try {
+            // Appeler la procédure PL/SQL
+            CallableStatement callableStatement = CictOracleDataSource.getConnectionBD().prepareCall("{call Solde_tout_comptes(?, ?)}");
+            callableStatement.setString(1, idBien);
+            callableStatement.setDate(2, date);
+            callableStatement.execute();
+
+            // Mettre à jour la JTable avec les nouvelles données
+            mettreAJourJTableSolde(idBien);
+            fenetreSolde.getBoutonGenererReçu().setEnabled(false);
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -177,9 +250,53 @@ public class GestionSoldeToutCompte implements ActionListener {
         }
     }
 	
-	
-	
-    
+    private void mettreAJourJTableSolde(String idBien) {
+        try {
+            // Effectuer la requête pour récupérer les données de la régularisation
+            String sql = "SELECT * FROM Solde WHERE idbien = ?";
+            PreparedStatement preparedStatement = CictOracleDataSource.getConnectionBD().prepareStatement(sql);
+            preparedStatement.setString(1, idBien);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Mettre à jour la JTable avec les nouvelles données
+            DefaultTableModel model = (DefaultTableModel) fenetreSolde.getTableSolde().getModel();
+            model.setRowCount(0); // Effacer les données actuelles
+
+            while (resultSet.next()) {
+                Object[] rowData = {
+                        resultSet.getDate("date_Solde"),"Solde"+ resultSet.getString("idbien"),
+                        "20%",
+                        resultSet.getDouble("montant")
+                        // Ajouter d'autres colonnes si nécessaire
+                };
+                model.addRow(rowData);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void afficherRecu() throws SQLException {
+		Collection<Charges> chargesCh = dCharges.findAll();
+		DefaultTableModel tableModel = (DefaultTableModel) DaoCharges.getTable().getModel();
+
+		// Clear existing data from the table model
+		tableModel.setRowCount(0);
+
+		// Populate the table model with data
+		for (Charges chargesCh : charges) {
+
+			// Add a new row if needed
+			tableModel.addRow(new Object[] {chargesCh.getIdLocataire(),contLoc.getDateDebutContrat(),contLoc.getMontant(),contLoc.getMontantLoyer(),
+					chargesCh.getDateVersementLoyer(),contLoc.getDateEntree(),contLoc.getDateSortie(),contLoc.getDepotDeGarantie(),
+					chargesCh.getDateRevision(),contLoc.getPeriodicitePaiement(),contLoc.getDateFinContrat(),contLoc.getChargesProvisionnelles(),
+					chargesCh.getIdICC(),contLoc.getCaution(),contLoc.getIdBienImm()});
+
+
+
+		}
+	}
 	
     
     

@@ -95,4 +95,5 @@ public class GestionAjoutBatiment implements ActionListener {
 		}
 	}
 
+	
 }
