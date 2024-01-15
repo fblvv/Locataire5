@@ -5,10 +5,10 @@ import modele.Assurance;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class RequeteSelectAssuranceByNumPolice extends Requete<Assurance> {
+public class RequeteSelectAssuranceById extends Requete<Assurance> {
     @Override
     public String requete() {
-        return "SELECT * FROM ASSURANCE WHERE NUM_POLICE = ?";
+        return "SELECT * FROM ASSURANCE WHERE ID_BIEN_IMM = ?";
     }
 
     @Override

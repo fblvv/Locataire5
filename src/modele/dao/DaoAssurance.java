@@ -4,9 +4,13 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
 import SQL.CictOracleDataSource;
 import modele.Assurance;
+import modele.Batiment;
+import modele.dao.requetes.RequeteSelectAssuranceById;
+import modele.dao.requetes.RequeteSelectBatimentById;
 import modele.dao.requetes.SousProgrammeInsertAssurance;
 
 public class DaoAssurance extends DaoModele<Assurance> implements Dao<Assurance> {
@@ -19,9 +23,10 @@ public class DaoAssurance extends DaoModele<Assurance> implements Dao<Assurance>
 
 	@Override
 	public Assurance findById(String... id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		// TODO: Implémenter la récupération d'un enregistrement par ID
+    	return findById(new RequeteSelectAssuranceById(), id);
+        
+    }
 
 	@Override
 	public void update(Assurance donnee) throws SQLException {
@@ -48,15 +53,15 @@ public class DaoAssurance extends DaoModele<Assurance> implements Dao<Assurance>
 	@Override
 	protected Assurance creerInstance(ResultSet curseur) throws SQLException {
 	    Assurance assurance = new Assurance(
-	        curseur.getString("numPolice"),
-	        curseur.getString("tarifInitial"),
-	        curseur.getString("typeAssurance"),
-	        curseur.getString("dateEffetDebut"),
-	        curseur.getString("idBienImm"),
-	        curseur.getString("idBatiment")
+	        curseur.getString("num_Police"),
+	        curseur.getString("tarif_Initial"),
+	        curseur.getString("type_Assurance"),
+	        curseur.getString("date_Effet_Debut"),
+	        curseur.getString("id_Bien_Imm"),
+	        curseur.getString("id_Batiment")
 	    );
 
-	    // You may want to set other properties of Assurance based on your data model
+	    
 
 	    return assurance;
 	}
