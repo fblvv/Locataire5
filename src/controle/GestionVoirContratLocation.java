@@ -43,9 +43,11 @@ public class GestionVoirContratLocation implements ActionListener {
 			case "Annuler":
 				contratLocataire.dispose();
 				break;
+			case "Modifier":
+				modifLigne();
 			default:
 				break;
-			}
+			} 
 		}
 	}
 
@@ -68,5 +70,32 @@ public class GestionVoirContratLocation implements ActionListener {
 
 
 		}
+	}
+	public void modifLigne() {
+		DefaultTableModel tableModel = (DefaultTableModel) contratLocataire.getTable().getModel();
+		int row = contratLocataire.getTable().getSelectedRow();
+		String idLocataire =(String)tableModel.getValueAt(row, 0);
+		String dateDebut =(String)tableModel.getValueAt(row, 1);
+		double montant =(double)tableModel.getValueAt(row, 2);
+		double montantLoyer =(double)tableModel.getValueAt(row, 3);
+		String dateVersement =(String)tableModel.getValueAt(row, 4);
+		String dateEntree =(String)tableModel.getValueAt(row, 5);
+		String dateSortie =(String)tableModel.getValueAt(row, 6);
+		String depotGarantie =(String)tableModel.getValueAt(row, 7);
+		String dateRevison =(String)tableModel.getValueAt(row, 8);
+		String periodicite =(String)tableModel.getValueAt(row, 9);
+		String dateFinContrat =(String)tableModel.getValueAt(row, 10);
+		double charges =(double)tableModel.getValueAt(row, 11);
+		String valeurICC =(String)tableModel.getValueAt(row, 12);
+		double caution =(double)tableModel.getValueAt(row, 13);
+		String idBienImmo =(String)tableModel.getValueAt(row, 14);
+		ContratLocation contratLocation = new ContratLocation(idLocataire,dateDebut,montant,montantLoyer,dateVersement,dateEntree,dateSortie,depotGarantie,dateRevison,periodicite,dateFinContrat,charges,valeurICC,caution,idBienImmo);
+		try {
+			daoContratLocation.update(contratLocation);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

@@ -7,12 +7,11 @@ import java.util.Collection;
 import java.util.List;
 
 import SQL.CictOracleDataSource;
-import modele.Batiment;
 import modele.ContratLocation;
-import modele.dao.requetes.RequeteSelectBatimentById;
 import modele.dao.requetes.RequeteSelectContratLocation;
 import modele.dao.requetes.RequeteSelectContratLocationById;
 import modele.dao.requetes.SousProgrammeInsertContrat;
+import modele.dao.requetes.SousProgrammeUpdateContratLocation;
 
 public class DaoContratLocation extends DaoModele<ContratLocation> implements Dao<ContratLocation> {
 
@@ -32,14 +31,16 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
     }
 
 	@Override
-	public void update(ContratLocation donnee) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	public void update(ContratLocation contratLocation) throws SQLException {
+	    SousProgrammeUpdateContratLocation sousProgrammeUpdateContratLocation = new SousProgrammeUpdateContratLocation();
+	    CallableStatement cs = CictOracleDataSource.getConnectionBD().prepareCall(sousProgrammeUpdateContratLocation.appelSousProgramme());
+	    sousProgrammeUpdateContratLocation.parametres(cs, contratLocation);
+	    cs.execute();		
 	}
+
 
 	@Override
 	public void create(ContratLocation contrat) throws SQLException {
-		// TODO Auto-generated method stub
 		SousProgrammeInsertContrat sousProgrammeInsertContrat = new SousProgrammeInsertContrat();
 	    CallableStatement cs = CictOracleDataSource.getConnectionBD().prepareCall(sousProgrammeInsertContrat.appelSousProgramme());
 	        sousProgrammeInsertContrat.parametres(cs, contrat);

@@ -12,7 +12,7 @@ public class ContratLocation {
     private String dateRevision;
     private String periodicitePaiement;
     private String dateFinContrat;
-    private double chargesProvisionnelles; //voila
+    private double chargesProvisionnelles; 
     private String idICC;
     private double valeurIcc;
     private double caution;
