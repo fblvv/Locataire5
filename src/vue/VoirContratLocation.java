@@ -1,47 +1,98 @@
 package vue;
 
+import java.awt.EventQueue;
+
 import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import java.awt.Font;
-
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 
 import controle.GestionVoirContratLocation;
 
-import javax.swing.JList;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
-import javax.swing.table.DefaultTableModel;
-
+import java.awt.FlowLayout;
+import javax.swing.JButton;
+import java.awt.Button;
 
 public class VoirContratLocation extends JInternalFrame {
-
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	private GestionVoirContratLocation gestionClic;
 	private JTable table;
+	private GestionVoirContratLocation gestionClic;
 
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					VoirContratLocation frame = new VoirContratLocation();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
 	public VoirContratLocation() {
 		gestionClic = new GestionVoirContratLocation(this);
-		setIconifiable(true);
-		setMaximizable(true);
-		setClosable(true);
-		setBounds(100, 100, 1207, 634);
+		
+		setSize(1100, 700);
+		getContentPane().setLayout(new BorderLayout(0, 0));
+		
+		JPanel panelNord = new JPanel();
+		getContentPane().add(panelNord, BorderLayout.NORTH);
 		
 		JLabel voirContratLocation = new JLabel("Voir Contrat Location");
 		voirContratLocation.setHorizontalAlignment(SwingConstants.CENTER);
-		voirContratLocation.setFont(new Font("Tahoma", Font.BOLD, 14));
-		getContentPane().add(voirContratLocation, BorderLayout.NORTH);
+		panelNord.add(voirContratLocation);
 		
-		JList<String> list = new JList<>();
-		getContentPane().add(list, BorderLayout.CENTER);
+		
+		
+		JPanel panelCentre = new JPanel();
+		panelCentre.setLayout(new FlowLayout(FlowLayout.CENTER, 100, FlowLayout.CENTER));
+        getContentPane().add(panelCentre, BorderLayout.CENTER);
+		
+		JScrollPane scrollPaneTable = new JScrollPane();
+		scrollPaneTable.setPreferredSize(new Dimension(1080, 600));
+		panelCentre.add(scrollPaneTable);
+		
+		table = new JTable();
+		table.setColumnSelectionAllowed(true);
+		table.setCellSelectionEnabled(true);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ID Locataire", "Date Debut Contrat", "Montant", "Montant Loyer", "Date Versement Loyer", "Date d'Entree", "Date de Sortie", "Depot De Garantie", "Date Revision", "Periodicite Paiement", "Date Fin Contrat", "Charges Provisionnelles", "Valeur ICC", "Caution", "ID Bien Immo"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, true, true, true, false, true, false, true, true, true, true, true, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		
+		scrollPaneTable.setViewportView(table);
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.SOUTH);
-		
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton annuler = new JButton("Annuler");
 		annuler.addActionListener(gestionClic);
@@ -51,19 +102,11 @@ public class VoirContratLocation extends JInternalFrame {
 		voirFacture.addActionListener(gestionClic);
 		panel.add(voirFacture);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID Locataire", "Date Debut Contrat", "Montant", "Montant Loyer", "Date Versement Loyer", "Date d'Entree", "Date de Sortie", "Depot De Garantie", "Date Revision", "Periodicite Paiement", "Date Fin Contrat", "Charges Provisionnelles", "Valeur ICC", "Caution", "ID Bien Immo"
-			}
-		));
-		getContentPane().add(table, BorderLayout.WEST);
-			
-			
-		}
+		JButton btnModifier = new JButton("Modifier");
+		panel.add(btnModifier);
 
+	}
+	
 	public JTable getTable() {
 		return table;
 	}
@@ -71,4 +114,5 @@ public class VoirContratLocation extends JInternalFrame {
 	public void setTable(JTable table) {
 		this.table = table;
 	}
+
 }
