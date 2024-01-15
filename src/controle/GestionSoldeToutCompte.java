@@ -282,14 +282,15 @@ public class GestionSoldeToutCompte implements ActionListener {
     public void afficherRecu() throws SQLException {
     	// Ajout de la génération du contrat PDF
     	String idBien = fenetreSolde.getTextBien().getText();
-        genererContratPDF(idBien);
+    	String idLoc = fenetreSolde.getSelecteurIdLocataire();
+        genererContratPDF(idBien,idLoc);
     }
 
    
-    private void genererContratPDF(String idBien) {
+    private void genererContratPDF(String idBien,String idLocataire) {
         // Utilisation de la classe GenererContratDeLocation pour générer le PDF
     	GenererRecuSoldeDeToutCompte genererContrat = new GenererRecuSoldeDeToutCompte();
-        genererContrat.genererPdf(idBien);
+        genererContrat.genererPdf(idBien,idLocataire);
 
     }
 

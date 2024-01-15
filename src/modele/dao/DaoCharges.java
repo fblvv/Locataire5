@@ -55,8 +55,8 @@ public class DaoCharges extends DaoModele<Charges> implements Dao<Charges> {
 	@Override
     protected Charges creerInstance(ResultSet curseur) throws SQLException {
         // Récupérer les valeurs de la base de données
-		String idCharge = curseur.getString("ID_CHARGES");
-        String idBienImm = curseur.getString("Id_Bien_Imm");
+		String idBienImm = curseur.getString("Id_Bien_Imm");
+		String idCharge = curseur.getString("id_Charges");
         double montant = curseur.getDouble("Montant");
         String dateCharge = curseur.getString("Date_Charge");
         String typeCharge = curseur.getString("Type_Charge");

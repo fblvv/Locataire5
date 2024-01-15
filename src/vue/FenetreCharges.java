@@ -36,7 +36,7 @@ public class FenetreCharges extends JInternalFrame {
         new ArrayList<>(); 
 
         JPanel panel = new JPanel(new FlowLayout());
-        String[] typesCompteur = {"Tout Type", "Eau", "Electricite", "Gaz","Reparation","Ordures menageres","Entretien des parties communes","Eclairage parties communes","Autres","Degats"};
+        String[] typesCompteur = {"Tout Type", "Eau", "Electricite", "Gaz","Reparation","Ordures menageres","Entretien parties communes","Eclairage parties communes","Autres","Degats"};
         typeCompteurComboBox = new JComboBox<>(typesCompteur);
         panel.add(new JLabel("Type de Charge :"));
         panel.add(typeCompteurComboBox);

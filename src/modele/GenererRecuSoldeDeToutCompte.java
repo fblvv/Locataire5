@@ -5,12 +5,14 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import modele.dao.DaoCharges;
-
+import modele.dao.DaoLoyer;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
@@ -22,7 +24,7 @@ public class GenererRecuSoldeDeToutCompte {
     	
     }
 
-    public void genererPdf(String idBien) {
+    public void genererPdf(String idBien,String idLoc) {
         Document document = new Document();
         try {
             PdfWriter.getInstance(document, new FileOutputStream("Recu_" + idBien + ".pdf"));
@@ -59,15 +61,6 @@ public class GenererRecuSoldeDeToutCompte {
 
             		// Détail des charges
             		// Ajoutez ici le détail des charges comme l'eau, les ordures ménagères, etc., avec les dates et calculs spécifiques
-
-            		// Sous-total
-            		Paragraph sousTotal = new Paragraph("Soit un sous-total de [Montant Sous-total] Euros\n\n", contentFont);
-            		document.add(sousTotal);
-
-            		// Déductions
-            		Paragraph deductions = new Paragraph("A déduire\nles provisions pour charges [période] : [Montant Déductions]\n\n", contentFont);
-            		document.add(deductions);
-            		
             		DaoCharges daoCharges = new DaoCharges();
             		Collection<Charges> charges = daoCharges.findAll();
             		Collection<Charges> chargesEau = new LinkedList<>();
@@ -75,20 +68,20 @@ public class GenererRecuSoldeDeToutCompte {
             		Collection<Charges> chargesEntretien = new LinkedList<>();
             		Collection<Charges> chargesEclairage = new LinkedList<>();
             		
-            		Double sommesEau = .0;
-            		Double sommesOrdure = .0;
-            		Double sommesEntretien = .0;
-            		Double sommesEclairage = .0;
+            		Double sommesEau = 0.0;
+            		Double sommesOrdure = 0.0;
+            		Double sommesEntretien = 0.0;
+            		Double sommesEclairage = 0.0;
+            		Double sommesAutres = 0.0;
+            		Double sommesDegats = 0.0;
+            		Double totalCharges=0.0;
             		
             		for (Charges charge : charges) {
-            			System.out.println(idBien);
             			if( charge.getIdBienImm().equals(idBien)) {
             				if(charge.getTypeCharge().equals("Eau")) {
             				chargesEau.add(charge);
             				sommesEau+=charge.getMontant();
-            				System.out.println(idBien);
-            				System.out.println(charge.getMontant());
-            			}else if (charge.getTypeCharge().equals("Ordures ménagères")) {
+            			}else if (charge.getTypeCharge().equals("Ordures menageres")) {
             				chargesOrdure.add(charge);
             				sommesOrdure+=charge.getMontant();
             			}else if (charge.getTypeCharge().equals("Entretien parties communes")) {
@@ -97,27 +90,76 @@ public class GenererRecuSoldeDeToutCompte {
             			}else if (charge.getTypeCharge().equals("Eclairage parties communes")) {
             				chargesEclairage.add(charge);
             				sommesEclairage+=charge.getMontant();
+            			}else if (charge.getTypeCharge().equals("Autres")) {
+            				sommesAutres+=charge.getMontant();
+            			}else if (charge.getTypeCharge().equals("Degats")) {
+            				sommesDegats+=charge.getMontant();
             			}
             			}
             		}
             		
+            		totalCharges+=sommesEau+sommesOrdure+sommesEntretien+sommesEclairage+sommesAutres+sommesDegats;
             		
+            			
             		
-            		// Déductions
+            		// Charges
             		Paragraph eau = new Paragraph("Eau :"+sommesEau + "€", contentFont);
+            		document.add(eau);
+            		
+            		// Charges
+            		Paragraph ordureMenagere = new Paragraph("Ordure : " + sommesOrdure.toString() + "€", contentFont);
+            		document.add(ordureMenagere);
+            		
+            		// Charges
+            		Paragraph entretien = new Paragraph("Entretien : " + sommesEntretien.toString() + "€", contentFont);
+            		document.add(entretien);
+            		
+            		// Charges
+            		Paragraph eclairage = new Paragraph("Eclairage : " + sommesEclairage.toString() + "€", contentFont);
+            		document.add(eclairage);
+            		
+            		Paragraph autres = new Paragraph("Autres : " + sommesAutres.toString() + "€", contentFont);
+            		document.add(autres);
+            		
+            		Paragraph degats = new Paragraph("Degats : " + sommesDegats.toString() + "€", contentFont);
+            		document.add(degats);
+
+            		// Sous-total
+            		Paragraph sousTotal = new Paragraph("Soit un sous-total de" +totalCharges.toString()+" € \n\n", contentFont);
+            		document.add(sousTotal);
+
+            		
+            		//calcul loyers sur la période
+            		DaoLoyer daoLoyer = new DaoLoyer();
+            		Collection<Loyer> loyers = daoLoyer.findByIds(idLoc);
+            		Double sommeLoyers = 0.0;
+            		Integer mois=0;
+            		Double provisions =0.0;
+
+                    // Obtenez l'année actuelle
+                    int anneeActuelle = LocalDate.now().getYear();
+
+                    // Parcourez la liste des loyers
+                    for (Loyer loyer : loyers) {
+                        // Obtenez l'année du paiement
+                        int anneePaiement = AnneeDate(loyer.getDatePaiement());
+
+                        // Vérifiez si l'année de paiement est la même que l'année actuelle
+                        if (anneePaiement == anneeActuelle) {
+                            // Ajoutez le loyer à la somme
+                            sommeLoyers += loyer.getCharges();
+                            provisions = loyer.getCharges();
+                            mois++;
+                        }
+                    }
+
+                    
+                
+            		// Déductions
+            		Paragraph deductions = new Paragraph("A déduire\nles provisions pour charges [période] :"+provisions.toString()+"*"+mois+"="+sommeLoyers.toString()+"€\n\n", contentFont);
             		document.add(deductions);
             		
-            		// Déductions
-            		Paragraph ordureMenagere = new Paragraph("Ordure : " + sommesOrdure + "€", contentFont);
-            		document.add(deductions);
             		
-            		// Déductions
-            		Paragraph entretien = new Paragraph("Entretien : " + sommesEntretien + "€", contentFont);
-            		document.add(deductions);
-            		
-            		// Déductions
-            		Paragraph eclairage = new Paragraph("Eclairage : " + sommesEclairage + "€", contentFont);
-            		document.add(deductions);
 
             		// Total et méthode de paiement
             		Paragraph total = new Paragraph("Nous restons vous devoir : [Montant Total] Euros.\nSolde de tout compte remis ce jour à l’intéressée par [méthode de paiement].\n\n", contentFont);
@@ -128,15 +170,24 @@ public class GenererRecuSoldeDeToutCompte {
             		document.add(closing);
 
             		document.close();
-            		} catch (DocumentException | IOException e) {
-            		    e.printStackTrace();
-            		} catch (SQLException e) {
-            		    e.printStackTrace();
-            		}
-            		}
+        }catch (DocumentException | IOException | SQLException e) {
+            	            e.printStackTrace();
+            			}
+            	    }
+
+            		
 
             		public static void main(String[] args) {
             		    GenererRecuSoldeDeToutCompte genererRecu = new GenererRecuSoldeDeToutCompte();
-            		    genererRecu.genererPdf("123"); // Remplacez "123" par l'ID du locataire
+            		    genererRecu.genererPdf("123","id"); // Remplacez "123" par l'ID du locataire
             		}
+            		
+            		
+            		private int AnneeDate(String dateString) {
+            		    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            		    LocalDate date = LocalDate.parse(dateString, formatter);
+            		    return date.getYear();
             		}
+
+            	}
+            		
