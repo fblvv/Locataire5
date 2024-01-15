@@ -122,14 +122,14 @@ public class GestionDetailPropriete2 implements ActionListener {
 			
 			//recuperation des assurance
 			Assurance assurance =daoAssurance.findById(bienImmo.getId_Bien_Imm());
-
+			if(assurance!=null) {
 			//remplissage du tableau 
 			DefaultTableModel tableMode3 = (DefaultTableModel)detailPropriete.getTableAssurance().getModel();
 			tableMode3.setRowCount(0);
 
 			tableMode3.addRow(new Object[]{assurance.getDateEffetDebut(),assurance.getNumPolice(),assurance.getTarifInitial(),assurance.getTypeAssurance()});
 		}
-
+		}
 
 		String equipements = bat.getEquip_Acces_Tech();
 		String nombrePieces = ""+bienImmo.getNb_Piece();
