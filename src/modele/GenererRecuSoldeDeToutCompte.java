@@ -70,10 +70,22 @@ public class GenererRecuSoldeDeToutCompte {
             		DaoCharges daoCharges = new DaoCharges();
             		Collection<Charges> charges = daoCharges.findAll();
             		Collection<Charges> chargesEau = new LinkedList<>();
+            		Collection<Charges> chargesOrdure = new LinkedList<>();
+            		Collection<Charges> chargesEntretien = new LinkedList<>();
+            		Collection<Charges> chargesEclairage = new LinkedList<>();
+            		
             		for (Charges charge : charges) {
-            			if( charge.getTypeCharge().equals("Eau") && charge.getIdBienImm().equals(idBien)) {
-            				
+            			if( charge.getIdBienImm().equals(idBien)) {
+            				if(charge.getTypeCharge().equals("Eau")) {
+            				chargesEau.add(charge);
+            			}else if (charge.getTypeCharge().equals("Ordures ménagères")) {
+            				chargesOrdure.add(charge);
+            			}else if (charge.getTypeCharge().equals("Entretien parties communes")) {
+            				chargesEntretien.add(charge);
+            			}else if (charge.getTypeCharge().equals("Eclairage parties communes")) {
+            				chargesEclairage.add(charge);
             			}
+            				
             		}
             		// Déductions
             		Paragraph eau = new Paragraph("Eau : 	", contentFont);
@@ -84,7 +96,7 @@ public class GenererRecuSoldeDeToutCompte {
             		document.add(deductions);
             		
             		// Déductions
-            		Paragraph entretient = new Paragraph("A déduire\nles provisions pour charges [période] : [Montant Déductions]\n\n", contentFont);
+            		Paragraph entretien = new Paragraph("A déduire\nles provisions pour charges [période] : [Montant Déductions]\n\n", contentFont);
             		document.add(deductions);
             		
             		// Déductions

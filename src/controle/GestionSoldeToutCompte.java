@@ -281,18 +281,6 @@ public class GestionSoldeToutCompte implements ActionListener {
 		Collection<Charges> chargesCh = dCharges.findAll();
 		DefaultTableModel tableModel = (DefaultTableModel) DaoCharges.getTable().getModel();
 
-		// Clear existing data from the table model
-		tableModel.setRowCount(0);
-
-		// Populate the table model with data
-		for (Charges chargesCh : charges) {
-
-			// Add a new row if needed
-			tableModel.addRow(new Object[] {chargesCh.getIdLocataire(),contLoc.getDateDebutContrat(),contLoc.getMontant(),contLoc.getMontantLoyer(),
-					chargesCh.getDateVersementLoyer(),contLoc.getDateEntree(),contLoc.getDateSortie(),contLoc.getDepotDeGarantie(),
-					chargesCh.getDateRevision(),contLoc.getPeriodicitePaiement(),contLoc.getDateFinContrat(),contLoc.getChargesProvisionnelles(),
-					chargesCh.getIdICC(),contLoc.getCaution(),contLoc.getIdBienImm()});
-
 
 
 		}
