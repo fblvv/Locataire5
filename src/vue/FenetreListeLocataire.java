@@ -7,8 +7,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +28,7 @@ public class FenetreListeLocataire extends JInternalFrame {
 
 
         setTitle("Liste des Locataires");
-        setSize(600, 400);
+        setSize(1000, 800);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
 
@@ -70,14 +68,8 @@ public class FenetreListeLocataire extends JInternalFrame {
         buttonPanel.add(genererContratButton);
 
         JButton voirBienButton = new JButton("Voir le bien");
-        voirBienButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Code pour voir le bien immobilier du locataire sélectionné
-            }
-        });
+        voirBienButton.addActionListener(this.gestionClic);
         buttonPanel.add(voirBienButton);
-
         buttonPanel.add(modifierButton);
 
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);

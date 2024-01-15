@@ -1,6 +1,7 @@
 package modele;
 
 import com.itextpdf.text.Chunk;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
@@ -22,7 +23,7 @@ public class GenererContratDeLocation {
         daoLocataire = new DaoLocataire();
     }
 
-    public void genererPdf(String idLocataire) {
+    public void genererPdf(String idLocataire, ContratLocation contrat) {
         Document document = new Document();
         try {
             PdfWriter.getInstance(document, new FileOutputStream("contratLocation" + idLocataire + ".pdf"));
@@ -64,8 +65,26 @@ public class GenererContratDeLocation {
                 return; // Sortie anticipée si aucun locataire n'est trouvé
             }
 
-            // Autres sections
-            // ...
+            document.add(Chunk.NEWLINE);
+            Paragraph section2 = new Paragraph("II. Informations sur le contrat", subTitleFont);
+            document.add(section2);
+
+            document.add(new Paragraph(String.format("Locataire: %s", locataire.getNom()+" "+locataire.getPrenom()), normalFont));
+            document.add(new Paragraph(String.format("Date Début Contrat: %s", contrat.getDateDebutContrat()), normalFont));
+            document.add(new Paragraph(String.format("Montant: %.2f", contrat.getMontant()), normalFont));
+            document.add(new Paragraph(String.format("Montant Loyer: %.2f", contrat.getMontantLoyer()), normalFont));
+            document.add(new Paragraph(String.format("Date Versement Loyer: %s", contrat.getDateVersementLoyer()), normalFont));
+            document.add(new Paragraph(String.format("Date d'Entrée: %s", contrat.getDateEntree()), normalFont));
+            document.add(new Paragraph(String.format("Date de Sortie: %s", contrat.getDateSortie()), normalFont));
+            document.add(new Paragraph(String.format("Dépôt De Garantie: %s", contrat.getDepotDeGarantie()), normalFont));
+            document.add(new Paragraph(String.format("Date Revision: %s", contrat.getDateRevision()), normalFont));
+            document.add(new Paragraph(String.format("Periodicite Paiement: %s", contrat.getPeriodicitePaiement()), normalFont));
+            document.add(new Paragraph(String.format("Date Fin Contrat: %s", contrat.getDateFinContrat()), normalFont));
+            document.add(new Paragraph(String.format("Charges Provisionnelles: %.2f", contrat.getChargesProvisionnelles()), normalFont));
+            document.add(new Paragraph(String.format("ID ICC: %s", contrat.getIdICC()), normalFont));
+            document.add(new Paragraph(String.format("Caution: %.2f", contrat.getCaution()), normalFont));
+            document.add(new Paragraph(String.format("ID Bien Imm: %s", contrat.getIdBienImm()), normalFont));
+
 
             // Signature
             document.add(Chunk.NEWLINE);

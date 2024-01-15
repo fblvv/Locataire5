@@ -14,47 +14,53 @@ import java.util.logging.Logger;
 
 import modele.ContratLocation;
 import modele.dao.DaoContratLocation;
+import modele.dao.DaoLocataire;
+import modele.GenererContratDeLocation;
 import vue.FenetreContratLocation;
 import vue.FenetreAjoutLocataire;
 
 public class GestionContratLocation implements ActionListener{
 
 	private FenetreContratLocation contratLocation;
-	private FenetreAjoutLocataire pageAjoutLocataire;
-	private DaoContratLocation daoContrat;
+    private FenetreAjoutLocataire pageAjoutLocataire;
+    private DaoContratLocation daoContrat;
+    private DaoLocataire daoLocataire;
 	private Logger logger = Logger.getLogger(getClass().getName());
+	
+	private ContratLocation contratActuel; // Ajout de l'attribut
 
 
 	public GestionContratLocation(FenetreContratLocation contratLocation, FenetreAjoutLocataire pageAjoutLocataire) {
-		this.contratLocation=contratLocation;
-		this.pageAjoutLocataire = pageAjoutLocataire;
+		this.contratLocation = contratLocation;
+        this.pageAjoutLocataire = pageAjoutLocataire;
+        this.daoContrat = new DaoContratLocation();
+        this.daoLocataire = new DaoLocataire();
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object source = e.getSource();
+        Object source = e.getSource();
 
-		if (source instanceof JButton) {
-			JButton button = (JButton) source;
+        if (source instanceof JButton) {
+            JButton button = (JButton) source;
 
-			switch (button.getText()) {
-			case "Ajouter Locataire":
-				try {
-					JLayeredPane layeredPane = contratLocation.getLayeredPane();
-					createContratLocation();
-					JOptionPane.showMessageDialog(contratLocation, "Locataire et contrat ajoutés avec succès");
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-				break;
-			case "Fermer":
-				contratLocation.dispose();
-				break;
-			default:
-				break;
-			}
-		}
-
-	}
+            switch (button.getText()) {
+                case "Ajouter Locataire":
+                    try {
+                        JLayeredPane layeredPane = contratLocation.getLayeredPane();
+                        createContratLocation();
+                        JOptionPane.showMessageDialog(contratLocation, "Locataire et contrat ajoutés avec succès");
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                    break;
+                case "Fermer":
+                    contratLocation.dispose();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
 
 
@@ -90,17 +96,30 @@ public class GestionContratLocation implements ActionListener{
 		ContratLocation contrat = new ContratLocation(idLocataire,dateDebutContrat,montant,montantLoyer,dateVersementLoyer,dateEntree,dateSortie,depotGarantie
 				,dateRevision,periodicitePaiement,dateFinContrat,chargesProvisionnelles,idICC,caution,idBienImm);
 
-
+		this.contratActuel = contrat;
+		
 		try {
 			daoContrat.create(contrat);
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		// Ajout de la génération du contrat PDF
+        genererContratPDF(contratLocation.getLocataire());
+    }
+
+    private void genererContratPDF(String idLocataire) {
+        // Utilisation de la classe GenererContratDeLocation pour générer le PDF
+        GenererContratDeLocation genererContrat = new GenererContratDeLocation();
+        genererContrat.genererPdf(idLocataire, this.contratActuel);
+
+    }
+
 
 	}
 
 
-}
+
 
 
 

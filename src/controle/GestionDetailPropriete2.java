@@ -12,11 +12,13 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
+import modele.Assurance;
 import modele.Batiment;
 import modele.BienImmobilier;
 import modele.ContratLocation;
 import modele.Locataire;
 import modele.Loyer;
+import modele.dao.DaoAssurance;
 import modele.dao.DaoBatiment;
 import modele.dao.DaoBienImmobilier;
 import modele.dao.DaoContratLocation;
@@ -33,6 +35,7 @@ public class GestionDetailPropriete2 implements ActionListener {
 	private DaoContratLocation daoContrat;
 	private DaoLocataire daoLocataire;
 	private DaoLoyer daoLoyer;
+	private DaoAssurance daoAssurance;
 
 
 	public GestionDetailPropriete2(FenetreDetailsPropriete2 detailPropriete) {
@@ -42,6 +45,7 @@ public class GestionDetailPropriete2 implements ActionListener {
 		this.daoContrat = new DaoContratLocation();
 		this.daoLocataire = new DaoLocataire();
 		this.daoLoyer=new DaoLoyer();
+		this.daoAssurance=new DaoAssurance();
 	}
 
 	@Override
@@ -113,8 +117,19 @@ public class GestionDetailPropriete2 implements ActionListener {
 			for(Loyer loyer:loyers) {
 				tableMode2.addRow(new Object[]{loyer.getDatePaiement(),loyer.getMontantPaiement(),loyer.getTypePaiement()});
 			}
-		}
+			
+			
+			
+			//recuperation des assurance
+			Assurance assurance =daoAssurance.findById(bienImmo.getId_Bien_Imm());
+			if(assurance!=null) {
+			//remplissage du tableau 
+			DefaultTableModel tableMode3 = (DefaultTableModel)detailPropriete.getTableAssurance().getModel();
+			tableMode3.setRowCount(0);
 
+			tableMode3.addRow(new Object[]{assurance.getDateEffetDebut(),assurance.getNumPolice(),assurance.getTarifInitial(),assurance.getTypeAssurance()});
+		}
+		}
 
 		String equipements = bat.getEquip_Acces_Tech();
 		String nombrePieces = ""+bienImmo.getNb_Piece();

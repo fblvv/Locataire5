@@ -46,7 +46,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
     private JTextField champContratsServices;
     private JTextField champCommentaires;
     private JTable tablePaiements;
-    private JTable tableHistorique;
+    private JTable tableAssurance;
     private JComboBox<String> selecteurIdBien;
     
     private static final String POLICE = "Tahoma";
@@ -358,22 +358,22 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
         
         
         
-        JLabel labelHistoriquePaiements = new JLabel("Historique des Paiements:");
-        labelHistoriquePaiements.setFont(new Font(POLICE, Font.PLAIN, 14));
-        GridBagConstraints gbcLabelHistoriquePaiements = new GridBagConstraints();
-        gbcLabelHistoriquePaiements.anchor = GridBagConstraints.WEST;
-        gbcLabelHistoriquePaiements.insets = new Insets(0, 0, 5, 0);
-        gbcLabelHistoriquePaiements.gridx = 0;
-        gbcLabelHistoriquePaiements.gridy = 2;
-        panelDroite.add(labelHistoriquePaiements, gbcLabelHistoriquePaiements);
+        JLabel labelAssurancePaiements = new JLabel("Assurance des Paiements:");
+        labelAssurancePaiements.setFont(new Font(POLICE, Font.PLAIN, 14));
+        GridBagConstraints gbcLabelAssurancePaiements = new GridBagConstraints();
+        gbcLabelAssurancePaiements.anchor = GridBagConstraints.WEST;
+        gbcLabelAssurancePaiements.insets = new Insets(0, 0, 5, 0);
+        gbcLabelAssurancePaiements.gridx = 0;
+        gbcLabelAssurancePaiements.gridy = 2;
+        panelDroite.add(labelAssurancePaiements, gbcLabelAssurancePaiements);
         
-        JScrollPane scrollPaneHistoriquePaiements = new JScrollPane();
-        GridBagConstraints gbcScrollPaneHistoriquePaiements = new GridBagConstraints();
-        gbcScrollPaneHistoriquePaiements.fill = GridBagConstraints.BOTH;
-        gbcScrollPaneHistoriquePaiements.insets = new Insets(0, 0, 5, 0);
-        gbcScrollPaneHistoriquePaiements.gridx = 0;
-        gbcScrollPaneHistoriquePaiements.gridy = 3;
-        panelDroite.add(scrollPaneHistoriquePaiements, gbcScrollPaneHistoriquePaiements);
+        JScrollPane scrollPaneAssurancePaiements = new JScrollPane();
+        GridBagConstraints gbcScrollPaneAssurancePaiements = new GridBagConstraints();
+        gbcScrollPaneAssurancePaiements.fill = GridBagConstraints.BOTH;
+        gbcScrollPaneAssurancePaiements.insets = new Insets(0, 0, 5, 0);
+        gbcScrollPaneAssurancePaiements.gridx = 0;
+        gbcScrollPaneAssurancePaiements.gridy = 3;
+        panelDroite.add(scrollPaneAssurancePaiements, gbcScrollPaneAssurancePaiements);
         
         tablePaiements = new JTable();
         tablePaiements.setModel(new DefaultTableModel(
@@ -390,51 +390,37 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
         		"Date", "Montant", "Mode de paiement"
         	}
         ));
-        scrollPaneHistoriquePaiements.setViewportView(tablePaiements);
+        scrollPaneAssurancePaiements.setViewportView(tablePaiements);
         
-        JLabel labelHistoriqueReparations = new JLabel("Historique des Réparations:");
-        labelHistoriqueReparations.setFont(new Font(POLICE, Font.PLAIN, 14));
-        GridBagConstraints gbcLabelHistoriqueReparations = new GridBagConstraints();
-        gbcLabelHistoriqueReparations.anchor = GridBagConstraints.WEST;
-        gbcLabelHistoriqueReparations.insets = new Insets(0, 0, 5, 0);
-        gbcLabelHistoriqueReparations.gridx = 0;
-        gbcLabelHistoriqueReparations.gridy = 5;
-        panelDroite.add(labelHistoriqueReparations, gbcLabelHistoriqueReparations);
+        JLabel labelAssuranceReparations = new JLabel("Assurance des Réparations:");
+        labelAssuranceReparations.setFont(new Font(POLICE, Font.PLAIN, 14));
+        GridBagConstraints gbcLabelAssuranceReparations = new GridBagConstraints();
+        gbcLabelAssuranceReparations.anchor = GridBagConstraints.WEST;
+        gbcLabelAssuranceReparations.insets = new Insets(0, 0, 5, 0);
+        gbcLabelAssuranceReparations.gridx = 0;
+        gbcLabelAssuranceReparations.gridy = 5;
+        panelDroite.add(labelAssuranceReparations, gbcLabelAssuranceReparations);
         
-        JScrollPane scrollPaneHistoriqueReparations = new JScrollPane();
-        GridBagConstraints gbcScrollPaneHistoriqueReparations = new GridBagConstraints();
-        gbcScrollPaneHistoriqueReparations.fill = GridBagConstraints.BOTH;
-        gbcScrollPaneHistoriqueReparations.insets = new Insets(0, 0, 5, 0);
-        gbcScrollPaneHistoriqueReparations.gridx = 0;
-        gbcScrollPaneHistoriqueReparations.gridy = 6;
-        panelDroite.add(scrollPaneHistoriqueReparations, gbcScrollPaneHistoriqueReparations);
+        JScrollPane scrollPaneAssuranceReparations = new JScrollPane();
+        GridBagConstraints gbcScrollPaneAssuranceReparations = new GridBagConstraints();
+        gbcScrollPaneAssuranceReparations.fill = GridBagConstraints.BOTH;
+        gbcScrollPaneAssuranceReparations.insets = new Insets(0, 0, 5, 0);
+        gbcScrollPaneAssuranceReparations.gridx = 0;
+        gbcScrollPaneAssuranceReparations.gridy = 6;
+        panelDroite.add(scrollPaneAssuranceReparations, gbcScrollPaneAssuranceReparations);
         
-        tableHistorique = new JTable();
-        tableHistorique.setModel(new DefaultTableModel(
+        tableAssurance = new JTable();
+        tableAssurance.setModel(new DefaultTableModel(
         	new Object[][] {
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
+        		{null, null, null,null},
+        		{null, null, null,null},
+
         	},
         	new String[] {
-        		"Date", "Description", "Co\u00FBt"
+        		"Date", "N° Police", "Tarif","Type"
         	}
         ));
-        scrollPaneHistoriqueReparations.setViewportView(tableHistorique);
+        scrollPaneAssuranceReparations.setViewportView(tableAssurance);
         
         JPanel panelButton = new JPanel();
         GridBagConstraints gbcPanelButton = new GridBagConstraints();
@@ -498,6 +484,12 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
     public String getSelecteurIdBien() {
 	    return (String) selecteurIdBien.getSelectedItem();
 	   }
+    
+    public JComboBox<String> getSelecteur() {
+	    return selecteurIdBien;
+	   }
+    
+  
 
 	public JTextField getChampAdresse() {
 		return champAdresse;
@@ -595,6 +587,12 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		return tablePaiements;
 	}
 	
+	public JTable getTableAssurance() {
+		return tableAssurance;
+	}
 	
+	public GestionDetailPropriete2 getGestionClic() {
+		return this.gestionClic;
+	}
 
 }
