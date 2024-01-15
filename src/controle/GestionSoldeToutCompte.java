@@ -23,6 +23,8 @@ import SQL.CictOracleDataSource;
 import modele.Charges;
 import modele.Compteur;
 import modele.ContratLocation;
+import modele.GenererContratDeLocation;
+import modele.GenererRecuSoldeDeToutCompte;
 import modele.Locataire;
 import modele.dao.DaoCharges;
 import modele.dao.DaoCompteur;
@@ -278,15 +280,26 @@ public class GestionSoldeToutCompte implements ActionListener {
     }
 
     public void afficherRecu() throws SQLException {
-		Collection<Charges> chargesCh = dCharges.findAll();
-		DefaultTableModel tableModel = (DefaultTableModel) DaoCharges.getTable().getModel();
+    	// Ajout de la génération du contrat PDF
+    	String idBien = fenetreSolde.getTextBien().getText();
+        genererContratPDF(idBien);
+    }
 
+   
+    private void genererContratPDF(String idBien) {
+        // Utilisation de la classe GenererContratDeLocation pour générer le PDF
+    	GenererRecuSoldeDeToutCompte genererContrat = new GenererRecuSoldeDeToutCompte();
+        genererContrat.genererPdf(idBien);
+
+    }
+
+    
 
 
 		}
-	}
+	
 	
     
     
 
-}
+

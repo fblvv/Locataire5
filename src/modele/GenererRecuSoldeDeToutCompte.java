@@ -1,3 +1,5 @@
+package modele;
+
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -15,10 +17,9 @@ import java.util.LinkedList;
 
 public class GenererRecuSoldeDeToutCompte {
 
-    private DaoCharges dCharges;
 
     public GenererRecuSoldeDeToutCompte() {
-    	dCharges = new DaoCharges();
+    	
     }
 
     public void genererPdf(String idBien) {
@@ -74,33 +75,48 @@ public class GenererRecuSoldeDeToutCompte {
             		Collection<Charges> chargesEntretien = new LinkedList<>();
             		Collection<Charges> chargesEclairage = new LinkedList<>();
             		
+            		Double sommesEau = .0;
+            		Double sommesOrdure = .0;
+            		Double sommesEntretien = .0;
+            		Double sommesEclairage = .0;
+            		
             		for (Charges charge : charges) {
+            			System.out.println(idBien);
             			if( charge.getIdBienImm().equals(idBien)) {
             				if(charge.getTypeCharge().equals("Eau")) {
             				chargesEau.add(charge);
+            				sommesEau+=charge.getMontant();
+            				System.out.println(idBien);
+            				System.out.println(charge.getMontant());
             			}else if (charge.getTypeCharge().equals("Ordures ménagères")) {
             				chargesOrdure.add(charge);
+            				sommesOrdure+=charge.getMontant();
             			}else if (charge.getTypeCharge().equals("Entretien parties communes")) {
             				chargesEntretien.add(charge);
+            				sommesEntretien+=charge.getMontant();
             			}else if (charge.getTypeCharge().equals("Eclairage parties communes")) {
             				chargesEclairage.add(charge);
+            				sommesEclairage+=charge.getMontant();
             			}
-            				
+            			}
             		}
+            		
+            		
+            		
             		// Déductions
-            		Paragraph eau = new Paragraph("Eau : 	", contentFont);
+            		Paragraph eau = new Paragraph("Eau :"+sommesEau + "€", contentFont);
             		document.add(deductions);
             		
             		// Déductions
-            		Paragraph ordureMenagere = new Paragraph("A déduire\nles provisions pour charges [période] : [Montant Déductions]\n\n", contentFont);
+            		Paragraph ordureMenagere = new Paragraph("Ordure : " + sommesOrdure + "€", contentFont);
             		document.add(deductions);
             		
             		// Déductions
-            		Paragraph entretien = new Paragraph("A déduire\nles provisions pour charges [période] : [Montant Déductions]\n\n", contentFont);
+            		Paragraph entretien = new Paragraph("Entretien : " + sommesEntretien + "€", contentFont);
             		document.add(deductions);
             		
             		// Déductions
-            		Paragraph eclairage = new Paragraph("A déduire\nles provisions pour charges [période] : [Montant Déductions]\n\n", contentFont);
+            		Paragraph eclairage = new Paragraph("Eclairage : " + sommesEclairage + "€", contentFont);
             		document.add(deductions);
 
             		// Total et méthode de paiement
