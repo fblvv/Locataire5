@@ -63,8 +63,9 @@ public class GestionFactures implements ActionListener , ItemListener  {
 
 
 	private void ajouterReleve() {		
+		String typeFacture = (String) gestionFactures.getTypefactureComboBox().getSelectedItem();
 		DefaultTableModel model = (DefaultTableModel) gestionFactures.getTable().getModel();
-		model.addRow(new Object[]{"", "", "", "", ""});	
+		model.addRow(new Object[]{"", "", "", "typeFacture", ""});	
 	}
 
 	private void insererFacture() throws SQLException {
@@ -114,9 +115,9 @@ public class GestionFactures implements ActionListener , ItemListener  {
 
 	private void activerBoutonAjouter() {
 		String idBienSelectionne = (String) gestionFactures.getIdBienComboBox().getSelectedItem();
-
+		String typeFacture = (String) gestionFactures.getTypefactureComboBox().getSelectedItem();
 		// Activer le bouton si un bien est sélectionné, sinon le désactiver
-		gestionFactures.getAjouterButton().setEnabled(!"Tous".equals(idBienSelectionne));
+		gestionFactures.getAjouterButton().setEnabled(!"Tous".equals(idBienSelectionne) && !"Tout Type".equals(typeFacture));
 	}
 
 

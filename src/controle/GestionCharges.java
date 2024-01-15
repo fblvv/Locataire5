@@ -64,9 +64,9 @@ public class GestionCharges implements ActionListener , ItemListener {
 
 
 	private void ajouterReleve() {		
-		String typeCompteur = (String) gestionCharges.getTypeCompteurComboBox().getSelectedItem();
+		String typecharge = (String) gestionCharges.getTypeCompteurComboBox().getSelectedItem();
 		DefaultTableModel model = (DefaultTableModel) gestionCharges.getTable().getModel();
-		model.addRow(new Object[]{"", "", "", typeCompteur, ""});	
+		model.addRow(new Object[]{"", "", "", typecharge, ""});	
 	}
 
 
@@ -114,11 +114,11 @@ public class GestionCharges implements ActionListener , ItemListener {
 
 	private void activerBoutonAjouter() {
 		String idBienSelectionne = (String) gestionCharges.getIdBienComboBox().getSelectedItem();
-		String typeCompteur = (String) gestionCharges.getTypeCompteurComboBox().getSelectedItem();
+		String typecharge = (String) gestionCharges.getTypeCompteurComboBox().getSelectedItem();
 
 
 		// Activer le bouton si un bien est sélectionné, sinon le désactiver
-		gestionCharges.getAjouterButton().setEnabled(!"Tous".equals(idBienSelectionne) && !"Tout Type".equals(typeCompteur));
+		gestionCharges.getAjouterButton().setEnabled(!"Tous".equals(idBienSelectionne) && !"Tout Type".equals(typecharge));
 	}
 
 
