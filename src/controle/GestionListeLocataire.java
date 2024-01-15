@@ -144,7 +144,7 @@ public class GestionListeLocataire implements ActionListener {
             String id = nom + prenom;
             try {
                 GenererContratDeLocation genererContrat = new GenererContratDeLocation();
-                genererContrat.genererPdf(id);
+                genererContrat.genererPdf(id,);
                 logger.info("Contrat généré pour le locataire ID: " + id);
                 logger.info(id);
             } catch (Exception e) {
