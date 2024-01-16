@@ -15,20 +15,20 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
-import modele.Charges;
-import modele.dao.DaoCharges;
-import vue.FenetreCharges;
+import modele.Entreprise;
+import modele.dao.DaoEntreprise;
+import vue.FenetreEntreprise;
 
-public class GestionCharges implements ActionListener , ItemListener {
+public class GestionEntreprise implements ActionListener , ItemListener {
 
 	private Logger logger = Logger.getLogger(getClass().getName());
 
-	private FenetreCharges gestionCharges;
-	private DaoCharges daocharge;
+	private FenetreEntreprise entrepriseFenetre;
+	private DaoEntreprise daoEntreprise;
 
-	public GestionCharges(FenetreCharges gestionCharges) {
-		this.gestionCharges = gestionCharges;
-		this.daocharge = new DaoCharges();
+	public GestionEntreprise(FenetreEntreprise entrepriseFenetre) {
+		this.entrepriseFenetre = entrepriseFenetre;
+		this.daoEntreprise = new DaoEntreprise();
 	}
 
 	@Override
