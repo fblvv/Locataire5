@@ -50,6 +50,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
     private JComboBox<String> selecteurIdBien;
     
     private static final String POLICE = "Tahoma";
+    private JTextField textDiagno;
 
 
     public static void main(String[] args) {
@@ -244,6 +245,24 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		gbcChampDateFin.gridy = 8;
 		panelGauche.add(champDateFin, gbcChampDateFin);
 		
+		JLabel lblNewLabel = new JLabel("Diagnostique");
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 9;
+		panelGauche.add(lblNewLabel, gbc_lblNewLabel);
+		
+		textDiagno = new JTextField();
+		textDiagno.setEditable(false);
+		GridBagConstraints gbc_textDiagno = new GridBagConstraints();
+		gbc_textDiagno.insets = new Insets(0, 0, 5, 0);
+		gbc_textDiagno.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textDiagno.gridx = 1;
+		gbc_textDiagno.gridy = 9;
+		panelGauche.add(textDiagno, gbc_textDiagno);
+		textDiagno.setColumns(10);
+		
 		JLabel labelLocatairesActuels = new JLabel("Locataires Actuels");
 		labelLocatairesActuels.setFont(new Font(POLICE, Font.PLAIN, 14));
 		labelLocatairesActuels.setHorizontalAlignment(SwingConstants.LEFT);
@@ -312,13 +331,14 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		JLabel labelCommentaires = new JLabel("Commentaires:");
 		GridBagConstraints gbcLabelCommentaires = new GridBagConstraints();
 		gbcLabelCommentaires.anchor = GridBagConstraints.WEST;
-		gbcLabelCommentaires.insets = new Insets(0, 0, 0, 5);
+		gbcLabelCommentaires.insets = new Insets(0, 0, 5, 5);
 		gbcLabelCommentaires.gridx = 0;
 		gbcLabelCommentaires.gridy = 15;
 		panelGauche.add(labelCommentaires, gbcLabelCommentaires);
 		
 		champCommentaires = new JTextField();
 		GridBagConstraints gbcChampCommentaires = new GridBagConstraints();
+		gbcChampCommentaires.insets = new Insets(0, 0, 5, 0);
 		gbcChampCommentaires.fill = GridBagConstraints.HORIZONTAL;
 		gbcChampCommentaires.gridx = 1;
 		gbcChampCommentaires.gridy = 15;
@@ -594,5 +614,14 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 	public GestionDetailPropriete2 getGestionClic() {
 		return this.gestionClic;
 	}
+
+	public JTextField getTextDiagno() {
+		return textDiagno;
+	}
+
+	public void setTextDiagno(JTextField textDiagno) {
+		this.textDiagno = textDiagno;
+	}
+	
 
 }

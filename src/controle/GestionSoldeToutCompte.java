@@ -108,7 +108,7 @@ public class GestionSoldeToutCompte implements ActionListener {
 		mettreAJourJTable(fenetreSolde.getTextBien().getText());
 		mettreAJourJTableSolde(fenetreSolde.getTextSolde().getText());
 		fenetreSolde.getBoutonGenererReçu().setEnabled(true);
-		
+		//l
 		
 		
 	}
