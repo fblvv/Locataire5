@@ -134,6 +134,19 @@ public class FenetreLoyer extends JInternalFrame {
     public String getTextFieldIdLoyer() {
         return textFieldIdLoyer.getText();
     }
+    
+    public JTextField getLoyer() {
+    	return textFieldLoyerCharges;
+    }
+    
+    public JTextField getCharges() {
+    	return textFieldCharges;
+    }
+    
+    public JTextField getDatePaiement() {
+    	return textFieldDatePaiement;
+    }
+    
 
     public String getTextFieldLoyerCharges() {
         return textFieldLoyerCharges.getText();
@@ -193,7 +206,7 @@ public class FenetreLoyer extends JInternalFrame {
             }
 
             // Créer une JComboBox avec les identifiants des locataires
-            comboBoxLocataire = new JComboBox<>(locataireId);
+           comboBoxLocataire = new JComboBox<>(locataireId);
 
         } catch (SQLException e) {
             e.printStackTrace();

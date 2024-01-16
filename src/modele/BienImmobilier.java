@@ -14,11 +14,12 @@ public class BienImmobilier {
 	private String nom_Proprio;
 	private String identifiant;
 	private String etage;
-	private static String id_Batiment;
+	private String id_Batiment;
+	private String diagnostique;
 	private List<Locataire> locataires=new LinkedList<>();
 
 	public BienImmobilier(String idBienImm, double surface, String mode_Chauffage, String mode_Eau, int nb_Piece,
-			String type_Bien, String nom_Proprio, String identifiant, String etage,String id_Batiment) {
+			String type_Bien, String nom_Proprio, String identifiant, String etage,String id_Batiment, String diagnostique) {
 		this.identifiant=identifiant;
 		this.surface = surface;
 		this.mode_Chauffage = mode_Chauffage;
@@ -29,6 +30,7 @@ public class BienImmobilier {
 		this.etage = etage;
 		this.idBienImm= idBienImm;
 		this.id_Batiment=id_Batiment;
+		this.diagnostique =diagnostique;
 	}
 
 	public String getId_Bien_Imm() {
@@ -114,5 +116,14 @@ public class BienImmobilier {
 	public List<Locataire> voirLocataires(){
 		return this.locataires;
 	}
+
+	public String getDIAGNOSTIQUE() {
+		return diagnostique;
+	}
+
+	public void setDIAGNOSTIQUE(String dIAGNOSTIQUE) {
+		diagnostique = dIAGNOSTIQUE;
+	}
+	
 
 }
