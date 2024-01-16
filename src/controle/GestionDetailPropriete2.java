@@ -137,6 +137,7 @@ public class GestionDetailPropriete2 implements ActionListener {
 
 		String surface =""+ bienImmo.getSurface();
 		String type = bienImmo.getType_Bien();
+		String diagno = bienImmo.getDIAGNOSTIQUE();
 
 
 
@@ -154,6 +155,7 @@ public class GestionDetailPropriete2 implements ActionListener {
 		detailPropriete.getChampStatutOccupation().setText(statutOccupation);
 		detailPropriete.getChampSurface().setText(surface);
 		detailPropriete.getChampType().setText(type);
+		detailPropriete.getTextDiagno().setText(diagno);
 		for(Locataire l:bienImmo.voirLocataires()) {
 			logger.info(l.getPrenom());
 		}
