@@ -15,7 +15,7 @@ public class SousProgrammeInsertBienImmobilier implements SousProgramme<BienImmo
 
     @Override
     public String appelSousProgramme() {
-        return "{call INS_BIENIMMOBILIER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+        return "{call INS_BIENIMMOBILIER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)}";
     }
 
     @Override
