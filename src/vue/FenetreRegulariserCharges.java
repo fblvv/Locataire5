@@ -14,6 +14,7 @@ import modele.Locataire;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class FenetreRegulariserCharges extends JInternalFrame {
@@ -22,8 +23,11 @@ public class FenetreRegulariserCharges extends JInternalFrame {
     private JTextField champNouveauLoyer;
     private JTextField champNouvellesCharges;
     private GestionRegulariserCharges gestionClic;
+    private String idLocataire;
 
-    public FenetreRegulariserCharges() {
+    public FenetreRegulariserCharges(String idLocataire) {
+    	this.idLocataire=idLocataire;
+    	
         setBounds(0, 0, 500, 350);
         getContentPane().setLayout(new BorderLayout(0, 0));
 
@@ -54,7 +58,17 @@ public class FenetreRegulariserCharges extends JInternalFrame {
         panelCentreGauche.add(lblAncienncesCharges);
 
         champAnciennesCharges = new JTextField();
-        champAnciennesCharges.addActionListener(gestionClic);
+        champAnciennesCharges.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    gestionClic.afficherAnciennesValeurs();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+
+                }
+            }
+        });
         panelCentreGauche.add(champAnciennesCharges);
         champAnciennesCharges.setColumns(10);
 
@@ -91,7 +105,15 @@ public class FenetreRegulariserCharges extends JInternalFrame {
         JButton btnValider = new JButton("Valider");
         btnValider.addActionListener(gestionClic);
         panelSud.add(btnValider);
+
+        // Préremplir les champs de texte avec les anciennes valeurs
+        try {
+            gestionClic.afficherAnciennesValeurs();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 
 	public JTextField getChampAncienLoyer() {
 		return champAncienLoyer;
@@ -132,7 +154,15 @@ public class FenetreRegulariserCharges extends JInternalFrame {
 	public void setGestionClic(GestionRegulariserCharges gestionClic) {
 		this.gestionClic = gestionClic;
 	}
-    
-    
 
+	public String getIdLocataire() {
+		return idLocataire;
+	}
+
+	public void setIdLocataire(String idLocataire) {
+		this.idLocataire = idLocataire;
+	}
+    
+    
+	
 }

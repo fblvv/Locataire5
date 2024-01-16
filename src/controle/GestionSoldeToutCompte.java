@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.swing.JButton;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,6 +32,8 @@ import modele.dao.DaoCompteur;
 import modele.dao.DaoContratLocation;
 import modele.dao.DaoLocataire;
 import vue.FenetreCompteur;
+import vue.FenetreContratLocation;
+import vue.FenetreRegulariserCharges;
 import vue.FenetreSoldeToutCompte;
 
 public class GestionSoldeToutCompte implements ActionListener {
@@ -55,6 +58,10 @@ public class GestionSoldeToutCompte implements ActionListener {
 			switch (button.getText()) {
 			case "Annuler":
 				fenetreSolde.dispose();
+				break;
+			case "Mettre a jour les charges":
+				JLayeredPane layeredPane = fenetreSolde.getLayeredPane();
+				afficherFenetre(new FenetreRegulariserCharges(fenetreSolde.getSelecteurIdLocataire()), layeredPane);
 				break;
 			case "Générer le reçu":
 				regulariser();
@@ -294,10 +301,11 @@ public class GestionSoldeToutCompte implements ActionListener {
 
     }
 
-    
-
-
-		}
+    private void afficherFenetre(javax.swing.JInternalFrame fenetre, JLayeredPane layeredPane) {
+		layeredPane.add(fenetre);
+		fenetre.setVisible(true);
+	}
+    }
 	
 	
     

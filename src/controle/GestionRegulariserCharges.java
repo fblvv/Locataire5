@@ -17,7 +17,7 @@ import vue.FenetreRegulariserCharges;
 
 public class GestionRegulariserCharges implements ActionListener {
     private FenetreRegulariserCharges regulariserCharges;
-
+    
     public GestionRegulariserCharges(FenetreRegulariserCharges regulariserCharges) {
         this.regulariserCharges = regulariserCharges;
     }
@@ -32,6 +32,7 @@ public class GestionRegulariserCharges implements ActionListener {
             switch (button.getText()) {
                 case "Valider":
                     JOptionPane.showMessageDialog(regulariserCharges, "Gestion de régularisation à finir");
+			
                     break;
                 case "Annuler":
                     regulariserCharges.dispose();
@@ -46,11 +47,12 @@ public class GestionRegulariserCharges implements ActionListener {
     }
 
     public void afficherAnciennesValeurs() throws SQLException {
-        DaoLoyer daoLoyer = new DaoLoyer();
-        Loyer loyer = daoLoyer.findById(locataire.getId_Locataire());
-        if (loyer != null) {
-            regulariserCharges.getChampAncienLoyer().setText(loyer.getMontantPaiement());
-            regulariserCharges.getChampAnciennesCharges().setText(loyer.getLoyerCharges());
+        DaoContratLocation daoContrat = new DaoContratLocation();
+        
+        ContratLocation contrat = daoContrat.findById(regulariserCharges.getIdLocataire());
+        if (contrat != null) {
+            regulariserCharges.getChampAncienLoyer().setText(String.valueOf(contrat.getMontant()));
+            regulariserCharges.getChampAnciennesCharges().setText(String.valueOf(contrat.getChargesProvisionnelles()));
         } else {
             regulariserCharges.getChampAncienLoyer().setText("");
             regulariserCharges.getChampAnciennesCharges().setText("");
