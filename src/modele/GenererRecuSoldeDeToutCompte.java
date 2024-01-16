@@ -56,7 +56,7 @@ public class GenererRecuSoldeDeToutCompte {
 
             // Introduction au détail des charges
             Font contentFont = new Font(Font.FontFamily.TIMES_ROMAN, 12);
-            Paragraph intro = new Paragraph("Je vous prie de bien vouloir trouver ci-dessous le détail du solde de tout compte. Les charges énumérées ci-dessous porte sur la période allant du [date début] au [date fin].\n", contentFont);
+            Paragraph intro = new Paragraph("Je vous prie de bien vouloir trouver ci-dessous le détail du solde de tout compte. Les charges énumérées ci-dessous porte sur la période allant"+genererPeriode()+".\n", contentFont);
             		document.add(intro);
 
             		// Détail des charges
@@ -67,9 +67,11 @@ public class GenererRecuSoldeDeToutCompte {
             		Collection<Charges> chargesOrdure = new LinkedList<>();
             		Collection<Charges> chargesEntretien = new LinkedList<>();
             		Collection<Charges> chargesEclairage = new LinkedList<>();
+
             		
             		Double sommesEau = 0.0;
             		Double sommesOrdure = 0.0;
+            		Double sommesGaz = 0.0;
             		Double sommesEntretien = 0.0;
             		Double sommesEclairage = 0.0;
             		Double sommesAutres = 0.0;
@@ -94,11 +96,13 @@ public class GenererRecuSoldeDeToutCompte {
             				sommesAutres+=charge.getMontant();
             			}else if (charge.getTypeCharge().equals("Degats")) {
             				sommesDegats+=charge.getMontant();
+            			}else if (charge.getTypeCharge().equals("Gaz")) {
+            				sommesGaz+=charge.getMontant();
             			}
             			}
             		}
             		
-            		totalCharges+=sommesEau+sommesOrdure+sommesEntretien+sommesEclairage+sommesAutres+sommesDegats;
+            		totalCharges+=sommesEau+sommesOrdure+sommesEntretien+sommesEclairage+sommesAutres+sommesDegats+sommesGaz;
             		
             			
             		
@@ -107,8 +111,12 @@ public class GenererRecuSoldeDeToutCompte {
             		document.add(eau);
             		
             		// Charges
-            		Paragraph ordureMenagere = new Paragraph("Ordure : " + sommesOrdure.toString() + "€", contentFont);
+            		Paragraph ordureMenagere = new Paragraph("Ordures ménagères : " + sommesOrdure.toString() + "€", contentFont);
             		document.add(ordureMenagere);
+            		
+            		// Charges
+            		Paragraph gaz = new Paragraph("Gaz : " + sommesGaz.toString() + "€", contentFont);
+            		document.add(gaz);
             		
             		// Charges
             		Paragraph entretien = new Paragraph("Entretien : " + sommesEntretien.toString() + "€", contentFont);
@@ -156,7 +164,7 @@ public class GenererRecuSoldeDeToutCompte {
                     
                 
             		// Déductions
-            		Paragraph deductions = new Paragraph("A déduire\nles provisions pour charges [période] :"+provisions.toString()+"*"+mois+"="+sommeLoyers.toString()+"€\n\n", contentFont);
+            		Paragraph deductions = new Paragraph("A déduire\nles provisions pour charges"+genererPeriode()+" :"+provisions.toString()+"*"+mois+"="+sommeLoyers.toString()+"€\n\n", contentFont);
             		document.add(deductions);
             		
             		
@@ -188,6 +196,24 @@ public class GenererRecuSoldeDeToutCompte {
             		    LocalDate date = LocalDate.parse(dateString, formatter);
             		    return date.getYear();
             		}
+            		
+            		
+            		private static String genererPeriode() {
+            			LocalDate currentDate = LocalDate.now();
+            	        int currentYear = currentDate.getYear();
+
+            	        LocalDate startDate = LocalDate.of(currentYear, 1, 1);
+
+            	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            	        String formattedStartDate = startDate.format(formatter);
+            	        String formattedEndDate = currentDate.format(formatter);
+
+            	        return "du " + formattedStartDate + " à " + formattedEndDate;
+            	    }
+            		
+            		
+            		
 
             	}
             		
