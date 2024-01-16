@@ -3,6 +3,8 @@ package controle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 
 import javax.swing.JButton;
@@ -66,8 +68,18 @@ public class GestionFenetreLoyer implements ActionListener {
 		DaoContratLocation daoContrat= new DaoContratLocation();
 		ContratLocation contratLoc = daoContrat.findById(locataireId);
 		if (!(contratLoc==null)) {
+			
 		String dateContrat=contratLoc.getDateDebutContrat().substring(0,10);
-		fenetreloyer.getTextFieldDateDebutContrat().setText(dateContrat);
+		
+		DateTimeFormatter ancienformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter nouveauformat = DateTimeFormatter.ofPattern("dd/MM/yy");
+
+        LocalDate dateDebutContrat = LocalDate.parse(dateContrat, ancienformat);
+        String dateformat = dateDebutContrat.format(nouveauformat);
+
+        fenetreloyer.getTextFieldDateDebutContrat().setText(dateformat);
+		fenetreloyer.getLoyer().setText(String.valueOf(contratLoc.getMontant()));
+		fenetreloyer.getCharges().setText(String.valueOf(contratLoc.getChargesProvisionnelles()));
 		fenetreloyer.getBtnAjouter().setEnabled(true);
 		}else {
 		fenetreloyer.getTextFieldDateDebutContrat().setText("Aucun Contrat");

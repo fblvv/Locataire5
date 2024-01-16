@@ -98,13 +98,13 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
         btnGenererRecu = new JButton("Générer le reçu");
         btnGenererRecu.addActionListener(this.gestionClic);
         btnGenererRecu.setBackground(Color.WHITE);
-        btnGenererRecu.setBounds(115, 311, 131, 22);
+        btnGenererRecu.setBounds(47, 312, 131, 22);
         contentPane.add(btnGenererRecu);
 
         JButton btnAnnulerRecu = new JButton("Annuler");
         btnAnnulerRecu.addActionListener(this.gestionClic);
         btnAnnulerRecu.setBackground(Color.WHITE);
-        btnAnnulerRecu.setBounds(260, 311, 115, 22);
+        btnAnnulerRecu.setBounds(192, 312, 115, 22);
         contentPane.add(btnAnnulerRecu);
 
         JLabel lblNewLabel = new JLabel("Solde de tout compte d'un locataire");
@@ -158,6 +158,11 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
         JLabel lblBien = new JLabel("Bien associé");
         lblBien.setBounds(291, 77, 100, 13);
         contentPane.add(lblBien);
+        
+        JButton btnChangerCharges = new JButton("Mettre a jour les charges");
+        btnChangerCharges.addActionListener(this.gestionClic);
+        btnChangerCharges.setBounds(326, 313, 156, 21);
+        contentPane.add(btnChangerCharges);
         
        
         
