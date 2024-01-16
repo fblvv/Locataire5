@@ -61,7 +61,7 @@ public class GestionSoldeToutCompte implements ActionListener {
 				break;
 			case "Mettre a jour les charges":
 				JLayeredPane layeredPane = fenetreSolde.getLayeredPane();
-				afficherFenetre(new FenetreRegulariserCharges(fenetreSolde.getSelecteurIdLocataire()), layeredPane);
+				afficherFenetre(new FenetreRegulariserCharges(fenetreSolde.getSelecteurIdLocataire(),Double.parseDouble(fenetreSolde.getTextRegularisation().getText())), layeredPane);
 				break;
 			case "Générer le reçu":
 				regulariser();

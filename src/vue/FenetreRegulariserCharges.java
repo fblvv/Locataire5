@@ -20,13 +20,14 @@ import java.awt.event.ActionEvent;
 public class FenetreRegulariserCharges extends JInternalFrame {
     private JTextField champAncienLoyer;
     private JTextField champAnciennesCharges;
-    private JTextField champNouveauLoyer;
     private JTextField champNouvellesCharges;
     private GestionRegulariserCharges gestionClic;
     private String idLocataire;
+    private double montantRegularisation;
 
-    public FenetreRegulariserCharges(String idLocataire) {
+    public FenetreRegulariserCharges(String idLocataire, double montantRegularisation) {
     	this.idLocataire=idLocataire;
+    	this.montantRegularisation=montantRegularisation;
     	
         setBounds(0, 0, 500, 350);
         getContentPane().setLayout(new BorderLayout(0, 0));
@@ -54,7 +55,7 @@ public class FenetreRegulariserCharges extends JInternalFrame {
         champAncienLoyer.addActionListener(gestionClic);
         champAncienLoyer.setColumns(10);
 
-        JLabel lblAncienncesCharges = new JLabel("Anciennes Charges");
+        JLabel lblAncienncesCharges = new JLabel("Ancien montant provision");
         panelCentreGauche.add(lblAncienncesCharges);
 
         champAnciennesCharges = new JTextField();
@@ -78,17 +79,21 @@ public class FenetreRegulariserCharges extends JInternalFrame {
         JPanel panelCentreDroite = new JPanel();
         panelCentre.add(panelCentreDroite);
 
-        JLabel lblNouveauLoyer = new JLabel("Nouveau Loyer");
-        panelCentreDroite.add(lblNouveauLoyer);
-
-        champNouveauLoyer = new JTextField();
-        champNouveauLoyer.setColumns(10);
-        panelCentreDroite.add(champNouveauLoyer);
-
-        JLabel lblNouvellesCharges = new JLabel("Nouvelles Charges");
+        JLabel lblNouvellesCharges = new JLabel("Nouveau montant provision");
         panelCentreDroite.add(lblNouvellesCharges);
 
         champNouvellesCharges = new JTextField();
+        champNouvellesCharges.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    gestionClic.afficherAnciennesValeurs();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+
+                }
+            }
+        });
         champNouvellesCharges.setColumns(10);
         panelCentreDroite.add(champNouvellesCharges);
 
@@ -131,14 +136,6 @@ public class FenetreRegulariserCharges extends JInternalFrame {
 		this.champAnciennesCharges = champAnciennesCharges;
 	}
 
-	public JTextField getChampNouveauLoyer() {
-		return champNouveauLoyer;
-	}
-
-	public void setChampNouveauLoyer(JTextField champNouveauLoyer) {
-		this.champNouveauLoyer = champNouveauLoyer;
-	}
-
 	public JTextField getChampNouvellesCharges() {
 		return champNouvellesCharges;
 	}
@@ -161,6 +158,16 @@ public class FenetreRegulariserCharges extends JInternalFrame {
 
 	public void setIdLocataire(String idLocataire) {
 		this.idLocataire = idLocataire;
+	}
+
+
+	public double getMontantRegularisation() {
+		return montantRegularisation;
+	}
+
+
+	public void setMontantRegularisation(double montantRegularisation) {
+		this.montantRegularisation = montantRegularisation;
 	}
     
     
