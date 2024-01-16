@@ -103,4 +103,5 @@ public class GestionAccueil implements ActionListener {
 		layeredPane.add(fenetre);
 		fenetre.setVisible(true);
 	}
+	
 }

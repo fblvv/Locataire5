@@ -75,10 +75,11 @@ public class GestionAjoutBienImmo implements ActionListener{
 			String identifiant= detailPropriete.getTextFieldIdentifiant();
 			String etage= detailPropriete.getTextFieldEtage();
 			JComboBox<String> comboBoxLogement = detailPropriete.getComboBoxBatiment();
-			String idBatiment = (String) comboBoxLogement.getSelectedItem();	
+			String idBatiment = (String) comboBoxLogement.getSelectedItem();
+			String diagno = "";
 
 			BienImmobilier bienIm = new BienImmobilier(idBienImm, surface, modeChauffage, modeEau, nbPiece,
-					typeBien, nomProprio, identifiant, etage,idBatiment);
+					typeBien, nomProprio, identifiant, etage,idBatiment, diagno);
 
 			daoBienI.create(bienIm);
 			this.insertion = true;
@@ -121,10 +122,11 @@ public class GestionAjoutBienImmo implements ActionListener{
 			String identifiant= detailPropriete.getTextFieldIdentifiant();
 			String etage= detailPropriete.getTextFieldEtage();
 			JComboBox<String> comboBoxLogement = detailPropriete.getComboBoxBatiment();
-			String idBatiment = (String) comboBoxLogement.getSelectedItem();	
+			String idBatiment = (String) comboBoxLogement.getSelectedItem();
+			String diagno = "";
 
 			BienImmobilier bienIm = new BienImmobilier(idBienImm, surface, modeChauffage, modeEau, nbPiece,
-					typeBien, nomProprio, identifiant, etage,idBatiment);
+					typeBien, nomProprio, identifiant, etage,idBatiment, diagno);
 
 			daoBienI.delete(bienIm);
 			this.insertion = true;
