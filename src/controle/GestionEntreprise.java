@@ -61,14 +61,14 @@ public class GestionEntreprise implements ActionListener  {
 
 	private void afficherEntreprise()throws SQLException {
 
-		Collection<Entreprise> contratLocation = daoEntreprise.findAll();
+		Collection<Entreprise> entreprises = daoEntreprise.findAll();
 		DefaultTableModel tableModel = (DefaultTableModel) entrepriseFenetre.getTable().getModel();
 
 		// Clear existing data from the table model
 		tableModel.setRowCount(0);
 
 		// Populate the table model with data
-		for (Entreprise ent : contratLocation) {
+		for (Entreprise ent : entreprises) {
 
 			// Add a new row if needed
 			tableModel.addRow(new Object[] {ent.getSiren(),ent.getAdresse_Entreprise(),ent.getTel_Entreprise(),ent.getMail_Entreprise()});

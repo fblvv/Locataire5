@@ -17,6 +17,7 @@ import vue.FenetreAjoutBatiment;
 import vue.FenetreBien;
 import vue.FenetreCompteur;
 import vue.FenetreDetailsPropriete2;
+import vue.FenetreEntreprise;
 import vue.FenetreListeLocataire;
 import vue.FenetreLoyer;
 
@@ -90,6 +91,10 @@ public class GestionAccueil implements ActionListener {
 				String csvFilePath = fileChooser.getSelectedFile().getAbsolutePath();
 				new LireCSV().lireEtInsererCSV(csvFilePath);
 			}
+			break;
+
+		case "Consulter":
+			afficherFenetre(new FenetreEntreprise(), layeredPane);
 			break;
 		case "Vérifier le Solde de tout compte":
 			afficherFenetre(new FenetreSoldeToutCompte(), layeredPane);

@@ -4,9 +4,13 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+
+import controle.GestionAccueil;
 import controle.GestionEntreprise;
 
 public class FenetreEntreprise extends JInternalFrame {
+    private GestionAccueil gestionClic;
     private JTable table;
     private JButton btnAjouter, btnSupprimer, btnCharger, btnFermer;
 
@@ -77,5 +81,8 @@ public class FenetreEntreprise extends JInternalFrame {
                 e.printStackTrace();
             }
         });
+    }
+    public void actionPerformed(ActionEvent e) {
+        gestionClic.actionPerformed(e);
     }
 }
