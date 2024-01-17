@@ -155,6 +155,11 @@ public class Accueil extends JFrame {
         mntmConsulter.addActionListener(this.gestionClic);
         mnEntreprise.add(mntmConsulter);
     
+        JMenuItem mntmAjouterEntreprise = new JMenuItem("Ajouter Une Entreprise");
+        mntmAjouterEntreprise.setFont(new Font(POLICE, Font.PLAIN, 15));
+        mntmAjouterEntreprise.addActionListener(this.gestionClic);
+        mnEntreprise.add(mntmAjouterEntreprise);
+        
      
     }
 

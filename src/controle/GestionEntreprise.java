@@ -2,64 +2,81 @@ package controle;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import java.util.logging.Logger;
+
+
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 
 import modele.Entreprise;
-
 import modele.dao.DaoEntreprise;
-
 import vue.FenetreEntreprise;
 
-public class GestionEntreprise implements ActionListener {
+public class GestionEntreprise implements ActionListener  {
 
-    private FenetreEntreprise entrepriseFenetre;
+	private Logger logger = Logger.getLogger(getClass().getName());
 
-    public GestionEntreprise(FenetreEntreprise entrepriseFenetre) {
-        this.entrepriseFenetre = entrepriseFenetre;
-    }
+	private FenetreEntreprise entrepriseFenetre;
+	private DaoEntreprise daoEntreprise;
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
+	public GestionEntreprise(FenetreEntreprise entrepriseFenetre) {
+		this.entrepriseFenetre = entrepriseFenetre;
+		this.daoEntreprise = new DaoEntreprise();
+	}
 
-        if (source instanceof JButton) {
-            JButton button = (JButton) source;
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
 
-            switch (button.getText()) {
-                case "Valider":
-                    ajouterEntreprise();
-                    entrepriseFenetre.dispose();
-                    break;
+		if (source instanceof JButton) {
+			JButton buttonValider = (JButton) source;
 
-                case "Annuler":
-                	entrepriseFenetre.dispose();
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
+			switch (buttonValider.getText()) {
+			case "Charger":
+				try {
+					afficherEntreprise();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				break;
+			case "Annuler":
+				entrepriseFenetre.dispose();
+				break;
+			default:
+				break;
+			}
+		}
+	}
 
-    // Vérification que les champs sont correctement écrits
-    public void ajouterEntreprise() {
-    	 try {
-            String nomSiren = entrepriseFenetre.getSiren();
-            String nomAdresse = entrepriseFenetre.getAdresse();
-            String tel = entrepriseFenetre.getTel();
-            String nom = entrepriseFenetre.getNom();
 
-            Entreprise entreprise = new Entreprise(nomSiren, nomAdresse, tel, nom);
 
-            DaoEntreprise daoEntreprise = new DaoEntreprise();
-            daoEntreprise.create(entreprise);
+	private void afficherEntreprise()throws SQLException {
 
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.info("Entreprise ajoutée avec succès !");
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erreur lors de l'ajout de l'entreprise : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+		Collection<Entreprise> entreprises = daoEntreprise.findAll();
+		DefaultTableModel tableModel = (DefaultTableModel) entrepriseFenetre.getTable().getModel();
+
+		// Clear existing data from the table model
+		tableModel.setRowCount(0);
+
+		// Populate the table model with data
+		for (Entreprise ent : entreprises) {
+
+			// Add a new row if needed
+			tableModel.addRow(new Object[] {ent.getSiren(),ent.getAdresse(),ent.getTel(),ent.getNom()});
+
+
+
+		}
+	
+	}
+
 }

@@ -101,11 +101,11 @@ public class GestionAccueil implements ActionListener {
 			afficherFenetre(new FenetreSoldeToutCompte(), layeredPane);
 			break;
 		
-	case "Ajouter Une Entreprise":
-		afficherFenetre(new FenetreAjoutEntreprise(), layeredPane);
-	default:
-		break;
-	}
+		case "Ajouter Une Entreprise":
+			afficherFenetre(new FenetreAjoutEntreprise(), layeredPane);
+		default:
+			break;
+		}
 	}
 
 	private void afficherFenetre(javax.swing.JInternalFrame fenetre, JLayeredPane layeredPane) {

@@ -1,152 +1,90 @@
 package vue;
 
-import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import controle.GestionAjoutBatiment;
-import modele.Batiment;
+import javax.swing.table.DefaultTableModel;
 
-public class FenetreEn extends JInternalFrame {
+import java.awt.*;
+import java.awt.event.ActionEvent;
 
-    private static final long serialVersionUID = 1L;
-    private JTextField champRegimeJuridique;
-    private JTextField champAdresse;
-    private JTextField champCodePostal;
-    private JTextField champEquipAccesTech;
-    private JTextField champEnumPartiesCommunes;
-    private JTextField textNomBatiment;
-    private JTextField champDateConstruction;
-    private GestionAjoutBatiment gestionClic;
-    private static final String POLICE = "Tahoma";
+import controle.GestionEntreprise;
 
-    public FenetreAjoutBatiment() {
-        gestionClic = new GestionAjoutBatiment(this);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 400);
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
-        setContentPane(contentPane);
-        contentPane.setLayout(new BorderLayout(0, 0));
+public class FenetreEntreprise extends JInternalFrame {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private GestionEntreprise gestionClic;
+    private JTable table;
+    private JButton btnAjouter, btnSupprimer, btnCharger, btnFermer;
 
-        JLabel libAjouterBatiment = new JLabel("Ajouter un nouveau bâtiment");
-        libAjouterBatiment.setFont(new Font(POLICE, Font.BOLD, 18));
-        libAjouterBatiment.setHorizontalAlignment(SwingConstants.CENTER);
-        contentPane.add(libAjouterBatiment, BorderLayout.NORTH);
+    public FenetreEntreprise() {
+        this.gestionClic = new GestionEntreprise(this);
+        setBounds(100, 100, 450, 300);
+        JLabel lblHeader = new JLabel("Gestion des Entreprises");
+        lblHeader.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        getContentPane().add(lblHeader, BorderLayout.NORTH);
 
+        // Tableau...
+        JScrollPane scrollPane = new JScrollPane();
+        getContentPane().add(scrollPane, BorderLayout.CENTER);
+        String[] columnNames = {"Siren", "Adresse", "Tel", "Email"};
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+        table = new JTable(model);
+        scrollPane.setViewportView(table);
+
+        // Panneau de boutons...
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(0, 2, 10, 10));
-        panel.setBackground(new Color(238, 237, 238));
-        contentPane.add(panel, BorderLayout.CENTER);
+        getContentPane().add(panel, BorderLayout.SOUTH);
 
-        // Champ pour le nom du bâtiment
-        JLabel lblNomBatiment = new JLabel("Nom Bâtiment");
-        lblNomBatiment.setFont(new Font(POLICE, Font.PLAIN, 14));
-        textNomBatiment = new JTextField();
-        panel.add(lblNomBatiment);
-        panel.add(textNomBatiment);
+        // Boutons...
+        btnAjouter = new JButton("Ajouter");
+        panel.add(btnAjouter);
 
-        // Champ pour le régime juridique
-        JLabel libRegimeJuridique = new JLabel("Régime Juridique");
-        libRegimeJuridique.setFont(new Font(POLICE, Font.PLAIN, 14));
-        champRegimeJuridique = new JTextField();
-        panel.add(libRegimeJuridique);
-        panel.add(champRegimeJuridique);
+        btnSupprimer = new JButton("Supprimer");
+        panel.add(btnSupprimer);
 
-        // Champ pour l'adresse
-        JLabel libAdresse = new JLabel("Adresse");
-        libAdresse.setFont(new Font(POLICE, Font.PLAIN, 14));
-        champAdresse = new JTextField();
-        panel.add(libAdresse);
-        panel.add(champAdresse);
+        btnCharger = new JButton("Charger");
+        btnCharger.addActionListener(this.gestionClic);
+        panel.add(btnCharger);
 
-        // Champ pour le code postal
-        JLabel libCodePostal = new JLabel("Code Postal");
-        libCodePostal.setFont(new Font(POLICE, Font.PLAIN, 14));
-        champCodePostal = new JTextField("12345");
-        panel.add(libCodePostal);
-        panel.add(champCodePostal);
+        btnFermer = new JButton("Fermer");
+        panel.add(btnFermer);
 
-     // Champ pour la date de construction
-        JLabel libDateConstruction = new JLabel("Date de Construction");
-        libDateConstruction.setFont(new Font(POLICE, Font.PLAIN, 14));
-        champDateConstruction = new JTextField("DD/MM/YYYY"); 
-        panel.add(libDateConstruction);
-        panel.add(champDateConstruction);
+            }
 
-        // Champ pour l'équipement d'accès technique
-        JLabel libEquipAccesTech = new JLabel("Équip. Accès Tech.");
-        libEquipAccesTech.setFont(new Font(POLICE, Font.PLAIN, 14));
-        champEquipAccesTech = new JTextField();
-        panel.add(libEquipAccesTech);
-        panel.add(champEquipAccesTech);
-
-        // Champ pour les parties communes
-        JLabel libEnumPartiesCommunes = new JLabel("Parties Communes");
-        libEnumPartiesCommunes.setFont(new Font(POLICE, Font.PLAIN, 14));
-        champEnumPartiesCommunes = new JTextField();
-        panel.add(libEnumPartiesCommunes);
-        panel.add(champEnumPartiesCommunes);
-
-        // Boutons Annuler et Valider
-        JPanel panelButtons = new JPanel();
-        panelButtons.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        panelButtons.setBackground(new Color(238, 237, 237));
-
-        JButton btnAnnuler = new JButton("Annuler");
-        btnAnnuler.setFont(new Font(POLICE, Font.PLAIN, 14));
-        btnAnnuler.addActionListener(gestionClic);
-        panelButtons.add(btnAnnuler);
-
-        JButton btnValider = new JButton("Valider");
-        btnValider.setFont(new Font(POLICE, Font.PLAIN, 14));
-        btnValider.addActionListener(gestionClic);
-        panelButtons.add(btnValider);
-
-        contentPane.add(panelButtons, BorderLayout.SOUTH);
+    // Getters pour les composants...
+    public JTable getTable() {
+        return table;
     }
 
-    public Batiment getBatimentFromInput() {
-        // Créer un objet Batiment avec les données saisies
-        return new Batiment(
-            textNomBatiment.getText(),
-            champRegimeJuridique.getText(),
-            champAdresse.getText(),
-            champCodePostal.getText(),
-            champDateConstruction.getText(),
-            champEquipAccesTech.getText(),
-            champEnumPartiesCommunes.getText()
-        );
+    public JButton getBtnAjouter() {
+        return btnAjouter;
     }
 
-	public String getIdBatiment() {
-		return textNomBatiment.getText() ;
-	}
+    public JButton getBtnSupprimer() {
+        return btnSupprimer;
+    }
 
-	public String getRegimeJuridique() {
-		return champRegimeJuridique.getText();
-	}
+    public JButton getBtnCharger() {
+        return btnCharger;
+    }
 
-	public String getAdresse() {
-		return champAdresse.getText();
-	            
-	}
+    public JButton getBtnFermer() {
+        return btnFermer;
+    }
 
-	public String getCodePostal() {
-		return champCodePostal.getText();
-	            
-	}
-
-	public String getDateConstruction() {
-		return champDateConstruction.getText();
-	            
-	}
-
-	public String getEquipAccesTech() {
-		return champEquipAccesTech.getText();
-	            
-	}
-
-	public String getEnumPartiesCommunes() {
-		return champEnumPartiesCommunes.getText();
-	}
+    // Méthode principale pour tester la fenêtre...
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> {
+            try {
+                FenetreEntreprise frame = new FenetreEntreprise();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+    public void actionPerformed(ActionEvent e) {
+        gestionClic.actionPerformed(e);
+    }
 }
