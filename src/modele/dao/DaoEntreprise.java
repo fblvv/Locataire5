@@ -5,13 +5,15 @@ import java.sql.SQLException;
 import java.util.Collection;
 
 import modele.Entreprise;
+import modele.dao.requetes.RequeteSelectEntreprise;
+import modele.dao.requetes.RequeteSelectLocataire;
 
 public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entreprise> {
 
 	@Override
 	public Collection<Entreprise> findAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		RequeteSelectEntreprise entreprise = new RequeteSelectEntreprise();
+		return find(entreprise);
 	}
 
 	@Override
