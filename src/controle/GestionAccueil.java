@@ -14,6 +14,7 @@ import SQL.CictOracleDataSource;
 import modele.LireCSV;
 import vue.Accueil;
 import vue.FenetreAjoutBatiment;
+import vue.FenetreAjoutEntreprise;
 import vue.FenetreBien;
 import vue.FenetreCompteur;
 import vue.FenetreDetailsPropriete2;
@@ -97,7 +98,7 @@ public class GestionAccueil implements ActionListener {
 			break;
 		
 	case "Ajouter Une Entreprise":
-		afficherFenetre(new FenetreEntreprise(), layeredPane);
+		afficherFenetre(new FenetreAjoutEntreprise(), layeredPane);
 	default:
 		break;
 	}

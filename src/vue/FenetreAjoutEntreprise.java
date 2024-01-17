@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import controle.GestionAjoutEntreprise;
 import modele.Batiment;
 import modele.Entreprise;
 
@@ -15,11 +17,11 @@ public class FenetreAjoutEntreprise extends JInternalFrame {
     private JTextField champAdresse;
     private JTextField champTel;
     private JTextField champNom;
-    private GestionEntreprise gestionClic;
+    private GestionAjoutEntreprise gestionClic;
     private static final String POLICE = "Tahoma";
 
     public FenetreAjoutEntreprise() {
-        gestionClic = new GestionEntreprise(this);
+        gestionClic = new GestionAjoutEntreprise(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 400);
         JPanel contentPane = new JPanel();
@@ -72,12 +74,12 @@ public class FenetreAjoutEntreprise extends JInternalFrame {
 
         JButton btnAnnuler = new JButton("Annuler");
         btnAnnuler.setFont(new Font(POLICE, Font.PLAIN, 14));
-        btnAnnuler.addActionListener(this);
+        btnAnnuler.addActionListener(gestionClic);
         panelButtons.add(btnAnnuler);
 
         JButton btnValider = new JButton("Valider");
         btnValider.setFont(new Font(POLICE, Font.PLAIN, 14));
-        btnValider.addActionListener(this);
+        btnValider.addActionListener(gestionClic);
         panelButtons.add(btnValider);
 
         contentPane.add(panelButtons, BorderLayout.SOUTH);

@@ -60,10 +60,12 @@ public class GestionAjoutEntreprise implements ActionListener {
             daoEntreprise.create(entreprise);
 
             Logger logger = Logger.getLogger(getClass().getName());
-            logger.info("Bâtiment ajouté avec succès !");
+            logger.info("Ena ajouté avec succès !");
 } catch (SQLException e) {
 	JOptionPane.showMessageDialog(null, "Erreur lors de l'ajout de l'entreprise : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
     	    }
        
     }
 }
+
+
