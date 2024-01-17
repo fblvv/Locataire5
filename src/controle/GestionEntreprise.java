@@ -48,7 +48,7 @@ public class GestionEntreprise implements ActionListener  {
 					e1.printStackTrace();
 				}
 				break;
-			case "Annuler":
+			case "Fermer":
 				entrepriseFenetre.dispose();
 				break;
 			default:
