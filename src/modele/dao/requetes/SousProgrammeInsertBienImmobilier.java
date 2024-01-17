@@ -45,8 +45,6 @@ public class SousProgrammeInsertBienImmobilier implements SousProgramme<BienImmo
         prSt.setString(8, donnee.getIdentifiant());        
         prSt.setString(9, donnee.getEtage());        
         prSt.setString(10, donnee.getId_Batiment());        
-        prSt.setString(11, donnee.getDIAGNOSTIQUE());        
-
+        prSt.setString(11, donnee.getDIAGNOSTIQUE());     
     }
-
 }
