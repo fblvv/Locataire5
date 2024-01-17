@@ -37,7 +37,7 @@ public class GenererRecuSoldeDeToutCompte {
 
             // Objet
             Font subjectFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
-            Paragraph subject = new Paragraph("Objet : Solde de tout compte\n\n", subjectFont);
+            Paragraph subject = new Paragraph("Objet : Régulairsation des charges\n\n", subjectFont);
             subject.setAlignment(Element.ALIGN_CENTER);
             document.add(subject);
 
@@ -56,7 +56,7 @@ public class GenererRecuSoldeDeToutCompte {
 
             // Introduction au détail des charges
             Font contentFont = new Font(Font.FontFamily.TIMES_ROMAN, 12);
-            Paragraph intro = new Paragraph("Je vous prie de bien vouloir trouver ci-dessous le détail du solde de tout compte. Les charges énumérées ci-dessous porte sur la période allant"+genererPeriode()+".\n", contentFont);
+            Paragraph intro = new Paragraph("Je vous prie de bien vouloir trouver ci-dessous le détail de la régularisation. Les charges énumérées ci-dessous porte sur la période allant"+genererPeriode()+".\n", contentFont);
             		document.add(intro);
 
             		// Détail des charges
@@ -170,7 +170,7 @@ public class GenererRecuSoldeDeToutCompte {
             		
 
             		// Total et méthode de paiement
-            		Paragraph total = new Paragraph("Nous restons vous devoir : [Montant Total] Euros.\nSolde de tout compte remis ce jour à l’intéressée par [méthode de paiement].\n\n", contentFont);
+            		Paragraph total = new Paragraph("Nous restons vous devoir :"+totalCharges.toString()+"Euros.\nSolde de tout compte remis ce jour à l’intéressée par [méthode de paiement].\n\n", contentFont);
             		document.add(total);
 
             		// Clôture
