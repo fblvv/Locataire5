@@ -17,6 +17,7 @@ import vue.FenetreAjoutBatiment;
 import vue.FenetreBien;
 import vue.FenetreCompteur;
 import vue.FenetreDetailsPropriete2;
+import vue.FenetreEntreprise;
 import vue.FenetreListeLocataire;
 import vue.FenetreLoyer;
 
@@ -94,9 +95,12 @@ public class GestionAccueil implements ActionListener {
 		case "Vérifier le Solde de tout compte":
 			afficherFenetre(new FenetreSoldeToutCompte(), layeredPane);
 			break;
-		default:
-			break;
-		}
+		
+	case "Ajouter Une Entreprise":
+		afficherFenetre(new FenetreEntreprise(), layeredPane);
+	default:
+		break;
+	}
 	}
 
 	private void afficherFenetre(javax.swing.JInternalFrame fenetre, JLayeredPane layeredPane) {

@@ -145,6 +145,14 @@ public class Accueil extends JFrame {
         mntmSoldeDeToutCompte.addActionListener(this.gestionClic);
         mnSoldeDeToutCompte.add(mntmSoldeDeToutCompte);
     
+        JMenu mnEntreprise = new JMenu("Entreprise");
+        mnEntreprise.setFont(new Font(POLICE, Font.BOLD, 19));
+        menuBar.add(mnEntreprise);
+        
+        JMenuItem mntmAjouterEntreprise = new JMenuItem("Ajouter Une Entreprise");
+        mntmAjouterEntreprise.setFont(new Font(POLICE, Font.PLAIN, 15));
+        mntmAjouterEntreprise.addActionListener(this.gestionClic);
+        mnEntreprise.add(mntmAjouterEntreprise);
 
     }
 

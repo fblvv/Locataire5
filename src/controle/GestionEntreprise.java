@@ -2,152 +2,64 @@ package controle;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import java.util.logging.Logger;
-
-
 import javax.swing.JButton;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 
 import modele.Entreprise;
+
 import modele.dao.DaoEntreprise;
+
 import vue.FenetreEntreprise;
 
-public class GestionEntreprise implements ActionListener , ItemListener {
+public class GestionEntreprise implements ActionListener {
 
-	private Logger logger = Logger.getLogger(getClass().getName());
+    private FenetreEntreprise entrepriseFenetre;
 
-	private FenetreEntreprise entrepriseFenetre;
-	private DaoEntreprise daoEntreprise;
+    public GestionEntreprise(FenetreEntreprise entrepriseFenetre) {
+        this.entrepriseFenetre = entrepriseFenetre;
+    }
 
-	public GestionEntreprise(FenetreEntreprise entrepriseFenetre) {
-		this.entrepriseFenetre = entrepriseFenetre;
-		this.daoEntreprise = new DaoEntreprise();
-	}
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Object source = e.getSource();
+        if (source instanceof JButton) {
+            JButton button = (JButton) source;
 
-		if (source instanceof JButton) {
-			JButton buttonValider = (JButton) source;
+            switch (button.getText()) {
+                case "Valider":
+                    ajouterEntreprise();
+                    entrepriseFenetre.dispose();
+                    break;
 
-			switch (buttonValider.getText()) {
-			case "Valider":
+                case "Annuler":
+                	entrepriseFenetre.dispose();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
-				try {
-					insererCharge();
-				} catch (SQLException ex) {
-					ex.printStackTrace();
-				}
+    // Vérification que les champs sont correctement écrits
+    public void ajouterEntreprise() {
+    	 try {
+            String nomSiren = entrepriseFenetre.getSiren();
+            String nomAdresse = entrepriseFenetre.getAdresse();
+            String tel = entrepriseFenetre.getTel();
+            String nom = entrepriseFenetre.getNom();
 
-				break;
+            Entreprise entreprise = new Entreprise(nomSiren, nomAdresse, tel, nom);
 
-			case "Ajouter Charge":
-				ajouterReleve();
-				break;
-			case "Annuler":
-				gestionCharges.dispose();
-				break;
-			default:
-				break;
-			}
-		}
-	}
+            DaoEntreprise daoEntreprise = new DaoEntreprise();
+            daoEntreprise.create(entreprise);
 
-
-
-	private void ajouterReleve() {		
-		String typecharge = (String) gestionCharges.getTypeCompteurComboBox().getSelectedItem();
-		DefaultTableModel model = (DefaultTableModel) gestionCharges.getTable().getModel();
-		model.addRow(new Object[]{"", "", "", typecharge, ""});	
-	}
-
-
-	@Override
-	public void itemStateChanged(ItemEvent e) {
-		// Handle the item state change event for comboboxes
-		if (e.getSource() == gestionCharges.getTypeCompteurComboBox()
-				|| e.getSource() == gestionCharges.getIdBienComboBox()) {
-			try {
-				filtrerCharges();
-				activerBoutonAjouter();
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-			}
-		}
-	}
-
-
-	private void insererCharge() throws SQLException {
-		DefaultTableModel model = (DefaultTableModel) gestionCharges.getTable().getModel();
-		int selectedRow = gestionCharges.getTable().getSelectedRow();
-
-		// Assuming your columns are in the order of ID, Date, Type, Valeur, ID_Bien
-		Object[] rowData = new Object[5];
-		for (int i = 0; i < 5; i++) {
-			rowData[i] = model.getValueAt(selectedRow, i);
-		}
-		String idCharge = (String)rowData[0];
-		Double montant = Double.parseDouble((String)rowData[1]);
-		String date  = (String)rowData[2];
-		String type = (String)rowData[3];
-		String pourcentage = (String)rowData[4];
-
-		String idBienSelectionne = (String) gestionCharges.getIdBienComboBox().getSelectedItem();
-		logger.info(idBienSelectionne);
-
-
-		
-		Charges charge = new Charges(idCharge,idBienSelectionne,montant,date,type,pourcentage);
-
-		this.daocharge.create(charge);
-
-		filtrerCharges();
-	}
-
-
-	private void activerBoutonAjouter() {
-		String idBienSelectionne = (String) gestionCharges.getIdBienComboBox().getSelectedItem();
-		String typecharge = (String) gestionCharges.getTypeCompteurComboBox().getSelectedItem();
-
-
-		// Activer le bouton si un bien est sélectionné, sinon le désactiver
-		gestionCharges.getAjouterButton().setEnabled(!"Tous".equals(idBienSelectionne) && !"Tout Type".equals(typecharge));
-	}
-
-
-	public void filtrerCharges() throws SQLException {
-		Collection<Charges> charges = daocharge.findAll();
-		String typeSelectionne = (String) gestionCharges.getTypeCompteurComboBox().getSelectedItem();
-		String idBienSelectionne = (String) gestionCharges.getIdBienComboBox().getSelectedItem();
-
-		List<Charges> chargesFiltres = new ArrayList<>();
-		for (Charges charge : charges) {
-			boolean typeMatch = "Tout Type".equals(typeSelectionne) || typeSelectionne.equals(charge.getTypeCharge());
-			boolean idBienMatch = "Tous".equals(idBienSelectionne) || idBienSelectionne.equals(charge.getIdBienImm());
-
-
-
-			if (typeMatch && idBienMatch) {
-				chargesFiltres.add(charge);
-			}
-		}
-
-		// Update the table model directly
-		DefaultTableModel tableModel = (DefaultTableModel) gestionCharges.getTable().getModel();
-		tableModel.setRowCount(0);
-
-		for (Charges charge : chargesFiltres) {
-			tableModel.addRow(new Object[]{charge.getIdCharges(), charge.getMontant(),
-					charge.getDateCharge(), charge.getTypeCharge(),charge.getPourcentagePartEntretien()});
-		}
-	}
-
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.info("Entreprise ajoutée avec succès !");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erreur lors de l'ajout de l'entreprise : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }

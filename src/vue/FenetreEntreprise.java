@@ -1,79 +1,115 @@
 package vue;
 
-import javax.swing.*;
 import java.awt.*;
-import controle.GestionEntreprise;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import modele.Batiment;
+import modele.Entreprise;
 
 public class FenetreEntreprise extends JInternalFrame {
-    private JTable table;
-    private JButton btnAjouter, btnSupprimer, btnCharger, btnFermer;
+
+    private static final long serialVersionUID = 1L;
+    private JTextField champSiren;
+    private JTextField champAdresse;
+    private JTextField champTel;
+    private JTextField champNom;
+    private GestionEntreprise gestionClic;
+    private static final String POLICE = "Tahoma";
 
     public FenetreEntreprise() {
-        // Configuration initiale de la fenêtre...
-        setBounds(100, 100, 450, 300);
-        JLabel lblHeader = new JLabel("Gestion des Entreprises");
-        lblHeader.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        getContentPane().add(lblHeader, BorderLayout.NORTH);
+        gestionClic = new GestionEntreprise(this);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 450, 400);
+        JPanel contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
+        setContentPane(contentPane);
+        contentPane.setLayout(new BorderLayout(0, 0));
 
-        // Tableau...
-        JScrollPane scrollPane = new JScrollPane();
-        getContentPane().add(scrollPane, BorderLayout.CENTER);
-        String[] columnNames = {"Siren", "Adresse", "Tel", "Email"};
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-        table = new JTable(model);
-        scrollPane.setViewportView(table);
+        JLabel libAjouterBatiment = new JLabel("Ajouter une entreprise");
+        libAjouterBatiment.setFont(new Font(POLICE, Font.BOLD, 18));
+        libAjouterBatiment.setHorizontalAlignment(SwingConstants.CENTER);
+        contentPane.add(libAjouterBatiment, BorderLayout.NORTH);
 
-        // Panneau de boutons...
         JPanel panel = new JPanel();
-        getContentPane().add(panel, BorderLayout.SOUTH);
+        panel.setLayout(new GridLayout(0, 2, 10, 10));
+        panel.setBackground(new Color(238, 237, 238));
+        contentPane.add(panel, BorderLayout.CENTER);
 
-        // Boutons...
-        btnAjouter = new JButton("Ajouter");
-        panel.add(btnAjouter);
+        // Champ pour le nom du bâtiment
+        JLabel lblSiren = new JLabel("Siren Entreprise");
+        lblSiren.setFont(new Font(POLICE, Font.PLAIN, 14));
+        champSiren = new JTextField();
+        panel.add(lblSiren);
+        panel.add(champSiren);
 
-        btnSupprimer = new JButton("Supprimer");
-        panel.add(btnSupprimer);
+        // Champ pour le régime juridique
+        JLabel libAdresse = new JLabel("Adresse Entreprise");
+        libAdresse.setFont(new Font(POLICE, Font.PLAIN, 14));
+        champAdresse = new JTextField();
+        panel.add(libAdresse);
+        panel.add(champAdresse);
 
-        btnCharger = new JButton("Charger");
-        panel.add(btnCharger);
+        // Champ pour l'adresse
+        JLabel libTel = new JLabel("Tel Entreprise");
+        libTel.setFont(new Font(POLICE, Font.PLAIN, 14));
+        champTel = new JTextField("12345");
+        panel.add(libTel);
+        panel.add(champTel);
 
-        btnFermer = new JButton("Fermer");
-        panel.add(btnFermer);
+        // Champ pour le code postal
+        JLabel libEntreprise = new JLabel("Nom Entreprise");
+        libEntreprise.setFont(new Font(POLICE, Font.PLAIN, 14));
+        champNom = new JTextField("12345");
+        panel.add(libEntreprise);
+        panel.add(champNom);
 
-        // Associer le gestionnaire d'événements
-        GestionEntreprise gestionnaire = new GestionEntreprise(this);
+        // Boutons Annuler et Valider
+        JPanel panelButtons = new JPanel();
+        panelButtons.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        panelButtons.setBackground(new Color(238, 237, 237));
+
+        JButton btnAnnuler = new JButton("Annuler");
+        btnAnnuler.setFont(new Font(POLICE, Font.PLAIN, 14));
+        btnAnnuler.addActionListener(this);
+        panelButtons.add(btnAnnuler);
+
+        JButton btnValider = new JButton("Valider");
+        btnValider.setFont(new Font(POLICE, Font.PLAIN, 14));
+        btnValider.addActionListener(this);
+        panelButtons.add(btnValider);
+
+        contentPane.add(panelButtons, BorderLayout.SOUTH);
     }
 
-    // Getters pour les composants...
-    public JTable getTable() {
-        return table;
+    public Entreprise getEntrepriseFromInput() {
+        // Créer un objet Batiment avec les données saisies
+        return new Entreprise(
+        		champSiren.getText(),
+        		champAdresse.getText(),
+        		champTel.getText(),
+        		champNom.getText()
+        );
     }
 
-    public JButton getBtnAjouter() {
-        return btnAjouter;
-    }
+	public String getSiren() {
+		return champSiren.getText() ;
+	}
 
-    public JButton getBtnSupprimer() {
-        return btnSupprimer;
-    }
+	public String getAdresse() {
+		return champAdresse.getText();
+	}
 
-    public JButton getBtnCharger() {
-        return btnCharger;
-    }
+	public String getTel() {
+		return champTel.getText();
+	            
+	}
 
-    public JButton getBtnFermer() {
-        return btnFermer;
-    }
+	public String getNom() {
+		return champNom.getText();
+	            
+	}
 
-    // Méthode principale pour tester la fenêtre...
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                FenetreEntreprise frame = new FenetreEntreprise();
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
+	
 }
