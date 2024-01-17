@@ -93,6 +93,10 @@ public class GestionAccueil implements ActionListener {
 				new LireCSV().lireEtInsererCSV(csvFilePath);
 			}
 			break;
+
+		case "Consulter":
+			afficherFenetre(new FenetreEntreprise(), layeredPane);
+			break;
 		case "Vérifier le Solde de tout compte":
 			afficherFenetre(new FenetreSoldeToutCompte(), layeredPane);
 			break;

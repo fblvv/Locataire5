@@ -144,16 +144,18 @@ public class Accueil extends JFrame {
         mntmSoldeDeToutCompte.setFont(new Font(POLICE, Font.PLAIN, 15));
         mntmSoldeDeToutCompte.addActionListener(this.gestionClic);
         mnSoldeDeToutCompte.add(mntmSoldeDeToutCompte);
-    
+        
         JMenu mnEntreprise = new JMenu("Entreprise");
-        mnEntreprise.setFont(new Font(POLICE, Font.BOLD, 19));
+        mnEntreprise.setFont(new Font("Tahoma", Font.BOLD, 19));
+        mnEntreprise.addActionListener(this.gestionClic);
         menuBar.add(mnEntreprise);
         
-        JMenuItem mntmAjouterEntreprise = new JMenuItem("Ajouter Une Entreprise");
-        mntmAjouterEntreprise.setFont(new Font(POLICE, Font.PLAIN, 15));
-        mntmAjouterEntreprise.addActionListener(this.gestionClic);
-        mnEntreprise.add(mntmAjouterEntreprise);
-
+        JMenuItem mntmConsulter = new JMenuItem("Consulter");
+        mntmConsulter.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        mntmConsulter.addActionListener(this.gestionClic);
+        mnEntreprise.add(mntmConsulter);
+    
+     
     }
 
     public void actionPerformed(ActionEvent e) {
