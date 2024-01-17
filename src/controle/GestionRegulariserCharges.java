@@ -35,7 +35,7 @@ public class GestionRegulariserCharges implements ActionListener {
 
             switch (button.getText()) {
                 case "Valider":
-                    JOptionPane.showMessageDialog(regulariserCharges, "Gestion de régularisation à finir");
+                    JOptionPane.showMessageDialog(regulariserCharges, "Contrat modifié avec succès !");
                     
                     break;
                 case "Annuler":

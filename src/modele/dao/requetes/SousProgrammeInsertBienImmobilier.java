@@ -15,7 +15,7 @@ public class SousProgrammeInsertBienImmobilier implements SousProgramme<BienImmo
 
     @Override
     public String appelSousProgramme() {
-        return "{call INS_BIENIMMOBILIER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)}";
+        return "{call INS_BIENIMMOBILIER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)}";
     }
 
     @Override
@@ -31,6 +31,8 @@ public class SousProgrammeInsertBienImmobilier implements SousProgramme<BienImmo
         prSt.setString(5, parametres[8]); // 
         prSt.setString(6, parametres[9]); // 
         prSt.setString(7, parametres[10]); // 
+        prSt.setString(8, parametres[11]); // 
+
     }
 
     @Override
@@ -45,8 +47,8 @@ public class SousProgrammeInsertBienImmobilier implements SousProgramme<BienImmo
         prSt.setString(8, donnee.getIdentifiant());        
         prSt.setString(9, donnee.getEtage());        
         prSt.setString(10, donnee.getId_Batiment());        
-        prSt.setString(11, donnee.getDIAGNOSTIQUE());        
+        prSt.setString(11, donnee.getDIAGNOSTIQUE());   
+        prSt.setString(12, donnee.getGarage());     
 
     }
-
 }

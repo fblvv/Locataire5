@@ -51,6 +51,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
     
     private static final String POLICE = "Tahoma";
     private JTextField textDiagno;
+    private JTextField textGarage;
 
 
     public static void main(String[] args) {
@@ -91,9 +92,9 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		contentPane.add(panelGauche, gbcPanelGauche);
 		GridBagLayout gblPanelGauche = new GridBagLayout();
 		gblPanelGauche.columnWidths = new int[]{114, 207, 0};
-		gblPanelGauche.rowHeights = new int[] {100, 0, 0, 0, 0, 0, 0, 0, 0, 30, 37, 75, 30, 0, 0, 0, 30};
+		gblPanelGauche.rowHeights = new int[] {100, 0, 0, 0, 0, 0, 0, 0, 0, 30, 0, 37, 75, 30, 0, 0, 0, 30};
 		gblPanelGauche.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-		gblPanelGauche.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+		gblPanelGauche.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		panelGauche.setLayout(gblPanelGauche);
 		
 		JLabel labelTypeLogement = new JLabel("Type de Logement");
@@ -263,6 +264,24 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		panelGauche.add(textDiagno, gbc_textDiagno);
 		textDiagno.setColumns(10);
 		
+		JLabel garage = new JLabel("Garage");
+		GridBagConstraints gbc_garage = new GridBagConstraints();
+		gbc_garage.anchor = GridBagConstraints.EAST;
+		gbc_garage.insets = new Insets(0, 0, 5, 5);
+		gbc_garage.gridx = 0;
+		gbc_garage.gridy = 10;
+		panelGauche.add(garage, gbc_garage);
+		
+		textGarage = new JTextField();
+		textGarage.setEditable(false);
+		textGarage.setColumns(10);
+		GridBagConstraints gbc_textGarage = new GridBagConstraints();
+		gbc_textGarage.insets = new Insets(0, 0, 5, 0);
+		gbc_textGarage.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textGarage.gridx = 1;
+		gbc_textGarage.gridy = 10;
+		panelGauche.add(textGarage, gbc_textGarage);
+		
 		JLabel labelLocatairesActuels = new JLabel("Locataires Actuels");
 		labelLocatairesActuels.setFont(new Font(POLICE, Font.PLAIN, 14));
 		labelLocatairesActuels.setHorizontalAlignment(SwingConstants.LEFT);
@@ -270,7 +289,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		gbcLabelLocatairesActuels.anchor = GridBagConstraints.WEST;
 		gbcLabelLocatairesActuels.insets = new Insets(0, 0, 5, 5);
 		gbcLabelLocatairesActuels.gridx = 0;
-		gbcLabelLocatairesActuels.gridy = 10;
+		gbcLabelLocatairesActuels.gridy = 11;
 		panelGauche.add(labelLocatairesActuels, gbcLabelLocatairesActuels);
 		
 		JScrollPane scrollPaneLocatairesActuels = new JScrollPane((Component) null);
@@ -279,7 +298,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		gbcScrollPaneLocatairesActuels.gridwidth = 2;
 		gbcScrollPaneLocatairesActuels.fill = GridBagConstraints.BOTH;
 		gbcScrollPaneLocatairesActuels.gridx = 0;
-		gbcScrollPaneLocatairesActuels.gridy = 11;
+		gbcScrollPaneLocatairesActuels.gridy = 12;
 		panelGauche.add(scrollPaneLocatairesActuels, gbcScrollPaneLocatairesActuels);
 		
 		tableLocataire = new JTable();
@@ -299,7 +318,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		gbcLabelStatutOccupation.anchor = GridBagConstraints.WEST;
 		gbcLabelStatutOccupation.insets = new Insets(0, 0, 5, 5);
 		gbcLabelStatutOccupation.gridx = 0;
-		gbcLabelStatutOccupation.gridy = 13;
+		gbcLabelStatutOccupation.gridy = 14;
 		panelGauche.add(labelStatutOccupation, gbcLabelStatutOccupation);
 		
 		champStatutOccupation = new JTextField();
@@ -308,7 +327,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		gbcChampStatutOccupation.insets = new Insets(0, 0, 5, 0);
 		gbcChampStatutOccupation.fill = GridBagConstraints.HORIZONTAL;
 		gbcChampStatutOccupation.gridx = 1;
-		gbcChampStatutOccupation.gridy = 13;
+		gbcChampStatutOccupation.gridy = 14;
 		panelGauche.add(champStatutOccupation, gbcChampStatutOccupation);
 		
 		JLabel labelContratsServices = new JLabel("Contrats de Services:");
@@ -316,7 +335,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		gbcLabelContratsServices.anchor = GridBagConstraints.WEST;
 		gbcLabelContratsServices.insets = new Insets(0, 0, 5, 5);
 		gbcLabelContratsServices.gridx = 0;
-		gbcLabelContratsServices.gridy = 14;
+		gbcLabelContratsServices.gridy = 15;
 		panelGauche.add(labelContratsServices, gbcLabelContratsServices);
 		
 		champContratsServices = new JTextField();
@@ -324,7 +343,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		gbcChampContratsServices.insets = new Insets(0, 0, 5, 0);
 		gbcChampContratsServices.fill = GridBagConstraints.HORIZONTAL;
 		gbcChampContratsServices.gridx = 1;
-		gbcChampContratsServices.gridy = 14;
+		gbcChampContratsServices.gridy = 15;
 		panelGauche.add(champContratsServices, gbcChampContratsServices);
 		champContratsServices.setColumns(10);
 		
@@ -333,7 +352,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		gbcLabelCommentaires.anchor = GridBagConstraints.WEST;
 		gbcLabelCommentaires.insets = new Insets(0, 0, 5, 5);
 		gbcLabelCommentaires.gridx = 0;
-		gbcLabelCommentaires.gridy = 15;
+		gbcLabelCommentaires.gridy = 16;
 		panelGauche.add(labelCommentaires, gbcLabelCommentaires);
 		
 		champCommentaires = new JTextField();
@@ -341,7 +360,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		gbcChampCommentaires.insets = new Insets(0, 0, 5, 0);
 		gbcChampCommentaires.fill = GridBagConstraints.HORIZONTAL;
 		gbcChampCommentaires.gridx = 1;
-		gbcChampCommentaires.gridy = 15;
+		gbcChampCommentaires.gridy = 16;
 		panelGauche.add(champCommentaires, gbcChampCommentaires);
 		champCommentaires.setColumns(10);
 		
@@ -622,6 +641,15 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 	public void setTextDiagno(JTextField textDiagno) {
 		this.textDiagno = textDiagno;
 	}
+
+	public JTextField getTextGarage() {
+		return textGarage;
+	}
+
+	public void setTextGarage(JTextField textGarage) {
+		this.textGarage = textGarage;
+	}
+	
 	
 
 }

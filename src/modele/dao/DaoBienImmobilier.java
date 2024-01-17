@@ -74,9 +74,10 @@ public class DaoBienImmobilier  extends DaoModele<BienImmobilier> implements Dao
         String etage = curseur.getString("Etage");
         String idBatiment = curseur.getString("Id_Batiment");
         String diagnostique = curseur.getString("DIAGNOSTIQUE");
+        String garage = curseur.getString("GARAGE");
 
         // Créer et retourner une nouvelle instance de BienImmobilier
-        BienImmobilier bienImmobilier = new BienImmobilier(idBienImm, surface, modeChauffage, modeEau, nbPiece, typeBien, nomProprio, identifiant, etage,idBatiment,diagnostique);
+        BienImmobilier bienImmobilier = new BienImmobilier(idBienImm, surface, modeChauffage, modeEau, nbPiece, typeBien, nomProprio, identifiant, etage,idBatiment,diagnostique,garage);
         
 
         return bienImmobilier;
