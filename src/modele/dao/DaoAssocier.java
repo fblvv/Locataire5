@@ -3,12 +3,8 @@ package modele.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.Date;
 
 import modele.Associer;
-import modele.ContratLocation;
-
-import modele.Locataire;
 
 public class DaoAssocier extends DaoModele<Associer> implements Dao<Associer> {
 
@@ -47,16 +43,12 @@ public class DaoAssocier extends DaoModele<Associer> implements Dao<Associer> {
 	    boolean caution = curseur.getString("caution").equals("0") ? false : true;
 
 
-	    		    Associer associer = new Associer(
+	    		    return new Associer(
 	    		        curseur.getString("dateDebutContrat"),
 	    		        curseur.getString("dateEntree"),
 	    		        curseur.getString("dateSortie"),
 	    		        curseur.getInt("caution")
 	    		    );
-
-	    		    // You may want to set other properties of Associer based on your data model
-
-	    		    return associer;
 
 
 	}

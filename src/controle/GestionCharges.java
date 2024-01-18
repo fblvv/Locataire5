@@ -89,7 +89,7 @@ public class GestionCharges implements ActionListener , ItemListener {
 		DefaultTableModel model = (DefaultTableModel) gestionCharges.getTable().getModel();
 		int selectedRow = gestionCharges.getTable().getSelectedRow();
 
-		// Assuming your columns are in the order of ID, Date, Type, Valeur, ID_Bien
+		// Ajouter une charge avec les infromations : ID, Date, Type, Valeur, ID_Bien
 		Object[] rowData = new Object[5];
 		for (int i = 0; i < 5; i++) {
 			rowData[i] = model.getValueAt(selectedRow, i);
@@ -140,7 +140,7 @@ public class GestionCharges implements ActionListener , ItemListener {
 			}
 		}
 
-		// Update the table model directly
+		//Remplissage du tableau 
 		DefaultTableModel tableModel = (DefaultTableModel) gestionCharges.getTable().getModel();
 		tableModel.setRowCount(0);
 

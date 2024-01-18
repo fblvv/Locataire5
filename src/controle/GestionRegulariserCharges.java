@@ -46,8 +46,7 @@ public class GestionRegulariserCharges implements ActionListener {
             }
         }
         
-        // Vous pouvez appeler la méthode ici ou dans le constructeur, selon vos besoins
-        // afficherAnciennesValeurs();
+
     }
 
     public void afficherAnciennesValeurs() throws SQLException {

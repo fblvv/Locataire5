@@ -1,13 +1,13 @@
 package SQL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import oracle.jdbc.pool.OracleDataSource ;
 
 public class CictOracleDataSource extends OracleDataSource {
      
     
-    private static Connection connection;
+    private static final long serialVersionUID = 313880554694675808L;
+	private static Connection connection;
 
     private CictOracleDataSource(String login, String mdp) throws SQLException {
         this.setURL("jdbc:oracle:thin:@telline.univ-tlse3.fr" +

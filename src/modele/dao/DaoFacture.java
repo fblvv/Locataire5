@@ -7,13 +7,9 @@ import java.util.Collection;
 import java.util.List;
 
 import SQL.CictOracleDataSource;
-import modele.Charges;
 import modele.Facture;
-import modele.dao.requetes.RequeteSelectCharges;
-import modele.dao.requetes.RequeteSelectChargesById;
 import modele.dao.requetes.RequeteSelectFacture;
 import modele.dao.requetes.RequeteSelectFactureById;
-import modele.dao.requetes.SousProgrammeInsertCompteur;
 import modele.dao.requetes.SousProgrammeInsertFacture;
 
 public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
@@ -35,7 +31,6 @@ public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 
 	@Override
 	public void update(Facture donnee) throws SQLException {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -49,7 +44,6 @@ public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 
 	@Override
 	public void delete(Facture donnee) throws SQLException {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -67,7 +61,6 @@ public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
                     curseur.getString("ID_BATIMENT")
             );
         } catch (SQLException e) {
-            // Handle the exception appropriately, e.g., log or throw a custom exception
             e.printStackTrace();
         }
         return facture;

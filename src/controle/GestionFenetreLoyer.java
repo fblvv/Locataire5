@@ -50,9 +50,9 @@ public class GestionFenetreLoyer implements ActionListener {
 				break;
 			}
 		} else if (source instanceof JComboBox) {
-			// Handle JComboBox selection change
+			//Mettre à jour le filtrage 
 			try {
-				updateTableData();
+				filtrerTable();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -60,9 +60,9 @@ public class GestionFenetreLoyer implements ActionListener {
 	}
 
 
-	private void updateTableData() throws SQLException {
-		// Get the selected tenant ID from the JComboBox
+	private void filtrerTable() throws SQLException {
 		
+		//Récupération de l'id du locataire dans la Jcombobox
 		String locataireId = fenetreloyer.getComboBoxLocataire();
 
 		DaoContratLocation daoContrat= new DaoContratLocation();
@@ -89,7 +89,7 @@ public class GestionFenetreLoyer implements ActionListener {
 		
 		Collection<Loyer> loyers = daoLoyer.findByIds(locataireId);
 		if (loyers.isEmpty()) {
-			// If there are no rent records, clear the JTable
+			//si pas de loyers vider la table 
 			DefaultTableModel model = (DefaultTableModel) fenetreloyer.getTableloyer().getModel();
 			model.setRowCount(0);
 
@@ -98,13 +98,13 @@ public class GestionFenetreLoyer implements ActionListener {
 		}
 	}
 
-	// Add this method to update the JTable with new data
+	//mise à jour des loyers par locataire
 	private void updateJTable(Collection<Loyer> loyers) {
-		// Clear existing data in the JTable
+		//vider la table existante 
 		DefaultTableModel model = (DefaultTableModel) fenetreloyer.getTableloyer().getModel();
 		model.setRowCount(0);
 
-		// Add new data to the JTable
+		//completer la table avec les loyers
 		for (Loyer loyer : loyers) {
 			model.addRow(new Object[] {
 					loyer.getIdLoyer(),loyer.getLoyerCharges(),loyer.getCharges(),

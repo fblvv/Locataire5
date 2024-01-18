@@ -11,8 +11,6 @@ import java.util.List;
 import SQL.CictOracleDataSource;
 import modele.BienImmobilier;
 import modele.dao.requetes.RequeteOccupationBien;
-import modele.dao.requetes.RequeteRegularisation;
-import modele.dao.requetes.RequeteSelectBatiment;
 import modele.dao.requetes.RequeteSelectBienImmobilier;
 import modele.dao.requetes.RequeteSelectBienImmobilierById;
 import modele.dao.requetes.SousProgrammeInsertBienImmobilier;
@@ -21,7 +19,6 @@ public class DaoBienImmobilier  extends DaoModele<BienImmobilier> implements Dao
 
 	@Override
 	public Collection<BienImmobilier> findAll() throws SQLException {
-		// TODO Auto-generated method stub
 		RequeteSelectBienImmobilier bienImmobilier = new RequeteSelectBienImmobilier();
 		return find(bienImmobilier);
 	}
@@ -38,14 +35,11 @@ public class DaoBienImmobilier  extends DaoModele<BienImmobilier> implements Dao
 	
 
 	@Override
-	public void update(BienImmobilier donnee) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	public void update(BienImmobilier donnee) throws SQLException {		
 	}
 
 	@Override
 	public void create(BienImmobilier bien) throws SQLException {
-		// TODO Auto-generated method stub
 		SousProgrammeInsertBienImmobilier sousProgrammeInsertBienImmobilier = new SousProgrammeInsertBienImmobilier();
 	    CallableStatement cs = CictOracleDataSource.getConnectionBD().prepareCall(sousProgrammeInsertBienImmobilier.appelSousProgramme());
 	        sousProgrammeInsertBienImmobilier.parametres(cs, bien);
@@ -54,8 +48,6 @@ public class DaoBienImmobilier  extends DaoModele<BienImmobilier> implements Dao
 
 	@Override
 	public void delete(BienImmobilier donnee) throws SQLException {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	
@@ -77,10 +69,7 @@ public class DaoBienImmobilier  extends DaoModele<BienImmobilier> implements Dao
         String garage = curseur.getString("GARAGE");
 
         // Créer et retourner une nouvelle instance de BienImmobilier
-        BienImmobilier bienImmobilier = new BienImmobilier(idBienImm, surface, modeChauffage, modeEau, nbPiece, typeBien, nomProprio, identifiant, etage,idBatiment,diagnostique,garage);
-        
-
-        return bienImmobilier;
+        return new BienImmobilier(idBienImm, surface, modeChauffage, modeEau, nbPiece, typeBien, nomProprio, identifiant, etage,idBatiment,diagnostique,garage);
     }
 	
 	//savoir si un bien est occupé 

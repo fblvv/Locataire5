@@ -7,10 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 import SQL.CictOracleDataSource;
-import modele.BienImmobilier;
 import modele.Charges;
-import modele.dao.requetes.RequeteSelectBienImmobilier;
-import modele.dao.requetes.RequeteSelectBienImmobilierById;
 import modele.dao.requetes.RequeteSelectCharges;
 import modele.dao.requetes.RequeteSelectChargesById;
 import modele.dao.requetes.SousProgrammeInsertCharges;
