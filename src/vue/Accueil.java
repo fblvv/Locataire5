@@ -159,7 +159,7 @@ public class Accueil extends JFrame {
         mntmAjouterEntreprise.setFont(new Font(POLICE, Font.PLAIN, 15));
         mntmAjouterEntreprise.addActionListener(this.gestionClic);
         mnEntreprise.add(mntmAjouterEntreprise);
-        
+        //com
      
     }
 
