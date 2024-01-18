@@ -8,26 +8,20 @@ import java.util.List;
 
 import SQL.CictOracleDataSource;
 import modele.Batiment;
-import modele.BienImmobilier;
 import modele.dao.requetes.RequeteSelectBatiment;
 import modele.dao.requetes.RequeteSelectBatimentById;
-import modele.dao.requetes.RequeteSelectBienImmobilierById;
-import modele.dao.requetes.RequeteSelectLocataire;
 import modele.dao.requetes.SousProgrammeInsertBatiment;
-import modele.dao.requetes.SousProgrammeInsertLocataire;
 
 public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
 
     @Override
     public Collection<Batiment> findAll() throws SQLException {
-        // TODO: Implémenter la récupération de tous les enregistrements de la table Batiment
     	RequeteSelectBatiment batiment = new RequeteSelectBatiment();
 		return find(batiment);
     }
 
     @Override
     public Batiment findById(String... id) throws SQLException {
-        // TODO: Implémenter la récupération d'un enregistrement par ID
     	List<Batiment> batiment = find(new RequeteSelectBatimentById(), id);
         if (batiment.isEmpty()) {
             return null;
@@ -36,12 +30,10 @@ public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
     }
     @Override
     public void update(Batiment donnee) throws SQLException {
-        // TODO: Implémenter la mise à jour d'un enregistrement
     }
 
     @Override
     public void create(Batiment batiment) throws SQLException {
-        // TODO: Implémenter la création d'un nouvel enregistrement
     	SousProgrammeInsertBatiment sousProgrammeInsertBatiment = new SousProgrammeInsertBatiment();
 	    CallableStatement cs = CictOracleDataSource.getConnectionBD().prepareCall(sousProgrammeInsertBatiment.appelSousProgramme());
 	        sousProgrammeInsertBatiment.parametres(cs,batiment);
@@ -50,7 +42,6 @@ public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
 
     @Override
     public void delete(Batiment donnee) throws SQLException {
-        // TODO: Implémenter la suppression d'un enregistrement
     }
 
     @Override

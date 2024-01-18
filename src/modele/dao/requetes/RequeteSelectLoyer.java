@@ -3,8 +3,6 @@ package modele.dao.requetes;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import modele.Associer;
-import modele.Assurance;
 import modele.Loyer;
 
 public class RequeteSelectLoyer extends Requete<Loyer> {

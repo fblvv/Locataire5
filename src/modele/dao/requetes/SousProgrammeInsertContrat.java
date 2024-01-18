@@ -4,7 +4,6 @@ import java.sql.CallableStatement;
 import java.sql.SQLException;
 
 import modele.ContratLocation;
-import modele.Locataire;
 import modele.dao.SousProgramme;
 
 public class SousProgrammeInsertContrat implements SousProgramme<ContratLocation> {

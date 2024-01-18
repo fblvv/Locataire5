@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.Collection;
 
-import java.util.logging.Logger;
-
 
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
@@ -17,8 +15,6 @@ import modele.dao.DaoEntreprise;
 import vue.FenetreEntreprise;
 
 public class GestionEntreprise implements ActionListener  {
-
-	private Logger logger = Logger.getLogger(getClass().getName());
 
 	private FenetreEntreprise entrepriseFenetre;
 	private DaoEntreprise daoEntreprise;

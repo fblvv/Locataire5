@@ -3,7 +3,6 @@ package modele.dao.requetes;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 
-import modele.Batiment;
 import modele.BienImmobilier;
 import modele.dao.SousProgramme;
 

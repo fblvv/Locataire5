@@ -4,12 +4,9 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.List;
 
 import SQL.CictOracleDataSource;
-import modele.Batiment;
 import modele.Locataire;
-import modele.dao.requetes.RequeteSelectBatimentById;
 import modele.dao.requetes.RequeteSelectLocataire;
 import modele.dao.requetes.RequeteSelectLocataireById;
 import modele.dao.requetes.SousProgrammeDeleteLocataire;
@@ -33,7 +30,6 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 
 	@Override
 	public void update(Locataire donnee) throws SQLException {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -74,7 +70,6 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 					curseur.getString("CODE_POSTAL")
 					);
 		} catch (SQLException e) {
-			// Handle the exception appropriately, e.g., log or throw a custom exception
 			e.printStackTrace();
 		}
 		return locataire;
