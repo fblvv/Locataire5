@@ -16,7 +16,8 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class FenetreRegulariserCharges extends JInternalFrame {
-    private JTextField champAncienLoyer;
+    private static final long serialVersionUID = -5185807532884047064L;
+	private JTextField champAncienLoyer;
     private JTextField champAnciennesCharges;
     private JTextField champNouvellesCharges;
     private GestionRegulariserCharges gestionClic;
