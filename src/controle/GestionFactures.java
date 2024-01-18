@@ -72,7 +72,7 @@ public class GestionFactures implements ActionListener , ItemListener  {
 		DefaultTableModel model = (DefaultTableModel) gestionFactures.getTable().getModel();
 		int selectedRow = gestionFactures.getTable().getSelectedRow();
 
-		// Assuming your columns are in the order of ID, Date, Type, Valeur, ID_Bien
+		//Ajouter dans la BD la facture avec les infos suivantes : ID, Date, Type, Valeur, ID_Bien
 		Object[] rowData = new Object[5];
 		for (int i = 0; i < 5; i++) {
 			rowData[i] = model.getValueAt(selectedRow, i);
@@ -100,7 +100,7 @@ public class GestionFactures implements ActionListener , ItemListener  {
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		// Handle the item state change event for comboboxes
+		//Filtrer avec les Jcombobox
 		if (e.getSource() == gestionFactures.getTypefactureComboBox()
 				|| e.getSource() == gestionFactures.getIdBienComboBox()) {
 			try {
@@ -131,7 +131,7 @@ public class GestionFactures implements ActionListener , ItemListener  {
 			boolean typeMatch = "Tout Type".equals(typeSelectionne) || typeSelectionne.equals(compteur.getTypeEntretien());
 			boolean idBienMatch = "Tous".equals(idBienSelectionne) || idBienSelectionne.equals(compteur.getIdBienImm());
 
-			// For debugging purposes, print the filters and the matching condition
+			//Affichage pour le debugging 
 			logger.info("Type Selectionne: " + typeSelectionne);
 			logger.info("IdBien Selectionne: " + idBienSelectionne);
 			logger.info("Type Match: " + typeMatch);
@@ -142,7 +142,7 @@ public class GestionFactures implements ActionListener , ItemListener  {
 			}
 		}
 
-		// Update the table model directly
+		//remplissage de la table avec les filtes 
 		DefaultTableModel tableModel = (DefaultTableModel) gestionFactures.getTable().getModel();
 		tableModel.setRowCount(0);
 
