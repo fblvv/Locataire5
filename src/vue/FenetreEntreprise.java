@@ -27,7 +27,7 @@ public class FenetreEntreprise extends JInternalFrame {
         // Tableau
         JScrollPane scrollPane = new JScrollPane();
         getContentPane().add(scrollPane, BorderLayout.CENTER);
-        String[] columnNames = {"Siren", "Adresse", "Tel", "Email"};
+        String[] columnNames = {"Siren", "Adresse", "Tel", "Nom Entreprise"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
         table = new JTable(model);
         scrollPane.setViewportView(table);
