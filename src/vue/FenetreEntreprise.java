@@ -24,7 +24,7 @@ public class FenetreEntreprise extends JInternalFrame {
         lblHeader.setFont(new Font("Tahoma", Font.PLAIN, 16));
         getContentPane().add(lblHeader, BorderLayout.NORTH);
 
-        // Tableau...
+        // Tableau
         JScrollPane scrollPane = new JScrollPane();
         getContentPane().add(scrollPane, BorderLayout.CENTER);
         String[] columnNames = {"Siren", "Adresse", "Tel", "Email"};
@@ -32,11 +32,11 @@ public class FenetreEntreprise extends JInternalFrame {
         table = new JTable(model);
         scrollPane.setViewportView(table);
 
-        // Panneau de boutons...
+        // Panneau de boutons
         JPanel panel = new JPanel();
         getContentPane().add(panel, BorderLayout.SOUTH);
 
-        // Boutons...
+        // Boutons
         btnAjouter = new JButton("Ajouter");
         panel.add(btnAjouter);
 
@@ -52,7 +52,7 @@ public class FenetreEntreprise extends JInternalFrame {
 
             }
 
-    // Getters pour les composants...
+    // Getters pour les composants
     public JTable getTable() {
         return table;
     }
@@ -73,7 +73,7 @@ public class FenetreEntreprise extends JInternalFrame {
         return btnFermer;
     }
 
-    // Méthode principale pour tester la fenêtre...
+    // Méthode principale pour tester la fenêtre
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {

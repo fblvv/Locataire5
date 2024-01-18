@@ -25,19 +25,19 @@ public class FenetreBien extends JInternalFrame {
 
     private static final long serialVersionUID = 1L;
 
-    // JTextFields for Assurance Obligatoire
+    // JTextFields pour les Assurance Obligatoire
     private JTextField textFieldNumeroPoliceObl;
     private JTextField textFieldTarifInitialObl;
     private JTextField textFieldTypeAssuranceObl;
     private JTextField textFieldDateDebutObl;
 
-    // JTextFields for Assurance Optionnelle
+    // JTextFields pour les Assurance Optionnelle
     private JTextField textFieldNumeroPoliceOpt;
     private JTextField textFieldTarifInitialOpt;
     private JTextField textFieldTypeAssuranceOpt;
     private JTextField textFieldDateDebutOpt;
 
-    // JTextFields for Autres informations
+    // JTextFields pour les Autres informations
     private JTextField textFieldIdBienImmobilier;
     private JTextField textFieldSurface;
     private JTextField textFieldModeChauffage;
@@ -112,7 +112,7 @@ public class FenetreBien extends JInternalFrame {
         initComboBoxBatiment();
 
 
-     // Ajout des autres champs SQL
+        // Ajout des autres champs SQL
         panelAutres.add(new JLabel("Id Bien Immobilier:", SwingConstants.RIGHT));
         textFieldIdBienImmobilier = new JTextField(10);
         panelAutres.add(textFieldIdBienImmobilier);

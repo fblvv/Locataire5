@@ -1,6 +1,5 @@
 package vue;
 
-import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
@@ -9,7 +8,6 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import controle.GestionRegulariserCharges;
-import modele.Locataire;
 
 import java.awt.FlowLayout;
 import java.awt.Font;

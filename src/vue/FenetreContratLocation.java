@@ -108,9 +108,7 @@ public class FenetreContratLocation extends JInternalFrame {
         champIdBienImm.setText(bienImmobilier.getId_Bien_Imm());
     }
     
-    //*****************************//
-    //GETTERS ET SETTERS DES CHAMPS//
-    //*****************************//
+    //Getters et seters
 	public JTextField getChampDateDebutContrat() {
 		return champDateDebutContrat;
 	}
