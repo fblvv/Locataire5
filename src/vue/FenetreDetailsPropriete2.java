@@ -378,7 +378,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 	    gblPanelDroite.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 	    panelDroite.setLayout(gblPanelDroite);
         
-	 // Ajout de la JComboBox pour les ID bien
+	    // Ajout de la JComboBox pour les ID bien
         selecteurIdBien = new JComboBox<>();
         GridBagConstraints gbcSelecteurIdBien = new GridBagConstraints();
         gbcSelecteurIdBien.ipady = 15;

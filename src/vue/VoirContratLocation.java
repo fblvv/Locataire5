@@ -17,7 +17,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
-import java.awt.Button;
 
 public class VoirContratLocation extends JInternalFrame {
 	/**
@@ -29,7 +28,7 @@ public class VoirContratLocation extends JInternalFrame {
 
 
 	/**
-	 * Launch the application.
+	 * Lancer l'applicatio
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

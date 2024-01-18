@@ -1,13 +1,11 @@
 package vue;
 
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import controle.GestionAjoutEntreprise;
-import modele.Batiment;
 import modele.Entreprise;
 
 public class FenetreAjoutEntreprise extends JInternalFrame {

@@ -12,16 +12,13 @@ import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import SQL.CictOracleDataSource;
 import controle.GestionSoldeToutCompte;
 import modele.Locataire;
 import modele.dao.DaoLocataire;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.sql.CallableStatement;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.Collection;
 import javax.swing.JTextField;
 
@@ -67,7 +64,7 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
         scrollPaneSolde.setBounds(20, 172, 206, 107);
         contentPane.add(scrollPaneSolde);
         
-        tabSoldeTable = new JTable(); // Utilisez tabSoldeTable au lieu de tabSolde
+        tabSoldeTable = new JTable();
         tabSoldeTable.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null }, }, new String[] { "Date", "Libelles", "TVA", "Montant" }));
         tabSoldeTable.getColumnModel().getColumn(1).setPreferredWidth(206);
         tabSoldeTable.getColumnModel().getColumn(2).setPreferredWidth(66);
@@ -76,7 +73,7 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
         
         selecteurIdLocataire = new JComboBox<>();
         //calculerSolde();
-        // Remplissez la JComboBox avec les ID des locataires ici
+        // Remplir la JComboBox avec les ID des locataires
         remplirSelecteurIdLocataire();
         selecteurIdLocataire.addActionListener(new ActionListener() {
             @Override
@@ -145,11 +142,9 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
         JLabel lblNewLabel_3 = new JLabel("Coût Actuellement");
         lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 12));
         lblNewLabel_3.setBounds(20, 104, 121, 13);
-        contentPane.add(lblNewLabel_3);
-        
+        contentPane.add(lblNewLabel_3);   
         
         textFieldBien = new JTextField();
-        //textFieldBien.addActionListener(gestionClic);
         
         textFieldBien.setBounds(401, 74, 96, 19);
         contentPane.add(textFieldBien);
@@ -169,9 +164,6 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
     }
     
     private void remplirSelecteurIdLocataire() {
-        // Vous devrez peut-être récupérer les ID des locataires depuis votre source de données (base de données, fichier, etc.) 
-        // et les ajouter à la JComboBox ici.
-        // Par exemple, vous pouvez utiliser la méthode findAll() de votre DAO pour obtenir tous les locataires et les ajouter à la JComboBox.
         try {
             DaoLocataire daoLocataire = new DaoLocataire();
             Collection<Locataire> locataires = daoLocataire.findAll();
@@ -215,7 +207,7 @@ public class FenetreSoldeToutCompte extends JInternalFrame {
 
 
     public static void main(String[] args) {
-        // Create an instance of your FenetreSoldeToutCompte class and display it.
+        // Creer une instance de FenetreSoldeToutCompte et l'afficher
         FenetreSoldeToutCompte fenetre = new FenetreSoldeToutCompte();
         fenetre.setVisible(true);
     }

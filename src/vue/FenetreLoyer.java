@@ -39,7 +39,7 @@ public class FenetreLoyer extends JInternalFrame {
     private JPanel panelButton;
     private JButton btnAnnuler;
     private GestionFenetreLoyer gestionClic;
-    private JComboBox<String> comboBoxLocataire; // Change to JComboBox<String>
+    private JComboBox<String> comboBoxLocataire;
     private JComboBox<String> comboBoxPaiement;
     private JButton btnAjouter;
 

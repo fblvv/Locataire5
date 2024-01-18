@@ -20,7 +20,7 @@ public class Connexion extends JInternalFrame  {
 	private JPasswordField passwordField;
 
 	/**
-	 * Launch the application.
+	 * Lancer l'application
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -36,7 +36,7 @@ public class Connexion extends JInternalFrame  {
 	}
 
 	/**
-	 * Create the frame.
+	 * Créer la fenêtre
 	 */
 	public Connexion() {
 		this.gestionClic = new GestionConnexion(this);
