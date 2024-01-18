@@ -21,8 +21,6 @@ import modele.Locataire;
 import modele.dao.DaoLocataire;
 import javax.swing.DefaultComboBoxModel;
 
-
-
 public class FenetreLoyer extends JInternalFrame {
 
     private static final long serialVersionUID = 1L;
@@ -33,8 +31,6 @@ public class FenetreLoyer extends JInternalFrame {
     private JTextField textFieldMontantPaiement;
     private JTextField textFieldDateDebutContrat;
     
-    
-
     private JTable tableLoyer;
     private JPanel panelButton;
     private JButton btnAnnuler;
@@ -44,7 +40,10 @@ public class FenetreLoyer extends JInternalFrame {
     private JButton btnAjouter;
 
     public FenetreLoyer() {
+        // Initialisation du gestionnaire de clic
         this.gestionClic = new GestionFenetreLoyer(this);
+
+        // Configuration de la fenêtre interne
         setTitle("Gestion des Loyers");
         setDefaultCloseOperation(JInternalFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 600);
@@ -57,6 +56,7 @@ public class FenetreLoyer extends JInternalFrame {
         JPanel panelLoyer = new JPanel(new GridLayout(0, 2, 5, 5));
         panel.add(panelLoyer, BorderLayout.NORTH);
 
+        // Ajout des composants avec des labels explicatifs
         panelLoyer.add(new JLabel("ID Loyer:"));
         textFieldIdLoyer = new JTextField(10);
         panelLoyer.add(textFieldIdLoyer);
@@ -64,11 +64,12 @@ public class FenetreLoyer extends JInternalFrame {
         JLabel lblIdLocataire = new JLabel("ID Locataire:");
         panelLoyer.add(lblIdLocataire);
 
+        // Initialisation de la JComboBox des locataires
         initComboBox();
         panelLoyer.add(comboBoxLocataire);
         comboBoxLocataire.addActionListener(this.gestionClic);
 
-
+        // Ajout des autres champs et composants
         panelLoyer.add(new JLabel("Loyer Charges:"));
         textFieldLoyerCharges = new JTextField(10);
         panelLoyer.add(textFieldLoyerCharges);
@@ -87,6 +88,7 @@ public class FenetreLoyer extends JInternalFrame {
 
         panelLoyer.add(new JLabel("Type Paiement:"));
         
+        // ComboBox pour le type de paiement
         comboBoxPaiement = new JComboBox<>();
         comboBoxPaiement.setModel(new DefaultComboBoxModel<>(new String[] {"CB", "Chèque", "Espèce"}));
         panelLoyer.add(comboBoxPaiement);
@@ -104,7 +106,6 @@ public class FenetreLoyer extends JInternalFrame {
                 }
         ));
         
-        
         JScrollPane scrollPane = new JScrollPane(tableLoyer);
         panel.add(scrollPane, BorderLayout.CENTER);
 
@@ -112,41 +113,42 @@ public class FenetreLoyer extends JInternalFrame {
         panelButton = new JPanel();
         panel.add(panelButton, BorderLayout.SOUTH);
 
+        // Bouton Annuler
         btnAnnuler = new JButton("Annuler");
         btnAnnuler.addActionListener(this.gestionClic);
         panelButton.add(btnAnnuler);
 
-        // Bouton Valider en bas
+        // Bouton Valider
         JButton btnValider = new JButton("Valider");
         btnValider.setHorizontalAlignment(SwingConstants.RIGHT);
         panelButton.add(btnValider);
         
+        // Bouton Ajouter
         btnAjouter = new JButton("Ajouter");
         btnAjouter.addActionListener(this.gestionClic);
         panelButton.add(btnAjouter);
     }
 
+    // Getters pour récupérer les valeurs des champs et composants
     public JButton getBtnAnnuler() {
         return btnAnnuler;
     }
-    
     
     public String getTextFieldIdLoyer() {
         return textFieldIdLoyer.getText();
     }
     
     public JTextField getLoyer() {
-    	return textFieldLoyerCharges;
+        return textFieldLoyerCharges;
     }
     
     public JTextField getCharges() {
-    	return textFieldCharges;
+        return textFieldCharges;
     }
     
     public JTextField getDatePaiement() {
-    	return textFieldDatePaiement;
+        return textFieldDatePaiement;
     }
-    
 
     public String getTextFieldLoyerCharges() {
         return textFieldLoyerCharges.getText();
@@ -169,7 +171,7 @@ public class FenetreLoyer extends JInternalFrame {
     }
     
     public JButton getBtnAjouter() {
-    	return btnAjouter;
+        return btnAjouter;
     }
 
     public String getComboBoxLocataire() {
@@ -181,7 +183,7 @@ public class FenetreLoyer extends JInternalFrame {
     }
     
     public JTable getTableloyer() {
-    	return tableLoyer;
+        return tableLoyer;
     }
 
     public static void main(String[] args) {
@@ -206,7 +208,7 @@ public class FenetreLoyer extends JInternalFrame {
             }
 
             // Créer une JComboBox avec les identifiants des locataires
-           comboBoxLocataire = new JComboBox<>(locataireId);
+            comboBoxLocataire = new JComboBox<>(locataireId);
 
         } catch (SQLException e) {
             e.printStackTrace();

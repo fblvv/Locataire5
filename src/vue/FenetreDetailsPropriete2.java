@@ -67,6 +67,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
         });
     }
 
+    
     public FenetreDetailsPropriete2() {
     	setMaximizable(true);
     	setIconifiable(true);
@@ -83,6 +84,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
         gblContentPane.rowWeights = new double[] { 0.0, 0.0, 1.0 };
         contentPane.setLayout(gblContentPane);
 		
+        // Partie gauche de la fenêtre
 		JPanel panelGauche = new JPanel();
 		GridBagConstraints gbcPanelGauche = new GridBagConstraints();
 		gbcPanelGauche.fill = GridBagConstraints.BOTH;
@@ -97,6 +99,7 @@ public class FenetreDetailsPropriete2 extends JInternalFrame {
 		gblPanelGauche.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		panelGauche.setLayout(gblPanelGauche);
 		
+        // Labels et champs de saisie pour les informations du logement
 		JLabel labelTypeLogement = new JLabel("Type de Logement");
 		labelTypeLogement.setToolTipText("");
 		labelTypeLogement.setForeground(Color.BLACK);

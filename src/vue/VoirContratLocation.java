@@ -29,7 +29,7 @@ public class VoirContratLocation extends JInternalFrame {
 
 
 	/**
-	 * Lancer l'applicatio
+	 * Lancer l'application
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

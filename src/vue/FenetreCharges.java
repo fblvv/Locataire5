@@ -14,8 +14,8 @@ import java.util.Collection;
 
 public class FenetreCharges extends JInternalFrame { 
 
-	private static final long serialVersionUID = 4570267966938554819L;
-	private JComboBox<String> typeCompteurComboBox;
+    private static final long serialVersionUID = 4570267966938554819L;
+    private JComboBox<String> typeCompteurComboBox;
     private JComboBox<String> idBienComboBox;
     private JTable chargeTable;
     private JButton imprimerButton;
@@ -26,7 +26,6 @@ public class FenetreCharges extends JInternalFrame {
     private GestionCharges gestionClic;
     private JButton ajouterButton;
 
-
     public FenetreCharges() {
         super("Charges", true, true, true, true);
         setSize(800, 600);
@@ -35,6 +34,7 @@ public class FenetreCharges extends JInternalFrame {
         this.daoCharge = new DaoCharges();
         new ArrayList<>(); 
 
+        // Création du panneau principal
         JPanel panel = new JPanel(new FlowLayout());
         String[] typesCompteur = {"Tout Type", "Eau", "Electricite", "Gaz","Reparation","Ordures menageres","Entretien parties communes","Eclairage parties communes","Autres","Degats"};
         typeCompteurComboBox = new JComboBox<>(typesCompteur);
@@ -85,9 +85,7 @@ public class FenetreCharges extends JInternalFrame {
 
         initComboBoxIdBien();
 
-		
-		  try { afficherCompteurs(); } catch (SQLException e) { e.printStackTrace(); }
-		 
+        try { afficherCompteurs(); } catch (SQLException e) { e.printStackTrace(); }
     }
 
     private void initComboBoxIdBien() {

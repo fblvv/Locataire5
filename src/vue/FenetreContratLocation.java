@@ -11,9 +11,6 @@ import java.awt.*;
 
 public class FenetreContratLocation extends JInternalFrame {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField champDateDebutContrat;
     private JTextField champMontant;

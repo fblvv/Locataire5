@@ -1,10 +1,8 @@
 package vue;
 
 import java.awt.*;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import controle.GestionAjoutEntreprise;
 import modele.Entreprise;
 
@@ -37,31 +35,31 @@ public class FenetreAjoutEntreprise extends JInternalFrame {
         panel.setBackground(new Color(238, 237, 238));
         contentPane.add(panel, BorderLayout.CENTER);
 
-        // Champ pour le nom du bâtiment
+        // Champ pour le Siren de l'entreprise
         JLabel lblSiren = new JLabel("Siren Entreprise");
         lblSiren.setFont(new Font(POLICE, Font.PLAIN, 14));
         champSiren = new JTextField();
         panel.add(lblSiren);
         panel.add(champSiren);
 
-        // Champ pour le régime juridique
+        // Champ pour l'adresse de l'entreprise
         JLabel libAdresse = new JLabel("Adresse Entreprise");
         libAdresse.setFont(new Font(POLICE, Font.PLAIN, 14));
         champAdresse = new JTextField();
         panel.add(libAdresse);
         panel.add(champAdresse);
 
-        // Champ pour l'adresse
+        // Champ pour le numéro de téléphone de l'entreprise
         JLabel libTel = new JLabel("Tel Entreprise");
         libTel.setFont(new Font(POLICE, Font.PLAIN, 14));
-        champTel = new JTextField("12345");
+        champTel = new JTextField();
         panel.add(libTel);
         panel.add(champTel);
 
-        // Champ pour le code postal
+        // Champ pour le nom de l'entreprise
         JLabel libEntreprise = new JLabel("Nom Entreprise");
         libEntreprise.setFont(new Font(POLICE, Font.PLAIN, 14));
-        champNom = new JTextField("12345");
+        champNom = new JTextField();
         panel.add(libEntreprise);
         panel.add(champNom);
 
@@ -84,32 +82,29 @@ public class FenetreAjoutEntreprise extends JInternalFrame {
     }
 
     public Entreprise getEntrepriseFromInput() {
-        // Créer un objet Batiment avec les données saisies
+        // Créer un objet Entreprise avec les données saisies
         return new Entreprise(
-        		champSiren.getText(),
-        		champAdresse.getText(),
-        		champTel.getText(),
-        		champNom.getText()
+            champSiren.getText(),
+            champAdresse.getText(),
+            champTel.getText(),
+            champNom.getText()
         );
     }
 
-	public String getSiren() {
-		return champSiren.getText() ;
-	}
+    // Méthodes pour récupérer les valeurs des champs de saisie
+    public String getSiren() {
+        return champSiren.getText();
+    }
 
-	public String getAdresse() {
-		return champAdresse.getText();
-	}
+    public String getAdresse() {
+        return champAdresse.getText();
+    }
 
-	public String getTel() {
-		return champTel.getText();
-	            
-	}
+    public String getTel() {
+        return champTel.getText();
+    }
 
-	public String getNom() {
-		return champNom.getText();
-	            
-	}
-
-	
+    public String getNom() {
+        return champNom.getText();
+    }
 }

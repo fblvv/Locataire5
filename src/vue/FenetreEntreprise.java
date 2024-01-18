@@ -9,11 +9,9 @@ import java.awt.event.ActionEvent;
 import controle.GestionEntreprise;
 
 public class FenetreEntreprise extends JInternalFrame {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private GestionEntreprise gestionClic;
+
+    private static final long serialVersionUID = 1L;
+    private GestionEntreprise gestionClic;
     private JTable table;
     private JButton btnAjouter, btnSupprimer, btnCharger, btnFermer;
 
@@ -36,14 +34,15 @@ public class FenetreEntreprise extends JInternalFrame {
         JPanel panel = new JPanel();
         getContentPane().add(panel, BorderLayout.SOUTH);
 
+        // Bouton pour charger les données
         btnCharger = new JButton("Charger");
         btnCharger.addActionListener(this.gestionClic);
         panel.add(btnCharger);
 
+        // Bouton pour fermer la fenêtre
         btnFermer = new JButton("Fermer");
         panel.add(btnFermer);
-
-            }
+    }
 
     // Getters pour les composants
     public JTable getTable() {
@@ -77,6 +76,8 @@ public class FenetreEntreprise extends JInternalFrame {
             }
         });
     }
+
+    // Méthode pour gérer les actions des boutons
     public void actionPerformed(ActionEvent e) {
         gestionClic.actionPerformed(e);
     }

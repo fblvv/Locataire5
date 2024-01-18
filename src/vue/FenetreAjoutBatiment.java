@@ -118,35 +118,32 @@ public class FenetreAjoutBatiment extends JInternalFrame {
         );
     }
 
-	public String getIdBatiment() {
-		return textNomBatiment.getText() ;
-	}
+    // Méthodes pour récupérer les valeurs des champs de saisie
+    public String getIdBatiment() {
+        return textNomBatiment.getText();
+    }
 
-	public String getRegimeJuridique() {
-		return champRegimeJuridique.getText();
-	}
+    public String getRegimeJuridique() {
+        return champRegimeJuridique.getText();
+    }
 
-	public String getAdresse() {
-		return champAdresse.getText();
-	            
-	}
+    public String getAdresse() {
+        return champAdresse.getText();
+    }
 
-	public String getCodePostal() {
-		return champCodePostal.getText();
-	            
-	}
+    public String getCodePostal() {
+        return champCodePostal.getText();
+    }
 
-	public String getDateConstruction() {
-		return champDateConstruction.getText();
-	            
-	}
+    public String getDateConstruction() {
+        return champDateConstruction.getText();
+    }
 
-	public String getEquipAccesTech() {
-		return champEquipAccesTech.getText();
-	            
-	}
+    public String getEquipAccesTech() {
+        return champEquipAccesTech.getText();
+    }
 
-	public String getEnumPartiesCommunes() {
-		return champEnumPartiesCommunes.getText();
-	}
+    public String getEnumPartiesCommunes() {
+        return champEnumPartiesCommunes.getText();
+    }
 }
