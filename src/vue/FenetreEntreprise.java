@@ -36,6 +36,13 @@ public class FenetreEntreprise extends JInternalFrame {
         JPanel panel = new JPanel();
         getContentPane().add(panel, BorderLayout.SOUTH);
 
+        // Boutons
+        btnAjouter = new JButton("Ajouter");
+        panel.add(btnAjouter);
+
+        btnSupprimer = new JButton("Supprimer");
+        panel.add(btnSupprimer);
+
         btnCharger = new JButton("Charger");
         btnCharger.addActionListener(this.gestionClic);
         panel.add(btnCharger);

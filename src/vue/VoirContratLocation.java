@@ -19,10 +19,11 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 
 public class VoirContratLocation extends JInternalFrame {
+	private static final long serialVersionUID = -9192848899552060881L;
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+
 	private JTable table;
 	private GestionVoirContratLocation gestionClic;
 
@@ -79,6 +80,7 @@ public class VoirContratLocation extends JInternalFrame {
 				"ID Locataire", "Date Debut Contrat", "Montant", "Montant Loyer", "Date Versement Loyer", "Date d'Entree", "Date de Sortie", "Depot De Garantie", "Date Revision", "Periodicite Paiement", "Date Fin Contrat", "Charges Provisionnelles", "Valeur ICC", "Caution", "ID Bien Immo"
 			}
 		) {
+			private static final long serialVersionUID = 6313996867541529343L;
 			boolean[] columnEditables = new boolean[] {
 				false, false, true, true, true, false, true, false, true, true, true, true, true, false, false
 			};
