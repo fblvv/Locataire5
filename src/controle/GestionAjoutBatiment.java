@@ -45,7 +45,7 @@ public class GestionAjoutBatiment implements ActionListener {
         }
     }
 
-    // Vérification que les champs sont correctement écrits
+    // Verification que les champs sont correctement écrits
     public void ajouterBatiment() {
         try {
             String dateText = ajoutBatiment.getDateConstruction();
@@ -59,8 +59,6 @@ public class GestionAjoutBatiment implements ActionListener {
                 JOptionPane.showMessageDialog(ajoutBatiment, "Le format de la date n'est pas valide (jj/mm/aaaa).", "Erreur de Format", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            System.out.println("xwcs");
-
             String nomBatiment = ajoutBatiment.getIdBatiment();
             String regimeJuridique = ajoutBatiment.getRegimeJuridique();
             String adresse = ajoutBatiment.getAdresse();

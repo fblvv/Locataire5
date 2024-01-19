@@ -36,7 +36,6 @@ public class GestionEntreprise implements ActionListener  {
 				try {
 					afficherEntreprise();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				break;
