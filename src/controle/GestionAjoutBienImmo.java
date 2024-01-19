@@ -65,6 +65,8 @@ public class GestionAjoutBienImmo implements ActionListener{
 	public void ajouterBien() {
 
 		try {
+			// Récupération des informations du bien immobilier depuis la fenêtre
+            // ..
 			String idBienImm=	detailPropriete.getTextFieldIdBienImmobilier();
 			double surface= Double.parseDouble(detailPropriete.getTextFieldSurface());
 			String modeChauffage= detailPropriete.getTextFieldModeChauffage();
@@ -79,9 +81,11 @@ public class GestionAjoutBienImmo implements ActionListener{
 			String diagnostique = "Propre";
 			String garage = "non";
 
+
 			BienImmobilier bienIm = new BienImmobilier(idBienImm, surface, modeChauffage, modeEau, nbPiece,
 					typeBien, nomProprio, identifiant, etage,idBatiment,diagnostique,garage);
 
+            // Ajout du bien immobilier dans la base de données
 			daoBienI.create(bienIm);
 			this.insertion = true;
 			logger.info("bien ajouté!");
@@ -94,6 +98,8 @@ public class GestionAjoutBienImmo implements ActionListener{
 
 	public void ajouterAssurance() {
 		try {
+			// Récupération des informations de l'assurance depuis la fenêtre
+            // ...
 			String numPolice = detailPropriete.getTextFieldNumeroPoliceObl();
 			String tarifInitial = detailPropriete.getTextFieldTarifInitialObl();
 			String typeAssurance = detailPropriete.getTextFieldTypeAssuranceObl();
@@ -104,6 +110,8 @@ public class GestionAjoutBienImmo implements ActionListener{
 
 			Assurance assurance = new Assurance(numPolice,tarifInitial, typeAssurance, dateEffetDebut,idBienImm,idBatiment);
 
+			
+            // Ajout de l'assurance dans la base de données
 			daoAssurance.create(assurance);
 			this.insertion1=true;
 		} catch (SQLException e1) {
@@ -113,6 +121,8 @@ public class GestionAjoutBienImmo implements ActionListener{
 	public void supprimerBien() {
 
 		try {
+			// Récupération des informations du bien immobilier depuis la fenêtre
+            // ...
 			String idBienImm=	detailPropriete.getTextFieldIdBienImmobilier();
 			double surface= Double.parseDouble(detailPropriete.getTextFieldSurface());
 			String modeChauffage= detailPropriete.getTextFieldModeChauffage();
@@ -130,6 +140,7 @@ public class GestionAjoutBienImmo implements ActionListener{
 			BienImmobilier bienIm = new BienImmobilier(idBienImm, surface, modeChauffage, modeEau, nbPiece,
 					typeBien, nomProprio, identifiant, etage,idBatiment,diagnostique,garage);
 
+            // Suppression du bien immobilier dans la base de données
 			daoBienI.delete(bienIm);
 			this.insertion = true;
 			logger.info("bien ajouté!");
