@@ -11,7 +11,6 @@ import modele.Entreprise;
 
 import modele.dao.DaoEntreprise;
 import vue.FenetreAjoutEntreprise;
-import vue.FenetreAjoutEntreprise;
 
 public class GestionAjoutEntreprise implements ActionListener {
 

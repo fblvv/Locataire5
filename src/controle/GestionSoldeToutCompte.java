@@ -3,36 +3,24 @@ package controle;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import SQL.CictOracleDataSource;
-import modele.Charges;
-import modele.Compteur;
 import modele.ContratLocation;
-import modele.GenererContratDeLocation;
 import modele.GenererRecuSoldeDeToutCompte;
 import modele.Locataire;
-import modele.dao.DaoCharges;
 import modele.dao.DaoCompteur;
 import modele.dao.DaoContratLocation;
 import modele.dao.DaoLocataire;
-import vue.FenetreCompteur;
-import vue.FenetreContratLocation;
 import vue.FenetreRegulariserCharges;
 import vue.FenetreSoldeToutCompte;
 

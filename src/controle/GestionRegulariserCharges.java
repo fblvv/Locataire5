@@ -11,12 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import modele.ContratLocation;
-import modele.Locataire;
 import modele.Loyer;
 import modele.dao.DaoContratLocation;
-import modele.dao.DaoLocataire;
 import modele.dao.DaoLoyer;
-import vue.FenetreCharges;
 import vue.FenetreRegulariserCharges;
 
 public class GestionRegulariserCharges implements ActionListener {

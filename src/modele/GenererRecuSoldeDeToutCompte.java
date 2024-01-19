@@ -1,7 +1,6 @@
 package modele;
 
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import modele.dao.DaoCharges;

@@ -41,8 +41,6 @@ public class DaoAssocier extends DaoModele<Associer> implements Dao<Associer> {
 	@Override
 	protected Associer creerInstance(ResultSet curseur) throws SQLException {
 	    boolean caution = curseur.getString("caution").equals("0") ? false : true;
-
-
 	    		    return new Associer(
 	    		        curseur.getString("dateDebutContrat"),
 	    		        curseur.getString("dateEntree"),
