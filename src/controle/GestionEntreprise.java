@@ -55,13 +55,13 @@ public class GestionEntreprise implements ActionListener  {
 		Collection<Entreprise> entreprises = daoEntreprise.findAll();
 		DefaultTableModel tableModel = (DefaultTableModel) entrepriseFenetre.getTable().getModel();
 
-		// Clear existing data from the table model
+		// Nettoyage table
 		tableModel.setRowCount(0);
 
-		// Populate the table model with data
+		// Remplir la table
 		for (Entreprise ent : entreprises) {
 
-			// Add a new row if needed
+			// Ajout nouvelle ligne
 			tableModel.addRow(new Object[] {ent.getSiren(),ent.getAdresse(),ent.getTel(),ent.getNom()});
 
 

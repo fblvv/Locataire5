@@ -97,14 +97,14 @@ public class GestionListeLocataire implements ActionListener {
         Collection<Locataire> locataires = daoLocataire.findAll();
         DefaultTableModel tableModel = (DefaultTableModel) listeLocataire.getTable().getModel();
 
-        // Clear existing data from the table model
+        // Vider la table
         tableModel.setRowCount(0);
 
-        // Populate the table model with data
+        // Remplir la table
         int ligne = 0;
         for (Locataire loc : locataires) {
             if (tableModel.getRowCount() <= ligne) {
-                // Add a new row if needed
+                // Ajout ligne
                 tableModel.addRow(new Object[0]);
             }
 

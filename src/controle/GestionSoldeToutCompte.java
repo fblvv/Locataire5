@@ -77,7 +77,6 @@ public class GestionSoldeToutCompte implements ActionListener {
 			// Vous pouvez maintenant accéder aux propriétés du locataire
 			String nom = locataire.getNom();
 			String prenom = locataire.getPrenom();
-			// ...
 
 			// Affichez ou utilisez les informations du locataire comme nécessaire
 			logger.info("Nom du locataire : " + nom);
@@ -103,7 +102,6 @@ public class GestionSoldeToutCompte implements ActionListener {
 		mettreAJourJTable(fenetreSolde.getTextBien().getText());
 		mettreAJourJTableSolde(fenetreSolde.getTextSolde().getText());
 		fenetreSolde.getBoutonGenererReçu().setEnabled(true);
-		//l
 		
 		
 	}

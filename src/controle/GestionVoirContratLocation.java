@@ -55,13 +55,13 @@ public class GestionVoirContratLocation implements ActionListener {
 		Collection<ContratLocation> contratLocation = daoContratLocation.findAll();
 		DefaultTableModel tableModel = (DefaultTableModel) contratLocataire.getTable().getModel();
 
-		// Clear existing data from the table model
+		// Vider la table
 		tableModel.setRowCount(0);
 
-		// Populate the table model with data
+		// Remplir la table
 		for (ContratLocation contLoc : contratLocation) {
 
-			// Add a new row if needed
+			// Ajouter nouvelle ligne si besoin
 			tableModel.addRow(new Object[] {contLoc.getIdLocataire(),contLoc.getDateDebutContrat(),contLoc.getMontant(),contLoc.getMontantLoyer(),
 					contLoc.getDateVersementLoyer(),contLoc.getDateEntree(),contLoc.getDateSortie(),contLoc.getDepotDeGarantie(),
 					contLoc.getDateRevision(),contLoc.getPeriodicitePaiement(),contLoc.getDateFinContrat(),contLoc.getChargesProvisionnelles(),

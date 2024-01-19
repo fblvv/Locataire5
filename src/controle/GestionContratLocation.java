@@ -27,7 +27,7 @@ public class GestionContratLocation implements ActionListener{
     private DaoLocataire daoLocataire;
 	private Logger logger = Logger.getLogger(getClass().getName());
 	
-	private ContratLocation contratActuel; // Ajout de l'attribut
+	private ContratLocation contratActuel;
 
 
 	public GestionContratLocation(FenetreContratLocation contratLocation, FenetreAjoutLocataire pageAjoutLocataire) {
@@ -62,12 +62,7 @@ public class GestionContratLocation implements ActionListener{
         }
     }
 
-
-
-
-	//*****************************************//
-	//Methode pour creer le CONTRAT DE LOCATION//
-	//*****************************************//
+	//Methode pour creer le CONTRAT DE LOCATION
 
 	private void createContratLocation() throws SQLException{
 

@@ -79,7 +79,6 @@ public class GestionCompteur implements ActionListener, ItemListener {
 
 		// Vérifier si une ligne est sélectionnée
 		if (selectedRow >= 0) {
-			// Assuming your columns are in the order of ID, Date, Type, Valeur, ID_Bien
 			Object[] rowData = new Object[5];
 			for (int i = 0; i < 5; i++) {
 				rowData[i] = model.getValueAt(selectedRow, i);
@@ -104,7 +103,7 @@ public class GestionCompteur implements ActionListener, ItemListener {
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		// Handle the item state change event for comboboxes
+		// Gérer l'événement de changement d'état de l'élément pour les listes déroulantes
 		if (e.getSource() == fenetreCompteur.getTypeCompteurComboBox()
 				|| e.getSource() == fenetreCompteur.getIdBienComboBox()) {
 			try {
@@ -139,7 +138,7 @@ public class GestionCompteur implements ActionListener, ItemListener {
 			}
 		}
 
-		// Update the table model directly
+		// Mettre à jour table
 		DefaultTableModel tableModel = (DefaultTableModel) fenetreCompteur.getTable().getModel();
 		tableModel.setRowCount(0);
 
