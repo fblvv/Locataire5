@@ -72,7 +72,6 @@ public class GestionCharges implements ActionListener , ItemListener {
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		// Handle the item state change event for comboboxes
 		if (e.getSource() == gestionCharges.getTypeCompteurComboBox()
 				|| e.getSource() == gestionCharges.getIdBienComboBox()) {
 			try {
@@ -104,7 +103,7 @@ public class GestionCharges implements ActionListener , ItemListener {
 		logger.info(idBienSelectionne);
 
 
-		
+
 		Charges charge = new Charges(idCharge,idBienSelectionne,montant,date,type,pourcentage);
 
 		this.daocharge.create(charge);

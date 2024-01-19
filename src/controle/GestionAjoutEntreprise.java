@@ -14,57 +14,59 @@ import vue.FenetreAjoutEntreprise;
 
 public class GestionAjoutEntreprise implements ActionListener {
 
-    private FenetreAjoutEntreprise entrepriseFenetre;
+	private FenetreAjoutEntreprise entrepriseFenetre;
 
-    public GestionAjoutEntreprise(FenetreAjoutEntreprise entrepriseFenetre) {
-        this.entrepriseFenetre = entrepriseFenetre;
-    }
+	public GestionAjoutEntreprise(FenetreAjoutEntreprise entrepriseFenetre) {
+		this.entrepriseFenetre = entrepriseFenetre;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
 
-        if (source instanceof JButton) {
-            JButton button = (JButton) source;
+		if (source instanceof JButton) {
+			JButton button = (JButton) source;
 
-            switch (button.getText()) {
-                case "Valider":
-                    ajouterEntreprise();
-                    entrepriseFenetre.dispose();
-                    break;
+			switch (button.getText()) {
+			case "Valider":
+				ajouterEntreprise();
+				entrepriseFenetre.dispose();
+				break;
 
-                case "Annuler":
-                	entrepriseFenetre.dispose();
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
+			case "Annuler":
+				entrepriseFenetre.dispose();
+				break;
+			default:
+				break;
+			}
+		}
+	}
 
-    // Vérification que les champs sont correctement écrits
-    public void ajouterEntreprise() {
-    	 try {
-    	       
-    	    
-            String nomSiren = entrepriseFenetre.getSiren();
-            String nomAdresse = entrepriseFenetre.getAdresse();
-            String tel= entrepriseFenetre.getTel();
-            String nom = entrepriseFenetre.getNom();
-            
+	// Ajoute une entreprise à la base de données en récupérant les données du formulaire
+	public void ajouterEntreprise() {
+		try {
 
-            Entreprise entreprise = new Entreprise(nomSiren, nomAdresse, tel, nom);
 
-            DaoEntreprise daoEntreprise = new DaoEntreprise();
-            daoEntreprise.create(entreprise);
+			String nomSiren = entrepriseFenetre.getSiren();
+			String nomAdresse = entrepriseFenetre.getAdresse();
+			String tel= entrepriseFenetre.getTel();
+			String nom = entrepriseFenetre.getNom();
 
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.info("Entreprise ajouté avec succès !");
-} catch (SQLException e) {
-	JOptionPane.showMessageDialog(null, "Erreur lors de l'ajout de l'entreprise : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
-    	    }
-       
-    }
+
+			Entreprise entreprise = new Entreprise(nomSiren, nomAdresse, tel, nom);
+
+			DaoEntreprise daoEntreprise = new DaoEntreprise();
+
+			// Ajout de l'entreprise dans la base de données
+			daoEntreprise.create(entreprise);
+
+			Logger logger = Logger.getLogger(getClass().getName());
+			logger.info("Entreprise ajouté avec succès !");
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Erreur lors de l'ajout de l'entreprise : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+		}
+
+	}
 }
 
 

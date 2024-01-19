@@ -54,6 +54,7 @@ public class GestionCompteur implements ActionListener, ItemListener {
 		}
 	}
 
+    // Méthode pour ajouter un relevé à la table des relevés
 	private void ajouterReleve() {
 		DefaultTableModel model = (DefaultTableModel) fenetreCompteur.getTable().getModel();
 		String typeCompteur = (String) fenetreCompteur.getTypeCompteurComboBox().getSelectedItem();
@@ -71,7 +72,7 @@ public class GestionCompteur implements ActionListener, ItemListener {
 	}
 
 
-
+    // Méthode pour insérer le compteur dans la base de données
 	private void insererCompteur() throws SQLException {
 		DefaultTableModel model = (DefaultTableModel) fenetreCompteur.getTable().getModel();
 		int selectedRow = fenetreCompteur.getTable().getSelectedRow();
