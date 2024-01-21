@@ -42,6 +42,9 @@ public class GestionAjoutEntreprise implements ActionListener {
 		}
 	}
 
+	/**
+	 * Ajoute une entreprise
+	 */
 	// Ajoute une entreprise à la base de données en récupérant les données du formulaire
 	public void ajouterEntreprise() {
 		try {

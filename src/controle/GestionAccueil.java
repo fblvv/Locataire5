@@ -28,6 +28,7 @@ import vue.FenetreFacture;
 import vue.FenetreAjoutLocataire;
 import vue.VoirContratLocation;
 
+
 public class GestionAccueil implements ActionListener {
 	private Accueil accueil;
 
@@ -46,6 +47,7 @@ public class GestionAccueil implements ActionListener {
 		}
 	}
 
+	
 	public void actionPerformed(ActionEvent e) {
 		JMenuItem menuItem = (JMenuItem) e.getSource();
 		JLayeredPane layeredPane = accueil.getLayeredPane();
@@ -107,7 +109,9 @@ public class GestionAccueil implements ActionListener {
 			break;
 		}
 	}
-
+	/**
+	 * Affiche la page
+	 */
 	private void afficherFenetre(javax.swing.JInternalFrame fenetre, JLayeredPane layeredPane) {
 		layeredPane.add(fenetre);
 		fenetre.setVisible(true);

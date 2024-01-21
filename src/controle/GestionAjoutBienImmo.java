@@ -43,6 +43,11 @@ public class GestionAjoutBienImmo implements ActionListener{
 			switch (button.getText()) {
 			case "Valider":
 				// Code à exécuter pour le bouton "Autre Section"
+				/**
+				 * il ajoute un bien puis une assurance mais si il y a un 
+				 * un pb avec l'insert assurance il supprime le bien car il doit
+				 * avoir une assurance 
+				 */
 				ajouterBien();
 				if (this.insertion) {
 					ajouterAssurance(); 
@@ -62,6 +67,10 @@ public class GestionAjoutBienImmo implements ActionListener{
 			}
 		}
 	}
+	/**
+	 * Ajoute les bien immobilier
+	 * 
+	 */
 	public void ajouterBien() {
 
 		try {
@@ -95,7 +104,9 @@ public class GestionAjoutBienImmo implements ActionListener{
 	}
 
 
-
+	/**
+	 * Ajoute les assurance
+	 */
 	public void ajouterAssurance() {
 		try {
 			// Récupération des informations de l'assurance depuis la fenêtre
@@ -118,6 +129,9 @@ public class GestionAjoutBienImmo implements ActionListener{
 			e1.printStackTrace();
 		}
 	}
+	/**
+	 * Supprime un bien immobilier
+	 */
 	public void supprimerBien() {
 
 		try {

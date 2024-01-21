@@ -41,6 +41,7 @@ public class GestionListeLocataire implements ActionListener {
 		}
 	}
 
+	
     public GestionListeLocataire(FenetreListeLocataire listeLocataire, JLayeredPane layeredPane) {
         this.listeLocataire = listeLocataire;
         this.daoLocataire = new DaoLocataire();
@@ -93,6 +94,9 @@ public class GestionListeLocataire implements ActionListener {
         }
     }
 
+	/**
+	 * Methode pour afficher un locataire
+	 */
     public void afficherLocataire() throws SQLException {
         Collection<Locataire> locataires = daoLocataire.findAll();
         DefaultTableModel tableModel = (DefaultTableModel) listeLocataire.getTable().getModel();
@@ -119,6 +123,9 @@ public class GestionListeLocataire implements ActionListener {
         }
     }
 
+	/**
+	 * Methode pour supprimer un locataire
+	 */
     public void supprimerLocTable() {
         int selectedRow = listeLocataire.getTable().getSelectedRow();
         if (selectedRow != -1) {
@@ -141,6 +148,9 @@ public class GestionListeLocataire implements ActionListener {
         }
     }
 
+	/**
+	 * Methode pour generer un conrtact de locataire
+	 */
     private void genererContratPourLocataireSelectionne() throws SQLException {
         int selectedRow = listeLocataire.getTable().getSelectedRow();
         if (selectedRow != -1) {
@@ -175,6 +185,9 @@ public class GestionListeLocataire implements ActionListener {
         }
     }
 
+	/**
+	 * Methode pour afficher une fenetre
+	 */
     private void afficherFenetre(javax.swing.JInternalFrame fenetre, JLayeredPane layeredPane) {
         layeredPane.add(fenetre);
         fenetre.setVisible(true);

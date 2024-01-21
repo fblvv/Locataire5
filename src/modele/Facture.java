@@ -20,50 +20,81 @@ public class Facture {
 		
 	}
 
-	public String getSiren() {
-		return siren;
-	}
+    /**
+     * Methode pour retourner le numéro SIREN associé à la facture
+     */
+    public String getSiren() {
+        return siren;
+    }
 
-	public String getIdFacture() {
-		return idFacture;
-	}
+    /**
+     * Methode pour retourner l'identifiant de la facture
+     */
+    public String getIdFacture() {
+        return idFacture;
+    }
 
-	public void setidFacture(String idFacture) {
-		this.idFacture = idFacture;
-	}
+    /**
+     * Methode pour modifier l'identifiant de la facture
+     */
+    public void setIdFacture(String idFacture) {
+        this.idFacture = idFacture;
+    }
 
-	public double getPrix() {
-		return prix;
-	}
+    /**
+     * Methode pour retourner le prix de la facture
+     */
+    public double getPrix() {
+        return prix;
+    }
 
-	public void setPrix(double prix) {
-		this.prix = prix;
-	}
+    /**
+     * Methode pour modifier le prix de la facture
+     */
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
 
-	public String getTypeEntretien() {
-		return typeEntretien;
-	}
+    /**
+     * Methode pour retourner le type d'entretien associé à la facture
+     */
+    public String getTypeEntretien() {
+        return typeEntretien;
+    }
 
-	public void setTypeEntretien(String typeEntretien) {
-		this.typeEntretien = typeEntretien;
-	}
+    /**
+     * Methode pour modifier le type d'entretien associé à la facture
+     */
+    public void setTypeEntretien(String typeEntretien) {
+        this.typeEntretien = typeEntretien;
+    }
 
-	public String getDateFacture() {
-		return dateFacture;
-	}
+    /**
+     * Methode pour retourner la date de la facture
+     */
+    public String getDateFacture() {
+        return dateFacture;
+    }
 
-	public void setDateFacture(String dateFacture) {
-		this.dateFacture = dateFacture;
-	}
+    /**
+     * Methode pour modifier la date de la facture
+     */
+    public void setDateFacture(String dateFacture) {
+        this.dateFacture = dateFacture;
+    }
 
-	public String getIdBienImm() {
-		return idBienImm;
-	}
+    /**
+     * Methode pour retourner l'identifiant du bien immobilier associé à la facture
+     */
+    public String getIdBienImm() {
+        return idBienImm;
+    }
 
-
-
-	public String getIdBatiment() {
-		return idBatiment;
-	}
+    /**
+     * Methode pour retourner l'identifiant du bâtiment associé à la facture
+     */
+    public String getIdBatiment() {
+        return idBatiment;
+    }
 
 }

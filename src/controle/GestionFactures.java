@@ -62,12 +62,18 @@ public class GestionFactures implements ActionListener , ItemListener  {
 	}
 
 
+	/**
+	 * Methode pour ajouter un relever
+	 */
 	private void ajouterReleve() {		
 		String typeFacture = (String) gestionFactures.getTypefactureComboBox().getSelectedItem();
 		DefaultTableModel model = (DefaultTableModel) gestionFactures.getTable().getModel();
 		model.addRow(new Object[]{"", "", "", "typeFacture", ""});	
 	}
 
+	/**
+	 * Methode pour ajouter une facture
+	 */
 	private void insererFacture() throws SQLException {
 		DefaultTableModel model = (DefaultTableModel) gestionFactures.getTable().getModel();
 		int selectedRow = gestionFactures.getTable().getSelectedRow();
@@ -97,7 +103,9 @@ public class GestionFactures implements ActionListener , ItemListener  {
 	}
 
 
-
+	/**
+	 * Methode pour charger la page sans apuyer sur un boutton
+	 */
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		//Filtrer avec les Jcombobox
@@ -112,7 +120,9 @@ public class GestionFactures implements ActionListener , ItemListener  {
 		}
 	}
 
-
+	/**
+	 * Methode pour activer le boutton ajouter
+	 */
 	private void activerBoutonAjouter() {
 		String idBienSelectionne = (String) gestionFactures.getIdBienComboBox().getSelectedItem();
 		String typeFacture = (String) gestionFactures.getTypefactureComboBox().getSelectedItem();
@@ -121,6 +131,9 @@ public class GestionFactures implements ActionListener , ItemListener  {
 	}
 
 
+	/**
+	 * Methode pour filtere les facture 
+	 */
 	public void filtrerFactures() throws SQLException {
 		Collection<Facture> compteurs = daoFacture.findAll();
 		String typeSelectionne = (String) gestionFactures.getTypefactureComboBox().getSelectedItem();

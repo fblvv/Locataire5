@@ -11,23 +11,38 @@ public class Echeance {
 		this.montant = montant;
 	}
 
-	public String getNumPolice() {
-		return numPolice;
-	}
+    /**
+     * Methode pour retourner le numéro de police
+     */
+    public String getNumPolice() {
+        return numPolice;
+    }
 
-	public String getDateEcheance() {
-		return dateEcheance;
-	}
+    /**
+     * Methode pour retourner la date de l'échéance
+     */
+    public String getDateEcheance() {
+        return dateEcheance;
+    }
 
-	public void setDateEcheance(String dateEcheance) {
-		this.dateEcheance = dateEcheance;
-	}
+    /**
+     * Methode pour modifier la date de l'échéance
+     */
+    public void setDateEcheance(String dateEcheance) {
+        this.dateEcheance = dateEcheance;
+    }
 
-	public double getMontant() {
-		return montant;
-	}
+    /**
+     * Methode pour retourner le montant de l'échéance
+     */
+    public double getMontant() {
+        return montant;
+    }
 
-	public void setMontant(double montant) {
-		this.montant = montant;
-	}
+    /**
+     * Methode pour modifier le montant de l'échéance
+     */
+    public void setMontant(double montant) {
+        this.montant = montant;
+    }
 }

@@ -62,7 +62,9 @@ public class GestionCharges implements ActionListener , ItemListener {
 	}
 
 
-
+	/**
+	 * Ajoute une ligne en plus sur la table pour un potentiel insert 
+	 */
 	private void ajouterReleve() {		
 		String typecharge = (String) gestionCharges.getTypeCompteurComboBox().getSelectedItem();
 		DefaultTableModel model = (DefaultTableModel) gestionCharges.getTable().getModel();
@@ -84,6 +86,9 @@ public class GestionCharges implements ActionListener , ItemListener {
 	}
 
 
+	/**
+	 * Ajoute d'une charge a la suite d'un ajout d'une ligne
+	 */
 	private void insererCharge() throws SQLException {
 		DefaultTableModel model = (DefaultTableModel) gestionCharges.getTable().getModel();
 		int selectedRow = gestionCharges.getTable().getSelectedRow();
@@ -111,7 +116,9 @@ public class GestionCharges implements ActionListener , ItemListener {
 		filtrerCharges();
 	}
 
-
+	/**
+	 * Active les bouton
+	 */
 	private void activerBoutonAjouter() {
 		String idBienSelectionne = (String) gestionCharges.getIdBienComboBox().getSelectedItem();
 		String typecharge = (String) gestionCharges.getTypeCompteurComboBox().getSelectedItem();
@@ -121,7 +128,10 @@ public class GestionCharges implements ActionListener , ItemListener {
 		gestionCharges.getAjouterButton().setEnabled(!"Tous".equals(idBienSelectionne) && !"Tout Type".equals(typecharge));
 	}
 
-
+	/**
+	 * Filtres des charges suivant les types et 
+	 * et du comboBox 
+	 */
 	public void filtrerCharges() throws SQLException {
 		Collection<Charges> charges = daocharge.findAll();
 		String typeSelectionne = (String) gestionCharges.getTypeCompteurComboBox().getSelectedItem();

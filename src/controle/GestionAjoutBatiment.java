@@ -44,7 +44,9 @@ public class GestionAjoutBatiment implements ActionListener {
             }
         }
     }
-
+	/**
+	 * Methode qui ajoute les batiments
+	 */
     // Verification que les champs sont correctement écrits
     public void ajouterBatiment() {
         try {

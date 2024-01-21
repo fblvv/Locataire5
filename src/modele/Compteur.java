@@ -17,45 +17,74 @@ public class Compteur {
 		this.idBienImm=idBien;
 	}
 
-	public String getIdCompteur() {
-		return idCompteur;
-	}
+	/**
+     * Methode pour retourner l'ID du compteur
+     */
+    public String getIdCompteur() {
+        return idCompteur;
+    }
 
-	public void setIdCompteur(String idCompteur) {
-		this.idCompteur = idCompteur;
-	}
+    /**
+     * Methode pour modifier l'ID du compteur
+     */
+    public void setIdCompteur(String idCompteur) {
+        this.idCompteur = idCompteur;
+    }
 
-	public String getDateReleve() {
-		return dateReleve;
-	}
+    /**
+     * Methode pour retourner la date du relevé
+     */
+    public String getDateReleve() {
+        return dateReleve;
+    }
 
-	public void setDateReleve(String dateReleve) {
-		this.dateReleve = dateReleve;
-	}
+    /**
+     * Methode pour modifier la date du relevé
+     */
+    public void setDateReleve(String dateReleve) {
+        this.dateReleve = dateReleve;
+    }
 
-	public String getTypeCompteur() {
-		return typeCompteur;
-	}
+    /**
+     * Methode pour retourner le type du compteur
+     */
+    public String getTypeCompteur() {
+        return typeCompteur;
+    }
 
-	public void setTypeCompteur(String typeCompteur) {
-		this.typeCompteur = typeCompteur;
-	}
+    /**
+     * Methode pour modifier le type du compteur
+     */
+    public void setTypeCompteur(String typeCompteur) {
+        this.typeCompteur = typeCompteur;
+    }
 
-	public Double getValeur() {
-		return valeur;
-	}
+    /**
+     * Methode pour retourner la valeur du compteur
+     */
+    public Double getValeur() {
+        return valeur;
+    }
 
-	public void setValeur(Double valeur) {
-		this.valeur = valeur;
-	}
+    /**
+     * Methode pour modifier la valeur du compteur
+     */
+    public void setValeur(Double valeur) {
+        this.valeur = valeur;
+    }
 
-	public String getIdBienImm() {
-		return idBienImm;
-	}
+    /**
+     * Methode pour retourner l'ID du bien immobilier lié au compteur
+     */
+    public String getIdBienImm() {
+        return idBienImm;
+    }
 
-	public void setIdBienImm(String idBienImm) {
-		 this.idBienImm=idBienImm;
-		
-	}
+    /**
+     * Methode pour modifier l'ID du bien immobilier lié au compteur
+     */
+    public void setIdBienImm(String idBienImm) {
+        this.idBienImm = idBienImm;
+    }
 
 }

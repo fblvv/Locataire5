@@ -16,48 +16,81 @@ public class Taxe {
 		this.idTaxeFonciere=idTaxeFonciere;
 	}
 
-	public String getIdTaxeFonciere() {
-		return idTaxeFonciere;
-	}
+    /**
+     * Methode pour retourner l'identifiant de la taxe foncière
+     */
+    public String getIdTaxeFonciere() {
+        return idTaxeFonciere;
+    }
 
-	public void setidTaxeFonciere(String idTaxeFonciere) {
-		this.idTaxeFonciere = idTaxeFonciere;
-	}
+    /**
+     * Methode pour modifier l'identifiant de la taxe foncière
+     */
+    public void setidTaxeFonciere(String idTaxeFonciere) {
+        this.idTaxeFonciere = idTaxeFonciere;
+    }
 
-	public double getBaseImposition() {
-		return baseImposition;
-	}
+    /**
+     * Methode pour retourner la base d'imposition de la taxe
+     */
+    public double getBaseImposition() {
+        return baseImposition;
+    }
 
-	public void setBaseImposition(double baseImposition) {
-		this.baseImposition = baseImposition;
-	}
+    /**
+     * Methode pour modifier la base d'imposition de la taxe
+     */
+    public void setBaseImposition(double baseImposition) {
+        this.baseImposition = baseImposition;
+    }
 
-	public double getTypeTaxe() {
-		return typeTaxe;
-	}
+    /**
+     * Methode pour retourner le type de taxe
+     */
+    public double getTypeTaxe() {
+        return typeTaxe;
+    }
 
-	public void setTypeTaxe(double typeTaxe) {
-		this.typeTaxe = typeTaxe;
-	}
+    /**
+     * Methode pour modifier le type de taxe
+     */
+    public void setTypeTaxe(double typeTaxe) {
+        this.typeTaxe = typeTaxe;
+    }
 
-	public double getTaux() {
-		return taux;
-	}
+    /**
+     * Methode pour retourner le taux de la taxe
+     */
+    public double getTaux() {
+        return taux;
+    }
 
-	public void setTaux(double taux) {
-		this.taux = taux;
-	}
+    /**
+     * Methode pour modifier le taux de la taxe
+     */
+    public void setTaux(double taux) {
+        this.taux = taux;
+    }
 
-	public String getDateTaxe() {
-		return dateTaxe;
-	}
+    /**
+     * Methode pour retourner la date de la taxe
+     */
+    public String getDateTaxe() {
+        return dateTaxe;
+    }
 
-	public void setDateTaxe(String dateTaxe) {
-		this.dateTaxe = dateTaxe;
-	}
+    /**
+     * Methode pour modifier la date de la taxe
+     */
+    public void setDateTaxe(String dateTaxe) {
+        this.dateTaxe = dateTaxe;
+    }
 
-	public String getIdBienImm() {
-		return idBienImm;
-	}
+    /**
+     * Methode pour retourner l'identifiant du bien immobilier lié à la taxe
+     */
+    public String getIdBienImm() {
+        return idBienImm;
+    }
 
 }
