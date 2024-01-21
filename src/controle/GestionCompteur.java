@@ -54,6 +54,9 @@ public class GestionCompteur implements ActionListener, ItemListener {
 		}
 	}
 
+	/**
+	 * Ajouter un relever
+	 */
     // Méthode pour ajouter un relevé à la table des relevés
 	private void ajouterReleve() {
 		DefaultTableModel model = (DefaultTableModel) fenetreCompteur.getTable().getModel();
@@ -71,7 +74,9 @@ public class GestionCompteur implements ActionListener, ItemListener {
 		model.addRow(newRow);
 	}
 
-
+	/**
+	 * ajoute les compteur 
+	 */
     // Méthode pour insérer le compteur dans la base de données
 	private void insererCompteur() throws SQLException {
 		DefaultTableModel model = (DefaultTableModel) fenetreCompteur.getTable().getModel();
@@ -115,14 +120,18 @@ public class GestionCompteur implements ActionListener, ItemListener {
 		}
 	}
 
-
+	/**
+	 * Active les boutton 
+	 */
 	private void activerBoutonAjouter() {
 		String idBienSelectionne = (String) fenetreCompteur.getIdBienComboBox().getSelectedItem();
 
 		// Activer le bouton si un bien est sélectionné, sinon le désactiver
 		fenetreCompteur.getAjouterButton().setEnabled(!"Tous".equals(idBienSelectionne));
 	}
-
+	/**
+	 * filtre pour l'affichage du tableau
+	 */
 	public void filtrerCompteurs() throws SQLException {
 		Collection<Compteur> compteurs = daoCompteur.findAll();
 		String typeSelectionne = (String) fenetreCompteur.getTypeCompteurComboBox().getSelectedItem();

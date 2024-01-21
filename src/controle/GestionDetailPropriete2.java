@@ -68,6 +68,9 @@ public class GestionDetailPropriete2 implements ActionListener {
 		}
 
 	}
+	/**
+	 * afficher les information du logement
+	 */
 	public void afficherInfoLogement() throws SQLException {
 		String get = detailPropriete.getSelecteurIdBien();
 		BienImmobilier bienImmo = daoBienI.findById(get);

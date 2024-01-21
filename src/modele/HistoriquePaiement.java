@@ -11,27 +11,45 @@ public class HistoriquePaiement {
 		this.idHistPaiement=idHistPaiement;
 	}
 
-	public String getIdHistPaiement() {
-		return idHistPaiement;
-	}
+    /**
+     * Methode pour retourner l'identifiant de l'historique de paiement
+     */
+    public String getIdHistPaiement() {
+        return idHistPaiement;
+    }
 
-	public void setIdHistPaiement(String idHistPaiement) {
-		this.idHistPaiement = idHistPaiement;
-	}
+    /**
+     * Methode pour modifier l'identifiant de l'historique de paiement
+     */
+    public void setIdHistPaiement(String idHistPaiement) {
+        this.idHistPaiement = idHistPaiement;
+    }
 
-	public String getStocker() {
-		return stocker;
-	}
+    /**
+     * Methode pour retourner le champ de stockage
+     */
+    public String getStocker() {
+        return stocker;
+    }
 
-	public void setStocker(String stocker) {
-		this.stocker = stocker;
-	}
+    /**
+     * Methode pour modifier le champ de stockage
+     */
+    public void setStocker(String stocker) {
+        this.stocker = stocker;
+    }
 
-	public String getDateDebutContrat() {
-		return dateDebutContrat;
-	}
+    /**
+     * Methode pour retourner la date de début du contrat associé à l'historique de paiement
+     */
+    public String getDateDebutContrat() {
+        return dateDebutContrat;
+    }
 
-	public void setDateDebutContrat(String dateDebutContrat) {
-		this.dateDebutContrat = dateDebutContrat;
-	}
+    /**
+     * Methode pour modifier la date de début du contrat associé à l'historique de paiement
+     */
+    public void setDateDebutContrat(String dateDebutContrat) {
+        this.dateDebutContrat = dateDebutContrat;
+    }
 }

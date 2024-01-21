@@ -20,59 +20,102 @@ public class Locataire {
 		this.id_Locataire=idLocataire;
 	}
 
-	public String getId_Locataire() {
-		return id_Locataire;
-	}
 
-	public void setIdLocataire(String idLocataire) {
-		this.id_Locataire = idLocataire;
-	}
+    /**
+     * Methode pour retourner l'identifiant du locataire
+     */
+    public String getId_Locataire() {
+        return id_Locataire;
+    }
 
-	public String getNom() {
-		return nom;
-	}
+    /**
+     * Methode pour modifier l'identifiant du locataire
+     */
+    public void setIdLocataire(String idLocataire) {
+        this.id_Locataire = idLocataire;
+    }
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+    /**
+     * Methode pour retourner le nom du locataire
+     */
+    public String getNom() {
+        return nom;
+    }
 
-	public String getPrenom() {
-		return prenom;
-	}
+    /**
+     * Methode pour modifier le nom du locataire
+     */
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
+    /**
+     * Methode pour retourner le prénom du locataire
+     */
+    public String getPrenom() {
+        return prenom;
+    }
 
-	public String getTelephone() {
-		return telephone;
-	}
+    /**
+     * Methode pour modifier le prénom du locataire
+     */
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
+    /**
+     * Methode pour retourner le numéro de téléphone du locataire
+     */
+    public String getTelephone() {
+        return telephone;
+    }
 
-	public String getMail() {
-		return mail;
-	}
+    /**
+     * Methode pour modifier le numéro de téléphone du locataire
+     */
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
 
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
+    /**
+     * Methode pour retourner l'adresse e-mail du locataire
+     */
+    public String getMail() {
+        return mail;
+    }
 
-	public String getAdresse() {
-		return adresse;
-	}
+    /**
+     * Methode pour modifier l'adresse e-mail du locataire
+     */
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}
+    /**
+     * Methode pour retourner l'adresse du locataire
+     */
+    public String getAdresse() {
+        return adresse;
+    }
 
-	public String getCode_Postal() {
-		return code_Postal;
-	}
+    /**
+     * Methode pour modifier l'adresse du locataire
+     */
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
 
-	public void setCode_Postal(String code_Postal) {
-		this.code_Postal = code_Postal;
-	}
+    /**
+     * Methode pour retourner le code postal du locataire
+     */
+    public String getCode_Postal() {
+        return code_Postal;
+    }
+
+    /**
+     * Methode pour modifier le code postal du locataire
+     */
+    public void setCode_Postal(String code_Postal) {
+        this.code_Postal = code_Postal;
+    }
 }

@@ -14,35 +14,59 @@ public class Entreprise {
 		this.siren=siren;
 	}
 
-	public String getSiren() {
-		return siren;
-	}
+    /**
+     * Methode pour retourner le numéro SIREN de l'entreprise
+     */
+    public String getSiren() {
+        return siren;
+    }
 
-	public void setSiren(String siren) {
-		this.siren = siren;
-	}
+    /**
+     * Methode pour modifier le numéro SIREN de l'entreprise
+     */
+    public void setSiren(String siren) {
+        this.siren = siren;
+    }
 
-	public String getAdresse() {
-		return champAdresse;
-	}
+    /**
+     * Methode pour retourner l'adresse de l'entreprise
+     */
+    public String getAdresse() {
+        return champAdresse;
+    }
 
-	public void setAdresse(String champAdresse) {
-		this.champAdresse = champAdresse;
-	}
+    /**
+     * Methode pour modifier l'adresse de l'entreprise
+     */
+    public void setAdresse(String champAdresse) {
+        this.champAdresse = champAdresse;
+    }
 
-	public String getTel() {
-		return champTel;
-	}
+    /**
+     * Methode pour retourner le numéro de téléphone de l'entreprise
+     */
+    public String getTel() {
+        return champTel;
+    }
 
-	public void setTel(String champTel) {
-		this.champTel = champTel;
-	}
+    /**
+     * Methode pour modifier le numéro de téléphone de l'entreprise
+     */
+    public void setTel(String champTel) {
+        this.champTel = champTel;
+    }
 
-	public String getNom() {
-		return champNom;
-	}
+    /**
+     * Methode pour retourner le nom de l'entreprise
+     */
+    public String getNom() {
+        return champNom;
+    }
 
-	public void setNom(String champNom) {
-		this.champNom = champNom;
-	}
+    /**
+     * Methode pour modifier le nom de l'entreprise
+     */
+    public void setNom(String champNom) {
+        this.champNom = champNom;
+    }
 }

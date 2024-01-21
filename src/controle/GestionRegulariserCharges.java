@@ -46,6 +46,9 @@ public class GestionRegulariserCharges implements ActionListener {
 
     }
 
+	/**
+	 * Methode pour afficher les ancienne valeurs
+	 */
     public void afficherAnciennesValeurs() throws SQLException {
         DaoContratLocation daoContrat = new DaoContratLocation();
         
@@ -84,6 +87,9 @@ public class GestionRegulariserCharges implements ActionListener {
         
     }
     
+	/**
+	 * Methode pour le format de la date
+	 */
     private int AnneeDate(String dateString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDate date = LocalDate.parse(dateString, formatter);

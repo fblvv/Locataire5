@@ -62,8 +62,10 @@ public class GestionContratLocation implements ActionListener{
         }
     }
 
-	//Methode pour creer le CONTRAT DE LOCATION
-
+	
+	/**
+	 * Methode pour creer le CONTRAT DE LOCATION
+	 */
 	private void createContratLocation() throws SQLException{
 
 		String dateDebutContrat = contratLocation.getChampDateDebutContrat().getText();
@@ -103,6 +105,9 @@ public class GestionContratLocation implements ActionListener{
         genererContratPDF(contratLocation.getLocataire());
     }
 
+	/**
+	 * genere les contrat pdf 
+	 */
     private void genererContratPDF(String idLocataire) {
         // Utilisation de la classe GenererContratDeLocation pour générer le PDF
         GenererContratDeLocation genererContrat = new GenererContratDeLocation();

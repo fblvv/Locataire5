@@ -51,6 +51,9 @@ public class GestionVoirContratLocation implements ActionListener {
 		}
 	}
 
+	/**
+	 * Methode pour l'affichage du contrat
+	 */
 	public void afficherContratLoc() throws SQLException {
 		Collection<ContratLocation> contratLocation = daoContratLocation.findAll();
 		DefaultTableModel tableModel = (DefaultTableModel) contratLocataire.getTable().getModel();
@@ -71,6 +74,9 @@ public class GestionVoirContratLocation implements ActionListener {
 
 		}
 	}
+	/**
+	 * Methode pour modifier les lignes du tableau
+	 */
 	public void modifLigne() {
 		DefaultTableModel tableModel = (DefaultTableModel) contratLocataire.getTable().getModel();
 		int row = contratLocataire.getTable().getSelectedRow();

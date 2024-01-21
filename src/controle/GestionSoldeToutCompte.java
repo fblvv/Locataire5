@@ -66,6 +66,9 @@ public class GestionSoldeToutCompte implements ActionListener {
 		}
 	}
 
+	/**
+	 * Methode pour afficher les information du locataire
+	 */
 	public void afficherInfoLocataire() throws SQLException {
 		String idLocataire = fenetreSolde.getSelecteurIdLocataire();
 
@@ -106,7 +109,9 @@ public class GestionSoldeToutCompte implements ActionListener {
 		
 	}
 	
-	
+	/**
+	 * Methode pour calculer les regularisation
+	 */
 	
 	private void calculerRegularisation() {
         String idBien = fenetreSolde.getTextBien().getText();
@@ -142,6 +147,9 @@ public class GestionSoldeToutCompte implements ActionListener {
         }
     }
 	
+	/**
+	 * Methode pour claculer les soldes
+	 */
 	private void calculerSolde() {
 	    String idBien = fenetreSolde.getTextBien().getText();
 	    System.out.println("Voici l'id du bien" + idBien);
@@ -177,7 +185,9 @@ public class GestionSoldeToutCompte implements ActionListener {
 	}
 
 	
-	
+	/**
+	 * Methode pour la regularisation
+	 */
 	private void regulariser() {
         String idBien = fenetreSolde.getTextBien().getText();
         java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
@@ -198,6 +208,9 @@ public class GestionSoldeToutCompte implements ActionListener {
         }
     }
 	
+	/**
+	 * Methode pour les soldes
+	 */
 	private void soldes() {
         String idBien = fenetreSolde.getTextBien().getText();
         java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
@@ -217,6 +230,9 @@ public class GestionSoldeToutCompte implements ActionListener {
             ex.printStackTrace();
         }
     }
+	/**
+	 * Methode pour mettre a joure la table
+	 */
 
     private void mettreAJourJTable(String idBien) {
         try {
@@ -245,6 +261,9 @@ public class GestionSoldeToutCompte implements ActionListener {
         }
     }
 	
+	/**
+	 * Methode pour mettre a jour la table solde
+	 */
     private void mettreAJourJTableSolde(String idBien) {
         try {
             // Effectuer la requête pour récupérer les données de la régularisation
@@ -272,6 +291,9 @@ public class GestionSoldeToutCompte implements ActionListener {
         }
     }
 
+	/**
+	 * Methode pour afficher le recu
+	 */
     public void afficherRecu() throws SQLException {
     	// Ajout de la génération du contrat PDF
     	String idBien = fenetreSolde.getTextBien().getText();
@@ -280,13 +302,19 @@ public class GestionSoldeToutCompte implements ActionListener {
     }
 
    
+	/**
+	 * Methode pour la generation du pdf
+	 */
     private void genererContratPDF(String idBien,String idLocataire) {
         // Utilisation de la classe GenererContratDeLocation pour générer le PDF
     	GenererRecuSoldeDeToutCompte genererContrat = new GenererRecuSoldeDeToutCompte();
         genererContrat.genererPdf(idBien,idLocataire);
 
     }
-
+    
+	/**
+	 * Methode pour l'affichage de la fenetre
+	 */
     private void afficherFenetre(javax.swing.JInternalFrame fenetre, JLayeredPane layeredPane) {
 		layeredPane.add(fenetre);
 		fenetre.setVisible(true);

@@ -14,35 +14,59 @@ public class GarantCaution {
 		this.idCaution=idCaution;
 	}
 
-	public String getidCaution() {
-		return idCaution;
-	}
+    /**
+     * Methode pour retourner l'identifiant de la caution
+     */
+    public String getidCaution() {
+        return idCaution;
+    }
 
-	public void setIdCaution(String idCCaution) {
-		this.idCaution = idCCaution;
-	}
+    /**
+     * Methode pour modifier l'identifiant de la caution
+     */
+    public void setIdCaution(String idCaution) {
+        this.idCaution = idCaution;
+    }
 
-	public String getNom() {
-		return nom;
-	}
+    /**
+     * Methode pour retourner le nom du garant caution
+     */
+    public String getNom() {
+        return nom;
+    }
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+    /**
+     * Methode pour modifier le nom du garant caution
+     */
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
-	public String getPrenom() {
-		return prenom;
-	}
+    /**
+     * Methode pour retourner le prénom du garant caution
+     */
+    public String getPrenom() {
+        return prenom;
+    }
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
+    /**
+     * Methode pour modifier le prénom du garant caution
+     */
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
 
-	public String getNumero_Telephone() {
-		return numero_Telephone;
-	}
+    /**
+     * Methode pour retourner le numéro de téléphone du garant caution
+     */
+    public String getNumero_Telephone() {
+        return numero_Telephone;
+    }
 
-	public void setNumero_Telephone(String numero_Telephone) {
-		this.numero_Telephone = numero_Telephone;
-	}
+    /**
+     * Methode pour modifier le numéro de téléphone du garant caution
+     */
+    public void setNumero_Telephone(String numero_Telephone) {
+        this.numero_Telephone = numero_Telephone;
+    }
 }

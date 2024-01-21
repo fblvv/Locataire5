@@ -64,6 +64,9 @@ public class GestionPageAjoutLocataire implements ActionListener {
 		}
 	}
 
+	/**
+	 * Methode pour creer un locataire 
+	 */
 	private void createLocataire() throws SQLException {
 		JComboBox<String> comboBoxLogement = ajoutLocataire.getComboBoxLogement();
 		String bienId = (String) comboBoxLogement.getSelectedItem();
@@ -105,6 +108,9 @@ public class GestionPageAjoutLocataire implements ActionListener {
 
 
 
+	/**
+	 * Methode pour afficher une fenetre
+	 */
 	private void afficherFenetre(javax.swing.JInternalFrame fenetre, JLayeredPane layeredPane) {
 		layeredPane.add(fenetre);
 		fenetre.setVisible(true);

@@ -60,6 +60,9 @@ public class GestionFenetreLoyer implements ActionListener {
 	}
 
 
+	/**
+	 * Methode pour filtrer l'affichage de la table
+	 */
 	private void filtrerTable() throws SQLException {
 		
 		//Récupération de l'id du locataire dans la Jcombobox
@@ -116,6 +119,9 @@ public class GestionFenetreLoyer implements ActionListener {
 
 
 
+	/**
+	 * Methode pour ajouter un loyer
+	 */
 	public void ajouterLoyer() {
 		try {
 

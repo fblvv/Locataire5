@@ -34,6 +34,7 @@ public class GestionEntreprise implements ActionListener  {
 			switch (buttonValider.getText()) {
 			case "Charger":
 				try {
+					// appele de la methode affichage entreprise
 					afficherEntreprise();
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -50,6 +51,9 @@ public class GestionEntreprise implements ActionListener  {
 
 
 
+	/**
+	 * affiche une entreprise
+	 */
 	private void afficherEntreprise()throws SQLException {
 
 		Collection<Entreprise> entreprises = daoEntreprise.findAll();
